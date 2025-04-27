@@ -32,14 +32,14 @@ export function EditableButtons({
             onDataChange({ ...data, isPublished: checked })
           }
         />
-        <span>Опубликовано</span>
+        <span>Published</span>
       </div>
       <div className="mt-4 flex gap-2">
         <Button onClick={onUpdate} variant="default">
-          Сохранить
+          Save
         </Button>
         <Button onClick={onCancel} variant="outline">
-          Отмена
+          Cancel
         </Button>
       </div>
     </>
