@@ -2,5 +2,9 @@
   "id": "about",
   "title": "John Smith",
   "description": "Experienced developer focused on web technologies. Specializing in building modern web applications using React, TypeScript, and Node.js.",
-  "isPublished": true
+  "isPublished": true,
+  "github": "",
+  "linkedin": "",
+  "leetcode": "",
+  "email": ""
 }

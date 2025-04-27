@@ -9,6 +9,7 @@ import { EditableHeader } from '@/components/EditableCard/EditableHeader';
 import { EditableContent } from '@/components/EditableCard/EditableContent';
 import { SkillsList } from './EditableCard/SkillsList';
 import { EditableButtons } from './EditableCard/EditableButtons';
+import { SocialLinks } from './EditableCard/SocialLinks';
 
 interface EditableCardProps {
   id: string;
@@ -63,6 +64,12 @@ export function EditableCard({
             onUpdate={(newSkills: string[]) => setData({ ...data, skills: newSkills })}
           />
         )}
+
+        {('github' in data) && <SocialLinks
+          isEditing={isEditing}
+          data={data}
+          onDataChange={setData}
+        />}
 
         {isEditing && (<EditableButtons data={data}
           onDataChange={setData}

@@ -15,7 +15,10 @@ export interface BaseEntry {
 }
 
 export interface AboutData extends BaseEntry {
-  // additional fields for About if needed
+  github?: string;
+  linkedin?: string;
+  leetcode?: string;
+  email?: string;
 }
 
 export interface ExperienceEntry extends BaseEntry {
