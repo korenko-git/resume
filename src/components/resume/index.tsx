@@ -3,39 +3,49 @@ import { CertificationSection } from "./CertificationSection"
 import { EducationSection } from "./EducationSection"
 import { ExperienceSection } from "./ExperienceSection"
 import { ProjectSection } from "./ProjectSection"
+import type { ResumeData, BaseEntry } from '@/types/resume'
 
 interface ResumeProps {
-    data: any;
-    editable?: boolean;
-  }
+  data: ResumeData;
+  editable?: boolean;
+}
 
-export default function Resume({data, editable = true} : ResumeProps) {
-    return (
-        <div className="space-y-8">
-        <AboutSection 
-          data={data.about}
-          editable={editable}
-        />
-        
-        <ExperienceSection
-          entries={data.experience.entries}
-          editable={editable}
-        />
+export default function Resume({ data, editable = true }: ResumeProps) {
+  const filterPublished = <T extends BaseEntry>(entries: T[]): T[] => {
+    return editable ? entries : entries.filter(entry => entry.isPublished);
+  };
 
-        <ProjectSection
-          entries={data.projects.entries}
-          editable={editable}
-        />
+  const experienceData = filterPublished(data.experience.entries);
+  const projectData = filterPublished(data.projects.entries);
+  const educationData = filterPublished(data.education.entries);
+  const certificationData = filterPublished(data.certifications.entries);
 
-        <EducationSection
-          entries={data.education.entries}
-          editable={editable}
-        />
+  return (
+    <div className="space-y-8">
+      <AboutSection
+        data={data.about}
+        editable={editable}
+      />
 
-        <CertificationSection
-          entries={data.certifications.entries}
-          editable={editable}
-        />
-      </div>
-    )
+      <ExperienceSection
+        entries={experienceData}
+        editable={editable}
+      />
+
+      <ProjectSection
+        entries={projectData}
+        editable={editable}
+      />
+
+      <EducationSection
+        entries={educationData}
+        editable={editable}
+      />
+
+      <CertificationSection
+        entries={certificationData}
+        editable={editable}
+      />
+    </div>
+  )
 }
