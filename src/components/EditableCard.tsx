@@ -38,6 +38,17 @@ export function EditableCard({
     setIsEditing(false);
   };
 
+  const handleEditStart = () => {
+    if (editable) {
+      setIsEditing(true);
+    }
+  };
+
+  const handleCancel = () => {
+    setData(getData(typeData, id));
+    setIsEditing(false);
+  };
+
   return (
     <Card className="w-full mt-4">
       <EditableHeader
@@ -46,7 +57,7 @@ export function EditableCard({
         organization={organization}
         editable={editable}
         onDataChange={setData}
-        onEditStart={() => setIsEditing(true)}
+        onEditStart={handleEditStart}
         onOrgModalOpen={() => setIsOrgModalOpen(true)}
       />
 
@@ -55,6 +66,7 @@ export function EditableCard({
           onDataChange={setData}
           isEditing={isEditing}
           data={data}
+          onEditStart={handleEditStart}
         />
 
         {('skills' in data) && (
@@ -65,16 +77,21 @@ export function EditableCard({
           />
         )}
 
-        {('github' in data) && <SocialLinks
-          isEditing={isEditing}
-          data={data}
-          onDataChange={setData}
-        />}
+        {('github' in data) && (
+          <SocialLinks
+            isEditing={isEditing}
+            data={data}
+            onDataChange={setData}
+          />
+        )}
 
-        {isEditing && (<EditableButtons data={data}
-          onDataChange={setData}
-          onUpdate={handleUpdate}
-          onCancel={() => setIsEditing(false)} />
+        {isEditing && (
+          <EditableButtons
+            data={data}
+            onDataChange={setData}
+            onUpdate={handleUpdate}
+            onCancel={handleCancel}
+          />
         )}
       </CardContent>
 
