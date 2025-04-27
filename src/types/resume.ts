@@ -31,10 +31,12 @@ export interface ProjectEntry extends BaseEntry {
 export interface EducationEntry extends BaseEntry {
   startDate: string;
   endDate: string;
+  skills: string[];
 }
 
 export interface CertificationEntry extends BaseEntry {
   date: string;
+  skills: string[];
 }
 
 export interface ResumeData {

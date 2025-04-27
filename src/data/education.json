@@ -7,6 +7,7 @@
       "isPublished": true,
       "startDate": "2017-09",
       "endDate": "2019-06",
+      "skills": ["AWS", "Node.js", "Docker", "Kubernetes", "Terraform", "Python", "Microservices", "CI/CD", "MongoDB", "Redis", "ELK Stack", "Prometheus", "Grafana"],
       "organizationId": "stanford"
     },
     {
@@ -16,6 +17,7 @@
       "isPublished": true,
       "startDate": "2013-09",
       "endDate": "2017-06",
+      "skills": ["AWS", "Node.js", "Docker", "Kubernetes", "Terraform", "Python", "Microservices", "CI/CD", "MongoDB", "Redis", "ELK Stack", "Prometheus", "Grafana"],
       "organizationId": "mit"
     }
   ]

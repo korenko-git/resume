@@ -6,6 +6,7 @@
       "description": "Professional level certification for developing on AWS platform",
       "isPublished": true,
       "date": "2023-01",
+      "skills": ["AWS", "Node.js", "Docker", "Kubernetes", "Terraform", "Python", "Microservices", "CI/CD", "MongoDB", "Redis", "ELK Stack", "Prometheus", "Grafana"],
       "organizationId": "aws"
     },
     {
@@ -14,6 +15,7 @@
       "description": "Advanced course in React and its ecosystem",
       "isPublished": true,
       "date": "2022-06",
+      "skills": ["AWS", "Node.js", "Docker", "Kubernetes", "Terraform", "Python", "Microservices", "CI/CD", "MongoDB", "Redis", "ELK Stack", "Prometheus", "Grafana"],
       "organizationId": "meta"
     }
   ]

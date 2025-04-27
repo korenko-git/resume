@@ -10,22 +10,21 @@ export default function Home() {
   const router = useRouter();
 
   if (loading) {
-    return <div className="container mx-auto py-8">Загрузка...</div>;
+    return <div className="container mx-auto py-8">Loading...</div>;
   }
 
   if (error) {
-    return <div className="container mx-auto py-8">Ошибка: {error.message}</div>;
+    return <div className="container mx-auto py-8">Error: {error.message}</div>;
   }
 
   return (
     <div className="container mx-auto py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Мое Резюме</h1>
+        <h1 className="text-3xl font-bold">My Resume</h1>
         <Button onClick={() => router.push('/editor')}>
-          Редактировать
+          Edit
         </Button>
       </div>
-      
       
       <Resume data={data} editable={false} />
     </div>

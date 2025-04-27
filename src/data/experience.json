@@ -7,7 +7,7 @@
       "isPublished": true,
       "startDate": "2021-01",
       "endDate": "",
-      "skills": ["React", "TypeScript", "Next.js", "Redux"],
+      "skills": ["React", "TypeScript", "Next.js", "Redux", "GraphQL", "Jest", "Cypress", "Webpack", "CI/CD", "AWS", "Docker", "Kubernetes", "Performance Optimization", "Team Leadership"],
       "organizationId": "meta"
     },
     {
@@ -17,7 +17,7 @@
       "isPublished": true,
       "startDate": "2019-03",
       "endDate": "2020-12",
-      "skills": ["AWS", "Node.js", "Docker", "Kubernetes"],
+      "skills": ["AWS", "Node.js", "Docker", "Kubernetes", "Terraform", "Python", "Microservices", "CI/CD", "MongoDB", "Redis", "ELK Stack", "Prometheus", "Grafana"],
       "organizationId": "aws"
     }
   ]
