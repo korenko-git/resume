@@ -1,4 +1,6 @@
 import { Textarea } from '@/components/ui/textarea';
+import ReactMarkdown from 'react-markdown';
+import { cn } from '@/lib/utils';
 
 interface EditableContentProps {
   isEditing: boolean;
@@ -8,7 +10,6 @@ interface EditableContentProps {
     skills?: string[];
   };
   onDataChange: (data: any) => void;
-  editable?: boolean;
   onEditStart?: () => void;
 }
 
@@ -24,11 +25,18 @@ export function EditableContent({
         <Textarea
           value={data.description}
           onChange={(e) => onDataChange({ ...data, description: e.target.value })}
-          className="mb-4"
+          className="mb-4 font-mono"
+          placeholder="Поддерживается Markdown разметка..."
         />
       ) : (
-        <div className={isEditing ? 'cursor-pointer' : ''} onClick={onEditStart}>
-          {data.description}
+        <div 
+          className={cn(
+            'prose prose-sm dark:prose-invert max-w-none mb-4',
+            isEditing && 'cursor-pointer'
+          )} 
+          onClick={onEditStart}
+        >
+          <ReactMarkdown>{data.description}</ReactMarkdown>
         </div>
       )}
     </>
