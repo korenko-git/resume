@@ -1,0 +1,36 @@
+name: Apply Resume Updates
+
+on:
+  push:
+    paths:
+      - 'updates/*.zip'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt install unzip jq
+
+      - name: Process updates
+        run: |
+          for file in updates/*.zip; do
+            unzip -o "$file" -d temp-update
+
+            cp -v temp-update/data/*.json data/
+            cp -v temp-update/images/* public/images/
+
+            rm -rf temp-update
+          done
+
+          rm -v updates/*.zip
+
+      - run: node scripts/generate-resume-pdf.ts
+
+      - name: Commit and push
+        run: |
+          git config user.name github-actions
+          git config user.email action@github.com
+          git add data/ public/images/ public/resume.pdf
+          git commit -m "Apply update from ZIP"
+          git push

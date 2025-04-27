@@ -1,0 +1,41 @@
+name: Generate ATS CV
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  generate-ats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm install -D puppeteer markdown-it
+
+      - name: Generate ATS CV
+        run: node scripts/generate-ats-resume.ts
+
+      - name: Upload ATS CV artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ats-cv
+          path: |
+            public/cv-ats.md
+            public/cv-ats.pdf
+
+      - name: Commit ATS CV
+        run: |
+          git config user.name github-actions
+          git config user.email action@github.com
+          git add public/cv-ats.md public/cv-ats.pdf
+          git commit -m "Update ATS CV" || echo "No changes to commit"
+          git push

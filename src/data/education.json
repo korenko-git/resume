@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "id": "edu-1",
+      "title": "Master of Computer Science",
+      "description": "Advanced studies in distributed systems and cloud computing",
+      "isPublished": true,
+      "startDate": "2017-09",
+      "endDate": "2019-06",
+      "organizationId": "stanford"
+    },
+    {
+      "id": "edu-2",
+      "title": "Bachelor of Information Technology",
+      "description": "Focus on software engineering and web technologies",
+      "isPublished": true,
+      "startDate": "2013-09",
+      "endDate": "2017-06",
+      "organizationId": "mit"
+    }
+  ]
+}

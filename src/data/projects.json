@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "id": "proj-1",
+      "title": "Online Learning Platform",
+      "description": "Development of an interactive platform for online learning with support for video lessons and testing.",
+      "isPublished": true,
+      "skills": ["React", "Node.js", "MongoDB", "WebRTC"]
+    },
+    {
+      "id": "proj-2",
+      "title": "Task Management System",
+      "description": "Creation of a system for project and task management with real-time updates.",
+      "isPublished": true,
+      "skills": ["TypeScript", "React", "Socket.io", "PostgreSQL"]
+    }
+  ]
+}

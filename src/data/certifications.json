@@ -1,0 +1,20 @@
+{
+  "entries": [
+    {
+      "id": "cert-1",
+      "title": "AWS Certified Developer",
+      "description": "Professional level certification for developing on AWS platform",
+      "isPublished": true,
+      "date": "2023-01",
+      "organizationId": "aws"
+    },
+    {
+      "id": "cert-2",
+      "title": "React Advanced",
+      "description": "Advanced course in React and its ecosystem",
+      "isPublished": true,
+      "date": "2022-06",
+      "organizationId": "meta"
+    }
+  ]
+}

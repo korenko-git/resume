@@ -1,0 +1,24 @@
+{
+  "entries": [
+    {
+      "id": "exp-1",
+      "title": "Senior Frontend Developer",
+      "description": "Development and maintenance of large-scale web applications. Implementation of modern development practices and performance optimization.",
+      "isPublished": true,
+      "startDate": "2021-01",
+      "endDate": "",
+      "skills": ["React", "TypeScript", "Next.js", "Redux"],
+      "organizationId": "meta"
+    },
+    {
+      "id": "exp-2",
+      "title": "Cloud Solutions Engineer",
+      "description": "Design and implementation of cloud-native applications and infrastructure",
+      "isPublished": true,
+      "startDate": "2019-03",
+      "endDate": "2020-12",
+      "skills": ["AWS", "Node.js", "Docker", "Kubernetes"],
+      "organizationId": "aws"
+    }
+  ]
+}
