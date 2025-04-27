@@ -19,7 +19,9 @@ export function ProjectSection({ entries,  editable = true }: ProjectSectionProp
       title: "New Project",
       description: "Project Description",
       isPublished: true,
-      skills: []
+      skills: [],
+      source: "",
+      demo: ""
     };
     updateData('projects', newEntry);
   };

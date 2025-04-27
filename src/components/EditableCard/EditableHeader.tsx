@@ -10,6 +10,8 @@ interface EditableHeaderProps {
     startDate?: string;
     endDate?: string;
     organizationId?: string;
+    source?: string;
+    demo?: string;
   };
   organization?: Organization;
   editable: boolean;
@@ -55,6 +57,22 @@ export function EditableHeader({
               value={data.title}
               onChange={(e) => onDataChange({ ...data, title: e.target.value })}
             />
+            {'source' in data && (
+              <Input
+                value={data.source}
+                onChange={(e) => onDataChange({ ...data, source: e.target.value })}
+                placeholder="Ссылка на исходный код"
+                className="mt-2"
+              />
+            )}
+            {'demo' in data && (
+              <Input
+                value={data.demo}
+                onChange={(e) => onDataChange({ ...data, demo: e.target.value })}
+                placeholder="Ссылка на демо"
+                className="mt-2"
+              />
+            )}
             {'date' in data && (
               <Input
                 type="month"
@@ -108,6 +126,30 @@ export function EditableHeader({
               {'date' in data && formatDate(data.date)}
               {'startDate' in data && `${formatDate(data.startDate)} - ${formatDate(data.endDate)}`}
             </div>
+            {('source' in data || 'demo' in data) && (
+              <div className="flex gap-4 mt-2">
+                {data.source && (
+                  <a
+                    href={data.source}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-blue-500 hover:underline"
+                  >
+                    Source
+                  </a>
+                )}
+                {data.demo && (
+                  <a
+                    href={data.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-blue-500 hover:underline"
+                  >
+                    Demo
+                  </a>
+                )}
+              </div>
+            )}
           </>
         )}
       </div>

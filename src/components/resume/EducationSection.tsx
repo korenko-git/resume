@@ -18,6 +18,7 @@ export function EducationSection({ entries, editable = true }: EducationSectionP
       title: "New Education",
       description: "Education Description",
       isPublished: true,
+      skills: [],
       startDate: "",
       endDate: ""
     };

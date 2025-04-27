@@ -26,6 +26,8 @@ export interface ExperienceEntry extends BaseEntry {
 
 export interface ProjectEntry extends BaseEntry {
   skills: string[];
+  source?: string;
+  demo?: string;
 }
 
 export interface EducationEntry extends BaseEntry {

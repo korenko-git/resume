@@ -18,6 +18,7 @@ export function CertificationSection({ entries, editable = true }: Certification
       title: "New Certificate",
       description: "Certificate Description",
       isPublished: true,
+      skills: [],
       date: ""
     };
     updateData('certifications', newEntry);
