@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { useResume } from '@/contexts/ResumeContext';
 import Resume from '@/components/resume';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function Home() {
   const { data, loading, error } = useResume();
@@ -19,7 +20,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto py-8">
-      
+      <ThemeToggle />
       <Resume data={data} editable={false} />
 
       <footer className="mt-16 py-8 border-t text-center text-sm text-muted-foreground">

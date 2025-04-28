@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useResume } from '@/contexts/ResumeContext';
 import Resume from '@/components/resume';
 import { WelcomeTour } from '@/components/WelcomeTour';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function Editor() {
   const { data, loading, error } = useResume();
@@ -68,6 +69,7 @@ export default function Editor() {
         <div className="flex justify-between items-center mb-8 resume-editor-header">
           <h1 className="text-3xl font-bold">Resume Editor</h1>
           <div className="flex gap-4">
+            <ThemeToggle />
             <Button variant="ghost" onClick={() => setRunTour(true)}>
               Show Tutorial
             </Button>
