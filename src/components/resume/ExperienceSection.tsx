@@ -37,7 +37,7 @@ export function ExperienceSection({ entries, editable = true }: ExperienceSectio
         />
       ))}
       {editable && (
-        <Button onClick={handleAdd} className="mt-4">
+        <Button onClick={handleAdd} className="mt-4 add-work">
           Add Work Experience
         </Button>
       )}

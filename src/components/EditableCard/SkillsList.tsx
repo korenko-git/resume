@@ -36,7 +36,7 @@ export function SkillsList({ skills, onUpdate, isEditing }: SkillsListProps) {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 skills-section">
       {isEditing && (<div className="flex items-center justify-between">
         <h4 className="font-medium">Skills</h4>
 

@@ -31,7 +31,7 @@ export function EditableHeader({
   onOrgModalOpen
 }: EditableHeaderProps) {
   return (
-    <CardHeader className="flex flex-row gap-4">
+    <CardHeader className="flex flex-row gap-4 ">
       {organization?.logo && (
         <div
           className={`flex-shrink-0 ${editable ? 'cursor-pointer' : ''}`}
@@ -53,6 +53,7 @@ export function EditableHeader({
           <>
             <Input
               value={data.title}
+              className='editable-header'
               onChange={(e) => onDataChange({ ...data, title: e.target.value })}
             />
             {'source' in data && (
@@ -99,7 +100,7 @@ export function EditableHeader({
         ) : (
           <>
             <h3
-              className={`text-lg font-semibold ${editable ? 'cursor-pointer' : ''}`}
+              className={`text-lg font-semibold ${editable ? 'cursor-pointer editable-header' : ''}`}
               onClick={onEditStart}
             >
               {data.title}

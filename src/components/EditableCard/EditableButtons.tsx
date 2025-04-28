@@ -25,7 +25,7 @@ export function EditableButtons({
 }: EditableContentProps) {
   return (
     <>
-      <div className="flex items-center gap-4 mt-4">
+      <div className="flex items-center gap-4 mt-4 swtich-publish">
         <Switch
           checked={data.isPublished}
           onCheckedChange={(checked) =>
@@ -34,11 +34,11 @@ export function EditableButtons({
         />
         <span>Published</span>
       </div>
-      <div className="mt-4 flex gap-2">
+      <div className="mt-4 flex gap-2 save-cancel-buttons">
         <Button onClick={onUpdate} variant="default">
           Save
         </Button>
-        <Button onClick={onCancel} variant="outline">
+        <Button onClick={onCancel} variant="outline" className='cancel-button'>
           Cancel
         </Button>
       </div>

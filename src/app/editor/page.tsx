@@ -1,14 +1,17 @@
 'use client';
 
+import { useState } from 'react';
 import { createUpdateZip } from '@/lib/zipUtils';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { useResume } from '@/contexts/ResumeContext';
 import Resume from '@/components/resume';
+import { WelcomeTour } from '@/components/WelcomeTour';
 
 export default function Editor() {
   const { data, loading, error } = useResume();
   const router = useRouter();
+  const [runTour, setRunTour] = useState(false);
 
   if (loading) {
     return <div className="container mx-auto py-8">Loading...</div>;
@@ -56,20 +59,29 @@ export default function Editor() {
 
 
   return (
-    <div className="container mx-auto py-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Resume Editor</h1>
-        <div className="flex gap-4">
-          <Button variant="outline" onClick={() => router.push('/')}>
-            View
-          </Button>
-          <Button onClick={handleDownload}>
-            Download Changes as ZIP
-          </Button>
+    <>
+      <WelcomeTour 
+        run={runTour}
+        onFinish={() => setRunTour(false)}
+      />
+      <div className="container mx-auto py-8">
+        <div className="flex justify-between items-center mb-8 resume-editor-header">
+          <h1 className="text-3xl font-bold">Resume Editor</h1>
+          <div className="flex gap-4">
+            <Button variant="ghost" onClick={() => setRunTour(true)}>
+              Show Tutorial
+            </Button>
+            <Button variant="outline" onClick={() => router.push('/')} className="view-button">
+              View
+            </Button>
+            <Button onClick={handleDownload} className="download-button">
+              Download Changes as ZIP
+            </Button>
+          </div>
         </div>
+        
+        <Resume data={data} />
       </div>
-      
-      <Resume data={data} />
-    </div>
+    </>
   );
 }

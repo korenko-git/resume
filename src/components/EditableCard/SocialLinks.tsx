@@ -15,7 +15,7 @@ interface SocialLinksProps {
 export function SocialLinks({ isEditing, data, onDataChange }: SocialLinksProps) {
   if (isEditing) {
     return (
-      <div className="space-y-3 mt-4">
+      <div className="space-y-3 mt-4 social-links">
         <div className="flex items-center gap-2">
           <Github className="h-5 w-5" />
           <Input
@@ -58,7 +58,7 @@ export function SocialLinks({ isEditing, data, onDataChange }: SocialLinksProps)
   }
 
   return (
-    <div className="flex flex-wrap gap-4 mt-4">
+    <div className="flex flex-wrap gap-4 mt-4 social-links">
       {data.github && (
         <a
           href={data.github}

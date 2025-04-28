@@ -25,7 +25,7 @@ export function EditableContent({
         <Textarea
           value={data.description}
           onChange={(e) => onDataChange({ ...data, description: e.target.value })}
-          className="mb-4 font-mono"
+          className="mb-4 font-mono editable-content"
           placeholder="Поддерживается Markdown разметка..."
         />
       ) : (
