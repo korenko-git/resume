@@ -1,46 +1,30 @@
-'use client';
 
-import { EditableCard } from '@/components/EditableCard';
-import { Button } from '@/components/ui/button';
-import { useResume } from '@/contexts/ResumeContext';
-import { ExperienceEntry } from '@/types/resume';
+import { useResume } from "@/contexts/ResumeContext";
+import { ExperienceEntry } from "@/types/resume";
+import Section from "./Section";
+import EntryBlock from "../EntryBlock";
+import { filterPublished } from "./utils";
 
 interface ExperienceSectionProps {
-  entries: ExperienceEntry[];
   editable?: boolean;
 }
 
-export function ExperienceSection({ entries, editable = true }: ExperienceSectionProps) {
-  const { updateData } = useResume();
-  const handleAdd = () => {
-    const newEntry: ExperienceEntry = {
-      id: `exp-${Date.now()}`,
-      title: "New Position",
-      description: "Position Description",
-      isPublished: true,
-      startDate: "",
-      endDate: "",
-      skills: []
-    };
-    updateData('experience', newEntry);
-  };
+export function ExperienceSection({ editable = true }: ExperienceSectionProps) {
+  const { data } = useResume();
+  const sectionData = filterPublished(data?.experience.entries, editable);
 
   return (
-    <section>
-      <h2 className="text-2xl font-semibold mb-4">Work Experience</h2>
-      {entries.map((entry) => (
-        <EditableCard
-          key={entry.id}
-          id={entry.id}
-          typeData='experience'
-          editable={editable}
-        />
-      ))}
-      {editable && (
-        <Button onClick={handleAdd} className="mt-4 add-work">
-          Add Work Experience
-        </Button>
-      )}
-    </section>
+    <Section id="experience" aria-label="Work experience" title="Experience" sr={!editable}>
+      <ol className="group/list">
+        {sectionData.map((experience: ExperienceEntry) => {
+
+          return (
+            <li key={experience.id} className="mb-12">
+              <EntryBlock typeData='experience' id={experience.id} />
+            </li>
+          );
+        })}
+      </ol>
+    </Section>
   );
 }

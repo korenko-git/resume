@@ -26,7 +26,7 @@ export default function Editor() {
   const handleDownload = async () => {
     const logoImages: File[] = [];
     const dataWithImagePaths = { ...data };
-    
+
     const processedEntries = await Promise.all(data.organizations.entries.map(async (org) => {
       if (org.logo && org.logo.startsWith('data:image')) {
         const fileName = `org-${org.id}-logo.png`;
@@ -34,7 +34,7 @@ export default function Editor() {
         const blob = await response.blob();
         const file = new File([blob], fileName, { type: 'image/png' });
         logoImages.push(file);
-        
+
         return {
           ...org,
           logo: `images/${fileName}`
@@ -64,7 +64,7 @@ export default function Editor() {
     <>
       <DraftDialog />
 
-      <WelcomeTour 
+      <WelcomeTour
         run={runTour}
         onFinish={() => setRunTour(false)}
       />
@@ -84,8 +84,8 @@ export default function Editor() {
             </Button>
           </div>
         </div>
-        
-        <Resume data={data} />
+
+        <Resume editable />
       </div>
     </>
   );

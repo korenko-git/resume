@@ -7,7 +7,7 @@ import type { ResumeData } from '@/types/resume';
 import { useResume } from '@/contexts/ResumeContext';
 import { EditableHeader } from '@/components/EditableCard/EditableHeader';
 import { EditableContent } from '@/components/EditableCard/EditableContent';
-import { SkillsList } from './EditableCard/SkillsList';
+import { SkillsList } from './EntryBlock/Skills/SkillsList';
 import { EditableButtons } from './EditableCard/EditableButtons';
 import { SocialLinks } from './EditableCard/SocialLinks';
 

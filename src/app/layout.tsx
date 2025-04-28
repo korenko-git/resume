@@ -27,7 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  z-10 relative
+        dark:bg-zinc-900 leading-relaxed dark:text-neutral-200 tracking-wide dark:selection:bg-neutral-300 dark:selection:text-neutral-900 z-10
+        `}
       >
         <ThemeProvider
           attribute="class"
@@ -35,7 +37,16 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-        <ResumeProvider>{children}</ResumeProvider></ThemeProvider>
+          <ResumeProvider>
+            <div className="bg-animation">
+              <div id='stars3'></div>
+              <div id='stars4'></div>
+            </div>
+            <div className="mx-auto min-h-screen max-w-screen-2xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
+              {children}
+            </div>
+          </ResumeProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

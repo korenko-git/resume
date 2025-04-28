@@ -1,45 +1,38 @@
 'use client';
 
-import { EditableCard } from '@/components/EditableCard';
-import { Button } from '@/components/ui/button';
 import { useResume } from '@/contexts/ResumeContext';
 import { CertificationEntry } from '@/types/resume';
+import Section from './Section';
+import EntryBlock from '../EntryBlock';
+import OutlineLinkButton from '../ui/OutlineLinkButton';
+import { filterPublished } from './utils';
 
 interface CertificationSectionProps {
-  entries: CertificationEntry[];
+  withLinkToArchive: boolean;
   editable?: boolean;
 }
 
-export function CertificationSection({ entries, editable = true }: CertificationSectionProps) {
-  const { updateData } = useResume();
-  const handleAdd = () => {
-    const newEntry: CertificationEntry = {
-      id: `cert-${Date.now()}`,
-      title: "New Certificate",
-      description: "Certificate Description",
-      isPublished: true,
-      skills: [],
-      date: ""
-    };
-    updateData('certifications', newEntry);
-  };
+export function CertificationSection({ withLinkToArchive, editable = true }: CertificationSectionProps) {
+  const { data } = useResume();
+  const sectionData = filterPublished(data?.certifications.entries, editable);
 
   return (
-    <section>
-      <h2 className="text-2xl font-semibold mb-4">Certificates</h2>
-      {entries.map((entry) => (
-        <EditableCard
-          key={entry.id}
-          id={entry.id}
-          typeData='certifications'
-          editable={editable}
-        />
-      ))}
-      {editable && (
-        <Button onClick={handleAdd} className="mt-4">
-          Add Certificate
-        </Button>
+    <Section id="certifications" aria-label="Certifications" title="Certifications" sr={!editable}>
+      <ol className="group/list">
+        {sectionData.map((certification: CertificationEntry) => {
+          return (
+            <li key={certification.id} className="mb-12">
+              <EntryBlock typeData='certifications' id={certification.id} />
+            </li>
+          );
+        })}
+      </ol>
+
+      {withLinkToArchive && (
+        <OutlineLinkButton aria-label="View Full Certificate Archive" href="/archive/certification">
+          View Full Certificate Archive
+        </OutlineLinkButton>
       )}
-    </section>
+    </Section>
   );
 }

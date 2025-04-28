@@ -55,4 +55,6 @@ export interface ResumeData {
 }
 
 export type ResumeDataKeys = keyof ResumeData;
-export type ResumeDataTypes = AboutData | ProjectEntry | EducationEntry | CertificationEntry
+export type ResumeDataTypes = AboutData |  ExperienceEntry | ProjectEntry | EducationEntry | CertificationEntry
+export type ResumeDataKeysWithEntries = Exclude<keyof ResumeData, 'about' | 'organizations'>
+export type ResumeDataWithEntries = ExperienceEntry | ProjectEntry | EducationEntry | CertificationEntry

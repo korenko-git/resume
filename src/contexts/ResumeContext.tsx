@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, ReactNode } from 'react';
-import { ResumeData, Organization, ResumeDataKeys, ResumeDataTypes } from '@/types/resume';
+import { ResumeData, Organization, ResumeDataKeys, ResumeDataTypes, ResumeDataWithEntries, ResumeDataKeysWithEntries } from '@/types/resume';
 import { useResumeData } from '@/hooks/useResumeData';
 
 interface ResumeContextType {
@@ -11,7 +11,7 @@ interface ResumeContextType {
   error: Error | null;
   updateData: (type: ResumeDataKeys, newData: ResumeDataTypes) => void;
   updateOrganization: (organization: Organization) => void;
-  getData: (type: ResumeDataKeys, id: string) => ResumeDataTypes | null;
+  getEntryFromData: (type: ResumeDataKeysWithEntries, id: string) => ResumeDataWithEntries | null;
   setData: (data: ResumeData) => void;
 }
 
@@ -20,9 +20,7 @@ const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 export function ResumeProvider({ children }: { children: ReactNode }) {
   const { data, setData, loading, error } = useResumeData();
 
-  const getData = (type: ResumeDataKeys, id: string): ResumeDataTypes | null => {
-    if (type === 'about') return data[type]
-    if (type === 'organizations') return null;
+  const getEntryFromData = (type: ResumeDataKeysWithEntries, id: string): ResumeDataWithEntries | null => {
     return data[type]?.entries.find(entry => entry.id === id) || null;
   };
 
@@ -83,7 +81,7 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
     updateData,
     setData,
     updateOrganization,
-    getData,
+    getEntryFromData,
   };
 
   return (

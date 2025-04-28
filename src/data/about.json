@@ -3,9 +3,9 @@
   "title": "John Smith",
   "description": "Experienced developer focused on web technologies. Specializing in building modern web applications using React, TypeScript, and Node.js.",
   "isPublished": true,
-  "github": "",
-  "linkedin": "",
-  "leetcode": "",
-  "email": "",
+  "github": "google.com",
+  "linkedin": "google.com",
+  "leetcode": "google.com",
+  "email": "text@mail.com",
   "version": 1
 }

@@ -1,47 +1,38 @@
-'use client';
 
-import { EditableCard } from '@/components/EditableCard';
-import { Button } from '@/components/ui/button';
-import { useResume } from '@/contexts/ResumeContext';
-import { ProjectEntry } from '@/types/resume';
+import { useResume } from "@/contexts/ResumeContext";
+import Section from "./Section";
+import { ProjectEntry } from "@/types/resume";
+import EntryBlock from "../EntryBlock";
+import OutlineLinkButton from "../ui/OutlineLinkButton";
+import { filterPublished } from "./utils";
 
 interface ProjectSectionProps {
-  entries: ProjectEntry[];
-  onUpdate?: (entries: ProjectEntry[]) => void;
+  withLinkToArchive: boolean;
   editable?: boolean;
 }
 
-export function ProjectSection({ entries,  editable = true }: ProjectSectionProps) {
-  const { updateData } = useResume();
-  const handleAdd = () => {
-    const newEntry: ProjectEntry = {
-      id: `proj-${Date.now()}`,
-      title: "New Project",
-      description: "Project Description",
-      isPublished: true,
-      skills: [],
-      source: "",
-      demo: ""
-    };
-    updateData('projects', newEntry);
-  };
+export function ProjectSection({ withLinkToArchive, editable = true }: ProjectSectionProps) {
+  const { data } = useResume();
+  const sectionData = filterPublished(data?.projects.entries, editable);
 
   return (
-    <section>
-      <h2 className="text-2xl font-semibold mb-4">Projects</h2>
-      {entries.map((entry) => (
-        <EditableCard
-          key={entry.id}
-          id={entry.id}
-          typeData='projects'
-          editable={editable}
-        />
-      ))}
-      {editable && (
-        <Button onClick={handleAdd} className="mt-4">
-          Add Project
-        </Button>
+    <Section id="projects" aria-label="My Projects" title="Projects" sr={!editable}>
+      <ol className="group/list">
+        {sectionData.map((project: ProjectEntry) => {
+
+          return (
+            <li key={project.id} className="mb-12">
+              <EntryBlock typeData='projects' id={project.id} />
+            </li>
+          );
+        })}
+      </ol>
+
+      {withLinkToArchive && (
+        <OutlineLinkButton aria-label="View Full Project Archive" href="/archive/project">
+          View Full Project Archive
+        </OutlineLinkButton>
       )}
-    </section>
+    </Section>
   );
 }

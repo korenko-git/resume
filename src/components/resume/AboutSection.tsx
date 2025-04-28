@@ -1,23 +1,23 @@
 'use client';
 
-import { EditableCard } from '@/components/EditableCard';
 import { AboutData } from '@/types/resume';
+import Section from './Section';
+import { Description } from '../EntryBlock/Description';
+import { useResume } from '@/contexts/ResumeContext';
 
 interface AboutSectionProps {
-  data: AboutData | null;
-  onUpdate?: (data: AboutData) => void;
   editable?: boolean;
 }
 
 export function AboutSection({ editable = true }: AboutSectionProps) {
+  const { data } = useResume();
+  const sectionData = data?.about as AboutData;
+
   return (
-    <section>
-      <h2 className="text-2xl font-semibold mb-4">About Me</h2>
-      <EditableCard
-        id="about"
-        typeData='about'
-        editable={editable}
+    <Section id="about" aria-label="About me" title="About" sr={!editable}>
+      <Description
+        data={sectionData as any}
       />
-    </section>
+    </Section>
   );
 }
