@@ -1,5 +1,6 @@
 import { CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { formatDate } from '@/lib/utils';
 import { Organization } from '@/types/resume';
 
 interface EditableHeaderProps {
@@ -19,13 +20,6 @@ interface EditableHeaderProps {
   onEditStart: () => void;
   onOrgModalOpen: () => void;
 }
-
-const formatDate = (date?: string) => {
-  return date ? new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long'
-  }) : 'Present';
-};
 
 export function EditableHeader({
   isEditing,
@@ -47,6 +41,10 @@ export function EditableHeader({
             src={organization.logo}
             alt={`${organization.title} logo`}
             className="w-12 h-12 rounded-md object-contain bg-white"
+            onError={(e) => {
+              e.currentTarget.src = '/images/placeholder-logo.png';
+              e.currentTarget.onerror = null; // Prevent infinite loop if placeholder also fails
+            }}
           />
         </div>
       )}
