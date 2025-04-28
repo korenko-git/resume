@@ -65,10 +65,10 @@ export default function Editor() {
         run={runTour}
         onFinish={() => setRunTour(false)}
       />
-      <div className="container mx-auto py-8">
-        <div className="flex justify-between items-center mb-8 resume-editor-header">
+      <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 resume-editor-header gap-4">
           <h1 className="text-3xl font-bold">Resume Editor</h1>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
             <ThemeToggle />
             <Button variant="ghost" onClick={() => setRunTour(true)}>
               Show Tutorial

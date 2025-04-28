@@ -19,8 +19,7 @@ export default function Home() {
   }
 
   return (
-    <div className="container mx-auto py-8">
-      <ThemeToggle />
+    <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <Resume data={data} editable={false} />
 
       <footer className="mt-16 py-8 border-t text-center text-sm text-muted-foreground">
