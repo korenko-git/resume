@@ -19,14 +19,23 @@ export default function Home() {
 
   return (
     <div className="container mx-auto py-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">My Resume</h1>
-        <Button onClick={() => router.push('/editor')}>
-          Edit
-        </Button>
-      </div>
       
       <Resume data={data} editable={false} />
+
+      <footer className="mt-16 py-8 border-t text-center text-sm text-muted-foreground">
+        <p className="mb-2">
+          This resume is hosted on GitHub Pages and can be updated through the{' '}
+          <a 
+            href="/editor"
+            className="text-blue-500 hover:underline"
+          >
+            online editor
+          </a>
+        </p>
+        <p>
+          © {new Date().getFullYear()} - Built with Next.js and Tailwind CSS
+        </p>
+      </footer>
     </div>
   );
 }
