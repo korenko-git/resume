@@ -8,6 +8,7 @@ import { useResume } from '@/contexts/ResumeContext';
 import Resume from '@/components/resume';
 import { WelcomeTour } from '@/components/WelcomeTour';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { DraftDialog } from '@/components/DraftDialog';
 
 export default function Editor() {
   const { data, loading, error } = useResume();
@@ -61,6 +62,8 @@ export default function Editor() {
 
   return (
     <>
+      <DraftDialog />
+
       <WelcomeTour 
         run={runTour}
         onFinish={() => setRunTour(false)}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { OrganizationModal } from './OrganizationModal';
 import type { ResumeData } from '@/types/resume';
@@ -28,6 +28,10 @@ export function EditableCard({
   const [data, setData] = useState(getData(typeData, id));
 
   if (!data) return null;
+
+  useEffect(() => {
+    setData(getData(typeData, id));
+  }, [getData, id, typeData]);
 
   const organization = data.organizationId
     ? organizations.find(org => org.id === data.organizationId)

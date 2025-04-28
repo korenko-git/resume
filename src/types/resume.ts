@@ -19,6 +19,7 @@ export interface AboutData extends BaseEntry {
   linkedin?: string;
   leetcode?: string;
   email?: string;
+  version?: number;
 }
 
 export interface ExperienceEntry extends BaseEntry {

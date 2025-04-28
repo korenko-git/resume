@@ -12,6 +12,7 @@ interface ResumeContextType {
   updateData: (type: ResumeDataKeys, newData: ResumeDataTypes) => void;
   updateOrganization: (organization: Organization) => void;
   getData: (type: ResumeDataKeys, id: string) => ResumeDataTypes | null;
+  setData: (data: ResumeData) => void;
 }
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
@@ -25,8 +26,20 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
     return data[type]?.entries.find(entry => entry.id === id) || null;
   };
 
+  const updateDraft = (data: ResumeData) => {
+    const currentVersion = data.about?.version || 0;
+    const dataAbaout = { ...data.about, version: currentVersion + 1};
+    const dataToSave: ResumeData = {
+      ...data,
+      about: dataAbaout as ResumeData['about']
+    };
+
+    localStorage.setItem('resumeDraft', JSON.stringify(dataToSave));
+    setData(dataToSave);
+  };
+
   const updateData = (type: ResumeDataKeys, newData: ResumeDataTypes) => {
-    if (type === 'about') setData({...data, about: newData as ResumeData['about']})
+    if (type === 'about') updateDraft({...data, about: newData as ResumeData['about']});
     else {
       const newEntries = [...data[type].entries].map(entry => 
         entry.id === newData.id 
@@ -38,8 +51,8 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
         newEntries.push(newData);
       }
 
-      setData({
-        ...data, 
+      updateDraft({
+        ...data,
         [type]: { entries: newEntries }
       });
     }
@@ -56,10 +69,10 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
       updatedOrganizations.push(organization);
     }
 
-    setData({
+    updateDraft({
       ...data,
-      organizations: { entries: updatedOrganizations }
-    });
+       organizations: { entries: updatedOrganizations }
+     });
   };
 
   const value = {
@@ -68,6 +81,7 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
     loading,
     error,
     updateData,
+    setData,
     updateOrganization,
     getData,
   };
