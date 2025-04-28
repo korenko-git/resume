@@ -11,7 +11,7 @@ interface DraftDialogProps {
 }
 
 export function DraftDialog({ onClose }: DraftDialogProps) {
-  const { data, setData } = useResume();
+  const { data, setData, setVersion } = useResume();
   
   const [showDraftDialog, setShowDraftDialog] = useState(false);
   const [draftData, setDraftData] = useState<any>(null);
@@ -19,6 +19,7 @@ export function DraftDialog({ onClose }: DraftDialogProps) {
   const handleRestoreDraft = () => {
     if (draftData) {
       setData(draftData);
+      setVersion(draftData.about.version);
     }
     setShowDraftDialog(false);
   };

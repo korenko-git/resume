@@ -1,7 +1,5 @@
-
-import { Switch } from '@/components/ui/switch';
-import { Button } from '@/components/ui/button';
-import { ReactNode } from 'react';
+import { Switch } from "@/components/ui/switch";
+import { Button } from "@/components/ui/button";
 
 interface EditableContentProps {
   data: {
@@ -9,12 +7,10 @@ interface EditableContentProps {
     isPublished?: boolean;
     skills?: string[];
   };
-  onUpdate: () => void;
-  onCancel: () => void;
-  children?: ReactNode;
+  onUpdate: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onCancel: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onDataChange: (data: any) => void;
-  editable?: boolean;
-  onEditStart?: () => void;
+  withPublishedSwitch?: boolean;
 }
 
 export function EditableButtons({
@@ -22,23 +18,26 @@ export function EditableButtons({
   onUpdate,
   onCancel,
   onDataChange,
+  withPublishedSwitch = true,
 }: EditableContentProps) {
   return (
     <>
-      <div className="flex items-center gap-4 mt-4 swtich-publish">
-        <Switch
-          checked={data.isPublished}
-          onCheckedChange={(checked) =>
-            onDataChange({ ...data, isPublished: checked })
-          }
-        />
-        <span>Published</span>
-      </div>
+      {withPublishedSwitch && (
+        <div className="flex items-center gap-4 mt-4 swtich-publish">
+          <Switch
+            checked={data.isPublished}
+            onCheckedChange={(checked) =>
+              onDataChange({ ...data, isPublished: checked })
+            }
+          />
+          <span>Published</span>
+        </div>
+      )}
       <div className="mt-4 flex gap-2 save-cancel-buttons">
         <Button onClick={onUpdate} variant="default">
           Save
         </Button>
-        <Button onClick={onCancel} variant="outline" className='cancel-button'>
+        <Button onClick={onCancel} variant="outline" className="cancel-button">
           Cancel
         </Button>
       </div>

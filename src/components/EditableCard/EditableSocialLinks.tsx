@@ -1,7 +1,7 @@
 import { Input } from '@/components/ui/input';
 import { Github, Linkedin, Mail, Code2 } from 'lucide-react';
 
-interface SocialLinksProps {
+interface EditableSocialLinksProps {
   isEditing: boolean;
   data: {
     github?: string;
@@ -12,7 +12,7 @@ interface SocialLinksProps {
   onDataChange: (data: any) => void;
 }
 
-export function SocialLinks({ isEditing, data, onDataChange }: SocialLinksProps) {
+export function EditableSocialLinks({ isEditing, data, onDataChange }: EditableSocialLinksProps) {
   if (isEditing) {
     return (
       <div className="space-y-3 mt-4 social-links">

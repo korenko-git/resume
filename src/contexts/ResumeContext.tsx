@@ -1,17 +1,29 @@
-'use client';
+"use client";
 
-import { createContext, useContext, ReactNode } from 'react';
-import { ResumeData, Organization, ResumeDataKeys, ResumeDataTypes, ResumeDataWithEntries, ResumeDataKeysWithEntries } from '@/types/resume';
-import { useResumeData } from '@/hooks/useResumeData';
+import { createContext, useContext, ReactNode, useState } from "react";
+import {
+  ResumeData,
+  Organization,
+  ResumeDataKeys,
+  ResumeDataTypes,
+  ResumeDataWithEntries,
+  ResumeDataKeysWithEntries,
+} from "@/types/resume";
+import { useResumeData } from "@/hooks/useResumeData";
 
 interface ResumeContextType {
   data: ResumeData;
   organizations: Organization[];
   loading: boolean;
   error: Error | null;
+  version: number;
+  setVersion: (version: number) => void;
   updateData: (type: ResumeDataKeys, newData: ResumeDataTypes) => void;
   updateOrganization: (organization: Organization) => void;
-  getEntryFromData: (type: ResumeDataKeysWithEntries, id: string) => ResumeDataWithEntries | null;
+  getEntryFromData: (
+    type: ResumeDataKeysWithEntries,
+    id: string
+  ) => ResumeDataWithEntries | null;
   setData: (data: ResumeData) => void;
 }
 
@@ -19,58 +31,61 @@ const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 export function ResumeProvider({ children }: { children: ReactNode }) {
   const { data, setData, loading, error } = useResumeData();
+  const [version, setVersion] = useState(data.about?.version || 0);
 
-  const getEntryFromData = (type: ResumeDataKeysWithEntries, id: string): ResumeDataWithEntries | null => {
-    return data[type]?.entries.find(entry => entry.id === id) || null;
+  const getEntryFromData = (
+    type: ResumeDataKeysWithEntries,
+    id: string
+  ): ResumeDataWithEntries | null => {
+    return data[type]?.entries.find((entry) => entry.id === id) || null;
   };
 
   const updateDraft = (data: ResumeData) => {
     const currentVersion = data.about?.version || 0;
-    const dataAbaout = { ...data.about, version: currentVersion + 1};
+    const dataAbaout = { ...data.about, version: currentVersion + 1 };
     const dataToSave: ResumeData = {
       ...data,
-      about: dataAbaout as ResumeData['about']
+      about: dataAbaout as ResumeData["about"],
     };
 
-    localStorage.setItem('resumeDraft', JSON.stringify(dataToSave));
+    localStorage.setItem("resumeDraft", JSON.stringify(dataToSave));
     setData(dataToSave);
   };
 
   const updateData = (type: ResumeDataKeys, newData: ResumeDataTypes) => {
-    if (type === 'about') updateDraft({...data, about: newData as ResumeData['about']});
+    if (type === "about")
+      updateDraft({ ...data, about: newData as ResumeData["about"] });
     else {
-      const newEntries = [...data[type].entries].map(entry => 
-        entry.id === newData.id 
-          ? newData 
-          : entry
+      const newEntries = [...data[type].entries].map((entry) =>
+        entry.id === newData.id ? newData : entry
       );
-      
-      if (!newEntries.find(entry => entry.id === newData.id)) {
+
+      if (!newEntries.find((entry) => entry.id === newData.id)) {
         newEntries.push(newData);
       }
 
       updateDraft({
         ...data,
-        [type]: { entries: newEntries }
+        [type]: { entries: newEntries },
       });
     }
   };
 
   const updateOrganization = (organization: Organization) => {
     // Update organization in the organizations list
-    const updatedOrganizations = data.organizations.entries.map(org =>
+    const updatedOrganizations = data.organizations.entries.map((org) =>
       org.id === organization.id ? organization : org
     );
 
     // If organization doesn't exist in the list, add it
-    if (!updatedOrganizations.find(org => org.id === organization.id)) {
+    if (!updatedOrganizations.find((org) => org.id === organization.id)) {
       updatedOrganizations.push(organization);
     }
 
     updateDraft({
       ...data,
-       organizations: { entries: updatedOrganizations }
-     });
+      organizations: { entries: updatedOrganizations },
+    });
   };
 
   const value = {
@@ -78,6 +93,8 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
     organizations: data.organizations?.entries || [],
     loading,
     error,
+    version,
+    setVersion,
     updateData,
     setData,
     updateOrganization,
@@ -85,16 +102,14 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <ResumeContext.Provider value={value}>
-      {children}
-    </ResumeContext.Provider>
+    <ResumeContext.Provider value={value}>{children}</ResumeContext.Provider>
   );
 }
 
 export function useResume() {
   const context = useContext(ResumeContext);
   if (context === undefined) {
-    throw new Error('useResume must be used within a ResumeProvider');
+    throw new Error("useResume must be used within a ResumeProvider");
   }
   return context;
 }
