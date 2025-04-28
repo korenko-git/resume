@@ -48,6 +48,7 @@ export function AboutSection({ editable = true }: AboutSectionProps) {
         onDataChange={handleDataChange}
         isEditing={isEditing}
         onEditStart={handleEditStart}
+        className="editable-header"
       />
 
       {editable && (

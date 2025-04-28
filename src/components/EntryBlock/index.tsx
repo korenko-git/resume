@@ -82,7 +82,7 @@ export default function EntryBlock({
 
         <Header
           className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400 sm:col-span-2 
-      lg:group-hover:text-slate-900 dark:lg:group-hover:text-slate-200"
+      lg:group-hover:text-slate-900 dark:lg:group-hover:text-slate-200 editable-header"
           data={entryData as any}
           onDataChange={handleDataChange}
           isEditing={isEditing}
@@ -114,7 +114,7 @@ export default function EntryBlock({
             onDataChange={handleDataChange}
             isEditing={isEditing}
             onEditStart={handleEditStart}
-            className="my-4"
+            className="my-4 editable-content"
           />
 
           {"skills" in entryData && entryData.skills && (
