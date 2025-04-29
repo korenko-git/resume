@@ -16,8 +16,10 @@ export function useEntryData<T extends ResumeDataTypes>(
   const { editable = true, onAfterUpdate, onAfterCancel } = options;
   const { getEntryFromData, data, version, updateData } = useResume();
   
-  const getDataFromSource = () => {
-    return (id ? getEntryFromData(type as any, id) : data?.[type]) as T;
+  const getDataFromSource = (): T | null => {
+    return id 
+      ? getEntryFromData(type as any, id) as T
+      : (data?.[type] as T);
   };
     
   const [entryData, setEntryData] = useState<T | null>(getDataFromSource());
@@ -28,7 +30,6 @@ export function useEntryData<T extends ResumeDataTypes>(
   }, [version, id, type, data]);
 
   const handleEditStart = () => {
-    console.log(options);
     if (editable) {
       setIsEditing(true);
     }

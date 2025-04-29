@@ -1,10 +1,16 @@
 import JSZip from 'jszip';
 
+interface ZipManifest {
+  submittedBy?: string;
+  replacedImages?: string[];
+}
+
+// Define return type for better type safety
 export async function createUpdateZip(
   jsonData: Record<string, any>,
   images: File[],
-  manifest?: { submittedBy?: string; replacedImages?: string[] }
-) {
+  manifest?: ZipManifest
+): Promise<Blob> {
   const zip = new JSZip();
 
   // Add JSON data files

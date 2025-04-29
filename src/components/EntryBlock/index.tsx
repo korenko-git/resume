@@ -3,16 +3,14 @@ import {
   ResumeDataWithEntries,
 } from "@/types/resume";
 import { useState } from "react";
-import { DateHeader } from "./Header/DateHeader";
-import { ImageHeader } from "./Header/ImageHeader";
-import { OrganizationTitle } from "./Title/OrganizationTitle";
-import { ProjectTitle } from "./Title/ProjectTitle";
 import { Description } from "./Description";
 import { cn } from "@/lib/utils";
 import { OrganizationModal } from "../OrganizationModal";
 import { SkillsList } from "./Skills/SkillsList";
 import { useEntryData } from "@/hooks/useEntryData";
 import { EditableButtons } from "../EditableField/EditableButtons";
+import EntryHeader from "./Header/EntryHeader";
+import EntryTitle from "./Title/EntryTitle";
 
 interface EntryBlockProps {
   id: string;
@@ -38,9 +36,6 @@ export default function EntryBlock({
 
   if (!entryData) return null;
 
-  const Header =
-    "date" in entryData || "startDate" in entryData ? DateHeader : ImageHeader;
-
   return (
     <>
       <div
@@ -56,37 +51,23 @@ export default function EntryBlock({
       lg:group-hover:shadow-sm lg:group-hover:drop-shadow-lg"
         ></div>
 
-        <Header
-          className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400 sm:col-span-2 
-      lg:group-hover:text-slate-900 dark:lg:group-hover:text-slate-200 editable-header"
-          data={entryData as any}
+        <EntryHeader
+          data={entryData}
           onDataChange={handleDataChange}
           isEditing={isEditing}
         />
 
         <div className="z-10 sm:col-span-6">
-          <div className="flex gap-x-2 items-center">
-            {"organizationId" in entryData && (
-              <OrganizationTitle
-                data={entryData as any}
-                editable={editable}
-                isEditing={isEditing}
-                onDataChange={handleDataChange}
-                onOrgModalOpen={() => setIsOrgModalOpen(true)}
-              />
-            )}
-            {("source" in entryData || "demo" in entryData) && (
-              <ProjectTitle
-                data={entryData as any}
-                editable={editable}
-                onDataChange={handleDataChange}
-                isEditing={isEditing}
-              />
-            )}
-          </div>
+          <EntryTitle
+            data={entryData}
+            editable={editable}
+            isEditing={isEditing}
+            onDataChange={handleDataChange}
+            onOrgModalOpen={() => setIsOrgModalOpen(true)}
+          />
 
           <Description
-            data={entryData as any}
+            data={entryData}
             onDataChange={handleDataChange}
             isEditing={isEditing}
             onEditStart={handleEditStart}
