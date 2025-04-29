@@ -1,13 +1,24 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
-import { Organization } from '@/types/resume';
-import { useResume } from '@/contexts/ResumeContext';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useState, useEffect } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Organization } from "@/types/resume";
+import { useResume } from "@/contexts/ResumeContext";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface OrganizationModalProps {
   isOpen: boolean;
@@ -20,22 +31,24 @@ export function OrganizationModal({
   isOpen,
   onClose,
   organizationId,
-  updateOrganizationId
+  updateOrganizationId,
 }: OrganizationModalProps) {
   const { organizations, updateOrganization } = useResume();
-  const [selectedOrgId, setSelectedOrgId] = useState<string>('');
+  const [selectedOrgId, setSelectedOrgId] = useState<string>("");
   const [formData, setFormData] = useState<Organization>({
-    id: '',
-    title: '',
-    description: '',
-    url: '',
-    logo: ''
+    id: "",
+    title: "",
+    description: "",
+    url: "",
+    logo: "",
   });
 
   useEffect(() => {
     if (organizationId) {
       setSelectedOrgId(organizationId);
-      const organization = organizations.find(entry => entry.id === organizationId);
+      const organization = organizations.find(
+        (entry) => entry.id === organizationId
+      );
       if (organization) {
         setFormData(organization);
       }
@@ -44,16 +57,16 @@ export function OrganizationModal({
 
   const handleSelectChange = (value: string) => {
     setSelectedOrgId(value);
-    if (value === 'new') {
+    if (value === "new") {
       setFormData({
         id: `org-${Date.now()}`,
-        title: '',
-        description: '',
-        url: '',
-        logo: ''
+        title: "",
+        description: "",
+        url: "",
+        logo: "",
       });
     } else {
-      const selectedOrg = organizations.find(org => org.id === value);
+      const selectedOrg = organizations.find((org) => org.id === value);
       if (selectedOrg) {
         setFormData(selectedOrg);
       }
@@ -86,7 +99,7 @@ export function OrganizationModal({
         <DialogHeader>
           <DialogTitle>Organization</DialogTitle>
         </DialogHeader>
-        
+
         <div className="space-y-4 py-4">
           <Select value={selectedOrgId} onValueChange={handleSelectChange}>
             <SelectTrigger>
@@ -104,12 +117,12 @@ export function OrganizationModal({
 
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium mb-1 block">
-                Name
-              </label>
+              <label className="text-sm font-medium mb-1 block">Name</label>
               <Input
                 value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, title: e.target.value })
+                }
               />
             </div>
             <div>
@@ -118,26 +131,28 @@ export function OrganizationModal({
               </label>
               <Textarea
                 value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, description: e.target.value })
+                }
               />
             </div>
             <div>
-              <label className="text-sm font-medium mb-1 block">
-                URL
-              </label>
+              <label className="text-sm font-medium mb-1 block">URL</label>
               <Input
                 value={formData.url}
-                onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, url: e.target.value })
+                }
               />
             </div>
             <div>
-              <label className="text-sm font-medium mb-1 block">
-                Logo
-              </label>
+              <label className="text-sm font-medium mb-1 block">Logo</label>
               <div className="flex gap-2 items-center">
                 <Input
                   value={formData.logo}
-                  onChange={(e) => setFormData({ ...formData, logo: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, logo: e.target.value })
+                  }
                   placeholder="Logo URL"
                 />
                 <Input
@@ -149,9 +164,9 @@ export function OrganizationModal({
               </div>
               {formData.logo && (
                 <div className="mt-2">
-                  <img 
-                    src={formData.logo} 
-                    alt="Logo preview" 
+                  <img
+                    src={formData.logo}
+                    alt="Logo preview"
                     className="w-16 h-16 object-contain bg-white rounded-md"
                   />
                 </div>
@@ -164,9 +179,7 @@ export function OrganizationModal({
           <Button variant="outline" onClick={onClose}>
             Cancel
           </Button>
-          <Button onClick={handleSave}>
-            Save
-          </Button>
+          <Button onClick={handleSave}>Save</Button>
         </div>
       </DialogContent>
     </Dialog>

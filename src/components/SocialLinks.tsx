@@ -1,6 +1,6 @@
-import { useResume } from '@/contexts/ResumeContext';
-import { AboutData } from '@/types/resume';
-import { Github, Linkedin, Code2 } from 'lucide-react';
+import { useResume } from "@/contexts/ResumeContext";
+import { AboutData } from "@/types/resume";
+import { Github, Linkedin, Code2 } from "lucide-react";
 
 export default function SocialLinks() {
   const { data } = useResume();
@@ -26,7 +26,6 @@ export default function SocialLinks() {
         </li>
       )}
       {sectionData.linkedin && (
-
         <li className="mr-4 last:mr-0 shrink-0 text-xs">
           <a
             href={sectionData.linkedin}
@@ -41,7 +40,6 @@ export default function SocialLinks() {
         </li>
       )}
       {sectionData.leetcode && (
-
         <li className="mr-4 last:mr-0 shrink-0 text-xs">
           <a
             href={sectionData.leetcode}
@@ -53,10 +51,8 @@ export default function SocialLinks() {
             <Code2 className="h-5 w-5" />
             <span className="sr-only">LeetCode</span>
           </a>
-
         </li>
       )}
-
     </ul>
   );
 }
