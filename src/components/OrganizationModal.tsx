@@ -13,14 +13,14 @@ interface OrganizationModalProps {
   isOpen: boolean;
   onClose: () => void;
   organizationId?: string;
-  updateOrganizonId: (id: string) => void;
+  updateOrganizationId: (id: string) => void;
 }
 
 export function OrganizationModal({
   isOpen,
   onClose,
   organizationId,
-  updateOrganizonId
+  updateOrganizationId
 }: OrganizationModalProps) {
   const { organizations, updateOrganization } = useResume();
   const [selectedOrgId, setSelectedOrgId] = useState<string>('');
@@ -62,7 +62,7 @@ export function OrganizationModal({
 
   const handleSave = () => {
     if (organizationId && organizationId !== formData.id) {
-      updateOrganizonId(formData.id);
+      updateOrganizationId(formData.id);
     }
 
     updateOrganization(formData);
@@ -84,16 +84,16 @@ export function OrganizationModal({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle>Организация</DialogTitle>
+          <DialogTitle>Organization</DialogTitle>
         </DialogHeader>
         
         <div className="space-y-4 py-4">
           <Select value={selectedOrgId} onValueChange={handleSelectChange}>
             <SelectTrigger>
-              <SelectValue placeholder="Выберите организацию" />
+              <SelectValue placeholder="Select organization" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="new">Добавить новую организацию</SelectItem>
+              <SelectItem value="new">Add new organization</SelectItem>
               {organizations.map((org) => (
                 <SelectItem key={org.id} value={org.id}>
                   {org.title}
@@ -105,7 +105,7 @@ export function OrganizationModal({
           <div className="space-y-4">
             <div>
               <label className="text-sm font-medium mb-1 block">
-                Название
+                Name
               </label>
               <Input
                 value={formData.title}
@@ -114,7 +114,7 @@ export function OrganizationModal({
             </div>
             <div>
               <label className="text-sm font-medium mb-1 block">
-                Описание
+                Description
               </label>
               <Textarea
                 value={formData.description}
@@ -132,13 +132,13 @@ export function OrganizationModal({
             </div>
             <div>
               <label className="text-sm font-medium mb-1 block">
-                Логотип
+                Logo
               </label>
               <div className="flex gap-2 items-center">
                 <Input
                   value={formData.logo}
                   onChange={(e) => setFormData({ ...formData, logo: e.target.value })}
-                  placeholder="URL логотипа"
+                  placeholder="Logo URL"
                 />
                 <Input
                   type="file"
@@ -151,7 +151,7 @@ export function OrganizationModal({
                 <div className="mt-2">
                   <img 
                     src={formData.logo} 
-                    alt="Предпросмотр логотипа" 
+                    alt="Logo preview" 
                     className="w-16 h-16 object-contain bg-white rounded-md"
                   />
                 </div>
@@ -162,10 +162,10 @@ export function OrganizationModal({
 
         <div className="flex justify-end gap-4">
           <Button variant="outline" onClick={onClose}>
-            Отмена
+            Cancel
           </Button>
           <Button onClick={handleSave}>
-            Сохранить
+            Save
           </Button>
         </div>
       </DialogContent>

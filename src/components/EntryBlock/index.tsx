@@ -143,7 +143,7 @@ export default function EntryBlock({
           isOpen={isOrgModalOpen}
           onClose={() => setIsOrgModalOpen(false)}
           organizationId={entryData.organizationId}
-          updateOrganizonId={(id) => handleDataChange({ organizationId: id })}
+          updateOrganizationId={(id) => handleDataChange({ organizationId: id })}
         />
       )}
     </>

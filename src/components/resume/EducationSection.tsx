@@ -14,7 +14,7 @@ export function EducationSection({ editable = true }: EducationSectionProps) {
   const sectionData = filterPublished(data?.education.entries, editable);
 
   return (
-    <Section id="education" aria-label="Educations" title="Educations" sr={!editable}>
+    <Section id="education" aria-label="Education" title="Education" sr={!editable}>
       <ol className="group/list">
         {sectionData.map((education: EducationEntry) => {
           

@@ -1,6 +1,7 @@
 {
   "id": "about",
   "title": "John Smith",
+  "subtitle": "Web Developer",
   "description": "Experienced developer focused on web technologies. Specializing in building modern web applications using React, TypeScript, and Node.js.",
   "isPublished": true,
   "github": "google.com",

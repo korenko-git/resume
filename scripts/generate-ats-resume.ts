@@ -76,7 +76,6 @@ async function generateATSResume() {
     const mdPath = path.join(publicDir, 'cv-ats.md');
     fs.writeFileSync(mdPath, atsContent, 'utf-8');
 
-    // Конвертация в PDF
     const browser = await puppeteer.launch({
       headless: 'shell',
       args: ['--no-sandbox', '--disable-setuid-sandbox']

@@ -15,6 +15,7 @@ export interface BaseEntry {
 }
 
 export interface AboutData extends BaseEntry {
+  subtitle: string;
   github?: string;
   linkedin?: string;
   leetcode?: string;

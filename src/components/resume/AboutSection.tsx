@@ -29,14 +29,14 @@ export function AboutSection({ editable = true }: AboutSectionProps) {
     );
   };
 
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleUpdate = () => {
     if (sectionData) {
       updateData("about", sectionData);
     }
     setIsEditing(false);
   };
 
-  const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleCancel = () => {
     setSectionData(data?.about);
     setIsEditing(false);
   };

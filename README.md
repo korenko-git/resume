@@ -6,6 +6,26 @@ A fully static, GitHub-powered resume website. All content is stored in JSON fil
 
 ---
 
+## Features
+
+- **Static Site Generation:** Fully static resume site suitable for fast and secure hosting (e.g., GitHub Pages or Vercel).
+- **Data-Driven Structure:** All resume content (About, Experience, Education, Projects, Certifications, and Organizations) is stored in JSON files under `src/data`.
+- **In-Browser Editor:** Modify resume content directly via a user-friendly web interface at `/editor`. Drafts are saved to `localStorage`.
+- **Live Preview:** The main `/` route displays the formatted resume using the current JSON data.
+- **ATS-Compatible Export:** A script (`scripts/generate-ats-resume.ts`) generates a simplified Markdown and PDF version of the resume for Applicant Tracking Systems (ATS), saved under `public/`.
+- **GitHub-Based Workflow:** Download your changes as a ZIP file and submit them via GitHub Pull Request. GitHub Actions handle build, PDF export, and deployment automatically.
+
+## Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) v15+ with [React](https://reactjs.org/) v19+
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4 + [shadcn/ui](https://ui.shadcn.com/) components
+- **State Management:** React Context API (`ResumeContext.tsx`)
+- **Data Handling:** JSON files for content, `localStorage` for unsaved drafts
+- **PDF Generation:** [Puppeteer](https://pptr.dev/) and [MarkdownIt](https://markdown-it.github.io/)
+- **UI Enhancements:** [Joyride](https://docs.react-joyride.com/) (welcome tour), [dnd-kit](https://dndkit.com/) (drag-and-drop for skills)
+
+
 ## ✍️ How Editing Works
 
 1. Open the visual editor (hosted on the site).
@@ -76,13 +96,6 @@ npm install
 npm run dev    # run local Next.js site
 npm run build  # build static site
 ```
-
-For GitHub Actions:
-
-- `scripts/generate-resume-pdf.ts` generates a styled PDF
-- `scripts/clean-old-images.ts` (optional): delete images no longer in use
-
----
 
 ## 📄 License
 
