@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, KeyboardEvent } from "react";
 
 export interface EditableFieldProps<T> {
   value: T;
@@ -8,6 +8,7 @@ export interface EditableFieldProps<T> {
   renderDisplay: (value: T) => ReactNode;
   renderEdit: (value: T, onChange: (value: T) => void) => ReactNode;
   className?: string;
+  ariaLabel?: string;
 }
 
 export function EditableField<T>({
@@ -18,15 +19,35 @@ export function EditableField<T>({
   renderDisplay,
   renderEdit,
   className,
+  ariaLabel,
 }: EditableFieldProps<T>) {
   if (isEditing) {
-    return <div className={className}>{renderEdit(value, onChange)}</div>;
+    return (
+      <div
+        className={className}
+        role="form"
+        aria-label={ariaLabel || "Edit form"}
+      >
+        {renderEdit(value, onChange)}
+      </div>
+    );
   }
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onEditStart?.();
+    }
+  };
+
   return (
-    <div 
-      className={className} 
+    <div
+      className={className}
       onClick={onEditStart}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+      aria-label={ariaLabel || "Click to edit"}
     >
       {renderDisplay(value)}
     </div>

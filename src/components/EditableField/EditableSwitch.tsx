@@ -7,9 +7,10 @@ interface EditableSwitchProps {
   isEditing: boolean;
   onChange: (value: boolean) => void;
   onEditStart?: () => void;
-  label: string;
+  label?: string;
   className?: string;
   displayClassName?: string;
+  id?: string;
 }
 
 export function EditableSwitch({
@@ -20,7 +21,10 @@ export function EditableSwitch({
   label,
   className,
   displayClassName,
+  id,
 }: EditableSwitchProps) {
+  const switchId = id || `editable-switch-${label?.toLowerCase().replace(/\s+/g, '-')}`;
+  
   return (
     <EditableField
       value={value}
@@ -28,6 +32,7 @@ export function EditableSwitch({
       onChange={onChange}
       onEditStart={onEditStart}
       className={className}
+      ariaLabel={`Toggle ${label || "option"}`}
       renderDisplay={(value) => (
         <div className={cn("cursor-pointer", displayClassName)}>
           {label}: {value ? "Yes" : "No"}
@@ -36,10 +41,13 @@ export function EditableSwitch({
       renderEdit={(value, onChange) => (
         <div className="flex items-center gap-4">
           <Switch
+            id={switchId}
             checked={value}
             onCheckedChange={onChange}
+            aria-label={label}
+            aria-checked={value}
           />
-          <span>{label}</span>
+          <label htmlFor={switchId} className="cursor-pointer">{label}</label>
         </div>
       )}
     />

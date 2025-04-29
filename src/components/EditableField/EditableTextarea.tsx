@@ -15,6 +15,7 @@ interface EditableTextareaProps {
   displayClassName?: string;
   rows?: number;
   markdown?: boolean;
+  id?: string;
 }
 
 export function EditableTextarea({
@@ -28,7 +29,10 @@ export function EditableTextarea({
   displayClassName,
   rows = 5,
   markdown = true,
+  id,
 }: EditableTextareaProps) {
+  const textareaId = id || `editable-textarea-${label?.toLowerCase().replace(/\s+/g, '-')}`;
+  
   return (
     <EditableField
       value={value}
@@ -36,8 +40,12 @@ export function EditableTextarea({
       onChange={onChange}
       onEditStart={onEditStart}
       className={className}
+      ariaLabel={`Edit ${label || "text area"}`}
       renderDisplay={(value) => (
-        <div className={cn("cursor-pointer", displayClassName)}>
+        <div 
+          className={cn("cursor-pointer", displayClassName)}
+          aria-label={`${label || "Content"}: ${value ? "Has content" : "Empty"}`}
+        >
           {markdown ? (
             <ReactMarkdown>{value}</ReactMarkdown>
           ) : (
@@ -47,13 +55,16 @@ export function EditableTextarea({
       )}
       renderEdit={(value, onChange) => (
         <div className="grid w-full gap-1.5">
-          {label && <Label>{label}</Label>}
+          {label && <Label htmlFor={textareaId}>{label}</Label>}
           <Textarea
+            id={textareaId}
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder={placeholder}
             rows={rows}
             className="font-mono"
+            aria-label={label || "Text area input"}
+            aria-required={false}
           />
         </div>
       )}
