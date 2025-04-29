@@ -29,7 +29,12 @@ export function OrganizationTitle({
     if (isEditing) {
       return (
         <div className="flex items-center gap-2">
-          <button onClick={onOrgModalOpen} className="text-sm text-blue-600 hover:underline">
+          <button 
+            onClick={onOrgModalOpen} 
+            className="text-sm text-blue-600 hover:underline"
+            aria-label="Select organization"
+            tabIndex={0}
+          >
             Select organization
           </button>
         </div>
@@ -74,7 +79,7 @@ export function OrganizationTitle({
 
               <span className="inline-block border-b border-transparent group-hover:border-blue-600 dark:group-hover:border-blue-300 lg:border-0">
                 {organization.title}
-                <ArrowUpRight className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" />
+                <ArrowUpRight className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" aria-hidden="true" />
               </span>
             </a>
           </div>
@@ -83,17 +88,33 @@ export function OrganizationTitle({
       renderEdit={(value, onChange) => (
         <div className="flex flex-col gap-2 w-full">
           <div className="grid w-full items-center gap-1.5">
-            <Label>Position</Label>
+            <Label htmlFor="position-title">Position</Label>
             <Input
+              id="position-title"
               value={value.title}
               onChange={(e) => onChange({ ...value, title: e.target.value })}
               className="font-medium leading-snug text-base"
               placeholder="Position title"
+              aria-label="Position title"
             />
           </div>
           
-          <Label>Organization</Label>
-          <div onClick={onOrgModalOpen} title="Change organization" className="flex items-center gap-2 mt-1 cursor-pointer">
+          <Label id="org-label">Organization</Label>
+          <div 
+            onClick={onOrgModalOpen} 
+            title="Change organization" 
+            className="flex items-center gap-2 mt-1 cursor-pointer"
+            role="button"
+            tabIndex={0}
+            aria-labelledby="org-label"
+            aria-haspopup="dialog"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onOrgModalOpen();
+              }
+            }}
+          >
             <div className="flex-shrink-0 relative">
               <img
                 className="w-10 h-10 rounded bg-neutral-400/10"
@@ -106,7 +127,7 @@ export function OrganizationTitle({
               />
               
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center rounded opacity-0 hover:opacity-100 transition-opacity">
-                <Edit className="w-4 h-4 text-white" />
+                <Edit className="w-4 h-4 text-white" aria-hidden="true" />
               </div>
             </div>
             

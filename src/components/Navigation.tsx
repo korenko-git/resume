@@ -15,11 +15,13 @@ export default function Navigation({ }) {
             const activeItem = menu.querySelector("a[href].active");
             if (activeItem) {
               activeItem.classList.remove("active");
+              activeItem.setAttribute("aria-current", "false");
             }
 
             const newActive = menu.querySelector('a[href="#'.concat(e.target.id, '"]'));
             if (newActive) {
               newActive.classList.add("active");
+              newActive.setAttribute("aria-current", "true");
             }
           }
         });
@@ -39,14 +41,17 @@ export default function Navigation({ }) {
 
   return (
     <nav className="nav hidden lg:block" aria-label="In-page jump links">
-      <ul className="mt-16 w-max">
+      <ul className="mt-16 w-max" role="list">
         {MENU.map((item) => (
-          <li key={item}>
+          <li key={item} role="listitem">
             <a
               className="group flex items-center py-3 [&.active_.nav-indicator]:w-16 [&.active_.nav-indicator]:bg-slate-900 dark:[&.active_.nav-indicator]:bg-slate-200 [&.active_.nav-text]:text-slate-900 dark:[&.active_.nav-text]:text-slate-200"
               href={`#${item}`}
+              aria-current="false"
+              aria-label={`Navigate to ${item} section`}
             >
-              <span className="nav-indicator mr-4 h-px w-8 bg-slate-300 dark:bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-900 dark:group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-900 dark:group-focus-visible:bg-slate-200 motion-reduce:transition-none" />
+              <span className="nav-indicator mr-4 h-px w-8 bg-slate-300 dark:bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-900 dark:group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-900 dark:group-focus-visible:bg-slate-200 motion-reduce:transition-none" 
+                aria-hidden="true" />
               <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 transition-colors group-hover:text-slate-900 dark:group-hover:text-slate-200 group-focus-visible:text-slate-900 dark:group-focus-visible:text-slate-200">
                 {item}
               </span>
@@ -55,6 +60,5 @@ export default function Navigation({ }) {
         ))}
       </ul>
     </nav>
-
   );
 }

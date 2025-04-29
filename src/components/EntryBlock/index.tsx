@@ -44,11 +44,21 @@ export default function EntryBlock({
           "group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50",
           editable && "cursor-pointer"
         )}
+        role={editable ? "button" : "article"}
+        tabIndex={editable ? 0 : undefined}
+        aria-label={editable ? `Edit ${typeData} entry` : undefined}
+        onKeyDown={(e) => {
+          if (editable && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            handleEditStart();
+          }
+        }}
       >
         <div
           className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block 
       lg:group-hover:bg-slate-100 dark:lg:group-hover:bg-sky-400/10
       lg:group-hover:shadow-sm lg:group-hover:drop-shadow-lg"
+          aria-hidden="true"
         ></div>
 
         <EntryHeader
