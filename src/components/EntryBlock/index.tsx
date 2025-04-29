@@ -26,6 +26,7 @@ export default function EntryBlock({
   const {
     entryData,
     isEditing,
+    isSaving,
     handleEditStart,
     handleDataChange,
     handleUpdate,
@@ -102,6 +103,7 @@ export default function EntryBlock({
               }
               onSave={handleUpdate}
               onCancel={handleCancel}
+              isSaving={isSaving}
             />
           )}
         </div>

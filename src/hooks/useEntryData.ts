@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useResume } from "@/contexts/ResumeContext";
 import { ResumeDataKeys, ResumeDataTypes } from "@/types/resume";
+import { toast } from "sonner";
 
 interface UseEntryDataOptions {
   editable?: boolean;
@@ -24,6 +25,7 @@ export function useEntryData<T extends ResumeDataTypes>(
     
   const [entryData, setEntryData] = useState<T | null>(getDataFromSource());
   const [isEditing, setIsEditing] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     setEntryData(getDataFromSource());
@@ -41,13 +43,24 @@ export function useEntryData<T extends ResumeDataTypes>(
     );
   };
 
-  const handleUpdate = (e?: React.MouseEvent<HTMLButtonElement>) => {
+  const handleUpdate = async (e?: React.MouseEvent<HTMLButtonElement>) => {
     e?.stopPropagation();
     if (entryData) {
-      updateData(type, entryData);
+      setIsSaving(true);
+      
+      try {
+        updateData(type, entryData);
+        setIsEditing(false);
+        onAfterUpdate?.();
+        
+        toast.success("Changes saved successfully");
+      } catch (error) {
+        toast.error("Failed to save changes");
+        console.error("Save error:", error);
+      } finally {
+        setIsSaving(false);
+      }
     }
-    setIsEditing(false);
-    onAfterUpdate?.();
   };
 
   const handleCancel = (e?: React.MouseEvent<HTMLButtonElement>) => {
@@ -55,6 +68,8 @@ export function useEntryData<T extends ResumeDataTypes>(
     setEntryData(getDataFromSource());
     setIsEditing(false);
     onAfterCancel?.();
+    
+    toast.info("Changes discarded");
   };
 
   return {
@@ -62,6 +77,7 @@ export function useEntryData<T extends ResumeDataTypes>(
     setEntryData,
     isEditing,
     setIsEditing,
+    isSaving,
     handleEditStart,
     handleDataChange,
     handleUpdate,

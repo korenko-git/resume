@@ -10,6 +10,7 @@ import {
   ResumeDataKeysWithEntries,
 } from "@/types/resume";
 import { useResumeData } from "@/hooks/useResumeData";
+import { toast } from "sonner";
 
 interface ResumeContextType {
   data: ResumeData;
@@ -48,8 +49,14 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
       about: dataAbaout as ResumeData["about"],
     };
 
-    localStorage.setItem("resumeDraft", JSON.stringify(dataToSave));
-    setData(dataToSave);
+    try {
+      localStorage.setItem("resumeDraft", JSON.stringify(dataToSave));
+      setData(dataToSave);
+      toast.success("Resume draft saved");
+    } catch (error) {
+      console.error("Error saving draft:", error);
+      toast.error("Failed to save resume draft");
+    }
   };
 
   const updateData = (type: ResumeDataKeys, newData: ResumeDataTypes) => {
