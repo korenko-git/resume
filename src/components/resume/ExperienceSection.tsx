@@ -20,7 +20,7 @@ export function ExperienceSection({ editable = true }: ExperienceSectionProps) {
 
           return (
             <li key={experience.id} className="mb-12">
-              <EntryBlock typeData='experience' id={experience.id} />
+              <EntryBlock typeData='experience' id={experience.id} editable={editable} />
             </li>
           );
         })}

@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Input } from "@/components/ui/input";
+import { EditableField } from "@/components/EditableField";
 
 interface DateHeaderProps {
   className: string;
@@ -48,42 +49,47 @@ export function DateHeader({
     return [from, to];
   }, [data]);
 
-  if (isEditing) {
-    return (
-      <div className={`${className} flex gap-2 flex-col items-center`}>
-        {data.hasOwnProperty("startDate") ? (
-          <>
-            <Input
-              type="month"
-              value={data.startDate || ""}
-              onChange={(e) => onDataChange({ startDate: e.target.value })}
-              placeholder="Start date"
-              aria-label="Start date"
-            />
-            <span>-</span>
-            <Input
-              type="month"
-              value={data.endDate || ""}
-              onChange={(e) => onDataChange({ endDate: e.target.value })}
-              placeholder="End date (or leave blank)"
-              aria-label="End date"
-            />
-          </>
-        ) : (
-          <Input
-            type="month"
-            value={data.date || ""}
-            onChange={(e) => onDataChange({ date: e.target.value })}
-            aria-label="Date"
-          />
-        )}
-      </div>
-    );
-  }
-
   return (
-    <header className={className} aria-label={to ? `${from} to ${to}` : from}>
-      {to ? `${from} - ${to}` : from}
-    </header>
+    <EditableField
+      value={data}
+      isEditing={isEditing}
+      onChange={onDataChange}
+      className={className}
+      renderDisplay={(value) => (
+        <header className={className} aria-label={to ? `${from} to ${to}` : from}>
+          {to ? `${from} - ${to}` : from}
+        </header>
+      )}
+      renderEdit={(value, onChange) => (
+        <div className={`${className} flex gap-2 flex-col items-center`}>
+          {value.hasOwnProperty("startDate") ? (
+            <>
+              <Input
+                type="month"
+                value={value.startDate || ""}
+                onChange={(e) => onChange({ ...value, startDate: e.target.value })}
+                placeholder="Start date"
+                aria-label="Start date"
+              />
+              <span>-</span>
+              <Input
+                type="month"
+                value={value.endDate || ""}
+                onChange={(e) => onChange({ ...value, endDate: e.target.value })}
+                placeholder="End date (or leave blank)"
+                aria-label="End date"
+              />
+            </>
+          ) : (
+            <Input
+              type="month"
+              value={value.date || ""}
+              onChange={(e) => onChange({ ...value, date: e.target.value })}
+              aria-label="Date"
+            />
+          )}
+        </div>
+      )}
+    />
   );
 }

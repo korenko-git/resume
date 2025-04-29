@@ -20,7 +20,7 @@ export function EducationSection({ editable = true }: EducationSectionProps) {
           
           return (
             <li key={education.id} className="mb-12">
-              <EntryBlock typeData='education' id={education.id} />
+              <EntryBlock typeData='education' id={education.id} editable={editable} />
             </li>
           );
         })}

@@ -22,7 +22,7 @@ export function CertificationSection({ withLinkToArchive, editable = true }: Cer
         {sectionData.map((certification: CertificationEntry) => {
           return (
             <li key={certification.id} className="mb-12">
-              <EntryBlock typeData='certifications' id={certification.id} />
+              <EntryBlock typeData='certifications' id={certification.id} editable={editable} />
             </li>
           );
         })}

@@ -22,7 +22,7 @@ export function ProjectSection({ withLinkToArchive, editable = true }: ProjectSe
 
           return (
             <li key={project.id} className="mb-12">
-              <EntryBlock typeData='projects' id={project.id} />
+              <EntryBlock typeData='projects' id={project.id} editable={editable} />
             </li>
           );
         })}

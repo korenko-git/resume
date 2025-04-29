@@ -1,9 +1,8 @@
-import { useResume } from "@/contexts/ResumeContext";
 import {
   ResumeDataKeysWithEntries,
   ResumeDataWithEntries,
 } from "@/types/resume";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DateHeader } from "./Header/DateHeader";
 import { ImageHeader } from "./Header/ImageHeader";
 import { OrganizationTitle } from "./Title/OrganizationTitle";
@@ -11,8 +10,9 @@ import { ProjectTitle } from "./Title/ProjectTitle";
 import { Description } from "./Description";
 import { cn } from "@/lib/utils";
 import { OrganizationModal } from "../OrganizationModal";
-import { EditableButtons } from "../EditableCard/EditableButtons";
 import { SkillsList } from "./Skills/SkillsList";
+import { useEntryData } from "@/hooks/useEntryData";
+import { EditableButtons } from "../EditableField/EditableButtons";
 
 interface EntryBlockProps {
   id: string;
@@ -25,42 +25,18 @@ export default function EntryBlock({
   typeData,
   editable = true,
 }: EntryBlockProps) {
-  const { getEntryFromData, version, updateData } = useResume();
-  const [entryData, setEntryData] = useState(getEntryFromData(typeData, id));
-  const [isOrgModalOpen, setIsOrgModalOpen] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
+  const {
+    entryData,
+    isEditing,
+    handleEditStart,
+    handleDataChange,
+    handleUpdate,
+    handleCancel,
+  } = useEntryData<ResumeDataWithEntries>(typeData, id, { editable });
 
- useEffect(() => {
-    setEntryData(getEntryFromData(typeData, id));
-  }, [version]);
+  const [isOrgModalOpen, setIsOrgModalOpen] = useState(false);
 
   if (!entryData) return null;
-
-  const handleEditStart = () => {
-    if (editable) {
-      setIsEditing(true);
-    }
-  };
-
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    if (entryData) {
-      updateData(typeData, entryData);
-    }
-    setIsEditing(false);
-  };
-
-  const handleDataChange = (updatedData: Partial<ResumeDataWithEntries>) => {
-    setEntryData((prevData) =>
-      prevData ? { ...prevData, ...updatedData } : null
-    );
-  };
-
-  const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setEntryData(getEntryFromData(typeData, id));
-    setIsEditing(false);
-    e.stopPropagation();
-  };
 
   const Header =
     "date" in entryData || "startDate" in entryData ? DateHeader : ImageHeader;
@@ -129,9 +105,11 @@ export default function EntryBlock({
 
           {isEditing && entryData && (
             <EditableButtons
-              data={entryData}
-              onDataChange={(newData) => setEntryData(newData)}
-              onUpdate={handleUpdate}
+              isPublished={entryData?.isPublished}
+              onPublishedChange={(value) =>
+                handleDataChange({ isPublished: value })
+              }
+              onSave={handleUpdate}
               onCancel={handleCancel}
             />
           )}
@@ -143,7 +121,9 @@ export default function EntryBlock({
           isOpen={isOrgModalOpen}
           onClose={() => setIsOrgModalOpen(false)}
           organizationId={entryData.organizationId}
-          updateOrganizationId={(id) => handleDataChange({ organizationId: id })}
+          updateOrganizationId={(id) =>
+            handleDataChange({ organizationId: id })
+          }
         />
       )}
     </>
