@@ -1,3 +1,5 @@
+'use client';
+
 import Joyride, { Step } from 'react-joyride';
 import { useTheme } from 'next-themes';
 

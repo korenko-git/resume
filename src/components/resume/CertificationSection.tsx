@@ -6,6 +6,7 @@ import Section from './Section';
 import EntryBlock from '../EntryBlock';
 import OutlineLinkButton from '../ui/OutlineLinkButton';
 import { filterPublished } from './utils';
+import { AddButton } from "../ui/AddButton";
 
 interface CertificationSectionProps {
   withLinkToArchive: boolean;
@@ -13,8 +14,22 @@ interface CertificationSectionProps {
 }
 
 export function CertificationSection({ withLinkToArchive, editable = true }: CertificationSectionProps) {
-  const { data } = useResume();
+  const { data, updateData } = useResume();
   const sectionData = filterPublished(data?.certifications.entries, editable);
+
+  const handleAddCertification = () => {
+    const newCertification: CertificationEntry = {
+      id: `cert-${Date.now().toString(36)}`,
+      title: "New Certificate",
+      description: "Description of your certificate",
+      isPublished: false,
+      date: new Date().toISOString().slice(0, 7),
+      skills: [],
+      organizationId: ""
+    };
+    
+    updateData("certifications", newCertification);
+  };
 
   return (
     <Section id="certifications" aria-label="Certifications" title="Certifications" sr={!editable}>
@@ -27,6 +42,10 @@ export function CertificationSection({ withLinkToArchive, editable = true }: Cer
           );
         })}
       </ol>
+
+      {editable && (
+        <AddButton onClick={handleAddCertification} label="certificate" />
+      )}
 
       {withLinkToArchive && (
         <OutlineLinkButton aria-label="View Full Certificate Archive" href="/archive/certification">
