@@ -29,16 +29,20 @@ jobs:
 
       - name: Process updates
         run: |
-          for file in updates/*.zip; do
-            unzip -o "$file" -d temp-update
+          if ls updates/*.zip 1> /dev/null 2>&1; then
+            for file in updates/*.zip; do
+              unzip -o "$file" -d temp-update
 
-            cp -v temp-update/data/*.json src/data/
-            cp -v temp-update/images/* public/images/ || true
+              cp -v temp-update/data/*.json src/data/
+              cp -v temp-update/images/* public/images/ || true
 
-            rm -rf temp-update
-          done
+              rm -rf temp-update
+            done
 
-          rm -v updates/*.zip
+            rm -v updates/*.zip
+          else
+            echo "No zip files found, skipping unzip."
+          fi
 
       - name: Lint JSON files
         run: |
