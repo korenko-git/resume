@@ -52,9 +52,17 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
+        
+      - name: Set repository name for basePath
+        run: |
+          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          echo "NEXT_PUBLIC_BASE_PATH=/$REPO_NAME" >> $GITHUB_ENV
+          echo "Using base path: /$REPO_NAME"
 
       - name: Build static site
         run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ env.NEXT_PUBLIC_BASE_PATH }}
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
