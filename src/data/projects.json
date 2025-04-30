@@ -5,7 +5,18 @@
       "title": "Online Learning Platform",
       "description": "Development of an interactive platform for online learning with support for video lessons and testing.",
       "isPublished": true,
-      "skills": ["React", "Node.js", "MongoDB", "WebRTC", "Redux", "Express.js", "Jest", "WebSockets", "AWS S3", "Redis"],
+      "skills": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "WebRTC",
+        "Redux",
+        "Express.js",
+        "Jest",
+        "WebSockets",
+        "AWS S3",
+        "Redis"
+      ],
       "source": "https://github.com/example/learning-platform",
       "demo": "https://learning-platform-demo.com"
     },
@@ -14,7 +25,18 @@
       "title": "Task Management System",
       "description": "Creation of a system for project and task management with real-time updates.",
       "isPublished": true,
-      "skills": ["TypeScript", "React", "Socket.io", "PostgreSQL", "NestJS", "Docker", "GraphQL", "Material-UI", "Jest", "CI/CD"],
+      "skills": [
+        "TypeScript",
+        "React",
+        "Socket.io",
+        "PostgreSQL",
+        "NestJS",
+        "Docker",
+        "GraphQL",
+        "Material-UI",
+        "Jest",
+        "CI/CD"
+      ],
       "source": "https://github.com/example/task-manager",
       "demo": "https://task-manager-demo.com"
     }
