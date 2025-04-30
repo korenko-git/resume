@@ -19,7 +19,7 @@ export default function SocialLinks() {
       aria-label="Social media"
     >
       {socialLinks.map(({ id, url, icon, label }) => 
-        url && <IconLink key={id} href={url} icon={icon} label={label} />
+        url && <IconLink key={id} href={url} icon={icon} label={label} isExternal />
       )}
     </ul>
   );

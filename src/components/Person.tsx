@@ -1,6 +1,6 @@
 import { useResume } from "@/contexts/ResumeContext";
 import { AboutData } from "@/types/resume";
-import Link from "next/link";
+import { IconLink } from "./ui/IconLink";
 
 export default function Person() {
   const { data } = useResume();
@@ -15,22 +15,26 @@ export default function Person() {
         {sectionData.subtitle}
       </h2>
 
-      <Link
-        href="cv-ats.pdf"
-        className="inline-flex transition-all border border-slate-300 dark:border-neutral-700 hover:border-opacity-0 border-opacity-50 shadow rounded-md bg-white/70 dark:bg-neutral-700/30 px-3 py-2.5 items-center text-slate-800 dark:text-white font-semibold group p-2 text-sm gap-x-2 mt-4 hover:bg-slate-100 mr-4"
-      >
-        <span>ATS CV</span>
-      </Link>
+      <ul className="flex items-center">
+        <IconLink
+          href="cv-ats.pdf"
+          icon={<span>ATS CV</span>}
+          label="Download ATS CV"
+        />
 
-      {sectionData.email && (
-        <Link
-          href={`mailto:${sectionData.email}`}
-          className="inline-flex transition-all border border-slate-300 dark:border-neutral-700 hover:border-opacity-0 border-opacity-50 shadow rounded-md bg-white/70 dark:bg-neutral-700/30 px-3 py-2.5 items-center text-slate-800 dark:text-white font-semibold group p-2 text-sm gap-x-2 mt-4 hover:bg-slate-100"
-        >
-          <span>Email me</span>
-          <span className="w-2 h-2 rounded-full bg-green-400 duration-1000 animate-pulse"></span>
-        </Link>
-      )}
+        {sectionData.email && (
+          <IconLink
+            href={`mailto:${sectionData.email}`}
+            icon={
+              <>
+                <span>Email me</span>
+                <span className="w-2 h-2 rounded-full bg-green-400 duration-1000 animate-pulse"></span>
+              </>
+            }
+            label="Send email"
+          />
+        )}
+      </ul>
     </>
   );
 }
