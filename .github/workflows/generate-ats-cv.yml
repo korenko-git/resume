@@ -38,10 +38,22 @@ jobs:
             public/cv-ats.md
             public/cv-ats.pdf
 
+      - name: Check for changes in MD file
+        id: check_changes
+        run: |
+          if git diff --quiet public/cv-ats.md; then
+            echo "No changes detected in cv-ats.md"
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected in cv-ats.md"
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: Commit ATS CV
+        if: steps.check_changes.outputs.changes_detected == 'true'
         run: |
           git config user.name github-actions
           git config user.email action@github.com
           git add public/cv-ats.md public/cv-ats.pdf
-          git commit -m "Update ATS CV" || echo "No changes to commit"
+          git commit -m "Update ATS CV"
           git push
