@@ -27,8 +27,35 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y pandoc wkhtmltopdf
 
-      - name: Generate ATS CV
-        run: npx tsx scripts/generate-ats-resume.ts
+      - name: Check for changes in JSON data files
+        id: check_json_changes
+        run: |
+          if git diff --name-only HEAD^ HEAD | grep -q "src/data/.*\.json"; then
+            echo "JSON data files have changed"
+            echo "json_changes_detected=true" >> $GITHUB_OUTPUT
+          else
+            echo "No changes detected in JSON data files"
+            echo "json_changes_detected=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate ATS Markdown
+        if: steps.check_json_changes.outputs.json_changes_detected == 'true' || github.event_name == 'workflow_dispatch'
+        run: npx tsx scripts/generate-ats-md.ts
+
+      - name: Check for changes in MD file
+        id: check_md_changes
+        run: |
+          if git diff --quiet public/cv-ats.md; then
+            echo "No changes detected in cv-ats.md"
+            echo "md_changes_detected=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected in cv-ats.md"
+            echo "md_changes_detected=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate ATS PDF
+        if: steps.check_md_changes.outputs.md_changes_detected == 'true' || github.event_name == 'workflow_dispatch'
+        run: npx tsx scripts/generate-ats-pdf.ts
 
       - name: Upload ATS CV artifacts
         uses: actions/upload-artifact@v4
@@ -38,19 +65,8 @@ jobs:
             public/cv-ats.md
             public/cv-ats.pdf
 
-      - name: Check for changes in MD file
-        id: check_changes
-        run: |
-          if git diff --quiet public/cv-ats.md; then
-            echo "No changes detected in cv-ats.md"
-            echo "changes_detected=false" >> $GITHUB_OUTPUT
-          else
-            echo "Changes detected in cv-ats.md"
-            echo "changes_detected=true" >> $GITHUB_OUTPUT
-          fi
-
       - name: Commit ATS CV
-        if: steps.check_changes.outputs.changes_detected == 'true'
+        if: steps.check_md_changes.outputs.md_changes_detected == 'true'
         run: |
           git config user.name github-actions
           git config user.email action@github.com
