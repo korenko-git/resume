@@ -42,7 +42,7 @@ jobs:
 
       - name: Lint JSON files
         run: |
-          for file in data/*.json; do
+          for file in src/data/*.json; do
             jq empty "$file" || { echo "Error: $file is not valid JSON"; exit 1; }
           done
 
@@ -53,6 +53,6 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email action@github.com
-          git add data/ public/images/ public/resume.pdf
+          git add src/data/ public/images/ public/resume.pdf
           git diff --staged --quiet || git commit -m "Apply update from ZIP"
           git push
