@@ -26,7 +26,7 @@ describe('Person component', () => {
     
     const atsLink = screen.getByText('ATS CV');
     expect(atsLink).toBeInTheDocument();
-    expect(atsLink.closest('a')).toHaveAttribute('href', 'public/cv-ats.pdf');
+    expect(atsLink.closest('a')).toHaveAttribute('href', 'cv-ats.pdf');
   });
   
   it('should display email link if specified', () => {
