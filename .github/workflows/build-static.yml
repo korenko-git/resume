@@ -1,10 +1,10 @@
 name: Build Static Next.js
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  workflow_run:
+    workflows: ["Apply Resume Updates"]
+    types:
+      - completed
   workflow_dispatch:
 
 permissions:
