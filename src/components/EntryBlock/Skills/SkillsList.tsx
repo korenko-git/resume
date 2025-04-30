@@ -29,7 +29,7 @@ export function SkillsList({ skills, onUpdate, isEditing }: SkillsListProps) {
   };
 
   const handleAddSkill = () => {
-    const newSkill = prompt('Введите название навыка:');
+    const newSkill = prompt('Enter skill name:');
     if (newSkill && !skills.includes(newSkill)) {
       onUpdate([...skills, newSkill]);
     }

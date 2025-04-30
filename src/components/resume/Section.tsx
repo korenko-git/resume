@@ -1,15 +1,25 @@
 import { cn } from "@/lib/utils";
-import { ComponentProps } from "react";
+import { ComponentProps, ReactNode } from "react";
 
 interface SectionProps extends ComponentProps<"section"> {
   title: string;
-  sr: boolean;
+  sr?: boolean;
+  children: ReactNode;
 }
 
-export default function Section({ title, children, sr = true, ...props }: SectionProps) {
+export default function Section({ 
+  title, 
+  children, 
+  sr = true, 
+  className,
+  ...props 
+}: SectionProps) {
   return (
     <section
-      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+      className={cn(
+        "mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24",
+        className
+      )}
       {...props}
     >
       <h2 className={cn(
@@ -22,6 +32,5 @@ export default function Section({ title, children, sr = true, ...props }: Sectio
         {children}
       </div>
     </section>
-
   );
 }
