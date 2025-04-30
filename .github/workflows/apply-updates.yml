@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'updates/*.zip'
+  workflow_dispatch:
 
 permissions:
   contents: write
