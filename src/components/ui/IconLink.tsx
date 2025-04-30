@@ -14,7 +14,7 @@ export function IconLink({ href, icon, label }: IconLinkProps) {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+        className="inline-flex transition-all border border-slate-300 dark:border-neutral-700 hover:border-opacity-0 border-opacity-50 shadow rounded-md bg-white/70 dark:bg-neutral-700/30 px-3 py-2.5 items-center text-slate-800 dark:text-white font-semibold group p-2 text-sm gap-x-2 mt-4 hover:bg-slate-100"
         aria-label={`${label} (opens in a new tab)`}
       >
         {icon}
