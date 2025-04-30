@@ -19,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { getAssetPath } from "@/lib/assetPath";
 
 interface OrganizationModalProps {
   isOpen: boolean;
@@ -198,7 +199,7 @@ export function OrganizationModal({
               {formData.logo && (
                 <div className="mt-2">
                   <img
-                    src={formData.logo}
+                    src={getAssetPath(formData.logo)}
                     alt={`${formData.title || 'Organization'} logo preview`}
                     className="w-16 h-16 object-contain bg-white rounded-md"
                   />

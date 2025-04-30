@@ -1,6 +1,7 @@
 import { EditableField } from "@/components/EditableField";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { getAssetPath } from "@/lib/assetPath";
 
 interface ImageHeaderProps {
   className: string;
@@ -24,14 +25,14 @@ export function ImageHeader({
       renderDisplay={(value) => (
         <header className={className} aria-label={value.title}>
           <img
-            src={value.image}
+            src={getAssetPath(value.image)}
             alt={value.title}
             loading="lazy"
             width="200"
             height="48"
             className="aspect-video object-cover rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1 lg:grayscale lg:group-hover:grayscale-0"
             onError={(e) => {
-              e.currentTarget.src = "/images/placeholder-logo.png";
+              e.currentTarget.src = getAssetPath("/images/placeholder-logo.png");
               e.currentTarget.onerror = null;
             }}
           />

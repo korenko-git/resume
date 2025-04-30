@@ -2,8 +2,10 @@ import { EditableField } from "@/components/EditableField";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useResume } from "@/contexts/ResumeContext";
+import { getAssetPath } from "@/lib/assetPath";
 import { Organization } from "@/types/resume";
 import { ArrowUpRight, Edit } from "lucide-react";
+import Link from "next/link";
 
 interface OrganizationTitleProps {
   data: { organizationId: string; title: string };
@@ -54,10 +56,10 @@ export function OrganizationTitle({
           <div className="flex-shrink-0 relative">
             <img
               className="w-10 h-10 rounded bg-neutral-400/10 lg:grayscale lg:group-hover:grayscale-0"
-              src={organization.logo}
+              src={getAssetPath(organization.logo)}
               alt={`${organization.title} logo`}
               onError={(e) => {
-                e.currentTarget.src = "/images/placeholder-logo.png";
+                e.currentTarget.src = getAssetPath("/images/placeholder-logo.png");
                 e.currentTarget.onerror = null;
               }}
             />
@@ -66,7 +68,7 @@ export function OrganizationTitle({
             <h3 className="font-medium leading-snug text-slate-700 dark:text-slate-50">
               {value.title}
             </h3>
-            <a
+            <Link
               className="inline-flex items-baseline font-medium leading-tight text-slate-700 hover:text-blue-600 focus-visible:text-blue-600 dark:text-slate-50 dark:hover:text-blue-200 group/link text-base"
               href={organization.url}
               target="_blank"
@@ -81,7 +83,7 @@ export function OrganizationTitle({
                 {organization.title}
                 <ArrowUpRight className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" aria-hidden="true" />
               </span>
-            </a>
+            </Link>
           </div>
         </>
       )}
@@ -121,7 +123,7 @@ export function OrganizationTitle({
                 src={organization.logo}
                 alt={`${organization.title} logo`}
                 onError={(e) => {
-                  e.currentTarget.src = "/images/placeholder-logo.png";
+                  e.currentTarget.src = getAssetPath("/images/placeholder-logo.png");
                   e.currentTarget.onerror = null;
                 }}
               />
