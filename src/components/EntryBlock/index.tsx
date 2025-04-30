@@ -11,6 +11,7 @@ import { useEntryData } from "@/hooks/useEntryData";
 import { EditableButtons } from "../EditableField/EditableButtons";
 import EntryHeader from "./Header/EntryHeader";
 import EntryTitle from "./Title/EntryTitle";
+import { DeleteConfirmationDialog } from "../DeleteConfirmationDialog";
 
 interface EntryBlockProps {
   id: string;
@@ -27,6 +28,11 @@ export default function EntryBlock({
     entryData,
     isEditing,
     isSaving,
+    isDeleting,
+    isDeleteDialogOpen,
+    handleDeleteClick,
+    handleDeleteConfirm,
+    handleDeleteCancel,
     handleEditStart,
     handleDataChange,
     handleUpdate,
@@ -36,6 +42,9 @@ export default function EntryBlock({
   const [isOrgModalOpen, setIsOrgModalOpen] = useState(false);
 
   if (!entryData) return null;
+
+  const hasOrganizationId = "organizationId" in entryData;
+  const hasSkills = "skills" in entryData && entryData.skills;
 
   return (
     <>
@@ -57,10 +66,10 @@ export default function EntryBlock({
       >
         <div
           className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block 
-      lg:group-hover:bg-slate-100 dark:lg:group-hover:bg-sky-400/10
-      lg:group-hover:shadow-sm lg:group-hover:drop-shadow-lg"
+          lg:group-hover:bg-slate-100 dark:lg:group-hover:bg-sky-400/10
+          lg:group-hover:shadow-sm lg:group-hover:drop-shadow-lg"
           aria-hidden="true"
-        ></div>
+        />
 
         <EntryHeader
           data={entryData}
@@ -85,7 +94,7 @@ export default function EntryBlock({
             className="my-4 editable-content"
           />
 
-          {"skills" in entryData && entryData.skills && (
+          {hasSkills && (
             <SkillsList
               skills={entryData.skills}
               isEditing={isEditing}
@@ -95,7 +104,7 @@ export default function EntryBlock({
             />
           )}
 
-          {isEditing && entryData && (
+          {isEditing && (
             <EditableButtons
               isPublished={entryData?.isPublished}
               onPublishedChange={(value) =>
@@ -104,12 +113,23 @@ export default function EntryBlock({
               onSave={handleUpdate}
               onCancel={handleCancel}
               isSaving={isSaving}
+              isDeleting={isDeleting}
+              onDelete={handleDeleteClick}
             />
           )}
         </div>
       </div>
 
-      {isEditing && "organizationId" in entryData && (
+      <DeleteConfirmationDialog
+        isOpen={isDeleteDialogOpen}
+        onClose={handleDeleteCancel}
+        onConfirm={handleDeleteConfirm}
+        isDeleting={isDeleting}
+        title="Confirm Deletion"
+        description={`Are you sure you want to delete this ${typeData} entry? This action cannot be undone.`}
+      />
+
+      {isEditing && hasOrganizationId && (
         <OrganizationModal
           isOpen={isOrgModalOpen}
           onClose={() => setIsOrgModalOpen(false)}

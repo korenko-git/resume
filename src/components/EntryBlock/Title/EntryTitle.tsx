@@ -15,10 +15,19 @@ interface EntryTitleProps {
   onOrgModalOpen: () => void;
 }
 
-const EntryTitle = ({ data, editable, isEditing, onDataChange, onOrgModalOpen }: EntryTitleProps) => {
+export default function EntryTitle({ 
+  data, 
+  editable, 
+  isEditing, 
+  onDataChange, 
+  onOrgModalOpen 
+}: EntryTitleProps) {
+  const hasOrganization = "organizationId" in data;
+  const hasProjectLinks = "source" in data || "demo" in data;
+
   return (
     <div className="flex gap-x-2 items-center">
-      {"organizationId" in data && data.organizationId && (
+      {hasOrganization && (
         <OrganizationTitle
           data={data as { organizationId: string; title: string }}
           editable={editable}
@@ -27,7 +36,7 @@ const EntryTitle = ({ data, editable, isEditing, onDataChange, onOrgModalOpen }:
           onOrgModalOpen={onOrgModalOpen}
         />
       )}
-      {("source" in data || "demo" in data) && (
+      {hasProjectLinks && (
         <ProjectTitle
           data={data as { title: string; demo?: string; source?: string }}
           editable={editable}
@@ -37,7 +46,5 @@ const EntryTitle = ({ data, editable, isEditing, onDataChange, onOrgModalOpen }:
       )}
     </div>
   );
-};
-
-export default EntryTitle;
+}
   
