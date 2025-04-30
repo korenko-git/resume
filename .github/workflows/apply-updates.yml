@@ -32,8 +32,8 @@ jobs:
           for file in updates/*.zip; do
             unzip -o "$file" -d temp-update
 
-            cp -v temp-update/data/*.json data/
-            cp -v temp-update/images/* public/images/
+            cp -v temp-update/data/*.json src/data/
+            cp -v temp-update/images/* public/images/ || true
 
             rm -rf temp-update
           done
