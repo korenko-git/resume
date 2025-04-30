@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
-import puppeteer from 'puppeteer';
-import MarkdownIt from 'markdown-it';
+import { exec } from 'child_process';
+import { promisify } from 'util';
 import { CertificationEntry, EducationEntry, ExperienceEntry, Organization, ProjectEntry } from '@/types/resume';
 
-const md = new MarkdownIt();
+const execPromise = promisify(exec);
 
 async function generateATSResume() {
   try {
@@ -72,62 +72,53 @@ async function generateATSResume() {
       fs.mkdirSync(publicDir, { recursive: true });
     }
 
-    // Saving to files
+    // Saving to markdown file
     const mdPath = path.join(publicDir, 'cv-ats.md');
     fs.writeFileSync(mdPath, atsContent, 'utf-8');
 
-    const browser = await puppeteer.launch({
-      headless: 'shell',
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
-    const page = await browser.newPage();
-
-    const htmlContent = md.render(atsContent);
-    const styleContent = `
-    <style>
+    // Create a CSS file for styling
+    const cssPath = path.join(publicDir, 'cv-ats-style.css');
+    const cssContent = `
       body {
-          font-family: Arial, sans-serif;
-          line-height: 1.6;
-          max-width: 800px;
-          margin: 40px auto;
-          padding: 0 20px;
-          color: #333;
-        }
-        h1 { 
-          font-size: 24px; 
-          margin-bottom: 20px;
-          color: #000;
-        }
-        h2 { 
-          font-size: 20px; 
-          margin-top: 30px;
-          color: #222;
-          border-bottom: 1px solid #eee;
-          padding-bottom: 5px;
-        }
-        h3 { 
-          font-size: 18px; 
-          margin-top: 20px;
-          color: #444;
-        }
-        ul {
-          margin: 10px 0;
-          padding-left: 20px;
-        }
-        li {
-          margin: 5px 0;
-        }
-    </style>
-  `;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+        color: #333;
+      }
+      h1 { 
+        font-size: 24px; 
+        margin-bottom: 20px;
+        color: #000;
+      }
+      h2 { 
+        font-size: 20px; 
+        margin-top: 30px;
+        color: #222;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 5px;
+      }
+      h3 { 
+        font-size: 18px; 
+        margin-top: 20px;
+        color: #444;
+      }
+      ul {
+        margin: 10px 0;
+        padding-left: 20px;
+      }
+      li {
+        margin: 5px 0;
+      }
+    `;
+    fs.writeFileSync(cssPath, cssContent, 'utf-8');
 
-    await page.setContent(styleContent + htmlContent);
-    await page.pdf({
-      path: path.join(publicDir, 'cv-ats.pdf'),
-      format: 'A4',
-      margin: { top: '20mm', right: '20mm', bottom: '20mm', left: '20mm' }
-    });
-
-    await browser.close();
+    // Generate PDF using Pandoc
+    const pdfPath = path.join(publicDir, 'cv-ats.pdf');
+    const pandocCommand = `pandoc "${mdPath}" -o "${pdfPath}" --pdf-engine=wkhtmltopdf --css="${cssPath}" -V margin-top=20mm -V margin-right=20mm -V margin-bottom=20mm -V margin-left=20mm`;
+    
+    await execPromise(pandocCommand);
     console.log('ATS resume generated successfully');
   } catch (error) {
     console.error('Error generating ATS resume:', error);

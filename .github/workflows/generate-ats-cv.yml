@@ -18,8 +18,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm ci
-          npm install -D puppeteer markdown-it
+          npm ci --legacy-peer-deps
+          sudo apt-get update
+          sudo apt-get install -y pandoc wkhtmltopdf
 
       - name: Generate ATS CV
         run: npx tsx scripts/generate-ats-resume.ts
