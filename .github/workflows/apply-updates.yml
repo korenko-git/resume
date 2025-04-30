@@ -50,9 +50,6 @@ jobs:
             jq empty "$file" || { echo "Error: $file is not valid JSON"; exit 1; }
           done
 
-      - name: Generate PDF
-        run: npx tsx scripts/generate-resume-pdf.ts
-
       - name: Commit and push
         run: |
           git config user.name github-actions
