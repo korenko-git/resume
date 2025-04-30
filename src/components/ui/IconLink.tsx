@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ReactNode } from "react";
 
 interface IconLinkProps {
@@ -9,7 +10,7 @@ interface IconLinkProps {
 export function IconLink({ href, icon, label }: IconLinkProps) {
   return (
     <li className="mr-4 last:mr-0 shrink-0 text-xs">
-      <a
+      <Link
         href={href}
         target="_blank"
         rel="noopener noreferrer"
@@ -18,7 +19,7 @@ export function IconLink({ href, icon, label }: IconLinkProps) {
       >
         {icon}
         <span className="sr-only">{label}</span>
-      </a>
+      </Link>
     </li>
   );
 }

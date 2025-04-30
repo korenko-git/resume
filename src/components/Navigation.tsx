@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect } from "react";
 
 const MENU = ["about", "experience", "education", "projects", "certifications"];
@@ -44,7 +45,7 @@ export default function Navigation({ }) {
       <ul className="mt-16 w-max" role="list">
         {MENU.map((item) => (
           <li key={item} role="listitem">
-            <a
+            <Link
               className="group flex items-center py-3 [&.active_.nav-indicator]:w-16 [&.active_.nav-indicator]:bg-slate-900 dark:[&.active_.nav-indicator]:bg-slate-200 [&.active_.nav-text]:text-slate-900 dark:[&.active_.nav-text]:text-slate-200"
               href={`#${item}`}
               aria-current="false"
@@ -55,7 +56,7 @@ export default function Navigation({ }) {
               <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 transition-colors group-hover:text-slate-900 dark:group-hover:text-slate-200 group-focus-visible:text-slate-900 dark:group-focus-visible:text-slate-200">
                 {item}
               </span>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

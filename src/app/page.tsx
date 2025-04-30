@@ -5,6 +5,7 @@ import Resume from '@/components/resume';
 import Navigation from '@/components/Navigation';
 import Person from '@/components/Person';
 import SocialLinks from '@/components/SocialLinks';
+import Link from 'next/link';
 
 export default function Home() {
   const { loading, error } = useResume();
@@ -38,7 +39,7 @@ export default function Home() {
     <footer className="mt-16 py-8 border-t text-center text-sm text-muted-foreground">
       <p className="mb-2">
         This resume is hosted on GitHub Pages and can be updated through the{' '}
-        <a
+        <Link
           href="/editor"
           className="inline-flex items-baseline font-medium leading-tight 
       text-slate-700 hover:text-blue-500
@@ -47,7 +48,7 @@ export default function Home() {
       text-base"
         >
           online editor
-        </a>
+        </Link>
       </p>
 
 

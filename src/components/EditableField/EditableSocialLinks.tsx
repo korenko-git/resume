@@ -1,5 +1,6 @@
 import { Input } from '@/components/ui/input';
 import { Github, Linkedin, Mail, Code2 } from 'lucide-react';
+import Link from 'next/link';
 
 interface EditableSocialLinksProps {
   isEditing: boolean;
@@ -68,7 +69,7 @@ export function EditableSocialLinks({ isEditing, data, onDataChange }: EditableS
   return (
     <div className="flex flex-wrap gap-4 mt-4 social-links" role="list" aria-label="Social media links">
       {data.github && (
-        <a
+        <Link
           href={data.github}
           target="_blank"
           rel="noopener noreferrer"
@@ -78,10 +79,10 @@ export function EditableSocialLinks({ isEditing, data, onDataChange }: EditableS
         >
           <Github className="h-5 w-5" aria-hidden="true" />
           <span>GitHub</span>
-        </a>
+        </Link>
       )}
       {data.linkedin && (
-        <a
+        <Link
           href={data.linkedin}
           target="_blank"
           rel="noopener noreferrer"
@@ -91,10 +92,10 @@ export function EditableSocialLinks({ isEditing, data, onDataChange }: EditableS
         >
           <Linkedin className="h-5 w-5" aria-hidden="true" />
           <span>LinkedIn</span>
-        </a>
+        </Link>
       )}
       {data.leetcode && (
-        <a
+        <Link
           href={data.leetcode}
           target="_blank"
           rel="noopener noreferrer"
@@ -104,10 +105,10 @@ export function EditableSocialLinks({ isEditing, data, onDataChange }: EditableS
         >
           <Code2 className="h-5 w-5" aria-hidden="true" />
           <span>LeetCode</span>
-        </a>
+        </Link>
       )}
       {data.email && (
-        <a
+        <Link
           href={`mailto:${data.email}`}
           className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           aria-label="Email contact"
@@ -115,7 +116,7 @@ export function EditableSocialLinks({ isEditing, data, onDataChange }: EditableS
         >
           <Mail className="h-5 w-5" aria-hidden="true" />
           <span>Email</span>
-        </a>
+        </Link>
       )}
     </div>
   );

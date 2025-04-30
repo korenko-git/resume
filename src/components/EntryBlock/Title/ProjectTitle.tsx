@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowUpRight } from "lucide-react";
 import { EditableField } from "@/components/EditableField";
+import Link from "next/link";
 
 interface ProjectTitleProps {
   data: { title: string; demo?: string; source?: string };
@@ -30,7 +31,7 @@ export function ProjectTitle({
 
           <div className="flex gap-4" role="list" aria-label="Project links">
             {value.demo && (
-              <a
+              <Link
                 href={value.demo}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -45,11 +46,11 @@ export function ProjectTitle({
                   Demo
                   <ArrowUpRight className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" aria-hidden="true" />
                 </span>
-              </a>
+              </Link>
             )}
 
             {value.source && (
-              <a
+              <Link
                 href={value.source}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -61,7 +62,7 @@ export function ProjectTitle({
                   Source
                   <ArrowUpRight className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" aria-hidden="true" />
                 </span>
-              </a>
+              </Link>
             )}
           </div>
         </div>
