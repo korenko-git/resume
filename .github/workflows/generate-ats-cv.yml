@@ -22,7 +22,7 @@ jobs:
           npm install -D puppeteer markdown-it
 
       - name: Generate ATS CV
-        run: node scripts/generate-ats-resume.ts
+        run: npx tsx scripts/generate-ats-resume.ts
 
       - name: Upload ATS CV artifacts
         uses: actions/upload-artifact@v4
