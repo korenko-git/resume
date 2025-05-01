@@ -17,44 +17,52 @@ jobs:
         with:
           token: ${{ github.token }}
       
+      - name: Check for ZIP files
+        id: check_files
+        run: |
+          if ls updates/*.zip 1> /dev/null 2>&1; then
+            echo "zip_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "zip_exists=false" >> $GITHUB_OUTPUT
+          fi
+      
       - name: Setup Node.js
+        if: steps.check_files.outputs.zip_exists == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
           
       - run: sudo apt install unzip jq
-      
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-
+        if: steps.check_files.outputs.zip_exists == 'true'
+ 
       - name: Process updates
+        if: steps.check_files.outputs.zip_exists == 'true'
         run: |
-          if ls updates/*.zip 1> /dev/null 2>&1; then
-            for file in updates/*.zip; do
-              unzip -o "$file" -d temp-update
+          for file in updates/*.zip; do
+            unzip -o "$file" -d temp-update
 
-              cp -v temp-update/data/*.json src/data/
-              cp -v temp-update/images/* public/images/ || true
+            cp -v temp-update/data/*.json src/data/
+            cp -v temp-update/images/* public/images/ || true
 
-              rm -rf temp-update
-            done
+            rm -rf temp-update
+          done
 
-            rm -v updates/*.zip
-          else
-            echo "No zip files found, skipping unzip."
-          fi
+          rm -v updates/*.zip
 
       - name: Lint JSON files
+        if: steps.check_files.outputs.zip_exists == 'true'
         run: |
           for file in src/data/*.json; do
             jq empty "$file" || { echo "Error: $file is not valid JSON"; exit 1; }
           done
 
       - name: Commit and push
+        if: steps.check_files.outputs.zip_exists == 'true'
         run: |
           git config user.name github-actions
           git config user.email action@github.com
-          git add src/data/ public/images/ public/cv-ats.pdf
+          git add src/data/ public/images/
+          git add --all updates/
           git diff --staged --quiet || git commit -m "Apply update from ZIP"
           git push
