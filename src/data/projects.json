@@ -18,8 +18,7 @@
         "Redis"
       ],
       "source": "https://github.com/example/learning-platform",
-      "demo": "https://learning-platform-demo.com",
-      "image": "/images/projects/learning-platform.png"
+      "demo": "https://learning-platform-demo.com"
     },
     {
       "id": "proj-2",
@@ -39,8 +38,7 @@
         "CI/CD"
       ],
       "source": "https://github.com/example/task-manager",
-      "demo": "https://task-manager-demo.com",
-      "image": "/images/projects/task-manager.png"
+      "demo": "https://task-manager-demo.com"
     }
   ]
 }
