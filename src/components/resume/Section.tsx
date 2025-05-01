@@ -28,7 +28,7 @@ export default function Section({
       )}>
         {title}
       </h2>
-      <div>
+      <div className="space-y-4">
         {children}
       </div>
     </section>
