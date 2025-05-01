@@ -9,6 +9,7 @@ import Resume from '@/components/resume';
 import { WelcomeTour } from '@/components/WelcomeTour';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { DraftDialog } from '@/components/DraftDialog';
+import { processEntriesWithImages } from '@/lib/imageUtils';
 
 export default function Editor() {
   const { data, loading, error } = useResume();
@@ -24,28 +25,26 @@ export default function Editor() {
   }
 
   const handleDownload = async () => {
-    const logoImages: File[] = [];
+    const imageFiles: File[] = [];
     const dataWithImagePaths = { ...data };
 
-    const processedEntries = await Promise.all(data.organizations.entries.map(async (org) => {
-      if (org.logo && org.logo.startsWith('data:image')) {
-        const fileName = `org-${org.id}-logo.png`;
-        const response = await fetch(org.logo);
-        const blob = await response.blob();
-        const file = new File([blob], fileName, { type: 'image/png' });
-        logoImages.push(file);
+    // Обработка изображений организаций
+    dataWithImagePaths.organizations.entries = await processEntriesWithImages(
+      data.organizations.entries,
+      'logo',
+      'org',
+      imageFiles
+    );
 
-        return {
-          ...org,
-          logo: `images/${fileName}`
-        };
-      }
-      return org;
-    }));
+    // Обработка изображений проектов
+    dataWithImagePaths.projects.entries = await processEntriesWithImages(
+      data.projects.entries,
+      'image',
+      'project',
+      imageFiles
+    );
 
-    dataWithImagePaths.organizations.entries = processedEntries;
-
-    const zip = await createUpdateZip(dataWithImagePaths, logoImages, {
+    const zip = await createUpdateZip(dataWithImagePaths, imageFiles, {
       submittedBy: 'guest_user'
     });
 

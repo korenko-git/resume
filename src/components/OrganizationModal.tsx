@@ -20,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { getAssetPath } from "@/lib/assetPath";
+import { handleImageFileChange } from "@/lib/fileUtils";
 
 interface OrganizationModalProps {
   isOpen: boolean;
@@ -84,14 +85,9 @@ export function OrganizationModal({
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({ ...formData, logo: reader.result as string });
-      };
-      reader.readAsDataURL(file);
-    }
+    handleImageFileChange(e, (base64) => {
+      setFormData({ ...formData, logo: base64 });
+    });
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
