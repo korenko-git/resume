@@ -91,31 +91,40 @@ export function OrganizationDialog({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       onClose();
     }
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent 
-        className="sm:max-w-[500px]" 
+      <DialogContent
+        className="sm:max-w-[500px]"
         onKeyDown={handleKeyDown}
         aria-labelledby="organization-dialog-title"
         role="dialog"
         aria-modal="true"
       >
+        <DialogTitle className="sr-only">Organization</DialogTitle>
+
         <DialogHeader>
           <DialogTitle id="organization-dialog-title">Organization</DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-4 py-4" role="form" aria-label="Organization form">
+        <div
+          className="space-y-4 py-4"
+          role="form"
+          aria-label="Organization form"
+        >
           <div>
-            <label id="org-select-label" className="text-sm font-medium mb-1 block">
+            <label
+              id="org-select-label"
+              className="text-sm font-medium mb-1 block"
+            >
               Select Organization
             </label>
-            <Select 
-              value={selectedOrgId} 
+            <Select
+              value={selectedOrgId}
               onValueChange={handleSelectChange}
               aria-labelledby="org-select-label"
             >
@@ -135,7 +144,12 @@ export function OrganizationDialog({
 
           <div className="space-y-4">
             <div>
-              <label htmlFor="org-name" className="text-sm font-medium mb-1 block">Name</label>
+              <label
+                htmlFor="org-name"
+                className="text-sm font-medium mb-1 block"
+              >
+                Name
+              </label>
               <Input
                 id="org-name"
                 value={formData.title}
@@ -146,7 +160,10 @@ export function OrganizationDialog({
               />
             </div>
             <div>
-              <label htmlFor="org-description" className="text-sm font-medium mb-1 block">
+              <label
+                htmlFor="org-description"
+                className="text-sm font-medium mb-1 block"
+              >
                 Description
               </label>
               <Textarea
@@ -158,7 +175,12 @@ export function OrganizationDialog({
               />
             </div>
             <div>
-              <label htmlFor="org-url" className="text-sm font-medium mb-1 block">URL</label>
+              <label
+                htmlFor="org-url"
+                className="text-sm font-medium mb-1 block"
+              >
+                URL
+              </label>
               <Input
                 id="org-url"
                 value={formData.url}
@@ -168,10 +190,17 @@ export function OrganizationDialog({
                 type="url"
                 aria-describedby="url-format"
               />
-              <span id="url-format" className="sr-only">Enter URL in format: https://example.com</span>
+              <span id="url-format" className="sr-only">
+                Enter URL in format: https://example.com
+              </span>
             </div>
             <div>
-              <label htmlFor="org-logo-url" className="text-sm font-medium mb-1 block">Logo</label>
+              <label
+                htmlFor="org-logo-url"
+                className="text-sm font-medium mb-1 block"
+              >
+                Logo
+              </label>
               <div className="flex gap-2 items-center">
                 <Input
                   id="org-logo-url"
@@ -191,12 +220,14 @@ export function OrganizationDialog({
                   aria-label="Upload logo image"
                 />
               </div>
-              <span id="logo-help" className="sr-only">Enter a URL for the organization logo or upload an image file</span>
+              <span id="logo-help" className="sr-only">
+                Enter a URL for the organization logo or upload an image file
+              </span>
               {formData.logo && (
                 <div className="mt-2">
                   <img
                     src={getAssetPath(formData.logo)}
-                    alt={`${formData.title || 'Organization'} logo preview`}
+                    alt={`${formData.title || "Organization"} logo preview`}
                     className="w-16 h-16 object-contain bg-white rounded-md"
                   />
                 </div>
@@ -205,18 +236,19 @@ export function OrganizationDialog({
           </div>
         </div>
 
-        <div className="flex justify-end gap-4" role="group" aria-label="Form actions">
-          <Button 
-            variant="outline" 
+        <div
+          className="flex justify-end gap-4"
+          role="group"
+          aria-label="Form actions"
+        >
+          <Button
+            variant="outline"
             onClick={onClose}
             aria-label="Cancel and close dialog"
           >
             Cancel
           </Button>
-          <Button 
-            onClick={handleSave}
-            aria-label="Save organization"
-          >
+          <Button onClick={handleSave} aria-label="Save organization">
             Save
           </Button>
         </div>
