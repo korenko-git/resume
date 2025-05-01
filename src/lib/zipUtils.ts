@@ -1,11 +1,20 @@
 import JSZip from 'jszip';
 
+/**
+ * Interface defining the structure of the ZIP manifest
+ */
 interface ZipManifest {
   submittedBy?: string;
   replacedImages?: string[];
 }
 
-// Define return type for better type safety
+/**
+ * Creates a ZIP archive with JSON data and images
+ * @param jsonData Object containing JSON data to be included in the ZIP
+ * @param images Array of image files to be included in the ZIP
+ * @param manifest Optional manifest information
+ * @returns Promise with the generated ZIP as a Blob
+ */
 export async function createUpdateZip(
   jsonData: Record<string, any>,
   images: File[],

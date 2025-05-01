@@ -33,6 +33,7 @@ export interface ProjectEntry extends BaseEntry {
   skills: string[];
   source?: string;
   demo?: string;
+  image?: string;
 }
 
 export interface EducationEntry extends BaseEntry {
