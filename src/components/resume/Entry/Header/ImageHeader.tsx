@@ -1,7 +1,7 @@
 
-import { EditableField } from "@/components/Editable/fields/EditableField";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { EditableField } from "@/components/editor/fields/EditableField";
+import { Input } from "@/components/common/ui/input";
+import { Label } from "@/components/common/ui/label";
 import { getAssetPath } from "@/lib/assetPath";
 import { handleImageFileChange } from "@/lib/fileUtils";
 

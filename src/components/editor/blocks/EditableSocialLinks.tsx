@@ -1,4 +1,4 @@
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/common/ui/input';
 import { Github, Linkedin, Mail, Code2 } from 'lucide-react';
 import Link from 'next/link';
 

@@ -1,6 +1,6 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@/components/common/ui/badge';
 
 interface SortableSkillProps {
   skill: string;

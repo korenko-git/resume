@@ -1,5 +1,5 @@
 import { EditableField } from "./EditableField";
-import { Switch } from "@/components/ui/switch";
+import { Switch } from "@/components/common/ui/switch";
 import { cn } from "@/lib/utils";
 
 interface EditableSwitchProps {

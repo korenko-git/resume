@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { Input } from "@/components/ui/input";
-import { EditableField } from "@/components/Editable/fields/EditableField";
+import { Input } from "@/components/common/ui/input";
+import { EditableField } from "@/components/editor/fields/EditableField";
 
 interface DateHeaderProps {
   className: string;

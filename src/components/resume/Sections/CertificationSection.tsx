@@ -2,11 +2,11 @@
 
 import { useResume } from "@/contexts/ResumeContext";
 import { CertificationEntry } from "@/types/resume";
-import Section from "../../layout/Section";
-import EntryBlock from "../../Entry";
-import OutlineLinkButton from "../../ui/OutlineLinkButton";
+import Section from "@/components/common/layout/Section";
+import EntryBlock from "../Entry";
+import OutlineLinkButton from "@/components/common/ui/OutlineLinkButton";
 import { filterPublished } from "../utils";
-import { AddButton } from "../../ui/AddButton";
+import { AddButton } from "@/components/common/ui/AddButton";
 
 interface CertificationSectionProps {
   withLinkToArchive: boolean;

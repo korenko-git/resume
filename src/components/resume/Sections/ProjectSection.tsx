@@ -1,10 +1,10 @@
 import { useResume } from "@/contexts/ResumeContext";
-import Section from "../../layout/Section";
+import Section from "@/components/common/layout/Section";
 import { ProjectEntry } from "@/types/resume";
-import EntryBlock from "../../Entry";
-import OutlineLinkButton from "../../ui/OutlineLinkButton";
+import EntryBlock from "../Entry";
+import OutlineLinkButton from "@/components/common/ui/OutlineLinkButton";
 import { filterPublished } from "../utils";
-import { AddButton } from "../../ui/AddButton";
+import { AddButton } from "@/components/common/ui/AddButton";
 
 interface ProjectSectionProps {
   withLinkToArchive: boolean;

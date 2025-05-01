@@ -1,6 +1,6 @@
 import { EditableField } from "./EditableField";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Input } from "@/components/common/ui/input";
+import { Label } from "@/components/common/ui/label";
 import { cn } from "@/lib/utils";
 
 interface EditableTextProps {
