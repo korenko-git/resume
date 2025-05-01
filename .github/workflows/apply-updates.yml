@@ -2,8 +2,9 @@ name: Apply Resume Updates
 
 on:
   push:
-    paths:
-      - 'updates/*.zip'
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
   workflow_dispatch:
 
 permissions:
