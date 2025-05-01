@@ -1,5 +1,6 @@
 "use client";
 
+import { ComponentProps } from "react";
 import { useResume } from "@/contexts/ResumeContext";
 import { CertificationEntry } from "@/types/resume";
 import Section from "@/components/common/layout/Section";
@@ -11,13 +12,13 @@ import { filterPublished } from "../utils";
 interface CertificationSectionProps {
   withLinkToArchive: boolean;
   editable?: boolean;
-  className?: string;
+  sectionProps?: Omit<ComponentProps<typeof Section>, 'children'>;
 }
 
 export function CertificationSection({
   withLinkToArchive,
   editable = true,
-  className,
+  sectionProps,
 }: CertificationSectionProps) {
   const { data, updateData } = useResume();
   const sectionData = filterPublished(data?.certifications.entries, editable);
@@ -41,8 +42,8 @@ export function CertificationSection({
       id="certifications"
       aria-label="Certifications"
       title="Certifications"
-      sr={!editable}
-      className={className}
+      hideHeadingOnDesktop={!editable}
+      {...sectionProps}
     >
       <ol className="group/list">
         {sectionData.map((certification: CertificationEntry) => {
