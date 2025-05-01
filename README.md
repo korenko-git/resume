@@ -1,102 +1,68 @@
 # 📟 Resume Editor — GitHub-Powered & Serverless
 
-A fully static, GitHub-powered resume website. All content is stored in JSON files, images are committed with versioned IDs, and edits are made via downloadable `.zip` packages. GitHub Actions automates site rebuild, PDF generation, and cleanup.
+A fully static, GitHub-powered resume website builder. This project allows you to create, edit, and manage your resume content through a web interface, storing data in JSON files and leveraging GitHub Actions for updates and deployment.
 
-> 🔐 No backend. No tokens. No OAuth. Just GitHub and GitHub Actions.
+## ✨ Features
 
----
+*   **Static Site Generation:** Built with Next.js for a fast, secure, and easily deployable static website.
+*   **Data-Driven:** Resume content (About, Experience, Education, Projects, Certifications, Organizations) is managed via JSON files in `src/data`.
+*   **In-Browser Editor:** A dedicated `/editor` route provides a user-friendly interface to modify resume content. Drafts are saved locally using `localStorage`.
+*   **Live Preview:** The main `/` route displays the formatted resume based on the current data.
+*   **ATS-Friendly PDF Export:** Includes a script (`scripts/generate-ats-resume.ts`) to generate a simplified Markdown and PDF version suitable for Applicant Tracking Systems (ATS), outputting to the `public/` directory.
+*   **GitHub Workflow:** Edits made in the editor can be downloaded as a `.zip` archive. Submitting this archive via a GitHub Pull Request triggers GitHub Actions to update the content, rebuild the site, and regenerate the PDF.
 
-## Features
+## 🛠️ Tech Stack
 
-- **Static Site Generation:** Fully static resume site suitable for fast and secure hosting (e.g., GitHub Pages or Vercel).
-- **Data-Driven Structure:** All resume content (About, Experience, Education, Projects, Certifications, and Organizations) is stored in JSON files under `src/data`.
-- **In-Browser Editor:** Modify resume content directly via a user-friendly web interface at `/editor`. Drafts are saved to `localStorage`.
-- **Live Preview:** The main `/` route displays the formatted resume using the current JSON data.
-- **ATS-Compatible Export:** A script (`scripts/generate-ats-resume.ts`) generates a simplified Markdown and PDF version of the resume for Applicant Tracking Systems (ATS), saved under `public/`.
-- **GitHub-Based Workflow:** Download your changes as a ZIP file and submit them via GitHub Pull Request. GitHub Actions handle build, PDF export, and deployment automatically.
+*   **Framework:** [Next.js](https://nextjs.org/) (v15+) with [React](https://reactjs.org/) (v19+)
+*   **Language:** TypeScript
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/) (v4) & [shadcn/ui](https://ui.shadcn.com/)
+*   **State Management:** React Context API (`ResumeContext.tsx`)
+*   **UI Enhancements:**
+    *   [React Joyride](https://docs.react-joyride.com/) for the welcome tour.
+    *   [dnd-kit](https://dndkit.com/) for drag-and-drop functionality (e.g., skills).
+*   **Data Storage:** JSON files & Browser `localStorage`
+*   **PDF Generation:** [Pandoc](https://pandoc.org/) via `wkhtmltopdf` engine
+*   **Testing:** [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/)
 
-## Tech Stack
+## 🚀 Getting Started
 
-- **Framework:** [Next.js](https://nextjs.org/) v15+ with [React](https://reactjs.org/) v19+
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS v4 + [shadcn/ui](https://ui.shadcn.com/) components
-- **State Management:** React Context API (`ResumeContext.tsx`)
-- **Data Handling:** JSON files for content, `localStorage` for unsaved drafts
-- **PDF Generation:** [Puppeteer](https://pptr.dev/) and [MarkdownIt](https://markdown-it.github.io/)
-- **UI Enhancements:** [Joyride](https://docs.react-joyride.com/) (welcome tour), [dnd-kit](https://dndkit.com/) (drag-and-drop for skills)
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd resume
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000) to view the main resume page.
+    Open [http://localhost:3000/editor](http://localhost:3000/editor) to access the editor.
 
+## 📜 Available Scripts
 
-## ✍️ How Editing Works
+*   `npm run dev`: Starts the Next.js development server with Turbopack.
+*   `npm run build`: Builds the application for production.
+*   `npm run start`: Starts the production server (requires `npm run build` first).
+*   `npm run lint`: Lints the codebase using ESLint.
+*   `npm run typecheck`: Checks TypeScript types.
+*   `npm run test`: Runs tests using Jest.
+*   `npm run test:watch`: Runs tests in watch mode.
+*   `npm run test:coverage`: Runs tests and generates a coverage report.
+*   `npm run pdf`: Generates the ATS-friendly PDF resume using the script in `scripts/`.
 
-1. Open the visual editor (hosted on the site).
-2. Make edits to resume sections (inline form + drag-and-drop).
-3. Upload new images (e.g. company logos).
-4. Press **"Download Changes"** to get a `.zip` archive.
-5. Upload that archive to the `/updates` folder via:
-   - GitHub PR
-   - Direct commit (if you have access)
-6. GitHub Actions:
-   - Unzips the archive
-   - Applies edits to JSON and image files
-   - Replaces outdated images (if listed)
-   - Deletes the `.zip`
-   - Rebuilds the site
-   - Regenerates the PDF resume
+## ✍️ Editing Workflow
 
----
-
-## 📆 Zip Format
-
-Each update archive should contain:
-
-```
-update-name.zip
-🔹 data/
-🔹 images/
-🔹 manifest.json              # (optional metadata)
-```
-
-### Example `manifest.json`
-
-```json
-{
-  "submittedBy": "guest_user",
-  "replacedImages": [
-    "old-exp-logo.png",
-    "previous-project-image.jpg"
-  ]
-}
-```
-
----
-
-## 🤖 GitHub Actions
-
-The workflow automatically:
-
-- Applies all `.zip` files in `/updates`
-- Replaces JSON and images
-- Deletes outdated images (if listed)
-- Deletes processed zip files
-- Rebuilds the site
-- Generates and commits `resume.pdf`
-
-You can find the workflow in:
-
-```
-.github/workflows/update-from-zip.yml
-```
-
----
-
-## 💪 Development Setup
-
-```bash
-npm install
-npm run dev    # run local Next.js site
-npm run build  # build static site
-```
+1.  Navigate to the `/editor` page on your deployed site or local development server.
+2.  Make desired changes to the resume sections using the inline editing forms. Upload new images if needed.
+3.  Click the **"Download Changes"** button to get a `.zip` archive containing the updated JSON data and any new images.
+4.  Commit and push this `.zip` file to the `/updates` directory in your GitHub repository (typically via a Pull Request).
+5.  GitHub Actions will automatically detect the new `.zip` file, extract its contents, update the corresponding JSON files and images in `src/data` and `public/images`, delete the processed `.zip`, rebuild the Next.js site, and regenerate the `public/cv-ats.pdf`.
 
 ## 📄 License
 
 MIT
+
