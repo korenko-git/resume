@@ -1,10 +1,16 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/common/ui/dialog';
-import { Button } from '@/components/common/ui/button';
-import { useResume } from '@/contexts/ResumeContext';
-import { deepEqual } from '@/lib/utils';
+import { useEffect, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/common/ui/dialog";
+import { Button } from "@/components/common/ui/button";
+import { useResume } from "@/contexts/ResumeContext";
+import { deepEqual } from "@/lib/utils";
 
 interface DraftDialogProps {
   onClose?: () => void;
@@ -12,7 +18,7 @@ interface DraftDialogProps {
 
 export function DraftDialog({ onClose }: DraftDialogProps) {
   const { data, setData, setVersion } = useResume();
-  
+
   const [showDraftDialog, setShowDraftDialog] = useState(false);
   const [draftData, setDraftData] = useState<any>(null);
 
@@ -25,7 +31,7 @@ export function DraftDialog({ onClose }: DraftDialogProps) {
   };
 
   const handleClose = () => {
-    localStorage.removeItem('resumeDraft');
+    localStorage.removeItem("resumeDraft");
     setShowDraftDialog(false);
     if (onClose) {
       onClose();
@@ -35,15 +41,21 @@ export function DraftDialog({ onClose }: DraftDialogProps) {
   useEffect(() => {
     if (showDraftDialog) return;
 
-    const savedDraft = localStorage.getItem('resumeDraft');
+    const savedDraft = localStorage.getItem("resumeDraft");
     if (savedDraft) {
       const draft = JSON.parse(savedDraft);
       const draftVersion = Number(draft.about.version) || 0;
       const currentVersion = Number(data.about?.version) || 0;
 
       if (draftVersion > currentVersion) {
-        const draftWithoutVersion = { ...draft, about: { ...draft.about, version: undefined } };
-        const dataWithoutVersion = { ...data, about: { ...data.about, version: undefined } };
+        const draftWithoutVersion = {
+          ...draft,
+          about: { ...draft.about, version: undefined },
+        };
+        const dataWithoutVersion = {
+          ...data,
+          about: { ...data.about, version: undefined },
+        };
 
         if (!deepEqual(draftWithoutVersion, dataWithoutVersion)) {
           setDraftData(draft);
@@ -56,19 +68,21 @@ export function DraftDialog({ onClose }: DraftDialogProps) {
   return (
     <Dialog open={showDraftDialog} onOpenChange={handleClose}>
       <DialogContent>
+        <DialogTitle className="sr-only">Draft Found</DialogTitle>
         <DialogHeader>
           <DialogTitle>Draft Found</DialogTitle>
         </DialogHeader>
         <div className="py-4">
-          <p>You have a newer version of your resume in draft. Would you like to restore it?</p>
+          <p>
+            You have a newer version of your resume in draft. Would you like to
+            restore it?
+          </p>
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={handleClose}>
             Cancel
           </Button>
-          <Button onClick={handleRestoreDraft}>
-            Restore Draft
-          </Button>
+          <Button onClick={handleRestoreDraft}>Restore Draft</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
