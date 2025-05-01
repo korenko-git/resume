@@ -1,6 +1,6 @@
 import { useResume } from "@/contexts/ResumeContext";
 import { AboutData } from "@/types/resume";
-import { IconLink } from "./ui/IconLink";
+import { IconLink } from "@/components//ui/IconLink";
 
 export default function Person() {
   const { data } = useResume();

@@ -5,13 +5,13 @@ import {
 import { useState } from "react";
 import { Description } from "./Description";
 import { cn } from "@/lib/utils";
-import { OrganizationModal } from "../OrganizationModal";
+import { OrganizationDialog } from "../dialogs/OrganizationDialog";
 import { SkillsList } from "./Skills/SkillsList";
 import { useEntryData } from "@/hooks/useEntryData";
-import { EditableButtons } from "../EditableField/EditableButtons";
+import { EditableButtons } from "../Editable/controls/EditableButtons";
 import EntryHeader from "./Header/EntryHeader";
 import EntryTitle from "./Title/EntryTitle";
-import { DeleteConfirmationDialog } from "../DeleteConfirmationDialog";
+import { DeleteConfirmationDialog } from "../dialogs/DeleteConfirmationDialog";
 
 interface EntryBlockProps {
   id: string;
@@ -130,7 +130,7 @@ export default function EntryBlock({
       />
 
       {isEditing && hasOrganizationId && (
-        <OrganizationModal
+        <OrganizationDialog
           isOpen={isOrgModalOpen}
           onClose={() => setIsOrgModalOpen(false)}
           organizationId={entryData.organizationId}

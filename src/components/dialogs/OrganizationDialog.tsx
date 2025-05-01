@@ -22,19 +22,19 @@ import {
 import { getAssetPath } from "@/lib/assetPath";
 import { handleImageFileChange } from "@/lib/fileUtils";
 
-interface OrganizationModalProps {
+interface OrganizationDialogProps {
   isOpen: boolean;
   onClose: () => void;
   organizationId?: string;
   updateOrganizationId: (id: string) => void;
 }
 
-export function OrganizationModal({
+export function OrganizationDialog({
   isOpen,
   onClose,
   organizationId,
   updateOrganizationId,
-}: OrganizationModalProps) {
+}: OrganizationDialogProps) {
   const { organizations, updateOrganization } = useResume();
   const [selectedOrgId, setSelectedOrgId] = useState<string>("");
   const [formData, setFormData] = useState<Organization>({

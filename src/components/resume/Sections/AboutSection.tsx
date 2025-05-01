@@ -1,11 +1,12 @@
 "use client";
 
 import { AboutData } from "@/types/resume";
-import Section from "./Section";
-import { EditableSocialLinks } from "../EditableField/EditableSocialLinks";
-import { EditableText, EditableTextarea } from "@/components/EditableField";
-import { EditableButtons } from "@/components/EditableField/EditableButtons";
+import Section from "../../layout/Section";
+import { EditableSocialLinks } from "../../Editable/blocks/EditableSocialLinks";
 import { useEntryData } from "@/hooks/useEntryData";
+import { EditableText } from "@/components/Editable/fields/EditableText";
+import { EditableTextarea } from "@/components/Editable/fields/EditableTextarea";
+import { EditableButtons } from "@/components/Editable/controls/EditableButtons";
 
 interface AboutSectionProps {
   editable?: boolean;

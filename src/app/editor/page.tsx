@@ -5,10 +5,10 @@ import { createUpdateZip } from '@/lib/zipUtils';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { useResume } from '@/contexts/ResumeContext';
-import Resume from '@/components/resume';
-import { WelcomeTour } from '@/components/WelcomeTour';
-import { ThemeToggle } from '@/components/ThemeToggle';
-import { DraftDialog } from '@/components/DraftDialog';
+import Resume from '@/components/Resume';
+import { WelcomeTour } from '@/components/dialogs/WelcomeTour';
+import { ThemeToggle } from '@/components/layout/ThemeToggle';
+import { DraftDialog } from '@/components/dialogs/DraftDialog';
 import { processEntriesWithImages } from '@/lib/imageUtils';
 
 export default function Editor() {

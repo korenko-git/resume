@@ -1,4 +1,5 @@
-import { EditableField } from "@/components/EditableField";
+
+import { EditableField } from "@/components/Editable/fields/EditableField";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getAssetPath } from "@/lib/assetPath";
