@@ -29,9 +29,22 @@ export function SkillsList({ skills, onUpdate, isEditing }: SkillsListProps) {
   };
 
   const handleAddSkill = () => {
-    const newSkill = prompt('Enter skill name:');
-    if (newSkill && !skills.includes(newSkill)) {
-      onUpdate([...skills, newSkill]);
+    const input = prompt('Enter skill names (separated by comma or space):');
+    if (input) {
+      const newSkillsRaw = input
+        .split(/[,\s]+/)
+        .map(skill => skill.trim())
+        .filter(skill => skill.length > 0);
+
+      const uniqueNewSkills = [...new Set(newSkillsRaw)];
+
+      const skillsToAdd = uniqueNewSkills.filter(
+        (newSkill) => !skills.includes(newSkill)
+      );
+
+      if (skillsToAdd.length > 0) {
+        onUpdate([...skills, ...skillsToAdd]);
+      }
     }
   };
 
