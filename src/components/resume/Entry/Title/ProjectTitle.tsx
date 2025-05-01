@@ -1,8 +1,8 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { EditableField } from "@/components/editor/fields/EditableField";
 import { Input } from "@/components/common/ui/input";
 import { Label } from "@/components/common/ui/label";
-import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 
 interface ProjectTitleProps {
   data: { title: string; demo?: string; source?: string };

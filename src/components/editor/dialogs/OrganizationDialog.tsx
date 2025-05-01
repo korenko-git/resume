@@ -10,8 +10,6 @@ import {
 import { Input } from "@/components/common/ui/input";
 import { Textarea } from "@/components/common/ui/textarea";
 import { Button } from "@/components/common/ui/button";
-import { Organization } from "@/types/resume";
-import { useResume } from "@/contexts/ResumeContext";
 import {
   Select,
   SelectContent,
@@ -19,6 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/common/ui/select";
+import { Organization } from "@/types/resume";
+import { useResume } from "@/contexts/ResumeContext";
 import { getAssetPath } from "@/lib/assetPath";
 import { handleImageFileChange } from "@/lib/fileUtils";
 

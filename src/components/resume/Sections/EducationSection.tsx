@@ -1,9 +1,9 @@
 import { useResume } from "@/contexts/ResumeContext";
-import Section from "@/components/common/layout/Section";
 import { EducationEntry } from "@/types/resume";
+import { AddButton } from "@/components/common/ui/AddButton";
+import Section from "@/components/common/layout/Section";
 import EntryBlock from "../Entry";
 import { filterPublished } from "../utils";
-import { AddButton } from "@/components/common/ui/AddButton";
 
 interface EducationSectionProps {
   editable?: boolean;
