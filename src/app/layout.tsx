@@ -7,6 +7,7 @@ import Container from "@/components/common/layout/Container";
 import { Footer } from "@/components/common/layout/Footer";
 
 import "./globals.css";
+import BackgroundAnimation from "@/components/common/layout/BackgroundAnimation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,10 +56,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ResumeProvider>
-            <div className="bg-animation">
-              <div id='stars3'></div>
-              <div id='stars4'></div>
-            </div>
+            <BackgroundAnimation />
             <Container>
               {children}
               <Footer />
