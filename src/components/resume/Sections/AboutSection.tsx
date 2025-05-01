@@ -2,17 +2,21 @@
 
 import { useEntryData } from "@/hooks/useEntryData";
 import { AboutData } from "@/types/resume";
+import Section from "@/components/common/layout/Section";
 import { EditableButtons } from "@/components/editor/controls/EditableButtons";
 import { EditableSocialLinks } from "@/components/editor/blocks/EditableSocialLinks";
 import { EditableText } from "@/components/editor/fields/EditableText";
 import { EditableTextarea } from "@/components/editor/fields/EditableTextarea";
-import Section from "@/components/common/layout/Section";
 
 interface AboutSectionProps {
   editable?: boolean;
+  className?: string;
 }
 
-export function AboutSection({ editable = true }: AboutSectionProps) {
+export function AboutSection({
+  editable = true,
+  className,
+}: AboutSectionProps) {
   const {
     entryData: sectionData,
     isEditing,
@@ -23,7 +27,13 @@ export function AboutSection({ editable = true }: AboutSectionProps) {
   } = useEntryData<AboutData>("about", undefined, { editable });
 
   return (
-    <Section id="about" aria-label="About me" title="About" sr={true}>
+    <Section
+      id="about"
+      aria-label="About me"
+      title="About"
+      sr={true}
+      className={className}
+    >
       {editable && (
         <EditableText
           value={sectionData?.title || ""}

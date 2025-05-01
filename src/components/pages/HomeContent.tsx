@@ -5,7 +5,6 @@ import Resume from '@/components/resume';
 import Navigation from '@/components/common/layout/Navigation';
 import Person from '@/components/resume/Profile/Person';
 import SocialLinks from '@/components/resume/Profile/SocialLinks';
-import Link from 'next/link';
 
 export default function HomeContent() {
   const { loading, error } = useResume();
@@ -33,26 +32,6 @@ export default function HomeContent() {
         <Resume editable={false} />
       </main>
     </div>
-
-    <footer className="mt-16 py-8 border-t text-center text-sm text-muted-foreground">
-      <p className="mb-2">
-        This resume is hosted on GitHub Pages and can be updated through the{' '}
-        <Link
-          href="/editor"
-          className="inline-flex items-baseline font-medium leading-tight 
-      text-slate-700 hover:text-blue-500
-      dark:text-slate-50 dark:hover:text-blue-300 
-      focus-visible:text-blue-500 dark:focus-visible:text-blue-400
-      text-base"
-        >
-          online editor
-        </Link>
-      </p>
-
-      <p>
-        © {new Date().getFullYear()} - Built with Next.js and Tailwind CSS
-      </p>
-    </footer>
   </>
   );
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import { useResume } from "@/contexts/ResumeContext";
 import { EducationEntry } from "@/types/resume";
 import { AddButton } from "@/components/common/ui/AddButton";

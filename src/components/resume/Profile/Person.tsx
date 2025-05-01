@@ -15,7 +15,7 @@ export default function Person() {
         {sectionData.subtitle}
       </h2>
 
-      <ul className="flex items-center">
+      <ul className="flex items-center justify-center lg:justify-start">
         <IconLink
           href="cv-ats.pdf"
           icon={<span>ATS CV</span>}
