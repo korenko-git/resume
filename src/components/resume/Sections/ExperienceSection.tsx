@@ -36,7 +36,7 @@ export function ExperienceSection({ editable = true, className }: ExperienceSect
       id="experience"
       aria-label="Work experience"
       title="Experience"
-      sr={!editable}
+      hideHeadingOnDesktop={!editable}
       className={className}
     >
       <ol className="group/list">

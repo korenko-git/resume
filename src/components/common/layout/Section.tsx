@@ -2,15 +2,17 @@ import { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 interface SectionProps extends ComponentProps<"section"> {
-  title: string;
-  sr?: boolean;
+  title?: string;
+  hideHeadingOnDesktop?: boolean;
+  hideHeading?: boolean;
   children: ReactNode;
 }
 
 export default function Section({ 
   title, 
   children, 
-  sr = true, 
+  hideHeadingOnDesktop = true, 
+  hideHeading = false,
   className,
   ...props 
 }: SectionProps) {
@@ -22,12 +24,14 @@ export default function Section({
       )}
       {...props}
     >
-      <h2 className={cn(
-        "text-sm font-bold uppercase tracking-widest text-zinc-700 dark:text-zinc-50 mb-6",
-        sr && "lg:sr-only"
-      )}>
-        {title}
-      </h2>
+      {!hideHeading && (
+        <h2 className={cn(
+          "text-sm font-bold uppercase tracking-widest text-zinc-700 dark:text-zinc-50 mb-6",
+          hideHeadingOnDesktop && "lg:sr-only"
+        )}>
+          {title}
+        </h2>
+      )}
       <div className="space-y-4">
         {children}
       </div>

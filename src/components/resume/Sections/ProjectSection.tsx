@@ -1,5 +1,6 @@
 "use client";
 
+import { ComponentProps } from "react";
 import { useResume } from "@/contexts/ResumeContext";
 import { ProjectEntry } from "@/types/resume";
 import { AddButton } from "@/components/common/ui/AddButton";
@@ -12,12 +13,14 @@ interface ProjectSectionProps {
   withLinkToArchive: boolean;
   editable?: boolean;
   className?: string;
+  sectionProps?: Omit<ComponentProps<typeof Section>, 'children'>;
 }
 
 export function ProjectSection({
   withLinkToArchive,
   editable = true,
   className,
+  sectionProps,
 }: ProjectSectionProps) {
   const { data, updateData } = useResume();
   const sectionData = filterPublished(data?.projects.entries, editable);
@@ -41,8 +44,9 @@ export function ProjectSection({
       id="projects"
       aria-label="My Projects"
       title="Projects"
-      sr={!editable}
+      hideHeadingOnDesktop={!editable}
       className={className}
+      {...sectionProps}
     >
       <ol className="group/list">
         {sectionData.map((project: ProjectEntry) => {

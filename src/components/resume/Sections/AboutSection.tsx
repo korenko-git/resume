@@ -31,7 +31,7 @@ export function AboutSection({
       id="about"
       aria-label="About me"
       title="About"
-      sr={true}
+      hideHeadingOnDesktop={true}
       className={className}
     >
       {editable && (

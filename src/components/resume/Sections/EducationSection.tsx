@@ -35,7 +35,7 @@ export function EducationSection({ editable = true }: EducationSectionProps) {
       id="education"
       aria-label="Education"
       title="Education"
-      sr={!editable}
+      hideHeadingOnDesktop={!editable}
     >
       <ol className="group/list">
         {sectionData.map((education: EducationEntry) => {

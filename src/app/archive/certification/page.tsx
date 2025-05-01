@@ -14,14 +14,14 @@ export default function CertificationArchivePage() {
         Home
       </OutlineLinkButton>
 
-      <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-50 sm:text-5xl sm:my-8">
+      <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-50 sm:text-5xl my-8">
         All Certifications
       </h1>
 
       <CertificationSection
         editable={false}
         withLinkToArchive={false}
-        className="mb-8"
+        sectionProps={{ hideHeading: true }}
       />
     </div>
   );
