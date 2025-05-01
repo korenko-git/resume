@@ -1,17 +1,17 @@
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { useEntryData } from "@/hooks/useEntryData";
 import {
   ResumeDataKeysWithEntries,
   ResumeDataWithEntries,
 } from "@/types/resume";
-import { useState } from "react";
-import { Description } from "./Description";
-import { cn } from "@/lib/utils";
-import { OrganizationDialog } from "@/components/editor/dialogs/OrganizationDialog";
-import { SkillsList } from "./Skills/SkillsList";
-import { useEntryData } from "@/hooks/useEntryData";
+import { DeleteConfirmationDialog } from "@/components/editor/dialogs/DeleteConfirmationDialog";
 import { EditableButtons } from "@/components/editor/controls/EditableButtons";
+import { OrganizationDialog } from "@/components/editor/dialogs/OrganizationDialog";
 import EntryHeader from "./Header/EntryHeader";
 import EntryTitle from "./Title/EntryTitle";
-import { DeleteConfirmationDialog } from "@/components/editor/dialogs/DeleteConfirmationDialog";
+import { Description } from "./Description";
+import { SkillsList } from "./Skills/SkillsList";
 
 interface EntryBlockProps {
   id: string;

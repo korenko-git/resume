@@ -1,12 +1,12 @@
 
-import { EditableField } from "@/components/editor/fields/EditableField";
-import { Input } from "@/components/common/ui/input";
-import { Label } from "@/components/common/ui/label";
+import Link from "next/link";
+import { ArrowUpRight, Edit } from "lucide-react";
 import { useResume } from "@/contexts/ResumeContext";
 import { getAssetPath } from "@/lib/assetPath";
 import { Organization } from "@/types/resume";
-import { ArrowUpRight, Edit } from "lucide-react";
-import Link from "next/link";
+import { EditableField } from "@/components/editor/fields/EditableField";
+import { Input } from "@/components/common/ui/input";
+import { Label } from "@/components/common/ui/label";
 
 interface OrganizationTitleProps {
   data: { organizationId: string; title: string };

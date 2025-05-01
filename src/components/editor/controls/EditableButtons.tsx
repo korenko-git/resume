@@ -1,5 +1,5 @@
-import { Button } from "@/components/common/ui/button";
 import { Loader2, Trash2 } from "lucide-react";
+import { Button } from "@/components/common/ui/button";
 import { EditableSwitch } from "../fields/EditableSwitch";
 
 interface EditableButtonsProps {

@@ -1,8 +1,8 @@
-import { EditableField } from "./EditableField";
+import ReactMarkdown from "react-markdown";
 import { Textarea } from "@/components/common/ui/textarea";
 import { Label } from "@/components/common/ui/label";
+import { EditableField } from "./EditableField";
 import { cn } from "@/lib/utils";
-import ReactMarkdown from "react-markdown";
 
 interface EditableTextareaProps {
   value: string;
