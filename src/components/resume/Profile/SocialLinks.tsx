@@ -2,7 +2,7 @@ import { Github, Linkedin, Code2 } from "lucide-react";
 
 import { useResume } from "@/contexts/ResumeContext";
 import { AboutData } from "@/types/resume";
-import { IconLink } from "@/components/ui/IconLink";
+import { IconLink } from "@/components/common/ui/IconLink";
 
 export default function SocialLinks() {
   const { data } = useResume();

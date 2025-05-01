@@ -1,10 +1,10 @@
 'use client';
 
 import { useResume } from '@/contexts/ResumeContext';
-import Resume from '@/components/Resume';
-import Navigation from '@/components/layout/Navigation';
-import Person from '@/components/Resume/Profile/Person';
-import SocialLinks from '@/components/Resume/Profile/SocialLinks';
+import Resume from '@/components/resume';
+import Navigation from '@/components/common/layout/Navigation';
+import Person from '@/components/resume/Profile/Person';
+import SocialLinks from '@/components/resume/Profile/SocialLinks';
 import Link from 'next/link';
 
 export default function Home() {

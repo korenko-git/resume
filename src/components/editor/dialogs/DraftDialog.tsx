@@ -1,7 +1,7 @@
 'use client';
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/common/ui/dialog';
+import { Button } from '@/components/common/ui/button';
 import { useResume } from '@/contexts/ResumeContext';
 import { useEffect, useState } from 'react';
 import { deepEqual } from '@/lib/utils';

@@ -6,10 +6,10 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+} from "@/components/common/ui/dialog";
+import { Input } from "@/components/common/ui/input";
+import { Textarea } from "@/components/common/ui/textarea";
+import { Button } from "@/components/common/ui/button";
 import { Organization } from "@/types/resume";
 import { useResume } from "@/contexts/ResumeContext";
 import {
@@ -18,7 +18,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/common/ui/select";
 import { getAssetPath } from "@/lib/assetPath";
 import { handleImageFileChange } from "@/lib/fileUtils";
 

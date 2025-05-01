@@ -1,9 +1,9 @@
 import { useResume } from "@/contexts/ResumeContext";
 import { ExperienceEntry } from "@/types/resume";
-import Section from "../../layout/Section";
-import EntryBlock from "../../Entry";
+import Section from "@/components/common/layout/Section";
+import EntryBlock from "../Entry";
 import { filterPublished } from "../utils";
-import { AddButton } from "../../ui/AddButton";
+import { AddButton } from "@/components/common/ui/AddButton";
 
 interface ExperienceSectionProps {
   editable?: boolean;

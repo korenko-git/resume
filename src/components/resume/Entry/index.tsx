@@ -5,13 +5,13 @@ import {
 import { useState } from "react";
 import { Description } from "./Description";
 import { cn } from "@/lib/utils";
-import { OrganizationDialog } from "../dialogs/OrganizationDialog";
+import { OrganizationDialog } from "@/components/editor/dialogs/OrganizationDialog";
 import { SkillsList } from "./Skills/SkillsList";
 import { useEntryData } from "@/hooks/useEntryData";
-import { EditableButtons } from "../Editable/controls/EditableButtons";
+import { EditableButtons } from "@/components/editor/controls/EditableButtons";
 import EntryHeader from "./Header/EntryHeader";
 import EntryTitle from "./Title/EntryTitle";
-import { DeleteConfirmationDialog } from "../dialogs/DeleteConfirmationDialog";
+import { DeleteConfirmationDialog } from "@/components/editor/dialogs/DeleteConfirmationDialog";
 
 interface EntryBlockProps {
   id: string;

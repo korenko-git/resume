@@ -5,8 +5,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+} from "@/components/common/ui/dialog";
+import { Button } from "@/components/common/ui/button";
 import { Loader2 } from "lucide-react";
 
 interface DeleteConfirmationDialogProps {

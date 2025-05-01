@@ -1,4 +1,4 @@
-import { EditableTextarea } from "../Editable/fields/EditableTextarea";
+import { EditableTextarea } from "@/components/editor/fields/EditableTextarea";
 
 
 interface DescriptionProps {

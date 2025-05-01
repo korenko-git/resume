@@ -2,7 +2,7 @@ import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { SortableContext, arrayMove } from '@dnd-kit/sortable';
 import { SortableSkill } from './SortableSkill';
 import { DeleteZone } from './DeleteZone';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/common/ui/button';
 import { Plus } from 'lucide-react';
 
 interface SkillsListProps {
