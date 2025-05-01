@@ -16,7 +16,7 @@ interface EditableSocialLinksProps {
 export function EditableSocialLinks({ isEditing, data, onDataChange }: EditableSocialLinksProps) {
   if (isEditing) {
     return (
-      <div className="space-y-3 mt-4 social-links" role="group" aria-label="Social media links">
+      <div className="space-y-3 social-links" role="group" aria-label="Social media links">
         <div className="flex items-center gap-2">
           <Github className="h-5 w-5" aria-hidden="true" />
           <Input

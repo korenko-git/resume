@@ -22,15 +22,18 @@ export function AboutSection({ editable = true }: AboutSectionProps) {
   } = useEntryData<AboutData>("about", undefined, { editable });
 
   return (
-    <Section id="about" aria-label="About me" title="About" sr={!editable}>
-      <EditableTextarea
-        value={sectionData?.description || ""}
-        isEditing={isEditing}
-        onChange={(value) => handleDataChange({ description: value })}
-        onEditStart={handleEditStart}
-        className="editable-header"
-        markdown={true}
-      />
+    <Section id="about" aria-label="About me" title="About" sr={true}>
+      {editable && (
+        <EditableText
+          value={sectionData?.title || ""}
+          isEditing={isEditing}
+          onChange={(value) => handleDataChange({ title: value })}
+          onEditStart={handleEditStart}
+          label={isEditing ? "Title" : undefined}
+          placeholder="Enter title"
+          displayClassName="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-50"
+        />
+      )}
 
       {editable && (
         <EditableText
@@ -40,10 +43,20 @@ export function AboutSection({ editable = true }: AboutSectionProps) {
           onEditStart={handleEditStart}
           label={isEditing ? "Subtitle" : undefined}
           placeholder="Enter subtitle"
-          className="mt-2 mb-4"
           displayClassName="text-base text-slate-600 dark:text-slate-400"
         />
       )}
+
+      <EditableTextarea
+        value={sectionData?.description || ""}
+        isEditing={isEditing}
+        onChange={(value) => handleDataChange({ description: value })}
+        onEditStart={handleEditStart}
+        className="editable-header"
+        markdown={true}
+        label="Description"
+        placeholder="Markdown formatting is supported..."
+      />
 
       {editable && (
         <EditableSocialLinks
