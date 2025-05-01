@@ -1,19 +1,22 @@
-'use client';
+"use client";
 
-import { useResume } from '@/contexts/ResumeContext';
-import { CertificationEntry } from '@/types/resume';
-import Section from './Section';
-import EntryBlock from '../EntryBlock';
-import OutlineLinkButton from '../ui/OutlineLinkButton';
-import { filterPublished } from './utils';
-import { AddButton } from "../ui/AddButton";
+import { useResume } from "@/contexts/ResumeContext";
+import { CertificationEntry } from "@/types/resume";
+import Section from "../../layout/Section";
+import EntryBlock from "../../Entry";
+import OutlineLinkButton from "../../ui/OutlineLinkButton";
+import { filterPublished } from "../utils";
+import { AddButton } from "../../ui/AddButton";
 
 interface CertificationSectionProps {
   withLinkToArchive: boolean;
   editable?: boolean;
 }
 
-export function CertificationSection({ withLinkToArchive, editable = true }: CertificationSectionProps) {
+export function CertificationSection({
+  withLinkToArchive,
+  editable = true,
+}: CertificationSectionProps) {
   const { data, updateData } = useResume();
   const sectionData = filterPublished(data?.certifications.entries, editable);
 
@@ -25,19 +28,28 @@ export function CertificationSection({ withLinkToArchive, editable = true }: Cer
       isPublished: false,
       date: new Date().toISOString().slice(0, 7),
       skills: [],
-      organizationId: ""
+      organizationId: "",
     };
-    
+
     updateData("certifications", newCertification);
   };
 
   return (
-    <Section id="certifications" aria-label="Certifications" title="Certifications" sr={!editable}>
+    <Section
+      id="certifications"
+      aria-label="Certifications"
+      title="Certifications"
+      sr={!editable}
+    >
       <ol className="group/list">
         {sectionData.map((certification: CertificationEntry) => {
           return (
             <li key={certification.id} className="mb-12">
-              <EntryBlock typeData='certifications' id={certification.id} editable={editable} />
+              <EntryBlock
+                typeData="certifications"
+                id={certification.id}
+                editable={editable}
+              />
             </li>
           );
         })}
@@ -48,7 +60,10 @@ export function CertificationSection({ withLinkToArchive, editable = true }: Cer
       )}
 
       {withLinkToArchive && (
-        <OutlineLinkButton aria-label="View Full Certificate Archive" href="/archive/certification">
+        <OutlineLinkButton
+          aria-label="View Full Certificate Archive"
+          href="/archive/certification"
+        >
           View Full Certificate Archive
         </OutlineLinkButton>
       )}

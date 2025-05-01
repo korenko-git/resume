@@ -1,10 +1,9 @@
-
 import { useResume } from "@/contexts/ResumeContext";
-import Section from "./Section";
+import Section from "../../layout/Section";
 import { EducationEntry } from "@/types/resume";
-import EntryBlock from "../EntryBlock";
-import { filterPublished } from "./utils";
-import { AddButton } from "../ui/AddButton";
+import EntryBlock from "../../Entry";
+import { filterPublished } from "../utils";
+import { AddButton } from "../../ui/AddButton";
 
 interface EducationSectionProps {
   editable?: boolean;
@@ -23,27 +22,34 @@ export function EducationSection({ editable = true }: EducationSectionProps) {
       startDate: new Date().toISOString().slice(0, 7),
       endDate: "",
       skills: [],
-      organizationId: ""
+      organizationId: "",
     };
-    
+
     updateData("education", newEducation);
   };
 
   return (
-    <Section id="education" aria-label="Education" title="Education" sr={!editable}>
+    <Section
+      id="education"
+      aria-label="Education"
+      title="Education"
+      sr={!editable}
+    >
       <ol className="group/list">
         {sectionData.map((education: EducationEntry) => {
           return (
             <li key={education.id} className="mb-12">
-              <EntryBlock typeData='education' id={education.id} editable={editable} />
+              <EntryBlock
+                typeData="education"
+                id={education.id}
+                editable={editable}
+              />
             </li>
           );
         })}
       </ol>
-      
-      {editable && (
-        <AddButton onClick={handleAddEducation} label="education" />
-      )}
+
+      {editable && <AddButton onClick={handleAddEducation} label="education" />}
     </Section>
   );
 }

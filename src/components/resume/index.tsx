@@ -1,8 +1,8 @@
-import { AboutSection } from "./AboutSection"
-import { CertificationSection } from "./CertificationSection"
-import { EducationSection } from "./EducationSection"
-import { ExperienceSection } from "./ExperienceSection"
-import { ProjectSection } from "./ProjectSection"
+import { AboutSection } from "./Sections/AboutSection"
+import { CertificationSection } from "./Sections/CertificationSection"
+import { EducationSection } from "./Sections/EducationSection"
+import { ExperienceSection } from "./Sections/ExperienceSection"
+import { ProjectSection } from "./Sections/ProjectSection"
 
 interface ResumeProps {
   editable?: boolean;

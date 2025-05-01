@@ -1,7 +1,7 @@
+import { EditableField } from "@/components/Editable/fields/EditableField";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowUpRight } from "lucide-react";
-import { EditableField } from "@/components/EditableField";
 import Link from "next/link";
 
 interface ProjectTitleProps {

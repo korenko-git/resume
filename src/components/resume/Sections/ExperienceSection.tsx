@@ -1,10 +1,9 @@
-
 import { useResume } from "@/contexts/ResumeContext";
 import { ExperienceEntry } from "@/types/resume";
-import Section from "./Section";
-import EntryBlock from "../EntryBlock";
-import { filterPublished } from "./utils";
-import { AddButton } from "../ui/AddButton";
+import Section from "../../layout/Section";
+import EntryBlock from "../../Entry";
+import { filterPublished } from "../utils";
+import { AddButton } from "../../ui/AddButton";
 
 interface ExperienceSectionProps {
   editable?: boolean;
@@ -23,24 +22,33 @@ export function ExperienceSection({ editable = true }: ExperienceSectionProps) {
       startDate: new Date().toISOString().slice(0, 7),
       endDate: "",
       skills: [],
-      organizationId: ""
+      organizationId: "",
     };
-    
+
     updateData("experience", newExperience);
   };
 
   return (
-    <Section id="experience" aria-label="Work experience" title="Experience" sr={!editable}>
+    <Section
+      id="experience"
+      aria-label="Work experience"
+      title="Experience"
+      sr={!editable}
+    >
       <ol className="group/list">
         {sectionData.map((experience: ExperienceEntry) => {
           return (
             <li key={experience.id} className="mb-12">
-              <EntryBlock typeData='experience' id={experience.id} editable={editable} />
+              <EntryBlock
+                typeData="experience"
+                id={experience.id}
+                editable={editable}
+              />
             </li>
           );
         })}
       </ol>
-      
+
       {editable && (
         <AddButton onClick={handleAddExperience} label="experience" />
       )}

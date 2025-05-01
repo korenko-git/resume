@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { EditableSwitch } from "./EditableSwitch";
 import { Loader2, Trash2 } from "lucide-react";
+import { EditableSwitch } from "../fields/EditableSwitch";
 
 interface EditableButtonsProps {
   isPublished?: boolean;
