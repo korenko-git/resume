@@ -76,10 +76,7 @@ export function OrganizationDialog({
   };
 
   const handleSave = () => {
-    if (organizationId && organizationId !== formData.id) {
-      updateOrganizationId(formData.id);
-    }
-
+    updateOrganizationId(formData.id);
     updateOrganization(formData);
     onClose();
   };
