@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from 'next-themes';
 import { ResumeProvider } from "@/contexts/ResumeContext";
 import { Toaster } from "@/components/common/ui/toaster";
+import Container from "@/components/common/layout/Container";
+import { Footer } from "@/components/common/layout/Footer";
 
 import "./globals.css";
 
@@ -57,9 +59,10 @@ export default function RootLayout({
               <div id='stars3'></div>
               <div id='stars4'></div>
             </div>
-            <div className="mx-auto min-h-screen max-w-screen-2xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
+            <Container>
               {children}
-            </div>
+              <Footer />
+            </Container>
           </ResumeProvider>
           <Toaster />
         </ThemeProvider>

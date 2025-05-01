@@ -1,3 +1,5 @@
+"use client";
+
 import { useResume } from "@/contexts/ResumeContext";
 import { ExperienceEntry } from "@/types/resume";
 import { AddButton } from "@/components/common/ui/AddButton";
@@ -7,9 +9,10 @@ import { filterPublished } from "../utils";
 
 interface ExperienceSectionProps {
   editable?: boolean;
+  className?: string;
 }
 
-export function ExperienceSection({ editable = true }: ExperienceSectionProps) {
+export function ExperienceSection({ editable = true, className }: ExperienceSectionProps) {
   const { data, updateData } = useResume();
   const sectionData = filterPublished(data?.experience.entries, editable);
 
@@ -34,6 +37,7 @@ export function ExperienceSection({ editable = true }: ExperienceSectionProps) {
       aria-label="Work experience"
       title="Experience"
       sr={!editable}
+      className={className}
     >
       <ol className="group/list">
         {sectionData.map((experience: ExperienceEntry) => {

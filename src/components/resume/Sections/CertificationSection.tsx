@@ -5,17 +5,19 @@ import { CertificationEntry } from "@/types/resume";
 import Section from "@/components/common/layout/Section";
 import EntryBlock from "../Entry";
 import OutlineLinkButton from "@/components/common/ui/OutlineLinkButton";
-import { filterPublished } from "../utils";
 import { AddButton } from "@/components/common/ui/AddButton";
+import { filterPublished } from "../utils";
 
 interface CertificationSectionProps {
   withLinkToArchive: boolean;
   editable?: boolean;
+  className?: string;
 }
 
 export function CertificationSection({
   withLinkToArchive,
   editable = true,
+  className,
 }: CertificationSectionProps) {
   const { data, updateData } = useResume();
   const sectionData = filterPublished(data?.certifications.entries, editable);
@@ -40,6 +42,7 @@ export function CertificationSection({
       aria-label="Certifications"
       title="Certifications"
       sr={!editable}
+      className={className}
     >
       <ol className="group/list">
         {sectionData.map((certification: CertificationEntry) => {
@@ -61,6 +64,7 @@ export function CertificationSection({
 
       {withLinkToArchive && (
         <OutlineLinkButton
+          className="mt-12"
           aria-label="View Full Certificate Archive"
           href="/archive/certification"
         >

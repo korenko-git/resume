@@ -1,3 +1,5 @@
+"use client";
+
 import { useResume } from "@/contexts/ResumeContext";
 import { ProjectEntry } from "@/types/resume";
 import { AddButton } from "@/components/common/ui/AddButton";
@@ -9,11 +11,13 @@ import { filterPublished } from "../utils";
 interface ProjectSectionProps {
   withLinkToArchive: boolean;
   editable?: boolean;
+  className?: string;
 }
 
 export function ProjectSection({
   withLinkToArchive,
   editable = true,
+  className,
 }: ProjectSectionProps) {
   const { data, updateData } = useResume();
   const sectionData = filterPublished(data?.projects.entries, editable);
@@ -38,6 +42,7 @@ export function ProjectSection({
       aria-label="My Projects"
       title="Projects"
       sr={!editable}
+      className={className}
     >
       <ol className="group/list">
         {sectionData.map((project: ProjectEntry) => {
@@ -57,6 +62,7 @@ export function ProjectSection({
 
       {withLinkToArchive && (
         <OutlineLinkButton
+          className="mt-12"
           aria-label="View Full Project Archive"
           href="/archive/project"
         >
