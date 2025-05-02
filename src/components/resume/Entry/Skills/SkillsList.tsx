@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { SortableContext, arrayMove } from '@dnd-kit/sortable';
-import { Button } from '@/components/common/ui/button';
 import { Plus } from 'lucide-react';
+
+import { Button } from '@/components/common/ui/button';
+import { SkillsDialog } from '@/components/editor/dialogs/SkillsDialog';
+
 import { SortableSkill } from './SortableSkill';
 import { DeleteZone } from './DeleteZone';
 
@@ -12,6 +16,8 @@ interface SkillsListProps {
 }
 
 export function SkillsList({ skills, onUpdate, isEditing }: SkillsListProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
@@ -28,42 +34,33 @@ export function SkillsList({ skills, onUpdate, isEditing }: SkillsListProps) {
     }
   };
 
-  const handleAddSkill = () => {
-    const input = prompt('Enter skill names (separated by comma or space):');
-    if (input) {
-      const newSkillsRaw = input
-        .split(/[,\s]+/)
-        .map(skill => skill.trim())
-        .filter(skill => skill.length > 0);
+  const handleAddSkills = (newSkills: string[]) => {
+    const skillsToAdd = newSkills.filter(
+      (newSkill) => !skills.includes(newSkill)
+    );
 
-      const uniqueNewSkills = [...new Set(newSkillsRaw)];
-
-      const skillsToAdd = uniqueNewSkills.filter(
-        (newSkill) => !skills.includes(newSkill)
-      );
-
-      if (skillsToAdd.length > 0) {
-        onUpdate([...skills, ...skillsToAdd]);
-      }
+    if (skillsToAdd.length > 0) {
+      onUpdate([...skills, ...skillsToAdd]);
     }
   };
 
   return (
     <div className="space-y-4 skills-section">
-      {isEditing && (<div className="flex items-center justify-between">
-        <h4 className="font-medium">Skills</h4>
+      {isEditing && (
+        <div className="flex items-center justify-between">
+          <h4 className="font-medium">Skills</h4>
 
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleAddSkill}
-        >
-          <Plus className="h-4 w-4 mr-1" />
-          add Skill
-        </Button>
-
-      </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setIsModalOpen(true)}
+          >
+            <Plus className="h-4 w-4 mr-1" />
+            add Skill
+          </Button>
+        </div>
       )}
+      
       <DndContext onDragEnd={handleDragEnd}>
         <SortableContext items={skills}>
           <div className="flex flex-wrap">
@@ -75,6 +72,12 @@ export function SkillsList({ skills, onUpdate, isEditing }: SkillsListProps) {
 
         {isEditing && <DeleteZone />}
       </DndContext>
+
+      <SkillsDialog
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddSkills={handleAddSkills}
+      />
     </div>
   );
 }
