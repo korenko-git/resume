@@ -1,10 +1,11 @@
 'use client';
 
 import { useResume } from '@/contexts/ResumeContext';
-import Resume from '@/components/resume';
 import Navigation from '@/components/common/layout/Navigation';
-import Person from '@/components/resume/Profile/Person';
-import SocialLinks from '@/components/resume/Profile/SocialLinks';
+import Person from '@/components/resume/sections/Person';
+import SocialLinks from '@/components/resume/sections/SocialLinks';
+import { AboutSection } from '../resume/sections/AboutSection';
+import { ResumeSections } from '../resume/sections/ResumeSections';
 
 export default function HomeContent() {
   const { loading, error } = useResume();
@@ -29,7 +30,8 @@ export default function HomeContent() {
       </header>
 
       <main id="content" className="pt-24 lg:w-1/2 lg:py-24">
-        <Resume editable={false} />
+        <AboutSection />
+        <ResumeSections />
       </main>
     </div>
   </>

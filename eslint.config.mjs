@@ -19,8 +19,15 @@ const eslintConfig = [
       ".swc/**",
       "public/**",
       "dist/**",
-      "build/**"
+      "build/**",
+      "out/**"
     ]
+  },
+  {
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-require-imports": "off",
+    }
   }
 ];
 

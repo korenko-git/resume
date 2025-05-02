@@ -25,6 +25,7 @@
     "@radix-ui/react-select": "^2.2.2",
     "@radix-ui/react-slot": "^1.2.0",
     "@radix-ui/react-switch": "^1.2.2",
+    "@radix-ui/react-tabs": "^1.1.9",
     "@shadcn/ui": "^0.0.4",
     "@tailwindcss/typography": "^0.5.16",
     "@types/jszip": "^3.4.0",

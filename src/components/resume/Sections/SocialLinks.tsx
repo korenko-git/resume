@@ -1,3 +1,5 @@
+'use client';
+
 import { Github, Linkedin, Code2 } from "lucide-react";
 
 import { useResume } from "@/contexts/ResumeContext";

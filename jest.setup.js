@@ -1,5 +1,5 @@
-require('@testing-library/jest-dom');
-require('jest-fetch-mock');
+import '@testing-library/jest-dom';
+import 'jest-fetch-mock';
 
 const localStorageMock = (function() {
   let store = {};

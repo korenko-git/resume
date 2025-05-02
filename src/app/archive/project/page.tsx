@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import { ProjectSection } from "@/components/resume/Sections/ProjectSection";
 import OutlineLinkButton from "@/components/common/ui/OutlineLinkButton";
+import { ResumeSections } from "@/components/resume/sections/ResumeSections";
 
 export const metadata: Metadata = {
   title: "Project Archive",
@@ -18,12 +18,7 @@ export default function ProjectArchivePage() {
         All Projects
       </h1>
 
-      <ProjectSection
-        editable={false}
-        withLinkToArchive={false}
-        className="mb-8"
-        sectionProps={{ hideHeading: true }}
-      />
+      <ResumeSections sections={["projects"]} includeUnpublished={true} />
     </div>
   );
 }
