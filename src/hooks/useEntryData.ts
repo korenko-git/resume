@@ -15,7 +15,7 @@ export function useEntryData<T extends ResumeDataTypes>(
   id?: string,
   options: UseEntryDataOptions = {}
 ) {
-  const { editable = true, onAfterUpdate, onAfterCancel, onAfterDelete } = options;
+  const { editable = false, onAfterUpdate, onAfterCancel, onAfterDelete } = options;
   const { getEntryFromData, data, version, updateData, deleteEntry } = useResume();
   
   const getDataFromSource = useCallback((): T | null => {

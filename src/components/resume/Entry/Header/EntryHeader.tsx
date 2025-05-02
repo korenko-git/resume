@@ -10,11 +10,9 @@ interface EntryHeaderProps {
     title?: string;
     [key: string]: any;
   };
-  onDataChange: (data: Partial<EntryHeaderProps["data"]>) => void;
-  isEditing: boolean;
 }
 
-const EntryHeader = ({ data, onDataChange, isEditing }: EntryHeaderProps) => {
+const EntryHeader = ({ data }: EntryHeaderProps) => {
   const Header = "date" in data || "startDate" in data ? DateHeader : ImageHeader;
   
   return (
@@ -22,8 +20,6 @@ const EntryHeader = ({ data, onDataChange, isEditing }: EntryHeaderProps) => {
       className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400 sm:col-span-2 
       lg:group-hover:text-slate-900 dark:lg:group-hover:text-slate-200 editable-header"
       data={data as any}
-      onDataChange={onDataChange}
-      isEditing={isEditing}
     />
   );
 };

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import { CertificationSection } from "@/components/resume/Sections/CertificationSection";
 import OutlineLinkButton from "@/components/common/ui/OutlineLinkButton";
+import { ResumeSections } from "@/components/resume/sections/ResumeSections";
 
 export const metadata: Metadata = {
   title: "Certification Archive",
@@ -18,11 +18,7 @@ export default function CertificationArchivePage() {
         All Certifications
       </h1>
 
-      <CertificationSection
-        editable={false}
-        withLinkToArchive={false}
-        sectionProps={{ hideHeading: true }}
-      />
+      <ResumeSections sections={["certifications"]} includeUnpublished={true} />
     </div>
   );
 }

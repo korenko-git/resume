@@ -11,18 +11,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /**
- * Formats a date string into a localized month and year format
- * @param date Date string to format
- * @returns Formatted date string or 'Present' if date is undefined
- */
-export const formatDate = (date?: string) => {
-  return date ? new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long'
-  }) : 'Present';
-};
-
-/**
  * Performs a deep equality check between two objects
  * @param obj1 First object to compare
  * @param obj2 Second object to compare
