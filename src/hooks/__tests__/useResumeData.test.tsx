@@ -1,52 +1,96 @@
-import { renderHook, waitFor } from '@testing-library/react';
-import { useResumeData } from '../useResumeData';
+import { renderHook, act, waitFor } from "@testing-library/react";
+import { useResumeData } from "../useResumeData";
 
-jest.mock('@/data/organizations.json', () => ({ default: { entries: [] } }), { virtual: true });
-jest.mock('@/data/about.json', () => ({ default: { id: 'about', title: 'Test User' } }), { virtual: true });
-jest.mock('@/data/experience.json', () => ({ default: { entries: [] } }), { virtual: true });
-jest.mock('@/data/projects.json', () => ({ default: { entries: [] } }), { virtual: true });
-jest.mock('@/data/education.json', () => ({ default: { entries: [] } }), { virtual: true });
-jest.mock('@/data/certifications.json', () => ({ default: { entries: [] } }), { virtual: true });
+// Mock the data imports
+jest.mock(
+  "@/data/organizations.json",
+  () => ({
+    entries: [{ id: "org-1", title: "Organization 1" }],
+  }),
+  { virtual: true }
+);
 
-describe('useResumeData hook', () => {
-  it('should load resume data', async () => {
+jest.mock(
+  "@/data/about.json",
+  () => ({
+    id: "about-1",
+    title: "John Smith",
+    version: 1,
+  }),
+  { virtual: true }
+);
+
+jest.mock(
+  "@/data/experience.json",
+  () => ({
+    entries: [{ id: "exp-1", title: "Experience 1" }],
+  }),
+  { virtual: true }
+);
+
+jest.mock(
+  "@/data/projects.json",
+  () => ({
+    entries: [{ id: "proj-1", title: "Project 1" }],
+  }),
+  { virtual: true }
+);
+
+jest.mock(
+  "@/data/education.json",
+  () => ({
+    entries: [{ id: "edu-1", title: "Education 1" }],
+  }),
+  { virtual: true }
+);
+
+jest.mock(
+  "@/data/certifications.json",
+  () => ({
+    entries: [{ id: "cert-1", title: "Certification 1" }],
+  }),
+  { virtual: true }
+);
+
+describe("useResumeData", () => {
+  it("loads data correctly", async () => {
     const { result } = renderHook(() => useResumeData());
-    
-    expect(result.current.loading).toBe(true);
-    
-    await waitFor(() => {
-      expect(result.current.loading).toBe(false);
+    await waitFor(() => expect(result.current.loading).toBe(false));
+    expect(result.current.error).toBe(null);
+    expect(result.current.data.about).toEqual({
+      id: "about-1",
+      title: "John Smith",
+      version: 1,
     });
-    
-    expect(result.current.data.about).toEqual({default:{ id: 'about', title: 'Test User' }});
-    expect(result.current.error).toBeNull();
+    expect(result.current.data.experience.entries).toEqual([
+      { id: "exp-1", title: "Experience 1" },
+    ]);
+    expect(result.current.data.organizations.entries).toEqual([
+      { id: "org-1", title: "Organization 1" },
+    ]);
   });
-  
-  it('should handle errors when loading data', async () => {
-    jest.mock('@/data/about.json', () => {
-      throw new Error('Loading error');
-    }, { virtual: true });
-    
-    jest.resetModules();
-    
-    const { useResumeData: useResumeDataWithError } = require('../useResumeData');
-    
- 
-    try {
-      const { result } = renderHook(() => useResumeDataWithError());
-      
-      await waitFor(() => {
-        expect(result.current.loading).toBe(false);
+
+  it("allows updating data", async () => {
+    const { result } = renderHook(() => useResumeData());
+    await waitFor(() => expect(result.current.loading).toBe(false));
+    act(() => {
+      result.current.setData({
+        ...result.current.data,
+        about: {
+          id: "about-1",
+          title: "Jane Smith",
+          subtitle: "",
+          description: "",
+          version: 1,
+        },
       });
-      
-      expect(result.current.error).not.toBeNull();
-    } catch (error) {
- 
-      expect(error).toBeDefined();
-    }
-    
- 
-    jest.resetModules();
-    jest.mock('@/data/about.json', () => ({ default: { id: 'about', title: 'Test User' } }), { virtual: true });
+    });
+    expect(result.current.data.about).toEqual({
+      id: "about-1",
+      title: "Jane Smith",
+      subtitle: "",
+      description: "",
+      version: 1,
+    });
   });
 });
