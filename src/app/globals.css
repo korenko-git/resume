@@ -120,3 +120,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @keyframes animStar {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-5000px);
+    }
+  }
+
+  .animate-star {
+    animation-name: animStar;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
