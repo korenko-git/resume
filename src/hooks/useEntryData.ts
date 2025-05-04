@@ -1,6 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { useResume } from "@/contexts/ResumeContext";
-import { ResumeDataKeys, ResumeDataTypes } from "@/types/resume";
+import {
+  ResumeDataKeys,
+  ResumeDataKeysWithEntries,
+  ResumeDataWithEntries,
+} from "@/types/resume";
 import { toast } from "sonner";
 
 interface UseEntryDataOptions {
@@ -10,20 +14,24 @@ interface UseEntryDataOptions {
   onAfterDelete?: () => void;
 }
 
-export function useEntryData<T extends ResumeDataTypes>(
-  type: ResumeDataKeys,
-  id?: string,
+export function useEntryData<T extends ResumeDataWithEntries>(
+  type: ResumeDataKeysWithEntries,
+  id: string,
   options: UseEntryDataOptions = {}
 ) {
-  const { editable = false, onAfterUpdate, onAfterCancel, onAfterDelete } = options;
-  const { getEntryFromData, data, version, updateData, deleteEntry } = useResume();
-  
+  const {
+    editable = false,
+    onAfterUpdate,
+    onAfterCancel,
+    onAfterDelete,
+  } = options;
+  const { getEntryFromData, data, version, updateData, deleteEntry } =
+    useResume();
+
   const getDataFromSource = useCallback((): T | null => {
-    return id 
-      ? getEntryFromData(type as any, id) as T
-      : (data?.[type] as T);
+    return getEntryFromData(type as any, id) as T;
   }, [id, type, data, getEntryFromData]);
-    
+
   const [entryData, setEntryData] = useState<T | null>(getDataFromSource());
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -46,39 +54,48 @@ export function useEntryData<T extends ResumeDataTypes>(
     );
   }, []);
 
-  const handleUpdate = useCallback(async (e?: React.MouseEvent<HTMLButtonElement>) => {
-    e?.stopPropagation();
-    if (!entryData) return;
-    
-    setIsSaving(true);
-    
-    try {
-      updateData(type, entryData);
+  const handleUpdate = useCallback(
+    async (e?: React.MouseEvent<HTMLButtonElement>) => {
+      e?.stopPropagation();
+      if (!entryData) return;
+
+      setIsSaving(true);
+
+      try {
+        updateData(type, entryData);
+        setIsEditing(false);
+        onAfterUpdate?.();
+
+        toast.success("Changes saved successfully");
+      } catch (error) {
+        toast.error("Failed to save changes");
+        console.error("Save error:", error);
+      } finally {
+        setIsSaving(false);
+      }
+    },
+    [entryData, type, updateData, onAfterUpdate]
+  );
+
+  const handleCancel = useCallback(
+    (e?: React.MouseEvent<HTMLButtonElement>) => {
+      e?.stopPropagation();
+      setEntryData(getDataFromSource());
       setIsEditing(false);
-      onAfterUpdate?.();
-      
-      toast.success("Changes saved successfully");
-    } catch (error) {
-      toast.error("Failed to save changes");
-      console.error("Save error:", error);
-    } finally {
-      setIsSaving(false);
-    }
-  }, [entryData, type, updateData, onAfterUpdate]);
+      onAfterCancel?.();
 
-  const handleCancel = useCallback((e?: React.MouseEvent<HTMLButtonElement>) => {
-    e?.stopPropagation();
-    setEntryData(getDataFromSource());
-    setIsEditing(false);
-    onAfterCancel?.();
-    
-    toast.info("Changes discarded");
-  }, [getDataFromSource, onAfterCancel]);
+      toast.info("Changes discarded");
+    },
+    [getDataFromSource, onAfterCancel]
+  );
 
-  const handleDeleteClick = useCallback((e?: React.MouseEvent<HTMLButtonElement>) => {
-    e?.stopPropagation();
-    setIsDeleteDialogOpen(true);
-  }, []);
+  const handleDeleteClick = useCallback(
+    (e?: React.MouseEvent<HTMLButtonElement>) => {
+      e?.stopPropagation();
+      setIsDeleteDialogOpen(true);
+    },
+    []
+  );
 
   const handleDeleteConfirm = useCallback(async () => {
     if (!id || type === "about" || type === "organizations") {
@@ -88,15 +105,15 @@ export function useEntryData<T extends ResumeDataTypes>(
       setIsDeleteDialogOpen(false);
       return;
     }
-    
+
     setIsDeleting(true);
-    
+
     try {
       deleteEntry(type, id);
       setIsEditing(false);
       setIsDeleteDialogOpen(false);
       onAfterDelete?.();
-      
+
       toast.success("Entry deleted successfully");
     } catch (error) {
       toast.error("Failed to delete entry");
@@ -122,6 +139,6 @@ export function useEntryData<T extends ResumeDataTypes>(
     handleCancel,
     handleDeleteClick,
     handleDeleteConfirm,
-    handleDeleteCancel
+    handleDeleteCancel,
   };
 }

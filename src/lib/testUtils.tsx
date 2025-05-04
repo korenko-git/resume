@@ -5,17 +5,22 @@ import { ResumeDataKeysWithEntries } from "@/types/resume";
 
 // Mock resume data
 export const mockResumeData = {
+  version: 1,
   about: {
-    id: "about-1",
-    title: "John Smith",
-    subtitle: "Senior Frontend Developer",
-    description: "Experienced developer with a focus on React and TypeScript",
-    isPublished: true,
-    location: "New York, NY",
-    email: "john@example.com",
-    github: "https://github.com/johnsmith",
-    linkedin: "https://linkedin.com/in/johnsmith",
-    version: 1,
+    entries: [
+      {
+        id: "about-1",
+        title: "John Smith",
+        subtitle: "Senior Frontend Developer",
+        description:
+          "Experienced developer with a focus on React and TypeScript",
+        isPublished: true,
+        location: "New York, NY",
+        email: "john@example.com",
+        github: "https://github.com/johnsmith",
+        linkedin: "https://linkedin.com/in/johnsmith",
+      },
+    ],
   },
   experience: {
     entries: [
@@ -80,7 +85,7 @@ const MockResumeContext = ({ children }: { children: React.ReactNode }) => {
     organizations: mockResumeData.organizations.entries,
     loading: false,
     error: null,
-    version: mockResumeData.about.version,
+    version: mockResumeData.version,
     setVersion,
     updateData,
     setData,
