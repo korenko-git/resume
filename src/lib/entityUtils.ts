@@ -5,7 +5,8 @@ import {
   EducationEntry,
   ProjectEntry,
   CertificationEntry,
-  Organization
+  Organization,
+  AboutEntry
 } from "@/types/resume";
 
 /**
@@ -33,6 +34,15 @@ export function createDefaultEntity(type: ResumeDataKeysWithEntries): ResumeData
   };
   
   switch (type) {
+    case 'about':
+      return {
+        title: 'Your Name',
+        subtitle: 'Your Title',
+        description: 'A brief description about yourself',
+        isPublished: true,
+        location: 'Your Location',
+        email: 'your.email@example.com'
+      } as AboutEntry;
     case 'experience':
       return {
         ...baseEntity,

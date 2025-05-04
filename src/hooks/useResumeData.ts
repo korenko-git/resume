@@ -5,7 +5,8 @@ import type { ResumeData } from '@/types/resume';
 
 export function useResumeData() {
   const [data, setData] = useState<ResumeData>({
-    about: null,
+    version: 0,
+    about: { entries: [] },
     experience: { entries: [] },
     projects: { entries: [] },
     education: { entries: [] },
@@ -26,7 +27,8 @@ export function useResumeData() {
     ])
       .then(([organizations, about, experience, projects, education, certifications]) => {
         setData({
-          about: about.default,
+          about: {entries: about.default.entries},
+          version: about.default.version,
           experience: experience.default,
           projects: projects.default,
           education: education.default,

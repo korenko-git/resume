@@ -47,12 +47,8 @@ export interface CertificationEntry extends BaseEntry {
   organizationId: string;
 }
 
-export interface AboutData {
-  id: string;
-  title: string;
+export interface AboutEntry extends BaseEntry {
   subtitle: string;
-  description: string;
-  isPublished?: boolean;
   location?: string;
   email?: string;
   phone?: string;
@@ -61,10 +57,12 @@ export interface AboutData {
   leetcode?: string;
   website?: string;
   avatar?: string;
-  version?: number;
 }
 
+export type Version = number;
+
 export type ResumeDataWithEntries = 
+  | AboutEntry
   | ExperienceEntry 
   | EducationEntry 
   | ProjectEntry 
@@ -80,7 +78,8 @@ export type AllEntityFields =
   | keyof Organization;
 
 export interface ResumeData {
-  about: AboutData | null;
+  version: Version;
+  about: { entries: AboutEntry[] };
   experience: { entries: ExperienceEntry[] };
   education: { entries: EducationEntry[] };
   projects: { entries: ProjectEntry[] };
@@ -89,16 +88,17 @@ export interface ResumeData {
 }
 
 export type ResumeDataKeysWithEntries = 
+  | 'about'
   | 'experience' 
   | 'education' 
   | 'projects' 
   | 'certifications' 
   | 'organizations';
 
-export type ResumeDataKeys = 'about' | ResumeDataKeysWithEntries;
+export type ResumeDataKeys = 'aboutVersion' | ResumeDataKeysWithEntries;
 
 export type ResumeDataTypes = 
-  | AboutData 
+  | Version 
   | ResumeDataWithEntries;
 
 export const entityMetadata: Record<string, { title: string; icon: LucideIcon }> = {
@@ -152,6 +152,20 @@ export interface FieldDefinition {
 
 // Define form fields for each entity type
 export const entityFields: Record<ResumeDataKeysWithEntries, FieldDefinition[]> = {
+  about: [
+    { name: 'title', label: 'Name', type: 'text', required: true, grid: true },
+    { name: 'isPublished', label: 'Published', type: 'switch', grid: true },
+    { name: 'subtitle', label: 'Position', type: 'text', required: true, grid: true },
+    { name: 'description', label: 'About me', type: 'textarea', required: true },
+    { name: 'location', label: 'Location', type: 'text', grid: true },
+    { name: 'email', label: 'Email', type: 'text', grid: true },
+    { name: 'phone', label: 'Phone', type: 'text', grid: true },
+    { name: 'github', label: 'GitHub', type: 'url', placeholder: 'https://github.com/...', grid: true },
+    { name: 'linkedin', label: 'LinkedIn', type: 'url', placeholder: 'https://linkedin.com/in/...', grid: true },
+    { name: 'leetcode', label: 'LeetCode', type: 'url', placeholder: 'https://leetcode.com/...', grid: true },
+    { name: 'website', label: 'Website', type: 'url', placeholder: 'https://...', grid: true },
+    { name: 'avatar', label: 'Profile Photo', type: 'image' }
+  ],
   experience: [
     { name: 'title', label: 'Title', type: 'text', required: true, grid: true },
     { name: 'isPublished', label: 'Published', type: 'switch', grid: true },
