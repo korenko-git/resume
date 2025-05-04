@@ -6,11 +6,13 @@ import ReactMarkdown from "react-markdown";
 import { useResume } from "@/contexts/ResumeContext";
 import { Button } from "@/components/common/ui/button";
 import { Plus, Trash2, Edit, ExternalLink } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/common/ui/card";
-import { 
-  ResumeDataKeysWithEntries, 
-  entityMetadata,
-} from "@/types/resume";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/common/ui/card";
+import { ResumeDataKeysWithEntries, entityMetadata } from "@/types/resume";
 import { DeleteConfirmationDialog } from "./dialogs/DeleteConfirmationDialog";
 import { createDefaultEntity } from "@/lib/entityUtils";
 import { Badge } from "@/components/common/ui/badge";
@@ -44,9 +46,9 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
 
   const handleDeleteConfirm = async () => {
     if (!deletingId) return;
-    
+
     setIsDeleting(true);
-    
+
     try {
       deleteEntry(entityType, deletingId);
       setDeleteDialogOpen(false);
@@ -60,7 +62,7 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
 
   // Function to get related organization
   const getOrganization = (organizationId: string) => {
-    return data.organizations.entries.find(org => org.id === organizationId);
+    return data.organizations.entries.find((org) => org.id === organizationId);
   };
 
   return (
@@ -82,19 +84,21 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
           </Card>
         ) : (
           entities.map((entity) => (
-            <Card 
-              key={entity.id} 
+            <Card
+              key={entity.id}
               className="cursor-pointer hover:shadow-md transition-shadow overflow-hidden relative group flex flex-col"
               onClick={() => onSelect(entity.id)}
             >
               <CardHeader className="pb-2">
                 <div className="flex justify-between items-start overflow-hidden">
-                  <CardTitle className="text-lg truncate">{entity.title}</CardTitle>
+                  <CardTitle className="text-lg truncate">
+                    {entity.title}
+                  </CardTitle>
                   <Button
-                    variant="ghost"
+                    variant="destructive"
                     size="icon"
                     onClick={(e) => handleDeleteClick(entity.id, e)}
-                    className="h-8 w-8 flex-shrink-0 absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-background/80 hover:bg-background/90"
+                    className="h-8 w-8 flex-shrink-0 absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity "
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -103,12 +107,16 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
                   <Badge variant={entity.isPublished ? "default" : "outline"}>
                     {entity.isPublished ? "Published" : "Draft"}
                   </Badge>
-                  
+
                   {/* Display related organization */}
-                  {'organizationId' in entity && entity.organizationId && (
-                    <Badge variant="secondary" className="flex items-center gap-1 max-w-full">
+                  {"organizationId" in entity && entity.organizationId && (
+                    <Badge
+                      variant="secondary"
+                      className="flex items-center gap-1 max-w-full"
+                    >
                       <span className="truncate">
-                        {getOrganization(entity.organizationId)?.title || 'Organization not found'}
+                        {getOrganization(entity.organizationId)?.title ||
+                          "Organization not found"}
                       </span>
                     </Badge>
                   )}
@@ -118,23 +126,24 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
                 <div className="text-sm text-muted-foreground line-clamp-2 break-words">
                   <ReactMarkdown>{entity.description}</ReactMarkdown>
                 </div>
-                
+
                 {/* Display dates */}
-                {'startDate' in entity && (
+                {"startDate" in entity && (
                   <div className="mt-2 text-xs text-muted-foreground">
-                    {formatDate(entity.startDate)} - {entity.endDate ? formatDate(entity.endDate) : 'Present'}
+                    {formatDate(entity.startDate)} -{" "}
+                    {entity.endDate ? formatDate(entity.endDate) : "Present"}
                   </div>
                 )}
-                
+
                 {/* Display date for certificates */}
-                {'date' in entity && (
+                {"date" in entity && (
                   <div className="mt-2 text-xs text-muted-foreground">
                     {formatDate(entity.date)}
                   </div>
                 )}
-                
+
                 {/* Display skills */}
-                {'skills' in entity && entity.skills.length > 0 && (
+                {"skills" in entity && entity.skills.length > 0 && (
                   <div className="mt-2 flex flex-wrap gap-1">
                     {entity.skills.slice(0, 3).map((skill, index) => (
                       <Badge key={index} variant="outline" className="text-xs">
@@ -148,12 +157,12 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
                     )}
                   </div>
                 )}
-                
+
                 {/* Display links */}
                 <div className="mt-auto pt-3 flex items-center gap-2">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
+                  <Button
+                    variant="outline"
+                    size="sm"
                     className="flex-1 min-w-0"
                     onClick={(e) => {
                       e.stopPropagation();
@@ -163,16 +172,16 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
                     <Edit className="mr-2 h-4 w-4 flex-shrink-0" />
                     <span className="truncate">Edit</span>
                   </Button>
-                  
+
                   {/* Links for projects */}
-                  {'source' in entity && entity.source && (
-                    <Button 
-                      variant="outline" 
-                      size="icon" 
+                  {"source" in entity && entity.source && (
+                    <Button
+                      variant="outline"
+                      size="icon"
                       className="h-8 w-8 flex-shrink-0"
                       onClick={(e) => {
                         e.stopPropagation();
-                        window.open(entity.source, '_blank');
+                        window.open(entity.source, "_blank");
                       }}
                     >
                       <ExternalLink className="h-4 w-4" />
