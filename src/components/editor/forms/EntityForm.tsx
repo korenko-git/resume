@@ -1,26 +1,30 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { Button } from "@/components/common/ui/button";
-import { Input } from "@/components/common/ui/input";
 import { Label } from "@/components/common/ui/label";
+import { Input } from "@/components/common/ui/input";
 import { Textarea } from "@/components/common/ui/textarea";
 import { Switch } from "@/components/common/ui/switch";
-import { DateInput } from "@/components/editor/controls/DateInput";
-import { SkillsInput } from "@/components/editor/controls/SkillsInput";
-import { UrlInput } from "@/components/editor/controls/UrlInput";
-import { OrganizationSelector } from "@/components/editor/controls/OrganizationSelector";
-import { ImageUpload } from "@/components/editor/controls/ImageUpload";
+import { Button } from "@/components/common/ui/button";
+import { Eye, Save } from "lucide-react";
+import { DateInput } from "../controls/DateInput";
+import { SkillsInput } from "../controls/SkillsInput";
+import { UrlInput } from "../controls/UrlInput";
+import { ImageUpload } from "../controls/ImageUpload";
+import { OrganizationSelector } from "../controls/OrganizationSelector";
 import {
-  AllEntityFields,
   ResumeDataKeysWithEntries,
   ResumeDataWithEntries,
+  AllEntityFields,
+  entityFields,
+  FieldDefinition
 } from "@/types/resume";
 import EntryBlock from "@/components/resume/Entry";
-import { Eye, Save } from "lucide-react";
 
 interface EntityFormProps {
   type: ResumeDataKeysWithEntries;
   data: ResumeDataWithEntries;
-  onUpdate: (updatedData: ResumeDataWithEntries) => void;
+  onUpdate: (data: ResumeDataWithEntries) => void;
 }
 
 export function EntityForm({ type, data, onUpdate }: EntityFormProps) {
@@ -44,17 +48,98 @@ export function EntityForm({ type, data, onUpdate }: EntityFormProps) {
     setIsPreviewMode(!isPreviewMode);
   };
 
-  const hasDateRange = type === "experience" || type === "education";
-  const hasSingleDate = type === "certifications";
-  const hasOrganization =
-    type === "experience" || type === "education" || type === "certifications";
-  const hasSkills =
-    type === "experience" ||
-    type === "education" ||
-    type === "projects" ||
-    type === "certifications";
-  const hasUrls = type === "projects";
-  const hasImage = type === "projects";
+  // Render a field based on its type
+  const renderField = (field: FieldDefinition) => {
+    const { name, label, type, required, placeholder } = field;
+    const value = (formData as any)[name];
+
+    switch (type) {
+      case 'text':
+        return (
+          <div className="space-y-2">
+            <Label htmlFor={name}>{label}</Label>
+            <Input
+              id={name}
+              value={value || ''}
+              onChange={(e) => handleChange(name as AllEntityFields, e.target.value)}
+              required={required}
+              placeholder={placeholder}
+            />
+          </div>
+        );
+      case 'textarea':
+        return (
+          <div className="space-y-2">
+            <Label htmlFor={name}>{label}</Label>
+            <Textarea
+              id={name}
+              value={value || ''}
+              onChange={(e) => handleChange(name as AllEntityFields, e.target.value)}
+              rows={5}
+              required={required}
+              placeholder={placeholder}
+            />
+          </div>
+        );
+      case 'switch':
+        return (
+          <div className="flex items-center space-x-2 justify-end">
+            <Switch
+              id={name}
+              checked={value || false}
+              onCheckedChange={(checked) => handleChange(name as AllEntityFields, checked)}
+            />
+            <Label htmlFor={name}>{label}</Label>
+          </div>
+        );
+      case 'date':
+        return (
+          <DateInput
+            id={name}
+            label={label}
+            value={value || ''}
+            onChange={(value) => handleChange(name as AllEntityFields, value)}
+            required={required}
+            placeholder={placeholder}
+          />
+        );
+      case 'organization':
+        return (
+          <OrganizationSelector
+            value={value || ''}
+            onChange={(value) => handleChange(name as AllEntityFields, value)}
+            label={label}
+          />
+        );
+      case 'skills':
+        return (
+          <SkillsInput
+            value={value || []}
+            onChange={(value) => handleChange(name as AllEntityFields, value)}
+            label={label}
+          />
+        );
+      case 'url':
+        return (
+          <UrlInput
+            label={label}
+            value={value || ''}
+            onChange={(value) => handleChange(name as AllEntityFields, value)}
+            placeholder={placeholder}
+          />
+        );
+      case 'image':
+        return (
+          <ImageUpload
+            label={label}
+            value={value || ''}
+            onChange={(value) => handleChange(name as AllEntityFields, value)}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
   if (isPreviewMode) {
     return (
@@ -71,108 +156,32 @@ export function EntityForm({ type, data, onUpdate }: EntityFormProps) {
     );
   }
 
+  // Get fields for the current entity type
+  const fields = entityFields[type] || [];
+  
+  // Group fields by whether they should be in a grid
+  const gridFields = fields.filter(field => field.grid);
+  const normalFields = fields.filter(field => !field.grid);
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="title">Title</Label>
-          <Input
-            id="title"
-            value={formData.title}
-            onChange={(e) => handleChange("title", e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="flex items-center space-x-2">
-          <Switch
-            id="isPublished"
-            checked={formData.isPublished}
-            onCheckedChange={(checked) => handleChange("isPublished", checked)}
-          />
-          <Label htmlFor="isPublished">Published</Label>
-        </div>
-      </div>
-
-      {hasDateRange && (
+      {/* Render grid fields */}
+      {gridFields.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <DateInput
-            id="startDate"
-            label="Start Date"
-            value={(formData as any).startDate}
-            onChange={(value) => handleChange("startDate", value)}
-            required
-          />
-          <DateInput
-            id="endDate"
-            label="End Date"
-            value={(formData as any).endDate}
-            onChange={(value) => handleChange("endDate", value)}
-            placeholder="Present"
-          />
+          {gridFields.map((field) => (
+            <div key={field.name}>
+              {renderField(field)}
+            </div>
+          ))}
         </div>
       )}
 
-      {hasSingleDate && (
-        <DateInput
-          id="date"
-          label="Date"
-          value={(formData as any).date}
-          onChange={(value) => handleChange("date", value)}
-          required
-        />
-      )}
-
-      {hasOrganization && (
-        <OrganizationSelector
-          value={(formData as any).organizationId}
-          onChange={(value) => handleChange("organizationId", value)}
-          label="Organization"
-        />
-      )}
-
-      <div className="space-y-2">
-        <Label htmlFor="description">Description</Label>
-        <Textarea
-          id="description"
-          value={formData.description}
-          onChange={(e) => handleChange("description", e.target.value)}
-          rows={5}
-        />
-      </div>
-
-      {hasSkills && (
-        <SkillsInput
-          value={(formData as any).skills || []}
-          onChange={(value) => handleChange("skills", value)}
-          label="Skills"
-        />
-      )}
-
-      {hasUrls && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <UrlInput
-            label="Source Code"
-            value={(formData as any).source || ""}
-            onChange={(value) => handleChange("source", value)}
-            placeholder="https://github.com/..."
-          />
-          <UrlInput
-            label="Demo"
-            value={(formData as any).demo || ""}
-            onChange={(value) => handleChange("demo", value)}
-            placeholder="https://..."
-          />
+      {/* Render normal fields */}
+      {normalFields.map((field) => (
+        <div key={field.name}>
+          {renderField(field)}
         </div>
-      )}
-
-      {hasImage && (
-        <ImageUpload
-          label="Project Image"
-          value={(formData as any).image || ""}
-          onChange={(value) => handleChange("image", value)}
-        />
-      )}
+      ))}
 
       <div className="flex justify-end gap-2">
         <Button type="button" variant="outline" onClick={togglePreview}>
