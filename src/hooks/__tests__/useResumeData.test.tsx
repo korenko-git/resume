@@ -13,8 +13,7 @@ jest.mock(
 jest.mock(
   "@/data/about.json",
   () => ({
-    id: "about-1",
-    title: "John Smith",
+    entries: [{ id: "about-1", title: "John Smith" }],
     version: 1,
   }),
   { virtual: true }
@@ -57,11 +56,9 @@ describe("useResumeData", () => {
     const { result } = renderHook(() => useResumeData());
     await waitFor(() => expect(result.current.loading).toBe(false));
     expect(result.current.error).toBe(null);
-    expect(result.current.data.about).toEqual({
-      id: "about-1",
-      title: "John Smith",
-      version: 1,
-    });
+    expect(result.current.data.about.entries).toEqual([
+      { id: "about-1", title: "John Smith" },
+    ]);
     expect(result.current.data.experience.entries).toEqual([
       { id: "exp-1", title: "Experience 1" },
     ]);
