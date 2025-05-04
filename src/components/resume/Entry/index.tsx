@@ -13,10 +13,12 @@ interface EntryBlockProps {
   id: string;
   typeData: ResumeDataKeysWithEntries;
   editable?: boolean;
+  customData?: ResumeDataWithEntries;
 }
 
-export default function EntryBlock({ id, typeData }: EntryBlockProps) {
-  const { entryData } = useEntryData<ResumeDataWithEntries>(typeData, id);
+export default function EntryBlock({ id, typeData, customData }: EntryBlockProps) {
+  const { entryData: hookData } = useEntryData<ResumeDataWithEntries>(typeData, id);
+  const entryData = customData || hookData;
 
   if (!entryData) return null;
 
