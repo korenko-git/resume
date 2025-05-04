@@ -1,12 +1,17 @@
 'use client';
 
 import { useResume } from "@/contexts/ResumeContext";
-import { AboutData } from "@/types/resume";
+import { AboutEntry } from "@/types/resume";
 import { IconLink } from "@/components/common/ui/IconLink";
+import { getFirstPublishedEntry } from "@/lib/entityUtils";
 
 export default function Person() {
   const { data } = useResume();
-  const sectionData = data?.about as AboutData;
+  const sectionData = getFirstPublishedEntry<AboutEntry>(data["about"].entries);
+
+  if (!sectionData) {
+    return null;
+  }
 
   return (
     <>
