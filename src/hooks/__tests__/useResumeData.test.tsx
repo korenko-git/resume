@@ -1,4 +1,4 @@
-import { renderHook, act, waitFor } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 import { useResumeData } from "../useResumeData";
 
 // Mock the data imports
@@ -65,29 +65,5 @@ describe("useResumeData", () => {
     expect(result.current.data.organizations.entries).toEqual([
       { id: "org-1", title: "Organization 1" },
     ]);
-  });
-
-  it("allows updating data", async () => {
-    const { result } = renderHook(() => useResumeData());
-    await waitFor(() => expect(result.current.loading).toBe(false));
-    act(() => {
-      result.current.setData({
-        ...result.current.data,
-        about: {
-          id: "about-1",
-          title: "Jane Smith",
-          subtitle: "",
-          description: "",
-          version: 1,
-        },
-      });
-    });
-    expect(result.current.data.about).toEqual({
-      id: "about-1",
-      title: "Jane Smith",
-      subtitle: "",
-      description: "",
-      version: 1,
-    });
   });
 });

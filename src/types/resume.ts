@@ -97,10 +97,6 @@ export type ResumeDataKeysWithEntries =
 
 export type ResumeDataKeys = 'aboutVersion' | ResumeDataKeysWithEntries;
 
-export type ResumeDataTypes = 
-  | Version 
-  | ResumeDataWithEntries;
-
 export const entityMetadata: Record<string, { title: string; icon: LucideIcon }> = {
   about: {
     title: 'About me',
