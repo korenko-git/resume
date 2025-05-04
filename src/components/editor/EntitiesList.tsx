@@ -88,8 +88,8 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
               onClick={() => onSelect(entity.id)}
             >
               <CardHeader className="pb-2">
-                <div className="flex justify-between items-start w-full px-1">
-                  <CardTitle className="text-lg truncate pr-8">{entity.title}</CardTitle>
+                <div className="flex justify-between items-start overflow-hidden">
+                  <CardTitle className="text-lg truncate">{entity.title}</CardTitle>
                   <Button
                     variant="ghost"
                     size="icon"
@@ -99,7 +99,7 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
                     <Trash2 className="h-4 w-4" />
                   </Button>
                 </div>
-                <div className="flex items-center gap-2 mt-1 px-1 flex-wrap">
+                <div className="flex items-center gap-2 mt-1 flex-wrap">
                   <Badge variant={entity.isPublished ? "default" : "outline"}>
                     {entity.isPublished ? "Published" : "Draft"}
                   </Badge>
