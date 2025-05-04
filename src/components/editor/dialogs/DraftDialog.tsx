@@ -45,7 +45,7 @@ export function DraftDialog({ onClose }: DraftDialogProps) {
     if (savedDraft) {
       const draft = JSON.parse(savedDraft);
       const draftVersion = Number(draft.about.version) || 0;
-      const currentVersion = Number(data.about?.version) || 0;
+      const currentVersion = Number(data.version) || 0;
 
       if (draftVersion > currentVersion) {
         const draftWithoutVersion = {
