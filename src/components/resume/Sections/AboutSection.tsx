@@ -2,18 +2,20 @@
 
 import ReactMarkdown from "react-markdown";
 
-import { useEntryData } from "@/hooks/useEntryData";
-import { AboutData } from "@/types/resume";
 import Section from "@/components/common/layout/Section";
+import { AboutEntry } from "@/types/resume";
+import { useResume } from "@/contexts/ResumeContext";
+import { getFirstPublishedEntry } from "@/lib/entityUtils";
 
 interface AboutSectionProps {
   className?: string;
 }
 
 export function AboutSection({ className }: AboutSectionProps) {
-  const { entryData } = useEntryData<AboutData>("about");
+  const { data } = useResume();
+  const sectionData = getFirstPublishedEntry<AboutEntry>(data["about"].entries);
 
-  if (!entryData) {
+  if (!sectionData) {
     return null;
   }
 
@@ -24,7 +26,7 @@ export function AboutSection({ className }: AboutSectionProps) {
       title="About"
       className={className}
     >
-      <ReactMarkdown>{entryData.description}</ReactMarkdown>
+      <ReactMarkdown>{sectionData.description}</ReactMarkdown>
     </Section>
   );
 }

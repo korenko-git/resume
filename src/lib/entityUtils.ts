@@ -106,3 +106,15 @@ export function filterPublishedEntries<T extends ResumeDataWithEntries>(
     ? entries 
     : entries.filter(entry => entry.isPublished !== false);
 }
+
+/**
+ * Gets the first published entry from an array of entries
+ * 
+ * @param entries - Array of entries to search
+ * @returns The first published entry or undefined if none found
+ */
+export function getFirstPublishedEntry<T extends ResumeDataWithEntries>(
+  entries: T[] | undefined,
+): T | undefined {
+  return filterPublishedEntries(entries, false)?.[0];
+}
