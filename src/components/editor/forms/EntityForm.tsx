@@ -150,7 +150,12 @@ export function EntityForm({ type, data, onUpdate }: EntityFormProps) {
           </Button>
         </div>
         <div className="border rounded-lg p-4">
-          <EntryBlock id={formData.id} typeData={type} editable={false} />
+          <EntryBlock 
+            id={formData.id} 
+            typeData={type} 
+            editable={false} 
+            customData={formData}
+          />
         </div>
       </div>
     );
