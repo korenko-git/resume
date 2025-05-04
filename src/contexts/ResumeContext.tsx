@@ -10,8 +10,6 @@ import {
 import {
   ResumeData,
   Organization,
-  ResumeDataKeys,
-  ResumeDataTypes,
   ResumeDataWithEntries,
   ResumeDataKeysWithEntries,
 } from "@/types/resume";
@@ -25,7 +23,7 @@ interface ResumeContextType {
   error: Error | null;
   version: number;
   setVersion: (version: number) => void;
-  updateData: (type: ResumeDataKeys, newData: ResumeDataTypes) => void;
+  updateData: (type: ResumeDataKeysWithEntries, newData: ResumeDataWithEntries) => void;
   updateOrganization: (organization: Organization) => void;
   getEntryFromData: (
     type: ResumeDataKeysWithEntries,
@@ -41,7 +39,7 @@ export const ResumeContext = createContext<ResumeContextType | undefined>(
 
 export function ResumeProvider({ children }: { children: ReactNode }) {
   const { data, setData, loading, error } = useResumeData();
-  const [version, setVersion] = useState(data.about?.version || 0);
+  const [version, setVersion] = useState(data.version || 0);
 
   const getEntryFromData = useCallback(
     (
@@ -56,7 +54,7 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
   const updateDraft = useCallback(
     (updatedData: ResumeData) => {
       try {
-        const currentVersion = updatedData.about?.version || 0;
+        const currentVersion = updatedData.version || 0;
         const updatedAbout = {
           ...updatedData.about,
           version: currentVersion + 1,
@@ -79,14 +77,7 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
   );
 
   const updateData = useCallback(
-    (type: ResumeDataKeys, newData: ResumeDataTypes) => {
-      if (type === "about") {
-        updateDraft({
-          ...data,
-          about: newData as NonNullable<ResumeData["about"]>,
-        });
-        return;
-      }
+    (type: ResumeDataKeysWithEntries, newData: ResumeDataWithEntries) => {
 
       const entries = [...(data[type]?.entries || [])];
       const existingEntryIndex = entries.findIndex(

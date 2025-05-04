@@ -9,7 +9,6 @@ import {
   entityMetadata,
   ResumeDataWithEntries
 } from "@/types/resume";
-import { AboutForm } from "./forms/AboutForm";
 import { EntitiesList } from "./EntitiesList";
 import { EntityForm } from "./forms/EntityForm";
 
@@ -32,7 +31,7 @@ export function Editor() {
   };
 
   const getSelectedEntity = (): ResumeDataWithEntries | null => {
-    if (!selectedEntityId || activeTab === 'about') return null;
+    if (!selectedEntityId) return null;
     
     const entries = data[activeTab].entries;
     return entries.find(entry => entry.id === selectedEntityId) || null;
@@ -51,12 +50,7 @@ export function Editor() {
             ))}
           </TabsList>
           
-          <TabsContent value="about" className="space-y-4">
-            {data.about && <AboutForm data={data.about} />}
-          </TabsContent>
-          
-          {(Object.keys(entityMetadata) as Array<ResumeDataKeysWithEntries | 'about'>)
-            .filter(key => key !== 'about')
+          {(Object.keys(entityMetadata) as Array<ResumeDataKeysWithEntries>)
             .map((key) => (
               <TabsContent key={key} value={key} className="space-y-4">
                 {selectedEntityId ? (
