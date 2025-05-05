@@ -8,6 +8,7 @@ import {
   LucideIcon
 } from 'lucide-react';
 
+export type Version = number;
 export interface BaseEntry {
   id: string;
   title: string;
@@ -19,7 +20,17 @@ export interface Organization extends BaseEntry {
   logo: string;
   url: string;
 }
-
+export interface AboutEntry extends BaseEntry {
+  subtitle: string;
+  location?: string;
+  email?: string;
+  phone?: string;
+  github?: string;
+  linkedin?: string;
+  leetcode?: string;
+  website?: string;
+  avatar?: string;
+}
 export interface ExperienceEntry extends BaseEntry {
   startDate: string;
   endDate: string;
@@ -46,20 +57,6 @@ export interface CertificationEntry extends BaseEntry {
   skills: string[];
   organizationId: string;
 }
-
-export interface AboutEntry extends BaseEntry {
-  subtitle: string;
-  location?: string;
-  email?: string;
-  phone?: string;
-  github?: string;
-  linkedin?: string;
-  leetcode?: string;
-  website?: string;
-  avatar?: string;
-}
-
-export type Version = number;
 
 export type ResumeDataWithEntries = 
   | AboutEntry
@@ -94,8 +91,6 @@ export type ResumeDataKeysWithEntries =
   | 'projects' 
   | 'certifications' 
   | 'organizations';
-
-export type ResumeDataKeys = 'aboutVersion' | ResumeDataKeysWithEntries;
 
 export const entityMetadata: Record<string, { title: string; icon: LucideIcon }> = {
   about: {

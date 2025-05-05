@@ -1,5 +1,6 @@
 "use client";
 
+import { z } from "zod";
 import { useEffect, useState } from "react";
 import {
   Dialog,
@@ -11,6 +12,7 @@ import {
 import { Button } from "@/components/common/ui/button";
 import { useResume } from "@/contexts/ResumeContext";
 import { deepEqual } from "@/lib/utils";
+import { resumeSchema } from "@/lib/validationSchemas";
 
 interface DraftDialogProps {
   onClose?: () => void;
@@ -43,24 +45,29 @@ export function DraftDialog({ onClose }: DraftDialogProps) {
 
     const savedDraft = localStorage.getItem("resumeDraft");
     if (savedDraft) {
-      const draft = JSON.parse(savedDraft);
-      const draftVersion = Number(draft.about.version) || 0;
-      const currentVersion = Number(data.version) || 0;
+      try {
+        const draft = JSON.parse(savedDraft);
+        const draftVersion = Number(draft.version) || 0;
+        const currentVersion = Number(data.version) || 0;
 
-      if (draftVersion > currentVersion) {
-        const draftWithoutVersion = {
-          ...draft,
-          about: { ...draft.about, version: undefined },
-        };
-        const dataWithoutVersion = {
-          ...data,
-          about: { ...data.about, version: undefined },
-        };
+        if (draftVersion > currentVersion) {
+          const draftWithoutVersion = { ...draft, version: undefined };
+          const dataWithoutVersion = { ...data, version: undefined };
 
-        if (!deepEqual(draftWithoutVersion, dataWithoutVersion)) {
-          setDraftData(draft);
-          setShowDraftDialog(true);
+          if (!deepEqual(draftWithoutVersion, dataWithoutVersion)) {
+            resumeSchema.parse(draft);
+            setDraftData(draft);
+            setShowDraftDialog(true);
+          }
         }
+      } catch (error) {
+        if (error instanceof z.ZodError) {
+          console.error("Draft validation error:", error.errors);
+        } else {
+          console.error("Error parsing draft JSON:", error);
+        }
+        
+        localStorage.removeItem("resumeDraft");
       }
     }
   }, [data, showDraftDialog]);

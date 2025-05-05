@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import { useResume } from '@/contexts/ResumeContext';
-import { Button } from '@/components/common/ui/button';
-import { ThemeToggle } from '@/components/common/layout/ThemeToggle';
-import { Editor } from '@/components/editor/Editor';
+import { useRouter } from "next/navigation";
+import { useResume } from "@/contexts/ResumeContext";
+import { Button } from "@/components/common/ui/button";
+import { ThemeToggle } from "@/components/common/layout/ThemeToggle";
+import { Editor } from "@/components/editor/Editor";
+import { DraftDialog } from "../editor/dialogs/DraftDialog";
 
 export default function EditorContent() {
   const router = useRouter();
@@ -15,22 +16,27 @@ export default function EditorContent() {
   }
 
   if (error) {
-    return <div className="container mx-auto py-8 px-4">Error: {error.message}</div>;
+    return (
+      <div className="container mx-auto py-8 px-4">Error: {error.message}</div>
+    );
   }
 
   return (
-    <div className="container mx-auto py-8 ">
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
-        <h1 className="text-3xl font-bold">Resume Editor</h1>
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-          <ThemeToggle />
-          <Button variant="outline" onClick={() => router.push('/')}>
-            Home
-          </Button>
+    <>
+      <DraftDialog />
+      <div className="container mx-auto py-8 ">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
+          <h1 className="text-3xl font-bold">Resume Editor</h1>
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+            <ThemeToggle />
+            <Button variant="outline" onClick={() => router.push("/")}>
+              Home
+            </Button>
+          </div>
         </div>
-      </div>
 
-      <Editor />
-    </div>
+        <Editor />
+      </div>
+    </>
   );
 }
