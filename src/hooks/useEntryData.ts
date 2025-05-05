@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useResume } from "@/contexts/ResumeContext";
 import {
-  ResumeDataKeys,
   ResumeDataKeysWithEntries,
   ResumeDataWithEntries,
 } from "@/types/resume";

@@ -12,19 +12,18 @@ const baseEntrySchema = z.object({
 });
 
 /**
- * Schema for the about section
+ * Schema for about entries
  */
-export const aboutSchema = z.object({
-  id: z.string(),
-  title: z.string(),
+const aboutEntrySchema = baseEntrySchema.extend({
   subtitle: z.string(),
-  description: z.string(),
-  isPublished: z.boolean(),
   github: z.string().url().optional(),
   linkedin: z.string().url().optional(),
   leetcode: z.string().url().optional(),
   email: z.string().email(),
-  version: z.number(),
+});
+
+export const aboutSchema = z.object({
+  entries: z.array(aboutEntrySchema),
 });
 
 /**
@@ -87,40 +86,12 @@ export const organizationsSchema = z.object({
   entries: z.array(organizationEntrySchema),
 });
 
-/**
- * Validates resume data against the appropriate schema
- * 
- * @param data - The data to validate
- * @param type - The type of resume section
- * @returns Boolean indicating whether the data is valid
- */
-export function validateResumeData(data: any, type: 'about' | 'experience' | 'education' | 'projects' | 'certifications' | 'organizations'): boolean {
-  try {
-    switch (type) {
-      case 'about':
-        aboutSchema.parse(data);
-        break;
-      case 'experience':
-        experienceSchema.parse(data);
-        break;
-      case 'education':
-        educationSchema.parse(data);
-        break;
-      case 'projects':
-        projectsSchema.parse(data);
-        break;
-      case 'certifications':
-        certificationsSchema.parse(data);
-        break;
-      case 'organizations':
-        organizationsSchema.parse(data);
-        break;
-      default:
-        return false;
-    }
-    return true;
-  } catch (error) {
-    console.error(`Validation error for data type ${type}:`, error);
-    return false;
-  }
-}
+export const resumeSchema = z.object({
+  version: z.number(),
+  about: aboutSchema,
+  experience: experienceSchema,
+  education: educationSchema,
+  projects: projectsSchema,
+  certifications: certificationsSchema,
+  organizations: organizationsSchema
+});
