@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { useEntryData } from "@/hooks/useEntryData";
 import {
   ResumeDataKeysWithEntries,
   ResumeDataWithEntries,
@@ -8,6 +7,8 @@ import EntryHeader from "./Header/EntryHeader";
 import EntryTitle from "./Title/EntryTitle";
 import { Description } from "./Description";
 import Skills from "./Skills";
+import { useResume } from "@/contexts/ResumeContext";
+import { getEntity } from "@/lib/entityUtils";
 
 interface EntryBlockProps {
   id: string;
@@ -16,9 +17,14 @@ interface EntryBlockProps {
   customData?: ResumeDataWithEntries;
 }
 
-export default function EntryBlock({ id, typeData, customData }: EntryBlockProps) {
-  const { entryData: hookData } = useEntryData<ResumeDataWithEntries>(typeData, id);
-  const entryData = customData || hookData;
+export default function EntryBlock({
+  id,
+  typeData,
+  customData,
+}: EntryBlockProps) {
+  const { data: hookData } = useResume();
+
+  const entryData = customData || getEntity(hookData, typeData, id);
 
   if (!entryData) return null;
 
