@@ -28,7 +28,13 @@ export function SkillsInput({
   const handleAddSkill = () => {
     if (newSkill.trim() === '') return;
     
-    const updatedSkills = [...skills, newSkill.trim()];
+    // Split input by commas and spaces
+    const skillsToAdd = newSkill
+      .split(/[,\s]+/)
+      .map(skill => skill.trim())
+      .filter(skill => skill !== '');
+    
+    const updatedSkills = [...skills, ...skillsToAdd];
     setSkills(updatedSkills);
     onChange(updatedSkills);
     setNewSkill('');
@@ -77,7 +83,7 @@ export function SkillsInput({
           value={newSkill}
           onChange={(e) => setNewSkill(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Add skill"
+          placeholder="Add skills (separate by commas or spaces)"
           className="flex-1"
         />
         <Button 
