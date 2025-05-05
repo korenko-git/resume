@@ -6,10 +6,13 @@ import { Button } from "@/components/common/ui/button";
 import { ThemeToggle } from "@/components/common/layout/ThemeToggle";
 import { Editor } from "@/components/editor/Editor";
 import { DraftDialog } from "../editor/dialogs/DraftDialog";
+import { createUpdateZip } from "@/lib/zipUtils";
+import { processAllEntryImages } from "@/lib/imageUtils";
+import { ResumeData } from "@/types/resume";
 
 export default function EditorContent() {
   const router = useRouter();
-  const { loading, error } = useResume();
+  const { data, loading, error } = useResume();
 
   if (loading) {
     return <div className="container mx-auto py-8 px-4">Loading...</div>;
@@ -21,6 +24,48 @@ export default function EditorContent() {
     );
   }
 
+  const handleDownload = async () => {
+    const imageFiles: File[] = [];
+    const dataWithImagePaths = { ...data };
+
+    for (const sectionName of Object.keys(data) as Array<keyof ResumeData>) {
+      const section = data[sectionName];
+
+      if (
+        typeof section === "object" &&
+        section !== null &&
+        "entries" in section
+      ) {
+        if (section?.entries?.length) {
+          const prefix = sectionName.endsWith("s")
+            ? sectionName.slice(0, -1)
+            : sectionName;
+
+          const processedEntries = await processAllEntryImages(
+            section.entries as any[], 
+            prefix, 
+            imageFiles
+          );
+          
+          (dataWithImagePaths[sectionName] as any).entries = processedEntries;
+        }
+      }
+    }
+
+    const zip = await createUpdateZip(dataWithImagePaths, imageFiles, {
+      submittedBy: "guest_user",
+    });
+
+    const url = URL.createObjectURL(zip);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "resume-update.zip";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <>
       <DraftDialog />
@@ -31,6 +76,9 @@ export default function EditorContent() {
             <ThemeToggle />
             <Button variant="outline" onClick={() => router.push("/")}>
               Home
+            </Button>
+            <Button onClick={handleDownload} className="download-button">
+              Download Changes as ZIP
             </Button>
           </div>
         </div>
