@@ -17,16 +17,16 @@ import {
 import { EntitiesList } from "./EntitiesList";
 import { EntityForm } from "./forms/EntityForm";
 import { ArrowLeft } from "lucide-react";
+import { getEntity } from "@/lib/entityUtils";
 
 export function Editor() {
   const { data, updateData } = useResume();
-  const [activeTab, setActiveTab] = useState<
-    ResumeDataKeysWithEntries | "about"
-  >("about");
+  const [activeTab, setActiveTab] =
+    useState<ResumeDataKeysWithEntries>("about");
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
 
   const handleTabChange = (value: string) => {
-    setActiveTab(value as ResumeDataKeysWithEntries | "about");
+    setActiveTab(value as ResumeDataKeysWithEntries);
     setSelectedEntityId(null);
   };
 
@@ -39,10 +39,7 @@ export function Editor() {
   };
 
   const getSelectedEntity = (): ResumeDataWithEntries | null => {
-    if (!selectedEntityId) return null;
-
-    const entries = data[activeTab].entries;
-    return entries.find((entry) => entry.id === selectedEntityId) || null;
+    return getEntity(data, activeTab, selectedEntityId)
   };
 
   return (
