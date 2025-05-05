@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, Plus } from 'lucide-react';
+import { toast } from 'sonner';
 import { Input } from '@/components/common/ui/input';
 import { Button } from '@/components/common/ui/button';
 import { Badge } from '@/components/common/ui/badge';
@@ -32,18 +33,35 @@ export function SkillsInput({
     const skillsToAdd = newSkill
       .split(/[,\s]+/)
       .map(skill => skill.trim())
-      .filter(skill => skill !== '');
+      .filter(skill => skill !== '')
+      .filter(skill => !skills.some(existingSkill => 
+        existingSkill.toLowerCase() === skill.toLowerCase()
+      ));
+    
+    if (skillsToAdd.length === 0) {
+      toast.error('These skills already exist');
+      setNewSkill('');
+      return;
+    }
     
     const updatedSkills = [...skills, ...skillsToAdd];
     setSkills(updatedSkills);
     onChange(updatedSkills);
     setNewSkill('');
+    
+    if (skillsToAdd.length === 1) {
+      toast.success(`Skill "${skillsToAdd[0]}" added`);
+    } else {
+      toast.success(`${skillsToAdd.length} skills added`);
+    }
   };
 
   const handleRemoveSkill = (index: number) => {
+    const skillToRemove = skills[index];
     const updatedSkills = skills.filter((_, i) => i !== index);
     setSkills(updatedSkills);
     onChange(updatedSkills);
+    toast.success(`Skill "${skillToRemove}" removed`);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
