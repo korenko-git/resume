@@ -2,8 +2,8 @@
   "entries": [
     {
       "id": "exp-1",
-      "title": "Senior Frontend Developer",
-      "description": "Development and maintenance of large-scale web applications. Implementation of modern development practices and performance optimization.",
+      "title": "Front - End Developer",
+      "description": "Working on Ellen G.'s interactive website. White Estate with gamification elements. EGW Writings contains a custom Study Center, Cloud Synchronization of all devices, Audiobooks, online and offline advanced Search and support of more than 100 languages.\nCollaborated closely with the design team to implement pixel-perfect layouts and user flows. Implemented CI/CD pipelines and Dockerized the application. Participated in code reviews, hiring processes and mentoring new developers.",
       "isPublished": true,
       "startDate": "2021-01",
       "endDate": "",
@@ -11,19 +11,14 @@
         "React",
         "TypeScript",
         "Next.js",
-        "Redux",
-        "GraphQL",
-        "Jest",
-        "Cypress",
-        "Webpack",
-        "CI/CD",
-        "AWS",
         "Docker",
-        "Kubernetes",
-        "Performance Optimization",
-        "Team Leadership"
+        "Jest",
+        "Redux",
+        "Tailwind",
+        "GraphQL",
+        "Selenium"
       ],
-      "organizationId": "meta"
+      "organizationId": "org-mac9psu1"
     },
     {
       "id": "exp-2",
