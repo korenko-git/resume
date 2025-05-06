@@ -118,7 +118,7 @@ export function filterPublishedEntries<T extends ResumeDataWithEntries>(
 export function getFirstPublishedEntry<T extends ResumeDataWithEntries>(
   entries: T[] | undefined
 ): T | undefined {
-  return filterPublishedEntries(entries, false)?.[0];
+  return entries && entries.find((entry: T) => entry.isPublished);
 }
 
 /**
