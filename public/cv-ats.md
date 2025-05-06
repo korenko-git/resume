@@ -22,12 +22,12 @@ Collaborated closely with the design team to implement pixel-perfect layouts and
 
 Skills: React, TypeScript, Next.js, Docker, Jest, Redux, Tailwind, GraphQL, Selenium
 
-### Cloud Solutions Engineer
-Amazon Web Services | 2019-03 - 2020-12
+### Full - Stack Developer
+krgaz | 2019-03 - 2021-12
 
-Design and implementation of cloud-native applications and infrastructure
+Contributed into development of custom CRM system for a leading gas delivery company in the Ukraine. Designed fronted, utilizing technologies like React, jQuery. Participated in the backend development using PHP, Django, and MariaDB. Developed account management system, user roles, and permissions. Implemented integrations with third-party services, such as Google Roads. Worked on the mobile application using React Native.
 
-Skills: AWS, Node.js, Docker, Kubernetes, Terraform, Python, Microservices, CI/CD, MongoDB, Redis, ELK Stack, Prometheus, Grafana
+Skills: React, PHP, Python, Laravel, Django, jQuery, MySQL, WordPress, ReactNative
 
 ## Education
 
