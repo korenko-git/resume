@@ -69,11 +69,12 @@ jobs:
 
       - name: Upload ATS CV artifacts
         uses: actions/upload-artifact@v4
-        with:if: steps.check_md_changes.outputs.md_changes_detected == 'true' || github.event_name == 'workflow_dispatch'
+        with:
           name: ats-cv
           path: |
             public/cv-ats.md
             public/cv-ats.pdf
+        if: steps.check_md_changes.outputs.md_changes_detected == 'true' || github.event_name == 'workflow_dispatch'
 
       - name: Commit ATS CV
         if: steps.check_md_changes.outputs.md_changes_detected == 'true'
