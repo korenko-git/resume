@@ -1,7 +1,6 @@
 import { Input } from "@/components/common/ui/input";
 import { Label } from "@/components/common/ui/label";
 import { cn } from "@/lib/utils";
-import { ExternalLink } from "lucide-react";
 
 interface UrlInputProps {
   value: string;
