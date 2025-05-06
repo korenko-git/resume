@@ -1,6 +1,6 @@
-# John Smith
+# undefined
 
-Experienced developer focused on web technologies. Specializing in building modern web applications using React, TypeScript, and Node.js.
+undefined
 
 ## Work Experience
 
