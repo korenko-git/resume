@@ -27,6 +27,14 @@
       "description": "Technology company known for developing React and other open source tools, as well as social platforms",
       "url": "https://meta.com",
       "logo": "/images/meta-logo.png"
+    },
+    {
+      "id": "org-mac9psu1",
+      "title": "Roll’n’Code",
+      "description": "Description",
+      "isPublished": false,
+      "logo": "images/organization-org-mac9psu1-logo.png",
+      "url": "https://rollncode.com/"
     }
   ]
 }
