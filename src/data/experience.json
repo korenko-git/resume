@@ -22,27 +22,23 @@
     },
     {
       "id": "exp-2",
-      "title": "Cloud Solutions Engineer",
-      "description": "Design and implementation of cloud-native applications and infrastructure",
+      "title": "Full - Stack Developer",
+      "description": "Contributed into development of custom CRM system for a leading gas delivery company in the Ukraine. Designed fronted, utilizing technologies like React, jQuery. Participated in the backend development using PHP, Django, and MariaDB. Developed account management system, user roles, and permissions. Implemented integrations with third-party services, such as Google Roads. Worked on the mobile application using React Native.",
       "isPublished": true,
       "startDate": "2019-03",
-      "endDate": "2020-12",
+      "endDate": "2021-12",
       "skills": [
-        "AWS",
-        "Node.js",
-        "Docker",
-        "Kubernetes",
-        "Terraform",
+        "React",
+        "PHP",
         "Python",
-        "Microservices",
-        "CI/CD",
-        "MongoDB",
-        "Redis",
-        "ELK Stack",
-        "Prometheus",
-        "Grafana"
+        "Laravel",
+        "Django",
+        "jQuery",
+        "MySQL",
+        "WordPress",
+        "ReactNative"
       ],
-      "organizationId": "aws"
+      "organizationId": "org-mace9hb4"
     }
   ]
 }
