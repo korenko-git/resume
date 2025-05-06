@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from 'next-themes';
 import { ResumeProvider } from "@/contexts/ResumeContext";
 import { Toaster } from "@/components/common/ui/toaster";
 import Container from "@/components/common/layout/Container";
 import { Footer } from "@/components/common/layout/Footer";
+import ClientThemeProvider from "@/components/common/layout/ClientThemeProvider";
 
 import "./globals.css";
 import BackgroundAnimation from "@/components/common/layout/BackgroundAnimation";
@@ -49,12 +49,7 @@ export default function RootLayout({
         dark:bg-zinc-900 leading-relaxed dark:text-neutral-200 tracking-wide dark:selection:bg-neutral-300 dark:selection:text-neutral-900
         `}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ClientThemeProvider>
           <ResumeProvider>
             <BackgroundAnimation />
             <Container>
@@ -63,7 +58,7 @@ export default function RootLayout({
             </Container>
           </ResumeProvider>
           <Toaster />
-        </ThemeProvider>
+        </ClientThemeProvider>
       </body>
     </html>
   );
