@@ -64,12 +64,12 @@ jobs:
           fi
 
       - name: Generate ATS PDF
-        if: steps.check_md_changes.outputs.md_changes_detected == 'true' || github.event_name == 'workflow_dispatch' || ! fileExists('public/cv-ats.pdf')
+        
         run: npx tsx scripts/generate-ats-pdf.ts
 
       - name: Upload ATS CV artifacts
         uses: actions/upload-artifact@v4
-        with:
+        with:if: steps.check_md_changes.outputs.md_changes_detected == 'true' || github.event_name == 'workflow_dispatch'
           name: ats-cv
           path: |
             public/cv-ats.md
