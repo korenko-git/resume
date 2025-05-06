@@ -14,7 +14,7 @@ async function generateATSMarkdown() {
     const projects = JSON.parse(fs.readFileSync(path.join(dataPath, 'projects.json'), 'utf-8'));
     const organizations = JSON.parse(fs.readFileSync(path.join(dataPath, 'organizations.json'), 'utf-8'));
 
-    const about = getFirstPublishedEntry<AboutEntry>(aboutData)
+    const about = getFirstPublishedEntry<AboutEntry>(aboutData.entries)
     
     if (!about) {
       throw new Error('No published about entry found');
