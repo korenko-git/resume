@@ -55,16 +55,16 @@ jobs:
       - name: Check for changes in MD file
         id: check_md_changes
         run: |
-          if git diff --quiet public/cv-ats.md; then
+          if [ -f public/cv-ats.md ] && git diff --quiet public/cv-ats.md; then
             echo "No changes detected in cv-ats.md"
             echo "md_changes_detected=false" >> $GITHUB_OUTPUT
           else
-            echo "Changes detected in cv-ats.md"
+            echo "Changes detected in cv-ats.md or file doesn't exist"
             echo "md_changes_detected=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Generate ATS PDF
-        if: steps.check_md_changes.outputs.md_changes_detected == 'true' || github.event_name == 'workflow_dispatch'
+        if: steps.check_md_changes.outputs.md_changes_detected == 'true' || github.event_name == 'workflow_dispatch' || ! fileExists('public/cv-ats.pdf')
         run: npx tsx scripts/generate-ats-pdf.ts
 
       - name: Upload ATS CV artifacts
