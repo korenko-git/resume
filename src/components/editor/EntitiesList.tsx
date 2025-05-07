@@ -104,9 +104,11 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
                   </Button>
                 </div>
                 <div className="flex items-center gap-2 mt-1 flex-wrap">
-                  <Badge variant={entity.isPublished ? "default" : "outline"}>
-                    {entity.isPublished ? "Published" : "Draft"}
-                  </Badge>
+                  {"isPublished" in entity && (
+                    <Badge variant={entity.isPublished ? "default" : "outline"}>
+                      {entity.isPublished ? "Published" : "Draft"}
+                    </Badge>
+                  )}
 
                   {/* Display related organization */}
                   {"organizationId" in entity && entity.organizationId && (

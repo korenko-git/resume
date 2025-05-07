@@ -81,8 +81,9 @@ export function createDefaultEntity(
       } as CertificationEntry;
 
     case "organizations":
+      const { isPublished, ...entityWithoutIsPublished } = baseEntity;
       return {
-        ...baseEntity,
+        ...entityWithoutIsPublished,
         logo: "",
         url: "",
       } as Organization;
@@ -106,7 +107,7 @@ export function filterPublishedEntries<T extends ResumeDataWithEntries>(
   if (!entries) return [];
   return includeUnpublished
     ? entries
-    : entries.filter((entry) => entry.isPublished !== false);
+    : entries.filter((entry) => "isPublished" in entry && entry.isPublished !== false);
 }
 
 /**
@@ -118,7 +119,7 @@ export function filterPublishedEntries<T extends ResumeDataWithEntries>(
 export function getFirstPublishedEntry<T extends ResumeDataWithEntries>(
   entries: T[] | undefined
 ): T | undefined {
-  return entries && entries.find((entry: T) => entry.isPublished);
+  return entries && entries.find((entry: T) => "isPublished" in entry && entry.isPublished);
 }
 
 /**

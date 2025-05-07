@@ -16,7 +16,7 @@ export interface BaseEntry {
   isPublished?: boolean;
 }
 
-export interface Organization extends BaseEntry {
+export interface Organization extends Omit<BaseEntry, "isPublished"> {
   logo: string;
   url: string;
 }
@@ -194,7 +194,6 @@ export const entityFields: Record<ResumeDataKeysWithEntries, FieldDefinition[]> 
   ],
   organizations: [
     { name: 'title', label: 'Title', type: 'text', required: true, grid: true },
-    { name: 'isPublished', label: 'Published', type: 'switch', grid: true },
     { name: 'description', label: 'Description', type: 'textarea' },
     { name: 'url', label: 'Website', type: 'url', placeholder: 'https://...' },
     { name: 'logo', label: 'Logo', type: 'image' }
