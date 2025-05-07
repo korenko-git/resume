@@ -26,10 +26,16 @@ export default function EditorContent() {
 
   const handleDownload = async () => {
     const imageFiles: File[] = [];
-    const dataWithImagePaths = { ...data };
+    const { version, ...dataWithoutVersion } = data;
+    const dataWithImagePaths = {
+      ...dataWithoutVersion,
+      abaout: { ...data.about, version: version },
+    };
 
-    for (const sectionName of Object.keys(data) as Array<keyof ResumeData>) {
-      const section = data[sectionName];
+    for (const sectionName of Object.keys(dataWithoutVersion) as Array<
+      keyof Omit<ResumeData, "version">
+    >) {
+      const section = dataWithoutVersion[sectionName];
 
       if (
         typeof section === "object" &&
@@ -42,11 +48,11 @@ export default function EditorContent() {
             : sectionName;
 
           const processedEntries = await processAllEntryImages(
-            section.entries as any[], 
-            prefix, 
+            section.entries as any[],
+            prefix,
             imageFiles
           );
-          
+
           (dataWithImagePaths[sectionName] as any).entries = processedEntries;
         }
       }
