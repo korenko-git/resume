@@ -82,6 +82,7 @@ export function createDefaultEntity(
       } as CertificationEntry;
 
     case "organizations":
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { isPublished, ...entityWithoutIsPublished } = baseEntity;
       return {
         ...entityWithoutIsPublished,
