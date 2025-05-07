@@ -14,7 +14,7 @@ import {
 } from "@/components/common/ui/card";
 import { ResumeDataKeysWithEntries, entityMetadata } from "@/types/resume";
 import { DeleteConfirmationDialog } from "./dialogs/DeleteConfirmationDialog";
-import { createDefaultEntity } from "@/lib/entityUtils";
+import { createDefaultEntity, isUsed } from "@/lib/entityUtils";
 import { Badge } from "@/components/common/ui/badge";
 import { formatDate } from "@/lib/dateUtils";
 
@@ -107,6 +107,12 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
                   {"isPublished" in entity && (
                     <Badge variant={entity.isPublished ? "default" : "outline"}>
                       {entity.isPublished ? "Published" : "Draft"}
+                    </Badge>
+                  )}
+                  
+                  {isUsed(data, entityType, entity.id) && (
+                    <Badge variant="secondary">
+                      Used
                     </Badge>
                   )}
 
