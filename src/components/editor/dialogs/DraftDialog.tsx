@@ -41,13 +41,11 @@ export function DraftDialog({ onClose }: DraftDialogProps) {
   };
 
   useEffect(() => {
-    if (showDraftDialog) return;
-
     const savedDraft = localStorage.getItem("resumeDraft");
     if (savedDraft) {
       try {
         const draft = JSON.parse(savedDraft);
-        const draftVersion = Number(draft.version) || 0;
+        const draftVersion = Number(draft.about.version) || 0;
         const currentVersion = Number(data.version) || 0;
 
         if (draftVersion > currentVersion) {
