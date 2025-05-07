@@ -1,22 +1,23 @@
 "use client";
 
+import { Edit, ExternalLink,Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
-import { useResume } from "@/contexts/ResumeContext";
+import { Badge } from "@/components/common/ui/badge";
 import { Button } from "@/components/common/ui/button";
-import { Plus, Trash2, Edit, ExternalLink } from "lucide-react";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/components/common/ui/card";
-import { ResumeDataKeysWithEntries, entityMetadata } from "@/types/resume";
-import { DeleteConfirmationDialog } from "./dialogs/DeleteConfirmationDialog";
-import { createDefaultEntity, isUsed } from "@/lib/entityUtils";
-import { Badge } from "@/components/common/ui/badge";
+import { useResume } from "@/contexts/ResumeContext";
 import { formatDate } from "@/lib/dateUtils";
+import { createDefaultEntity, isUsed } from "@/lib/entityUtils";
+import { entityMetadata,ResumeDataKeysWithEntries } from "@/types/resume";
+
+import { DeleteConfirmationDialog } from "./dialogs/DeleteConfirmationDialog";
 
 interface EntitiesListProps {
   entityType: ResumeDataKeysWithEntries;

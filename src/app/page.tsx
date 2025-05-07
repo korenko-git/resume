@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import HomeContent from "@/components/pages/HomeContent";
 
+import HomeContent from "@/components/pages/HomeContent";
 import aboutData from "@/data/about.json";
 import { getFirstPublishedEntry } from "@/lib/entityUtils";
 

@@ -1,14 +1,15 @@
+import { useResume } from "@/contexts/ResumeContext";
+import { getEntity } from "@/lib/entityUtils";
 import { cn } from "@/lib/utils";
 import {
   ResumeDataKeysWithEntries,
   ResumeDataWithEntries,
 } from "@/types/resume";
-import EntryHeader from "./Header/EntryHeader";
-import EntryTitle from "./Title/EntryTitle";
+
 import { Description } from "./Description";
+import EntryHeader from "./Header/EntryHeader";
 import Skills from "./Skills";
-import { useResume } from "@/contexts/ResumeContext";
-import { getEntity } from "@/lib/entityUtils";
+import EntryTitle from "./Title/EntryTitle";
 
 interface EntryBlockProps {
   id: string;

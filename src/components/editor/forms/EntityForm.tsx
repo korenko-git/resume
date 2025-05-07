@@ -1,25 +1,26 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Label } from "@/components/common/ui/label";
-import { Input } from "@/components/common/ui/input";
-import { Textarea } from "@/components/common/ui/textarea";
-import { Switch } from "@/components/common/ui/switch";
-import { Button } from "@/components/common/ui/button";
 import { Eye, Save } from "lucide-react";
-import { DateInput } from "../controls/DateInput";
-import { SkillsInput } from "../controls/SkillsInput";
-import { UrlInput } from "../controls/UrlInput";
-import { ImageUpload } from "../controls/ImageUpload";
-import { OrganizationSelector } from "../controls/OrganizationSelector";
+import { useEffect,useState } from "react";
+
+import { Button } from "@/components/common/ui/button";
+import { Input } from "@/components/common/ui/input";
+import { Label } from "@/components/common/ui/label";
+import { Switch } from "@/components/common/ui/switch";
+import { Textarea } from "@/components/common/ui/textarea";
+import EntryBlock from "@/components/resume/Entry";
 import {
-  ResumeDataKeysWithEntries,
-  ResumeDataWithEntries,
   AllEntityFields,
   entityFields,
-  FieldDefinition
-} from "@/types/resume";
-import EntryBlock from "@/components/resume/Entry";
+  FieldDefinition,
+  ResumeDataKeysWithEntries,
+  ResumeDataWithEntries} from "@/types/resume";
+
+import { DateInput } from "../controls/DateInput";
+import { ImageUpload } from "../controls/ImageUpload";
+import { OrganizationSelector } from "../controls/OrganizationSelector";
+import { SkillsInput } from "../controls/SkillsInput";
+import { UrlInput } from "../controls/UrlInput";
 
 interface EntityFormProps {
   type: ResumeDataKeysWithEntries;

@@ -1,23 +1,25 @@
 "use client";
 
+import { ArrowLeft } from "lucide-react";
 import React, { useState } from "react";
-import { useResume } from "@/contexts/ResumeContext";
+
+import { Card, CardContent } from "@/components/common/ui/card";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "@/components/common/ui/tabs";
-import { Card, CardContent } from "@/components/common/ui/card";
+import { useResume } from "@/contexts/ResumeContext";
+import { getEntity } from "@/lib/entityUtils";
 import {
-  ResumeDataKeysWithEntries,
   entityMetadata,
+  ResumeDataKeysWithEntries,
   ResumeDataWithEntries,
 } from "@/types/resume";
+
 import { EntitiesList } from "./EntitiesList";
 import { EntityForm } from "./forms/EntityForm";
-import { ArrowLeft } from "lucide-react";
-import { getEntity } from "@/lib/entityUtils";
 
 export function Editor() {
   const { data, updateData } = useResume();

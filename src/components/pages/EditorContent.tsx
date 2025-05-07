@@ -1,14 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useResume } from "@/contexts/ResumeContext";
-import { Button } from "@/components/common/ui/button";
+
 import { ThemeToggle } from "@/components/common/layout/ThemeToggle";
+import { Button } from "@/components/common/ui/button";
 import { Editor } from "@/components/editor/Editor";
-import { DraftDialog } from "../editor/dialogs/DraftDialog";
-import { createUpdateZip } from "@/lib/zipUtils";
+import { useResume } from "@/contexts/ResumeContext";
 import { processAllEntryImages } from "@/lib/imageUtils";
+import { createUpdateZip } from "@/lib/zipUtils";
 import { ResumeData } from "@/types/resume";
+
+import { DraftDialog } from "../editor/dialogs/DraftDialog";
 
 export default function EditorContent() {
   const router = useRouter();

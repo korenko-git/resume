@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from "@/lib/testUtils";
+import { fireEvent,render, screen } from "@/lib/testUtils";
+
 import { OrganizationSelector } from "../OrganizationSelector";
 
 // Mock the createDefaultEntity function

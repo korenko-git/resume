@@ -2,19 +2,20 @@
 
 import {
   createContext,
-  useContext,
   ReactNode,
-  useState,
   useCallback,
+  useContext,
+  useState,
 } from "react";
-import {
-  ResumeData,
-  Organization,
-  ResumeDataWithEntries,
-  ResumeDataKeysWithEntries,
-} from "@/types/resume";
-import { useResumeData } from "@/hooks/useResumeData";
 import { toast } from "sonner";
+
+import { useResumeData } from "@/hooks/useResumeData";
+import {
+  Organization,
+  ResumeData,
+  ResumeDataKeysWithEntries,
+  ResumeDataWithEntries,
+} from "@/types/resume";
 
 interface ResumeContextType {
   data: ResumeData;

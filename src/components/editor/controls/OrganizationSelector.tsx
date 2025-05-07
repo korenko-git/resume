@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-import { useResume } from '@/contexts/ResumeContext';
-import { Label } from '@/components/common/ui/label';
+import { Plus } from 'lucide-react';
+import { useEffect,useState } from 'react';
+
 import { Button } from '@/components/common/ui/button';
+import { Label } from '@/components/common/ui/label';
 import { 
   Select,
   SelectContent,
@@ -9,10 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/common/ui/select';
-import { Plus } from 'lucide-react';
+import { useResume } from '@/contexts/ResumeContext';
+import { createDefaultEntity } from '@/lib/entityUtils';
 import { cn } from '@/lib/utils';
 import { Organization } from '@/types/resume';
-import { createDefaultEntity } from '@/lib/entityUtils';
 
 interface OrganizationSelectorProps {
   value: string;

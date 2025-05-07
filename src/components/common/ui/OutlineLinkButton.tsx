@@ -1,8 +1,8 @@
 "use client";
 
-import { HTMLProps } from "react";
-import Link, { LinkProps } from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import Link, { LinkProps } from "next/link";
+import { HTMLProps } from "react";
 
 export default function OutlineLinkButton({
   children,

@@ -1,14 +1,14 @@
 import {
+  AboutEntry,
+  CertificationEntry,
+  EducationEntry,
+  entityRelationships,
+  ExperienceEntry,
+  Organization,
+  ProjectEntry,
+  ResumeData,
   ResumeDataKeysWithEntries,
   ResumeDataWithEntries,
-  ExperienceEntry,
-  EducationEntry,
-  ProjectEntry,
-  CertificationEntry,
-  Organization,
-  AboutEntry,
-  ResumeData,
-  entityRelationships,
 } from "@/types/resume";
 
 /**

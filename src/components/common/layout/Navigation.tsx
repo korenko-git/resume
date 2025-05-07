@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const MENU = ["about", "experience", "education", "projects", "certifications"];
 

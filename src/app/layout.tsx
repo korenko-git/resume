@@ -1,13 +1,14 @@
+import "./globals.css";
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ResumeProvider } from "@/contexts/ResumeContext";
-import { Toaster } from "@/components/common/ui/toaster";
+
+import BackgroundAnimation from "@/components/common/layout/BackgroundAnimation";
+import ClientThemeProvider from "@/components/common/layout/ClientThemeProvider";
 import Container from "@/components/common/layout/Container";
 import { Footer } from "@/components/common/layout/Footer";
-import ClientThemeProvider from "@/components/common/layout/ClientThemeProvider";
-
-import "./globals.css";
-import BackgroundAnimation from "@/components/common/layout/BackgroundAnimation";
+import { Toaster } from "@/components/common/ui/toaster";
+import { ResumeProvider } from "@/contexts/ResumeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

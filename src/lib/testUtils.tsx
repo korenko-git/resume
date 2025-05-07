@@ -1,5 +1,6 @@
-import React, { ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
+import React, { ReactElement } from "react";
+
 import { ResumeContext } from "@/contexts/ResumeContext";
 import { ResumeDataKeysWithEntries } from "@/types/resume";
 

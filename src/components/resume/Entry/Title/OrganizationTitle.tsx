@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+
 import { useResume } from "@/contexts/ResumeContext";
 import { getAssetPath } from "@/lib/assetPath";
 import { Organization } from "@/types/resume";
