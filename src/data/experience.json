@@ -18,7 +18,8 @@
         "GraphQL",
         "Selenium"
       ],
-      "organizationId": "org-mac9psu1"
+      "organizationId": "org-mac9psu1",
+      "link": ""
     },
     {
       "id": "exp-2",
@@ -38,7 +39,8 @@
         "WordPress",
         "ReactNative"
       ],
-      "organizationId": "org-mace9hb4"
+      "organizationId": "org-mace9hb4",
+      "link": ""
     }
   ]
 }

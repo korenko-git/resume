@@ -33,6 +33,7 @@ const dateRangeEntrySchema = baseEntrySchema.extend({
   startDate: z.string().regex(/^\d{4}-\d{2}$/, 'Date must be in YYYY-MM format'),
   endDate: z.string().regex(/^\d{4}-\d{2}$/, 'Date must be in YYYY-MM format').or(z.string().max(0)),
   organizationId: z.string(),
+  link: z.string().url().optional(),
 });
 
 /**
@@ -68,6 +69,7 @@ export const projectsSchema = z.object({
 export const certificationEntrySchema = baseEntrySchema.extend({
   date: z.string().regex(/^\d{4}-\d{2}$/, 'Date must be in YYYY-MM format'),
   organizationId: z.string(),
+  link: z.string().url().optional(),
 });
 export const certificationsSchema = z.object({
   entries: z.array(certificationEntrySchema),

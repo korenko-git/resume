@@ -22,7 +22,8 @@
         "Prometheus",
         "Grafana"
       ],
-      "organizationId": "stanford"
+      "organizationId": "stanford",
+      "link": ""
     },
     {
       "id": "edu-2",
@@ -46,7 +47,8 @@
         "Prometheus",
         "Grafana"
       ],
-      "organizationId": "mit"
+      "organizationId": "mit",
+      "link": ""
     }
   ]
 }
