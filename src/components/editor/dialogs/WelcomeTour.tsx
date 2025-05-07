@@ -1,7 +1,7 @@
 'use client';
 
-import Joyride, { Step } from 'react-joyride';
 import { useTheme } from 'next-themes';
+import Joyride, { Step } from 'react-joyride';
 
 interface WelcomeTourProps {
   run: boolean;

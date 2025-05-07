@@ -1,14 +1,15 @@
 "use client";
 
-import { useResume } from "@/contexts/ResumeContext";
 import Section from "@/components/common/layout/Section";
-import { filterPublishedEntries } from "@/lib/entityUtils";
-import EntryBlock from "../Entry";
 import OutlineLinkButton from "@/components/common/ui/OutlineLinkButton";
+import { useResume } from "@/contexts/ResumeContext";
+import { filterPublishedEntries } from "@/lib/entityUtils";
 import {
   ResumeDataKeysWithEntries,
   ResumeDataWithEntries,
 } from "@/types/resume";
+
+import EntryBlock from "../Entry";
 
 const SECTIONS: ResumeDataKeysWithEntries[] = [
   "experience",

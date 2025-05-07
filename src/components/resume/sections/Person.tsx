@@ -1,9 +1,9 @@
 'use client';
 
-import { useResume } from "@/contexts/ResumeContext";
-import { AboutEntry } from "@/types/resume";
 import { IconLink } from "@/components/common/ui/IconLink";
+import { useResume } from "@/contexts/ResumeContext";
 import { getFirstPublishedEntry } from "@/lib/entityUtils";
+import { AboutEntry } from "@/types/resume";
 
 export default function Person() {
   const { data } = useResume();

@@ -1,7 +1,8 @@
+import { exec } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import { exec } from 'child_process';
 import { promisify } from 'util';
+
 import { CertificationEntry, EducationEntry, ExperienceEntry, Organization, ProjectEntry } from '@/types/resume';
 
 const execPromise = promisify(exec);

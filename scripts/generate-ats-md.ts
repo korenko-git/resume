@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { CertificationEntry, EducationEntry, ExperienceEntry, Organization, ProjectEntry, AboutEntry } from '@/types/resume';
+
 import { getFirstPublishedEntry } from '@/lib/entityUtils';
+import { AboutEntry,CertificationEntry, EducationEntry, ExperienceEntry, Organization, ProjectEntry } from '@/types/resume';
 
 async function generateATSMarkdown() {
   try {

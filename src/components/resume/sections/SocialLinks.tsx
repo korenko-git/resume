@@ -1,11 +1,11 @@
 "use client";
 
-import { Github, Linkedin, Code2 } from "lucide-react";
+import { Code2,Github, Linkedin } from "lucide-react";
 
-import { useResume } from "@/contexts/ResumeContext";
-import { AboutEntry } from "@/types/resume";
 import { IconLink } from "@/components/common/ui/IconLink";
+import { useResume } from "@/contexts/ResumeContext";
 import { getFirstPublishedEntry } from "@/lib/entityUtils";
+import { AboutEntry } from "@/types/resume";
 
 export default function SocialLinks() {
   const { data } = useResume();

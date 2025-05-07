@@ -1,4 +1,6 @@
 import { Loader2 } from "lucide-react";
+
+import { Button } from "@/components/common/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,7 +9,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/common/ui/dialog";
-import { Button } from "@/components/common/ui/button";
 
 interface DeleteConfirmationDialogProps {
   isOpen: boolean;

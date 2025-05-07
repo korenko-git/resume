@@ -1,9 +1,9 @@
-import fs from 'fs';
-import path from 'path';
 import { exec } from 'child_process';
-import { promisify } from 'util';
-import puppeteer from 'puppeteer';
+import fs from 'fs';
 import MarkdownIt from 'markdown-it';
+import path from 'path';
+import puppeteer from 'puppeteer';
+import { promisify } from 'util';
 
 const execPromise = promisify(exec);
 const md = new MarkdownIt();

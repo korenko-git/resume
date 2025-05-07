@@ -1,12 +1,11 @@
 import {
-  Briefcase,
-  GraduationCap,
-  FolderKanban,
   Award,
+  Briefcase,
   Building2,
-  User,
-  LucideIcon
-} from 'lucide-react';
+  FolderKanban,
+  GraduationCap,
+  LucideIcon,
+  User} from 'lucide-react';
 
 export type Version = number;
 export interface BaseEntry {

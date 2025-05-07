@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
-import { X, Plus } from 'lucide-react';
+import { Plus,X } from 'lucide-react';
+import { useEffect,useState } from 'react';
 import { toast } from 'sonner';
-import { Input } from '@/components/common/ui/input';
-import { Button } from '@/components/common/ui/button';
+
 import { Badge } from '@/components/common/ui/badge';
+import { Button } from '@/components/common/ui/button';
+import { Input } from '@/components/common/ui/input';
 import { cn } from '@/lib/utils';
 
 interface SkillsInputProps {

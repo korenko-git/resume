@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect,useState } from 'react';
+
 import type { ResumeData } from '@/types/resume';
 
 export function useResumeData() {

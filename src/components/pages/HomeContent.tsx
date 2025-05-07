@@ -1,9 +1,10 @@
 'use client';
 
-import { useResume } from '@/contexts/ResumeContext';
 import Navigation from '@/components/common/layout/Navigation';
 import Person from '@/components/resume/sections/Person';
 import SocialLinks from '@/components/resume/sections/SocialLinks';
+import { useResume } from '@/contexts/ResumeContext';
+
 import { AboutSection } from '../resume/sections/AboutSection';
 import { ResumeSections } from '../resume/sections/ResumeSections';
 

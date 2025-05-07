@@ -3,9 +3,9 @@
 import ReactMarkdown from "react-markdown";
 
 import Section from "@/components/common/layout/Section";
-import { AboutEntry } from "@/types/resume";
 import { useResume } from "@/contexts/ResumeContext";
 import { getFirstPublishedEntry } from "@/lib/entityUtils";
+import { AboutEntry } from "@/types/resume";
 
 interface AboutSectionProps {
   className?: string;
