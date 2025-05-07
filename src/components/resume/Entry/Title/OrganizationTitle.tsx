@@ -6,7 +6,11 @@ import { getAssetPath } from "@/lib/assetPath";
 import { Organization } from "@/types/resume";
 
 interface OrganizationTitleProps {
-  data: { organizationId: string; title: string };
+  data: { 
+    organizationId: string; 
+    title: string;
+    link?: string;
+  };
 }
 
 export function OrganizationTitle({ data }: OrganizationTitleProps) {
@@ -18,6 +22,8 @@ export function OrganizationTitle({ data }: OrganizationTitleProps) {
   if (!organization) {
     return null;
   }
+
+  const linkUrl = data.link || organization.url;
 
   return (
     <>
@@ -38,7 +44,7 @@ export function OrganizationTitle({ data }: OrganizationTitleProps) {
         </h3>
         <Link
           className="inline-flex items-baseline font-medium leading-tight text-slate-700 hover:text-blue-600 focus-visible:text-blue-600 dark:text-slate-50 dark:hover:text-blue-200 group/link text-base"
-          href={organization.url}
+          href={linkUrl}
           target="_blank"
           rel="noreferrer noopener"
           aria-label={`${data.title} at ${organization.title} (opens in a new tab)`}

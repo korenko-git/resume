@@ -18,6 +18,7 @@ import {
 
 import { DateInput } from "../controls/DateInput";
 import { ImageUpload } from "../controls/ImageUpload";
+import { ImageUrlInput } from '../controls/ImageUrlInput';
 import { OrganizationSelector } from "../controls/OrganizationSelector";
 import { SkillsInput } from "../controls/SkillsInput";
 import { UrlInput } from "../controls/UrlInput";
@@ -135,6 +136,15 @@ export function EntityForm({ type, data, onUpdate }: EntityFormProps) {
             label={label}
             value={value || ''}
             onChange={(value) => handleChange(name as AllEntityFields, value)}
+          />
+        );
+      case 'imageWithUrl':
+        return (
+          <ImageUrlInput
+            label={label}
+            value={value || ''}
+            onChange={(value) => handleChange(name as AllEntityFields, value)}
+            urlPlaceholder={placeholder}
           />
         );
       default:

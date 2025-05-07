@@ -30,14 +30,18 @@ export interface AboutEntry extends BaseEntry {
   website?: string;
   avatar?: string;
 }
-export interface ExperienceEntry extends BaseEntry {
+export interface LinkableEntity {
+  link?: string;
+}
+
+export interface ExperienceEntry extends BaseEntry, LinkableEntity {
   startDate: string;
   endDate: string;
   skills: string[];
   organizationId: string;
 }
 
-export interface EducationEntry extends BaseEntry {
+export interface EducationEntry extends BaseEntry, LinkableEntity {
   startDate: string;
   endDate: string;
   skills: string[];
@@ -51,7 +55,7 @@ export interface ProjectEntry extends BaseEntry {
   image?: string;
 }
 
-export interface CertificationEntry extends BaseEntry {
+export interface CertificationEntry extends BaseEntry, LinkableEntity {
   date: string;
   skills: string[];
   organizationId: string;
@@ -128,7 +132,8 @@ export type FieldType =
   | 'organization'
   | 'skills'
   | 'url'
-  | 'image';
+  | 'image'
+  | 'imageWithUrl';
 
 export interface FieldDefinition {
   name: string;
@@ -163,7 +168,8 @@ export const entityFields: Record<ResumeDataKeysWithEntries, FieldDefinition[]> 
     { name: 'endDate', label: 'End Date', type: 'date', placeholder: 'Present', grid: true },
     { name: 'organizationId', label: 'Organization', type: 'organization', required: true },
     { name: 'description', label: 'Description', type: 'textarea' },
-    { name: 'skills', label: 'Skills', type: 'skills' }
+    { name: 'skills', label: 'Skills', type: 'skills' },
+    { name: 'link', label: 'Custom Link', type: 'imageWithUrl', placeholder: 'https://...' }
   ],
   education: [
     { name: 'title', label: 'Title', type: 'text', required: true, grid: true },
@@ -172,7 +178,8 @@ export const entityFields: Record<ResumeDataKeysWithEntries, FieldDefinition[]> 
     { name: 'endDate', label: 'End Date', type: 'date', required: true, grid: true },
     { name: 'organizationId', label: 'Organization', type: 'organization', required: true },
     { name: 'description', label: 'Description', type: 'textarea' },
-    { name: 'skills', label: 'Skills', type: 'skills' }
+    { name: 'skills', label: 'Skills', type: 'skills' },
+    { name: 'link', label: 'Custom Link', type: 'imageWithUrl', placeholder: 'https://...' }
   ],
   projects: [
     { name: 'title', label: 'Title', type: 'text', required: true, grid: true },
@@ -189,7 +196,8 @@ export const entityFields: Record<ResumeDataKeysWithEntries, FieldDefinition[]> 
     { name: 'date', label: 'Date', type: 'date', required: true },
     { name: 'organizationId', label: 'Organization', type: 'organization', required: true },
     { name: 'description', label: 'Description', type: 'textarea' },
-    { name: 'skills', label: 'Skills', type: 'skills' }
+    { name: 'skills', label: 'Skills', type: 'skills' },
+    { name: 'link', label: 'Custom Link', type: 'imageWithUrl', placeholder: 'https://...' }
   ],
   organizations: [
     { name: 'title', label: 'Title', type: 'text', required: true, grid: true },
