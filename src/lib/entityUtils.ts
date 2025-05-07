@@ -8,6 +8,7 @@ import {
   Organization,
   AboutEntry,
   ResumeData,
+  entityRelationships,
 } from "@/types/resume";
 
 /**
@@ -146,4 +147,27 @@ export function getEntity(
 
   const entries = data[type].entries;
   return entries.find((entry) => entry.id === id) || null;
+}
+
+/**
+ * Checks if an entity ID is used by other entities
+ * @param data Resume data
+ * @param entityType Type of the entity to check
+ * @param entityId ID of the entity to check
+ * @returns True if the entity is used by other entities, false otherwise
+ */
+export function isUsed(
+  data: ResumeData,
+  entityType: ResumeDataKeysWithEntries,
+  entityId: string
+): boolean {
+  const relationships = entityRelationships[entityType];
+  
+  if (!relationships || relationships.referencedIn.length === 0) {
+    return false;
+  }
+
+  return relationships.referencedIn.some(({ type, field }) => {
+    return data[type].entries.some((entry: any) => entry[field] === entityId);
+  });
 }

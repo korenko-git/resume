@@ -199,3 +199,21 @@ export const entityFields: Record<ResumeDataKeysWithEntries, FieldDefinition[]> 
     { name: 'logo', label: 'Logo', type: 'image' }
   ]
 };
+
+/**
+ * Defines relationships between entity types
+ */
+export const entityRelationships: Record<ResumeDataKeysWithEntries, { referencedIn: Array<{ type: ResumeDataKeysWithEntries, field: string }> }> = {
+  organizations: {
+    referencedIn: [
+      { type: 'experience', field: 'organizationId' },
+      { type: 'education', field: 'organizationId' },
+      { type: 'certifications', field: 'organizationId' }
+    ]
+  },
+  about: { referencedIn: [] },
+  experience: { referencedIn: [] },
+  education: { referencedIn: [] },
+  projects: { referencedIn: [] },
+  certifications: { referencedIn: [] }
+};
