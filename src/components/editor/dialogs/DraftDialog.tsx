@@ -11,7 +11,7 @@ import {
 } from "@/components/common/ui/dialog";
 import { Button } from "@/components/common/ui/button";
 import { useResume } from "@/contexts/ResumeContext";
-import { deepEqual } from "@/lib/utils";
+import { deepEqual, deepMerge } from "@/lib/utils";
 import { resumeSchema } from "@/lib/validationSchemas";
 
 interface DraftDialogProps {
@@ -26,7 +26,7 @@ export function DraftDialog({ onClose }: DraftDialogProps) {
 
   const handleRestoreDraft = () => {
     if (draftData) {
-      setData(draftData);
+      setData(deepMerge(data, draftData));
       setVersion(draftData.about.version);
     }
     setShowDraftDialog(false);
