@@ -1,7 +1,7 @@
 "use client";
 
 import { Eye, Save } from "lucide-react";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/common/ui/button";
 import { Input } from "@/components/common/ui/input";
@@ -14,11 +14,12 @@ import {
   entityFields,
   FieldDefinition,
   ResumeDataKeysWithEntries,
-  ResumeDataWithEntries} from "@/types/resume";
+  ResumeDataWithEntries,
+} from "@/types/resume";
 
 import { DateInput } from "../controls/DateInput";
 import { ImageUpload } from "../controls/ImageUpload";
-import { ImageUrlInput } from '../controls/ImageUrlInput';
+import { ImageUrlInput } from "../controls/ImageUrlInput";
 import { OrganizationSelector } from "../controls/OrganizationSelector";
 import { SkillsInput } from "../controls/SkillsInput";
 import { UrlInput } from "../controls/UrlInput";
@@ -27,9 +28,15 @@ interface EntityFormProps {
   type: ResumeDataKeysWithEntries;
   data: ResumeDataWithEntries;
   onUpdate: (data: ResumeDataWithEntries) => void;
+  hideSubmitButton?: boolean;
 }
 
-export function EntityForm({ type, data, onUpdate }: EntityFormProps) {
+export function EntityForm({
+  type,
+  data,
+  onUpdate,
+  hideSubmitButton = false,
+}: EntityFormProps) {
   const [formData, setFormData] = useState<ResumeDataWithEntries>(data);
   const [isPreviewMode, setIsPreviewMode] = useState(false);
 
@@ -56,64 +63,70 @@ export function EntityForm({ type, data, onUpdate }: EntityFormProps) {
     const value = (formData as any)[name];
 
     switch (type) {
-      case 'text':
+      case "text":
         return (
           <div className="space-y-2">
             <Label htmlFor={name}>{label}</Label>
             <Input
               id={name}
-              value={value || ''}
-              onChange={(e) => handleChange(name as AllEntityFields, e.target.value)}
+              value={value || ""}
+              onChange={(e) =>
+                handleChange(name as AllEntityFields, e.target.value)
+              }
               required={required}
               placeholder={placeholder}
             />
           </div>
         );
-      case 'textarea':
+      case "textarea":
         return (
           <div className="space-y-2">
             <Label htmlFor={name}>{label}</Label>
             <Textarea
               id={name}
-              value={value || ''}
-              onChange={(e) => handleChange(name as AllEntityFields, e.target.value)}
+              value={value || ""}
+              onChange={(e) =>
+                handleChange(name as AllEntityFields, e.target.value)
+              }
               rows={5}
               required={required}
               placeholder={placeholder}
             />
           </div>
         );
-      case 'switch':
+      case "switch":
         return (
           <div className="flex items-center space-x-2 justify-end">
             <Switch
               id={name}
               checked={value || false}
-              onCheckedChange={(checked) => handleChange(name as AllEntityFields, checked)}
+              onCheckedChange={(checked) =>
+                handleChange(name as AllEntityFields, checked)
+              }
             />
             <Label htmlFor={name}>{label}</Label>
           </div>
         );
-      case 'date':
+      case "date":
         return (
           <DateInput
             id={name}
             label={label}
-            value={value || ''}
+            value={value || ""}
             onChange={(value) => handleChange(name as AllEntityFields, value)}
             required={required}
             placeholder={placeholder}
           />
         );
-      case 'organization':
+      case "organization":
         return (
           <OrganizationSelector
-            value={value || ''}
+            value={value || ""}
             onChange={(value) => handleChange(name as AllEntityFields, value)}
             label={label}
           />
         );
-      case 'skills':
+      case "skills":
         return (
           <SkillsInput
             value={value || []}
@@ -121,28 +134,28 @@ export function EntityForm({ type, data, onUpdate }: EntityFormProps) {
             label={label}
           />
         );
-      case 'url':
+      case "url":
         return (
           <UrlInput
             label={label}
-            value={value || ''}
+            value={value || ""}
             onChange={(value) => handleChange(name as AllEntityFields, value)}
             placeholder={placeholder}
           />
         );
-      case 'image':
+      case "image":
         return (
           <ImageUpload
             label={label}
-            value={value || ''}
+            value={value || ""}
             onChange={(value) => handleChange(name as AllEntityFields, value)}
           />
         );
-      case 'imageWithUrl':
+      case "imageWithUrl":
         return (
           <ImageUrlInput
             label={label}
-            value={value || ''}
+            value={value || ""}
             onChange={(value) => handleChange(name as AllEntityFields, value)}
             urlPlaceholder={placeholder}
           />
@@ -161,10 +174,10 @@ export function EntityForm({ type, data, onUpdate }: EntityFormProps) {
           </Button>
         </div>
         <div className="border rounded-lg p-4">
-          <EntryBlock 
-            id={formData.id} 
-            typeData={type} 
-            editable={false} 
+          <EntryBlock
+            id={formData.id}
+            typeData={type}
+            editable={false}
             customData={formData}
           />
         </div>
@@ -174,10 +187,10 @@ export function EntityForm({ type, data, onUpdate }: EntityFormProps) {
 
   // Get fields for the current entity type
   const fields = entityFields[type] || [];
-  
+
   // Group fields by whether they should be in a grid
-  const gridFields = fields.filter(field => field.grid);
-  const normalFields = fields.filter(field => !field.grid);
+  const gridFields = fields.filter((field) => field.grid);
+  const normalFields = fields.filter((field) => !field.grid);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -185,30 +198,28 @@ export function EntityForm({ type, data, onUpdate }: EntityFormProps) {
       {gridFields.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {gridFields.map((field) => (
-            <div key={field.name}>
-              {renderField(field)}
-            </div>
+            <div key={field.name}>{renderField(field)}</div>
           ))}
         </div>
       )}
 
       {/* Render normal fields */}
       {normalFields.map((field) => (
-        <div key={field.name}>
-          {renderField(field)}
-        </div>
+        <div key={field.name}>{renderField(field)}</div>
       ))}
 
-      <div className="flex justify-end gap-2">
-        <Button type="button" variant="outline" onClick={togglePreview}>
-          <Eye className="mr-2 h-4 w-4" />
-          Preview
-        </Button>
-        <Button type="submit">
-          <Save className="mr-2 h-4 w-4" />
-          Save
-        </Button>
-      </div>
+      {!hideSubmitButton && (
+        <div className="flex justify-end gap-2">
+          <Button type="button" variant="outline" onClick={togglePreview}>
+            <Eye className="mr-2 h-4 w-4" />
+            Preview
+          </Button>
+          <Button type="submit">
+            <Save className="mr-2 h-4 w-4" />
+            Save
+          </Button>
+        </div>
+      )}
     </form>
   );
 }
