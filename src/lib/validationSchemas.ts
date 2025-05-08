@@ -33,7 +33,7 @@ const dateRangeEntrySchema = baseEntrySchema.extend({
   startDate: z.string().regex(/^\d{4}-\d{2}$/, 'Date must be in YYYY-MM format'),
   endDate: z.string().regex(/^\d{4}-\d{2}$/, 'Date must be in YYYY-MM format').or(z.string().max(0)),
   organizationId: z.string(),
-  link: z.string().url().optional(),
+  link: z.string().optional(),
 });
 
 /**
