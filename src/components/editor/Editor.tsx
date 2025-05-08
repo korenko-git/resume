@@ -5,6 +5,13 @@ import React, { useState } from "react";
 
 import { Card, CardContent } from "@/components/common/ui/card";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/common/ui/select";
+import {
   Tabs,
   TabsContent,
   TabsList,
@@ -41,7 +48,7 @@ export function Editor() {
   };
 
   const getSelectedEntity = (): ResumeDataWithEntries | null => {
-    return getEntity(data, activeTab, selectedEntityId)
+    return getEntity(data, activeTab, selectedEntityId);
   };
 
   return (
@@ -75,18 +82,30 @@ export function Editor() {
                 >
                   Select section
                 </label>
-                <select
-                  id="section-select"
-                  value={activeTab}
-                  onChange={(e) => handleTabChange(e.target.value)}
-                  className="w-full p-2 border rounded-md"
-                >
-                  {Object.keys(entityMetadata).map((key) => (
-                    <option key={key} value={key}>
-                      {entityMetadata[key as keyof typeof entityMetadata].title}
-                    </option>
-                  ))}
-                </select>
+                <Select value={activeTab} onValueChange={handleTabChange}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select section" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.keys(entityMetadata).map((key) => (
+                      <SelectItem key={key} value={key}>
+                        <span className="flex items-center gap-1.5">
+                          {React.createElement(
+                            entityMetadata[key as keyof typeof entityMetadata]
+                              .icon,
+                            { className: "h-3.5 w-3.5" }
+                          )}
+                          <span>
+                            {
+                              entityMetadata[key as keyof typeof entityMetadata]
+                                .title
+                            }
+                          </span>
+                        </span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <TabsList className="hidden sm:flex sm:flex-wrap sm:gap-1">
