@@ -1,8 +1,7 @@
 "use client";
 
-import ReactMarkdown from "react-markdown";
-
 import Section from "@/components/common/layout/Section";
+import { Description } from "@/components/resume/Entry/Description";
 import { useResume } from "@/contexts/ResumeContext";
 import { getFirstPublishedEntry } from "@/lib/entityUtils";
 import { AboutEntry } from "@/types/resume";
@@ -26,7 +25,7 @@ export function AboutSection({ className }: AboutSectionProps) {
       title="About"
       className={className}
     >
-      <ReactMarkdown>{sectionData.description}</ReactMarkdown>
+       <Description data={sectionData}  />
     </Section>
   );
 }

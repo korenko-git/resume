@@ -1,24 +1,40 @@
 import { LinkIcon } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
+import { cn } from "@/lib/utils";
+
 interface DescriptionProps {
   data: { description: string };
+  className?: string;
+  hrefWithIcon?: boolean;
 }
 
-export function Description({ data }: DescriptionProps) {
+export function Description({
+  data,
+  className,
+  hrefWithIcon,
+}: DescriptionProps) {
   return (
     <ReactMarkdown
       components={{
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        p: ({ node, ...props }) => (
+          <p className={cn("", className)} {...props} />
+        ),
         a: ({ href, children, ...props }) => (
           <a
-            className="relative mt-2 inline-flex items-center text-sm font-medium text-slate-300 hover:text-blue-300 focus-visible:text-blue-300"
+            className={cn(
+              "cursor-pointer hover:text-blue-300 focus-visible:text-blue-300",
+              hrefWithIcon && "relative mt-2 inline-flex items-center",
+              !hrefWithIcon && "border-b border-blue-300"
+            )}
             href={href}
             {...props}
             target="_blank"
             rel="noreferrer noopener"
             aria-label={`${children} (opens in a new tab)`}
           >
-            <LinkIcon className="w-4 h-4 mr-2"/>
+            {hrefWithIcon && <LinkIcon className="w-4 h-4 mr-2" />}
             <span>{children}</span>
           </a>
         ),
