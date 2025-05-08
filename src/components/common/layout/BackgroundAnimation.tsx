@@ -84,7 +84,7 @@ export default function Starfield() {
   }, [])
 
   return (
-    <>
+    <div className="fixed inset-0 pointer-events-none overflow-hidden">
       <div id="stars" className="absolute w-[1px] h-[1px] animate-star" />
       <div id="stars-after" className="absolute w-[1px] h-[1px] animate-star" style={{ top: '100%' }} />
 
@@ -93,6 +93,6 @@ export default function Starfield() {
 
       <div id="stars3" className="absolute w-[3px] h-[3px] animate-star" />
       <div id="stars3-after" className="absolute w-[3px] h-[3px] animate-star" style={{ top: '100%' }} />
-    </>
+    </div>
   )
 }
