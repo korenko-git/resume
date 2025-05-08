@@ -2,7 +2,7 @@
 
 I’m an experienced full stack engineer specializing in scalable web applications. I primarily focus on TypeScript-based full-stack projects (Nest.js, React, Next.js).
 
-Currently, I'm a Lead Front-End Engineer at Roll’n’Code. I contribute to the creation and maintenance of UI components that power EGW Writings frontend, ensuring our platform meets web accessibility standards and best practices.
+Currently, I'm a Lead Front-End Engineer at [Roll’n’Code](https://rollncode.com/). I contribute to the creation and maintenance of UI components that power [EGW Writings](https://egwwritings.org/). frontend, ensuring our platform meets web accessibility standards and best practices.
 
 Check out my portfolio and let's build something amazing together!
 
@@ -29,26 +29,33 @@ Contributed into development of custom CRM system for a leading gas delivery com
 
 Skills: React, PHP, Python, Laravel, Django, jQuery, MySQL, WordPress, ReactNative
 
+### Full - Stack Developer
+Freelancehunt | 2017-01 - 2019-12
+
+Successfully completed over 30+ projects while working with a range of large and small agencies, start-ups and individuals.
+
+Skills: PHP, Laravel, jQuery, MySQL, HTML&SCSS
+
 ## Education
 
-### Master of Computer Science
-Stanford University | 2017-09 - 2019-06
+### Master's degree in Software Engineering
+Kryvyi Rih National University | 2016-05 - 2018-06
 
-Advanced studies in distributed systems and cloud computing
+Focused on advanced computer science concepts, specializing in machine learning, artificial intelligence, and cloud computing. Worked on various research projects involving neural networks and data-driven applications.
 
-Skills: AWS, Node.js, Docker, Kubernetes, Terraform, Python, Microservices, CI/CD, MongoDB, Redis, ELK Stack, Prometheus, Grafana
+Skills: Python, Data_Analysis, Cloud_Computing, Machine_Learning, OpenCV
 
-### Bachelor of Information Technology
-Massachusetts Institute of Technology | 2013-09 - 2017-06
+### Bachelor's degree in Software Engineering
+Kryvyi Rih National University | 2012-01 - 2016-06
 
-Focus on software engineering and web technologies
+Gained a strong foundation in software development, networking, and database management. Developed projects in web and mobile applications, and learned to implement full-stack solutions.
 
-Skills: AWS, Node.js, Docker, Kubernetes, Terraform, Python, Microservices, CI/CD, MongoDB, Redis, ELK Stack, Prometheus, Grafana
+Skills: JavaScript, PHP, Web_Development, Mobile_Development, Database_Management, C#, Network, programming, Desktop_programming
 
 ## Certificates
 
-- AWS Certified Developer (Amazon Web Services) - 2023-01
-- React Advanced (Meta) - 2022-06
+- AWS Certified Developer () - 2023-01
+- React Advanced () - 2022-06
 
 ## Projects
 
