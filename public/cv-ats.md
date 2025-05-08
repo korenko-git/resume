@@ -54,7 +54,7 @@ Skills: JavaScript, PHP, Web_Development, Mobile_Development, Database_Managemen
 
 ## Certificates
 
-- AWS Certified Developer () - 2023-01
+- NestJS Zero to Hero (Udemy) - 2025-02
 - React Advanced () - 2022-06
 
 ## Projects
