@@ -31,6 +31,13 @@
       "isPublished": false,
       "logo": "images/organization-org-macmbiyb-logo.png",
       "url": "https://www.knu.edu.ua/en"
+    },
+    {
+      "id": "org-mafk14z7",
+      "title": "Udemy",
+      "description": "Description",
+      "logo": "images/organization-org-mafk14z7-logo.png",
+      "url": "https://www.udemy.com/"
     }
   ]
 }

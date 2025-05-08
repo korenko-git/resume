@@ -2,26 +2,18 @@
   "entries": [
     {
       "id": "cert-1",
-      "title": "AWS Certified Developer",
-      "description": "Professional level certification for developing on AWS platform",
+      "title": "NestJS Zero to Hero",
+      "description": "A complete course on modern Backend on NodeJS, TypeScript and MongoDB using best practices and the NestJS framework.",
       "isPublished": true,
-      "date": "2023-01",
+      "date": "2025-02",
       "skills": [
-        "AWS",
+        "TypeScript",
+        "Nest.js",
         "Node.js",
-        "Docker",
-        "Kubernetes",
-        "Terraform",
-        "Python",
-        "Microservices",
-        "CI/CD",
-        "MongoDB",
-        "Redis",
-        "ELK Stack",
-        "Prometheus",
-        "Grafana"
+        "MongoDB"
       ],
-      "organizationId": "aws"
+      "organizationId": "org-mafk14z7",
+      "link": "https://www.udemy.com/certificate/UC-4b67c1a2-cd40-43fa-89f9-85b014677b19/"
     },
     {
       "id": "cert-2",
