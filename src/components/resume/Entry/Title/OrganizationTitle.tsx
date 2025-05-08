@@ -29,7 +29,7 @@ export function OrganizationTitle({ data }: OrganizationTitleProps) {
     <>
       <div className="flex-shrink-0 relative">
         <img
-          className="w-10 h-10 rounded bg-neutral-400/10 lg:grayscale lg:group-hover:grayscale-0"
+          className="w-10 h-10 rounded bg-white lg:grayscale lg:group-hover:grayscale-0"
           src={getAssetPath(organization.logo)}
           alt={`${organization.title} logo`}
           onError={(e) => {
