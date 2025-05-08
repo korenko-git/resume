@@ -2,53 +2,41 @@
   "entries": [
     {
       "id": "edu-1",
-      "title": "Master of Computer Science",
-      "description": "Advanced studies in distributed systems and cloud computing",
+      "title": "Master's degree in Software Engineering",
+      "description": "Focused on advanced computer science concepts, specializing in machine learning, artificial intelligence, and cloud computing. Worked on various research projects involving neural networks and data-driven applications.",
       "isPublished": true,
-      "startDate": "2017-09",
-      "endDate": "2019-06",
+      "startDate": "2016-05",
+      "endDate": "2018-06",
       "skills": [
-        "AWS",
-        "Node.js",
-        "Docker",
-        "Kubernetes",
-        "Terraform",
         "Python",
-        "Microservices",
-        "CI/CD",
-        "MongoDB",
-        "Redis",
-        "ELK Stack",
-        "Prometheus",
-        "Grafana"
+        "Data_Analysis",
+        "Cloud_Computing",
+        "Machine_Learning",
+        "OpenCV"
       ],
-      "organizationId": "stanford",
-      "link": ""
+      "organizationId": "org-macmbiyb",
+      "link": "images/education-edu-1-link.png"
     },
     {
       "id": "edu-2",
-      "title": "Bachelor of Information Technology",
-      "description": "Focus on software engineering and web technologies",
+      "title": "Bachelor's degree in Software Engineering",
+      "description": "Gained a strong foundation in software development, networking, and database management. Developed projects in web and mobile applications, and learned to implement full-stack solutions.",
       "isPublished": true,
-      "startDate": "2013-09",
-      "endDate": "2017-06",
+      "startDate": "2012-01",
+      "endDate": "2016-06",
       "skills": [
-        "AWS",
-        "Node.js",
-        "Docker",
-        "Kubernetes",
-        "Terraform",
-        "Python",
-        "Microservices",
-        "CI/CD",
-        "MongoDB",
-        "Redis",
-        "ELK Stack",
-        "Prometheus",
-        "Grafana"
+        "JavaScript",
+        "PHP",
+        "Web_Development",
+        "Mobile_Development",
+        "Database_Management",
+        "C#",
+        "Network",
+        "programming",
+        "Desktop_programming"
       ],
-      "organizationId": "mit",
-      "link": ""
+      "organizationId": "org-macmbiyb",
+      "link": "images/education-edu-2-link.png"
     }
   ]
 }
