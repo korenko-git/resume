@@ -1,34 +1,6 @@
 {
   "entries": [
     {
-      "id": "stanford",
-      "title": "Stanford University",
-      "description": "One of the world's leading research universities, known for its academic strength, wealth, proximity to Silicon Valley, and ranking as one of the world's most prestigious institutions",
-      "url": "https://stanford.edu",
-      "logo": "/images/stanford-logo.png"
-    },
-    {
-      "id": "mit",
-      "title": "Massachusetts Institute of Technology",
-      "description": "A private land-grant research university in Cambridge, Massachusetts. Established in 1861, MIT has played a key role in the development of modern technology and science",
-      "url": "https://mit.edu",
-      "logo": "/images/mit-logo.png"
-    },
-    {
-      "id": "aws",
-      "title": "Amazon Web Services",
-      "description": "Leading cloud platform offering over 200 fully featured services from data centers globally",
-      "url": "https://aws.amazon.com",
-      "logo": "/images/aws-logo.png"
-    },
-    {
-      "id": "meta",
-      "title": "Meta",
-      "description": "Technology company known for developing React and other open source tools, as well as social platforms",
-      "url": "https://meta.com",
-      "logo": "/images/meta-logo.png"
-    },
-    {
       "id": "org-mac9psu1",
       "title": "Roll’n’Code",
       "description": "Description",
@@ -43,6 +15,22 @@
       "isPublished": false,
       "logo": "images/organization-org-mace9hb4-logo.png",
       "url": "https://krgaz.naftogaz.com/"
+    },
+    {
+      "id": "org-macm8hcq",
+      "title": "Freelancehunt",
+      "description": "Description",
+      "isPublished": false,
+      "logo": "images/organization-org-macm8hcq-logo.png",
+      "url": "https://freelancehunt.com/en"
+    },
+    {
+      "id": "org-macmbiyb",
+      "title": "Kryvyi Rih National University",
+      "description": "Master's degree in Software Engineering",
+      "isPublished": false,
+      "logo": "images/organization-org-macmbiyb-logo.png",
+      "url": "https://www.knu.edu.ua/en"
     }
   ]
 }

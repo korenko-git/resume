@@ -18,8 +18,7 @@
         "GraphQL",
         "Selenium"
       ],
-      "organizationId": "org-mac9psu1",
-      "link": ""
+      "organizationId": "org-mac9psu1"
     },
     {
       "id": "exp-2",
@@ -39,8 +38,23 @@
         "WordPress",
         "ReactNative"
       ],
-      "organizationId": "org-mace9hb4",
-      "link": ""
+      "organizationId": "org-mace9hb4"
+    },
+    {
+      "id": "exp-macm8fhc",
+      "title": "Full - Stack Developer",
+      "description": "Successfully completed over 30+ projects while working with a range of large and small agencies, start-ups and individuals.",
+      "isPublished": true,
+      "startDate": "2017-01",
+      "endDate": "2019-12",
+      "skills": [
+        "PHP",
+        "Laravel",
+        "jQuery",
+        "MySQL",
+        "HTML&SCSS"
+      ],
+      "organizationId": "org-macm8hcq"
     }
   ]
 }

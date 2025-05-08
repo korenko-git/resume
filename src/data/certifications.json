@@ -21,8 +21,7 @@
         "Prometheus",
         "Grafana"
       ],
-      "organizationId": "aws",
-      "link": ""
+      "organizationId": "aws"
     },
     {
       "id": "cert-2",
@@ -45,8 +44,7 @@
         "Prometheus",
         "Grafana"
       ],
-      "organizationId": "meta",
-      "link": ""
+      "organizationId": "meta"
     }
   ]
 }
