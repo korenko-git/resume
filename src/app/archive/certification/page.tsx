@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 
-import OutlineLinkButton from "@/components/common/ui/OutlineLinkButton";
+import { OutlineLinkButton } from "@/components/common/ui/OutlineLinkButton";
 import { ResumeSections } from "@/components/resume/sections/ResumeSections";
+import { getResume } from "@/lib/getResume";
 
 export const metadata: Metadata = {
   title: "Certification Archive",
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default function CertificationArchivePage() {
+  const data = getResume();
+
   return (
     <div className="lg:py-24">
       <OutlineLinkButton href="/" isLeftArrow>
@@ -19,7 +22,11 @@ export default function CertificationArchivePage() {
         All Certifications
       </h1>
 
-      <ResumeSections sections={["certifications"]} includeUnpublished={true} />
+      <ResumeSections
+        data={data}
+        sections={["certifications"]}
+        includeUnpublished={true}
+      />
     </div>
   );
 }

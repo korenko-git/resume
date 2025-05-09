@@ -1,30 +1,57 @@
 import type { Metadata } from "next";
 
-import HomeContent from "@/components/pages/HomeContent";
-import aboutData from "@/data/about.json";
+import { Navigation } from "@/components/common/layout/Navigation";
+import { AboutSection } from "@/components/resume/sections/AboutSection";
+import { Person } from "@/components/resume/sections/Person";
+import { ResumeSections } from "@/components/resume/sections/ResumeSections";
+import { SocialLinks } from "@/components/resume/sections/SocialLinks";
 import { getFirstPublishedEntry } from "@/lib/entityUtils";
+import { getResume } from "@/lib/getResume";
+import { AboutEntry } from "@/types/resume";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const person = getFirstPublishedEntry(aboutData?.entries)
-  if (!aboutData || !person) {
+  const data = getResume();
+  const person = getFirstPublishedEntry(data.about.entries);
+
+  if (!person) {
     return {
       title: "Online Resume",
       description: "Professional resume with editing capabilities",
     };
   }
-  
+
   const { title, subtitle, description } = person;
-  
+
   return {
     title: `${title} - ${subtitle}`,
     description: description || "Professional resume with editing capabilities",
     openGraph: {
       title: `${title} - ${subtitle}`,
-      description: description || "Professional resume with editing capabilities",
+      description:
+        description || "Professional resume with editing capabilities",
     },
   };
 }
 
 export default function Home() {
-  return <HomeContent />;
+  const data = getResume();
+  const about = getFirstPublishedEntry<AboutEntry>(data["about"].entries);
+
+  return (
+    <div className="lg:flex lg:justify-between lg:gap-4">
+      <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24 text-center lg:text-left">
+        <div>
+          <Person sectionData={about} />
+          <Navigation />
+        </div>
+
+        <SocialLinks sectionData={about} />
+      </header>
+
+      <main id="content" className="pt-24 lg:w-1/2 lg:py-24">
+        <AboutSection sectionData={about} />
+        <ResumeSections data={data} />
+      </main>
+    </div>
+  );
 }

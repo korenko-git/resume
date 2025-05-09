@@ -1,19 +1,14 @@
-"use client";
-
-import { Code2,Github, Linkedin } from "lucide-react";
+import { Code2, Github, Linkedin } from "lucide-react";
 
 import { IconLink } from "@/components/common/ui/IconLink";
-import { useResume } from "@/contexts/ResumeContext";
-import { getFirstPublishedEntry } from "@/lib/entityUtils";
 import { AboutEntry } from "@/types/resume";
 
-export default function SocialLinks() {
-  const { data } = useResume();
-  const sectionData = getFirstPublishedEntry<AboutEntry>(data["about"].entries);
+interface SocialLinksProps {
+  sectionData?: AboutEntry;
+}
 
-  if (!sectionData) {
-    return null;
-  }
+export function SocialLinks({ sectionData }: SocialLinksProps) {
+  if (!sectionData) return null;
 
   const socialLinks = [
     {

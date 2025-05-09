@@ -8,7 +8,7 @@ import { Input } from "@/components/common/ui/input";
 import { Label } from "@/components/common/ui/label";
 import { Switch } from "@/components/common/ui/switch";
 import { Textarea } from "@/components/common/ui/textarea";
-import EntryBlock from "@/components/resume/Entry";
+import { EntryBlock } from "@/components/resume/Entry";
 import {
   AllEntityFields,
   entityFields,
@@ -49,12 +49,12 @@ export function EntityForm({
   const handleChange = (field: AllEntityFields, value: any) => {
     const updatedData = { ...formData, [field]: value };
     setFormData(updatedData);
-    onChange && onChange(updatedData);
+    if (onChange) onChange(updatedData);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onUpdate && onUpdate(formData);
+    if (onUpdate) onUpdate(formData);
   };
 
   const togglePreview = () => {
@@ -178,12 +178,7 @@ export function EntityForm({
           </Button>
         </div>
         <div className="border rounded-lg p-4">
-          <EntryBlock
-            id={formData.id}
-            typeData={type}
-            editable={false}
-            customData={formData}
-          />
+          <EntryBlock entryData={formData} />
         </div>
       </div>
     );
