@@ -69,7 +69,7 @@ export function EntityForm({
     switch (type) {
       case "text":
         return (
-          <div className="space-y-2">
+          <div className="space-y-2 form-field">
             <Label htmlFor={name}>{label}</Label>
             <Input
               id={name}
@@ -100,7 +100,7 @@ export function EntityForm({
         );
       case "switch":
         return (
-          <div className="flex items-center space-x-2 justify-end">
+          <div className="flex items-center space-x-2 justify-end form-field published-toggle">
             <Switch
               id={name}
               checked={value || false}
@@ -209,11 +209,11 @@ export function EntityForm({
 
       {!hideSubmitButton && (
         <div className="flex justify-end gap-2">
-          <Button type="button" variant="outline" onClick={togglePreview}>
+          <Button type="button" variant="outline" onClick={togglePreview} className="preview-button">
             <Eye className="mr-2 h-4 w-4" />
             Preview
           </Button>
-          <Button type="submit">
+          <Button type="submit" className="save-button">
             <Save className="mr-2 h-4 w-4" />
             Save
           </Button>

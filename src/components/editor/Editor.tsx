@@ -63,7 +63,7 @@ export function Editor() {
             <div className="mb-4">
               <button
                 onClick={handleBackToList}
-                className="cursor-pointer inline-flex items-center font-medium leading-tight text-slate-700 dark:text-slate-50 group"
+                className="cursor-pointer inline-flex items-center font-medium leading-tight text-slate-700 dark:text-slate-50 group back-button"
               >
                 <span className="whitespace-nowrap">
                   <ArrowLeft className="mr-1 h-4 w-4 transition-transform group-hover:-translate-x-2" />
@@ -108,7 +108,7 @@ export function Editor() {
                 </Select>
               </div>
 
-              <TabsList className="hidden sm:flex sm:flex-wrap sm:gap-1">
+              <TabsList className="hidden sm:flex sm:flex-wrap sm:gap-1 editor-tabs">
                 {Object.keys(entityMetadata).map((key) => (
                   <TabsTrigger
                     key={key}

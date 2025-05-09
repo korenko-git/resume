@@ -1,102 +1,118 @@
-'use client';
+"use client";
 
-import { useTheme } from 'next-themes';
-import Joyride, { Step } from 'react-joyride';
+import { useTheme } from "next-themes";
+import { useState } from "react";
+import Joyride, { Step } from "react-joyride";
 
-interface WelcomeTourProps {
-  run: boolean;
-  onFinish: () => void;
-}
+import { Button } from "@/components/common/ui/button";
 
 const steps: Step[] = [
   {
-    target: '.resume-editor-header',
-    content: 'Welcome to Resume Editor! Here you can manage and customize your resume.',
-    disableBeacon: true
+    target: "body",
+    placement: "center",
+    content: "Welcome to the resume editor! Let's explore the main features.",
+    disableBeacon: true,
   },
   {
-    target: '.view-button',
-    content: 'Switch to view mode to see how your resume looks to others'
+    target: ".editor-tabs",
+    content:
+      "Here you can switch between different sections of your resume: personal information, work experience, education, etc.",
   },
   {
-    target: '.editable-header',
-    content: 'Click on any section to start editing. You can modify titles, dates, and links'
+    target: ".entity-list",
+    content:
+      "This list displays all entries in the selected section. Click on any entry to edit it.",
   },
   {
-    target: '.editable-content',
-    content: 'Edit descriptions using Markdown formatting for rich text'
+    target: ".add-entity-button",
+    content: "Click here to add a new entry to the current section.",
   },
   {
-    target: '.skills-section',
-    content: 'Manage your skills - add new ones, drag to reorder, or remove them'
+    target: ".entity-card",
+    content:
+      "Each card represents a separate entry. You can see basic information and publication status.",
   },
   {
-    target: '.social-links',
-    content: 'Add your social media profiles and contact information'
+    target: ".edit-button",
+    content: "Click the edit button to modify an entry.",
   },
   {
-    target: '.swtich-publish',
-    content: 'Use the toggle switch to control section visibility in the public resume'
+    target: ".delete-button",
+    content:
+      "Use this button to delete an entry. Be careful - this action cannot be undone!",
   },
   {
-    target: '.save-cancel-buttons',
-    content: 'After making changes, click "Save" to apply them or "Cancel" to discard',    
-    placement: 'left',
+    target: ".form-field",
+    content:
+      "In edit mode, you can modify all fields of an entry. Markdown formatting is supported for descriptions.",
   },
   {
-    target: '.add-work',
-    content: 'Click here to add a new work experience entry to your resume'
+    target: ".preview-button",
+    content: "Click here to see how the entry will appear in your resume.",
   },
   {
-    target: '.download-button',
-    content: 'Download your resume changes as a ZIP file. Upload that archive to the `/updates` folder via GitHub PR'
+    target: ".save-button",
+    content: 'After making changes, click "Save" to apply them.',
   },
   {
-    target: 'body',
-    placement: 'center',
-    content: 'You are now ready to start editing your resume! Feel free to explore and customize each section to showcase your experience and skills.'
-  }
+    target: ".back-button",
+    content: "Use this button to return to the list of entries.",
+  },
+  {
+    target: ".published-toggle",
+    content:
+      "Toggle the visibility of an entry in the public resume using this switch.",
+  },
+  {
+    target: ".download-button",
+    content:
+      "Download your resume changes as a ZIP file. You can upload this archive to the `/updates` folder via GitHub PR to update your resume.",
+  },
+  {
+    target: "body",
+    placement: "center",
+    content:
+      "Now you're ready to edit your resume! Explore different sections and customize them to your needs.",
+  },
 ];
 
-export function WelcomeTour({ run, onFinish }: WelcomeTourProps) {
+export function WelcomeTour() {
   const { theme } = useTheme();
-  const isDark = theme === 'dark';
+  const [runTour, setRunTour] = useState(false);
+  const isDark = theme === "dark";
 
   const joyrideStyles = {
     options: {
-      arrowColor: isDark ? '#333' : '#fff',
-      backgroundColor: isDark ? '#333' : '#fff',
-      overlayColor: isDark ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)',
-      primaryColor: isDark ? '#fff' : '#000',
-      textColor: isDark ? '#fff' : '#000',
-      spotlightShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
+      arrowColor: isDark ? "#333" : "#fff",
+      backgroundColor: isDark ? "#333" : "#fff",
+      overlayColor: isDark ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.5)",
+      primaryColor: isDark ? "#3b82f6" : "#2563eb",
+      textColor: isDark ? "#fff" : "#000",
+      spotlightShadow: "0 0 15px rgba(0, 0, 0, 0.5)",
+      zIndex: 1000,
     },
   };
 
   return (
-    <Joyride
-      steps={steps}
-      run={run}
-      continuous
-      showSkipButton
-      styles={joyrideStyles}
-      callback={(data) => {
-        const { index, type, status } = data;
+    <>
+      <Button variant="ghost" onClick={() => setRunTour(true)}>
+        Show Tutorial
+      </Button>
 
-        if (type === "step:after" && index === 2) {
-          document.querySelectorAll(".editable-header").forEach((header) => {
-            (header as HTMLElement).click();
-          });
-        }
+      <Joyride
+        steps={steps}
+        run={runTour}
+        continuous
+        showSkipButton
+        styles={joyrideStyles}
+        callback={(data) => {
+          const { status } = data;
 
-        if (status === 'finished' || status === 'skipped') {
-          document.querySelectorAll(".cancel-button").forEach((cancel) => {
-            (cancel as HTMLElement).click();
-          });
-
-          onFinish();
-        }
-      }}
-    />
+          if (status === "finished" || status === "skipped") {
+            setRunTour(false);
+          }
+        }}
+      />
+    </>
   );
 }
