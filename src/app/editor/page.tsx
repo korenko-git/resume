@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import EditorContent from "@/components/pages/EditorContent";
+import EditorContent from "./EditorContent";
 
 export const metadata: Metadata = {
   title: "Resume Editor",
