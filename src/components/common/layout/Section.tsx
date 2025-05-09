@@ -9,7 +9,7 @@ interface SectionProps extends ComponentProps<"section"> {
   children: ReactNode;
 }
 
-export default function Section({ 
+export function Section({ 
   title, 
   children, 
   hideHeadingOnDesktop = true, 

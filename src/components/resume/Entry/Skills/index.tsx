@@ -2,7 +2,7 @@ interface SkillsProps {
   data: any;
 }
 
-export default function Skills({ data }: SkillsProps) {
+export function Skills({ data }: SkillsProps) {
   if (!data.skills || data.skills.length === 0) {
     return null;
   }

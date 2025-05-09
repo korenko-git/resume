@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 const MENU = ["about", "experience", "education", "projects", "certifications"];
 
-export default function Navigation({ }) {
+export function Navigation({ }) {
   useEffect(() => {
     const menu = document.querySelector(".nav");
     if (!menu || window.innerWidth < 1024) return;
