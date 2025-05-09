@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 
-import OutlineLinkButton from "@/components/common/ui/OutlineLinkButton";
+import { OutlineLinkButton } from "@/components/common/ui/OutlineLinkButton";
 import { ResumeSections } from "@/components/resume/sections/ResumeSections";
+import { getResume } from "@/lib/getResume";
 
 export const metadata: Metadata = {
   title: "Project Archive",
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectArchivePage() {
+  const data = getResume();
+
   return (
     <div className="lg:py-24">
       <OutlineLinkButton href="/" isLeftArrow>
@@ -19,7 +22,11 @@ export default function ProjectArchivePage() {
         All Projects
       </h1>
 
-      <ResumeSections sections={["projects"]} includeUnpublished={true} />
+      <ResumeSections
+        data={data}
+        sections={["projects"]}
+        includeUnpublished={true}
+      />
     </div>
   );
 }

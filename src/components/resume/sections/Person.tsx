@@ -1,14 +1,11 @@
-'use client';
-
 import { IconLink } from "@/components/common/ui/IconLink";
-import { useResume } from "@/contexts/ResumeContext";
-import { getFirstPublishedEntry } from "@/lib/entityUtils";
 import { AboutEntry } from "@/types/resume";
 
-export default function Person() {
-  const { data } = useResume();
-  const sectionData = getFirstPublishedEntry<AboutEntry>(data["about"].entries);
+interface PersonProps {
+  sectionData?: AboutEntry;
+}
 
+export function Person({ sectionData }: PersonProps) {
   if (!sectionData) {
     return null;
   }

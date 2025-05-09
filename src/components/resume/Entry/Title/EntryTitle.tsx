@@ -1,9 +1,11 @@
+import { Organization } from "@/types/resume";
+
 import { OrganizationTitle } from "./OrganizationTitle";
 import { ProjectTitle } from "./ProjectTitle";
 
 interface EntryTitleProps {
   data: {
-    organizationId?: string;
+    organization?: Organization;
     title?: string;
     source?: string;
     demo?: string;
@@ -11,7 +13,7 @@ interface EntryTitleProps {
   };
 }
 
-export default function EntryTitle({ data }: EntryTitleProps) {
+export function EntryTitle({ data }: EntryTitleProps) {
   const hasOrganization = "organizationId" in data;
   const hasProjectLinks = "source" in data || "demo" in data;
 
@@ -19,7 +21,9 @@ export default function EntryTitle({ data }: EntryTitleProps) {
     <div className="flex gap-x-2 items-center">
       {hasOrganization && (
         <OrganizationTitle
-          data={data as { organizationId: string; title: string }}
+          organization={data.organization}
+          title={data.title}
+          titleLink={data.link}
         />
       )}
       {hasProjectLinks && (

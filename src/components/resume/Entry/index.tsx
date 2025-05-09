@@ -1,32 +1,16 @@
-import { useResume } from "@/contexts/ResumeContext";
-import { getEntity } from "@/lib/entityUtils";
 import { cn } from "@/lib/utils";
-import {
-  ResumeDataKeysWithEntries,
-  ResumeDataWithEntries,
-} from "@/types/resume";
+import { ResumeDataWithEntries } from "@/types/resume";
 
 import { Description } from "./Description";
-import EntryHeader from "./Header/EntryHeader";
-import Skills from "./Skills";
-import EntryTitle from "./Title/EntryTitle";
+import { EntryHeader } from "./Header/EntryHeader";
+import { Skills } from "./Skills";
+import { EntryTitle } from "./Title/EntryTitle";
 
 interface EntryBlockProps {
-  id: string;
-  typeData: ResumeDataKeysWithEntries;
-  editable?: boolean;
-  customData?: ResumeDataWithEntries;
+  entryData: ResumeDataWithEntries | null;
 }
 
-export default function EntryBlock({
-  id,
-  typeData,
-  customData,
-}: EntryBlockProps) {
-  const { data: hookData } = useResume();
-
-  const entryData = customData || getEntity(hookData, typeData, id);
-
+export function EntryBlock({ entryData }: EntryBlockProps) {
   if (!entryData) return null;
 
   return (

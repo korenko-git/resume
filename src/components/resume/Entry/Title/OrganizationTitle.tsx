@@ -1,53 +1,43 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
-import { useResume } from "@/contexts/ResumeContext";
-import { getAssetPath } from "@/lib/assetPath";
 import { Organization } from "@/types/resume";
 
+import { OrganizationLogo } from "./OrganizationLogo";
+
 interface OrganizationTitleProps {
-  data: { 
-    organizationId: string; 
-    title: string;
-    link?: string;
-  };
+  organization: Organization | undefined;
+  titleLink?: string;
+  title?: string;
 }
 
-export function OrganizationTitle({ data }: OrganizationTitleProps) {
-  const { organizations } = useResume();
-  const organization: Organization | undefined = organizations.find(
-    (org) => org.id === data.organizationId
-  );
+export function OrganizationTitle({
+  organization,
+  titleLink,
+  title,
+}: OrganizationTitleProps) {
+  if (!organization) return null;
 
-  if (!organization) {
-    return null;
-  }
-
-  const linkUrl = data.link || organization.url;
+  const linkUrl = titleLink || organization.url;
 
   return (
     <>
       <div className="flex-shrink-0 relative">
-        <img
-          className="w-10 h-10 rounded bg-white lg:grayscale lg:group-hover:grayscale-0"
-          src={getAssetPath(organization.logo)}
-          alt={`${organization.title} logo`}
-          onError={(e) => {
-            e.currentTarget.src = getAssetPath("/images/placeholder-logo.png");
-            e.currentTarget.onerror = null;
-          }}
+        <OrganizationLogo 
+          logo={organization.logo} 
+          title={organization.title} 
         />
       </div>
       <div className="flex flex-col">
         <h3 className="font-medium leading-snug text-slate-700 dark:text-slate-50">
-          {data.title}
+          {title}
         </h3>
         <Link
           className="inline-flex items-baseline font-medium leading-tight text-slate-700 hover:text-blue-600 focus-visible:text-blue-600 dark:text-slate-50 dark:hover:text-blue-200 group/link text-base"
           href={linkUrl}
           target="_blank"
           rel="noreferrer noopener"
-          aria-label={`${data.title} at ${organization.title} (opens in a new tab)`}
+          aria-label={`${title} at ${organization.title} (opens in a new tab)`}
         >
           <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
 

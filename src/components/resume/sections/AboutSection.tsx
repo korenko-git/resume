@@ -1,18 +1,13 @@
-"use client";
-
-import Section from "@/components/common/layout/Section";
+import { Section } from "@/components/common/layout/Section";
 import { Description } from "@/components/resume/Entry/Description";
-import { useResume } from "@/contexts/ResumeContext";
-import { getFirstPublishedEntry } from "@/lib/entityUtils";
 import { AboutEntry } from "@/types/resume";
 
 interface AboutSectionProps {
+  sectionData?: AboutEntry;
   className?: string;
 }
 
-export function AboutSection({ className }: AboutSectionProps) {
-  const { data } = useResume();
-  const sectionData = getFirstPublishedEntry<AboutEntry>(data["about"].entries);
+export function AboutSection({ className, sectionData }: AboutSectionProps) {
 
   if (!sectionData) {
     return null;
@@ -25,7 +20,7 @@ export function AboutSection({ className }: AboutSectionProps) {
       title="About"
       className={className}
     >
-       <Description data={sectionData}  />
+      <Description data={sectionData} />
     </Section>
   );
 }

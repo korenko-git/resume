@@ -2,16 +2,17 @@ import { getAssetPath } from "@/lib/assetPath";
 
 interface ImageHeaderProps {
   className: string;
-  data: { title: string; image: string };
+  title?: string;
+  image?: string;
 }
 
-export function ImageHeader({ className, data }: ImageHeaderProps) {
+export function ImageHeader({ className, title, image }: ImageHeaderProps) {
   return (
-    <header className={className} aria-label={data.title}>
-      {data.image && (
+    <header className={className} aria-label={title}>
+      {image && (
         <img
-          src={getAssetPath(data.image)}
-          alt={data.title}
+          src={getAssetPath(image)}
+          alt={title}
           loading="lazy"
           width="200"
           height="48"
