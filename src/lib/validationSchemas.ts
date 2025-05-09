@@ -1,6 +1,11 @@
 import { z } from 'zod';
 
 /**
+ * Common schema for URL fields that accepts valid URLs or empty strings
+ */
+const urlSchema = z.union([z.string().url(), z.string().max(0)]);
+
+/**
  * Base schema for resume entries with common fields
  */
 const baseEntrySchema = z.object({
@@ -16,9 +21,9 @@ const baseEntrySchema = z.object({
  */
 const aboutEntrySchema = baseEntrySchema.extend({
   subtitle: z.string(),
-  github: z.string().url().optional(),
-  linkedin: z.string().url().optional(),
-  leetcode: z.string().url().optional(),
+  github: urlSchema.optional(),
+  linkedin: urlSchema.optional(),
+  leetcode: urlSchema.optional(),
   email: z.string().email(),
 });
 
@@ -56,8 +61,8 @@ export const educationSchema = z.object({
  * Schema for project entries
  */
 export const projectEntrySchema = baseEntrySchema.extend({
-  source: z.string().url().optional(),
-  demo: z.string().url().optional(),
+  source: urlSchema.optional(),
+  demo: urlSchema.optional(),
 });
 export const projectsSchema = z.object({
   entries: z.array(projectEntrySchema),
@@ -69,7 +74,7 @@ export const projectsSchema = z.object({
 export const certificationEntrySchema = baseEntrySchema.extend({
   date: z.string().regex(/^\d{4}-\d{2}$/, 'Date must be in YYYY-MM format'),
   organizationId: z.string(),
-  link: z.string().url().optional(),
+  link: urlSchema.optional(),
 });
 export const certificationsSchema = z.object({
   entries: z.array(certificationEntrySchema),
@@ -81,7 +86,7 @@ export const certificationsSchema = z.object({
 export const organizationEntrySchema = z.object({
   id: z.string(),
   title: z.string(),
-  url: z.string().url().optional(),
+  url: urlSchema.optional(),
   logo: z.string().optional(),
 });
 export const organizationsSchema = z.object({
