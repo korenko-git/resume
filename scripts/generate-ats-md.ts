@@ -22,7 +22,9 @@ async function generateATSMarkdown() {
     }
 
     // Creating ATS-optimized text
-    let atsContent = `# ${about.title} - ${about.subtitle}\n\n`;
+    let atsContent = "";
+    atsContent += `# ${about.title}\n\n`;
+    atsContent += `#### ${about.subtitle}\n\n`;
     atsContent += `${about.description}\n\n`;
     
     if (about.email) {
