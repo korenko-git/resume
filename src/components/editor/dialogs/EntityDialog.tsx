@@ -57,7 +57,7 @@ export function EntityDialog({
           <EntityForm
             type={entityType}
             data={entity}
-            onUpdate={handleUpdate}
+            onChange={handleUpdate}
             hideSubmitButton
           />
         </div>

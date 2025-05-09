@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { Button } from "@/components/common/ui/button";
 import { Label } from "@/components/common/ui/label";
@@ -30,23 +30,25 @@ export function OrganizationSelector({
   className,
 }: OrganizationSelectorProps) {
   const { data, updateData } = useResume();
-  const [organizations, setOrganizations] = useState<Organization[]>(
-    data.organizations?.entries || []
-  );
   const [dialogOpen, setDialogOpen] = useState(false);
+  const pendingOrgIdRef = useRef<string | null>(null);
+  const organizations = data.organizations?.entries || [];
+
+  const handleSelectChange = (newValue: string) => {
+    onChange(newValue);
+  };
 
   useEffect(() => {
-    setOrganizations(data.organizations?.entries || []);
-  }, [data.organizations?.entries]);
-
-  const handleAddOrganization = () => {
-    setDialogOpen(true);
-  };
+    if (pendingOrgIdRef.current && organizations.some(org => org.id === pendingOrgIdRef.current)) {
+      onChange(pendingOrgIdRef.current);
+      pendingOrgIdRef.current = null;
+    }
+  }, [organizations, onChange]);
 
   const handleOrganizationCreated = (entity: ResumeDataWithEntries) => {
     const newOrg = entity as Organization;
     updateData("organizations", newOrg);
-    onChange(newOrg.id);
+    pendingOrgIdRef.current = newOrg.id;
   };
 
   return (
@@ -57,7 +59,7 @@ export function OrganizationSelector({
           type="button"
           variant="ghost"
           size="sm"
-          onClick={handleAddOrganization}
+          onClick={() => setDialogOpen(true)}
           className="h-8 px-2 text-xs"
         >
           <Plus className="h-3 w-3 mr-1" />
@@ -65,7 +67,7 @@ export function OrganizationSelector({
         </Button>
       </div>
 
-      <Select value={value} onValueChange={onChange}>
+      <Select value={value} onValueChange={handleSelectChange}>
         <SelectTrigger
           className={cn("w-full", !value && "text-muted-foreground")}
         >
