@@ -27,7 +27,8 @@ import { UrlInput } from "../controls/UrlInput";
 interface EntityFormProps {
   type: ResumeDataKeysWithEntries;
   data: ResumeDataWithEntries;
-  onUpdate: (data: ResumeDataWithEntries) => void;
+  onUpdate?: (data: ResumeDataWithEntries) => void;
+  onChange?: (data: ResumeDataWithEntries) => void;
   hideSubmitButton?: boolean;
 }
 
@@ -35,6 +36,7 @@ export function EntityForm({
   type,
   data,
   onUpdate,
+  onChange,
   hideSubmitButton = false,
 }: EntityFormProps) {
   const [formData, setFormData] = useState<ResumeDataWithEntries>(data);
@@ -45,12 +47,14 @@ export function EntityForm({
   }, [data]);
 
   const handleChange = (field: AllEntityFields, value: any) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    const updatedData = { ...formData, [field]: value };
+    setFormData(updatedData);
+    onChange && onChange(updatedData);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onUpdate(formData);
+    onUpdate && onUpdate(formData);
   };
 
   const togglePreview = () => {
