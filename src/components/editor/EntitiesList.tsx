@@ -1,6 +1,6 @@
 "use client";
 
-import { Edit, ExternalLink,Plus, Trash2 } from "lucide-react";
+import { Edit, ExternalLink, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
@@ -15,7 +15,7 @@ import {
 import { useResume } from "@/contexts/ResumeContext";
 import { formatDate } from "@/lib/dateUtils";
 import { createDefaultEntity, isUsed } from "@/lib/entityUtils";
-import { entityMetadata,ResumeDataKeysWithEntries } from "@/types/resume";
+import { entityMetadata, ResumeDataKeysWithEntries } from "@/types/resume";
 
 import { DeleteConfirmationDialog } from "./dialogs/DeleteConfirmationDialog";
 
@@ -67,10 +67,10 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 entity-list">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">{metadata.title}</h2>
-        <Button onClick={handleAddEntity}>
+        <Button onClick={handleAddEntity} className="add-entity-button">
           <Plus className="mr-2 h-4 w-4" />
           Add
         </Button>
@@ -87,19 +87,19 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
           entities.map((entity) => (
             <Card
               key={entity.id}
-              className="cursor-pointer hover:shadow-md transition-shadow overflow-hidden relative group flex flex-col"
+              className="cursor-pointer hover:shadow-md transition-shadow overflow-hidden relative group flex flex-col entity-card"
               onClick={() => onSelect(entity.id)}
             >
               <CardHeader className="pb-2">
-                <div className="flex justify-between items-start overflow-hidden">
+                <div className="flex pr-8 justify-between items-start overflow-hidden">
                   <CardTitle className="text-lg truncate">
                     {entity.title}
                   </CardTitle>
                   <Button
-                    variant="destructive"
+                    variant="outline"
                     size="icon"
                     onClick={(e) => handleDeleteClick(entity.id, e)}
-                    className="h-8 w-8 flex-shrink-0 absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity "
+                    className="h-8 w-8 flex-shrink-0 absolute top-4 right-4 hover:bg-red-500 dark:hover:bg-red-700 hover:text-white transition-colors delete-button"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -110,11 +110,9 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
                       {entity.isPublished ? "Published" : "Draft"}
                     </Badge>
                   )}
-                  
+
                   {isUsed(data, entityType, entity.id) && (
-                    <Badge variant="secondary">
-                      Used
-                    </Badge>
+                    <Badge variant="secondary">Used</Badge>
                   )}
 
                   {/* Display related organization */}
@@ -172,7 +170,7 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="flex-1 min-w-0"
+                    className="flex-1 min-w-0 edit-button"
                     onClick={(e) => {
                       e.stopPropagation();
                       onSelect(entity.id);

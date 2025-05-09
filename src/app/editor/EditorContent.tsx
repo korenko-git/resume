@@ -4,14 +4,14 @@ import { useRouter } from "next/navigation";
 
 import { ThemeToggle } from "@/components/common/layout/ThemeToggle";
 import { Button } from "@/components/common/ui/button";
+import { DraftDialog } from "@/components/editor/dialogs/DraftDialog";
+import { WelcomeTour } from "@/components/editor/dialogs/WelcomeTour";
 import { Editor } from "@/components/editor/Editor";
 import { useResume } from "@/contexts/ResumeContext";
 import { getSingularForm } from "@/lib/entityUtils";
 import { processAllEntryImages } from "@/lib/imageUtils";
 import { createUpdateZip } from "@/lib/zipUtils";
 import { ResumeData } from "@/types/resume";
-
-import { DraftDialog } from "../editor/dialogs/DraftDialog";
 
 export default function EditorContent() {
   const router = useRouter();
@@ -79,6 +79,7 @@ export default function EditorContent() {
           <h1 className="text-3xl font-bold">Resume Editor</h1>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
             <ThemeToggle />
+            <WelcomeTour />
             <Button variant="outline" onClick={() => router.push("/")}>
               Home
             </Button>
