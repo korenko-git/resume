@@ -140,7 +140,7 @@ export function getFirstPublishedEntry<T extends ResumeDataWithEntries>(
  * const project = getEntity(resumeData, 'projects', 'prj-456');
  */
 export function getEntity(
-  data: ResumeData,
+  data: Omit<ResumeData, "version">,
   type: ResumeDataKeysWithEntries,
   id?: string | null
 ): ResumeDataWithEntries | null {
@@ -148,6 +148,94 @@ export function getEntity(
 
   const entries = data[type].entries;
   return entries.find((entry) => entry.id === id) || null;
+}
+
+/**
+ * Converts a singular entity type to its plural form
+ * @param type Entity type in singular form
+ * @returns Plural form of the entity type
+ */
+export function getPluralForm(type: string): string {
+  return type.endsWith('y') 
+    ? type.slice(0, -1) + 'ies' 
+    : type + 's';
+}
+
+/**
+ * Converts a plural entity type to its singular form
+ * @param type Entity type in plural form
+ * @returns Singular form of the entity type
+ */
+export function getSingularForm(type: string): string {
+  return type.endsWith('s') 
+    ? type.slice(0, -1) 
+    : type;
+}
+
+/**
+ * Gets references for a specific entity type based on the entityRelationships
+ * @param entityType Type of the entity
+ * @returns Array of references or empty array if none found
+ */
+function getEntityReferences(entityType: ResumeDataKeysWithEntries): Array<{ type: ResumeDataKeysWithEntries, field: string }> {
+  const references: Array<{ type: ResumeDataKeysWithEntries, field: string }> = [];
+  
+  // Iterate through all entity types and find which ones are referenced by our entity
+  Object.entries(entityRelationships).forEach(([refType, relationship]) => {
+    // If this entity type is referenced by our target entity
+    if (refType !== entityType) {
+      relationship.referencedIn.forEach(ref => {
+        if (ref.type === entityType) {
+          references.push({ type: refType as ResumeDataKeysWithEntries, field: ref.field });
+        }
+      });
+    }
+  });
+  
+  return references;
+}
+
+/**
+ * Retrieves a specific entity with all referenced entities fully populated
+ *
+ * @param data - The complete resume data object
+ * @param type - The type of entity to retrieve (e.g., 'about', 'experience', etc.)
+ * @param id - The unique identifier of the entity to retrieve
+ * @returns The found entity object with all references populated or null if not found
+ * 
+ * @example
+ * // Get a specific experience entry with organization data
+ * const experienceWithOrg = getEntityFull(resumeData, 'experience', 'exp-123');
+ */
+export function getEntityFull(
+  data: Omit<ResumeData, "version">,
+  type: ResumeDataKeysWithEntries,
+  id?: string | null
+): ResumeDataWithEntries | null {
+  const entity = getEntity(data, type, id);
+  
+  if (!entity) return null;
+  
+  const result = { ...entity };
+  
+  // Get all references for this entity type
+  const references = getEntityReferences(type);
+  
+  // For each reference type, check if this entity has the reference field
+  for (const { type: refType, field } of references) {
+    if (field in entity && (entity as any)[field]) {
+      const refId = (entity as any)[field];
+      const referencedEntity = getEntity(data, refType, refId);
+      
+      if (referencedEntity) {
+        // Add the referenced entity to the result using singular form
+        const singularType = getSingularForm(refType);
+        (result as any)[singularType] = referencedEntity;
+      }
+    }
+  }
+  
+  return result;
 }
 
 /**
