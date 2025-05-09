@@ -25,6 +25,7 @@ import {
   ResumeDataWithEntries,
 } from "@/types/resume";
 
+import { WelcomeTour } from "./dialogs/WelcomeTour";
 import { EntitiesList } from "./EntitiesList";
 import { EntityForm } from "./forms/EntityForm";
 
@@ -54,6 +55,9 @@ export function Editor() {
   return (
     <Card className="w-full border-0 shadow-none sm:border-1 sm:shadow">
       <CardContent className="px-0 sm:px-6">
+        <div className="flex justify-end items-center relative">
+          <WelcomeTour isEntityFormOpen={!!selectedEntityId} />
+        </div>
         <Tabs
           value={activeTab}
           onValueChange={handleTabChange}
@@ -75,7 +79,7 @@ export function Editor() {
             </div>
           ) : (
             <div className="mb-4">
-              <div className="block sm:hidden">
+              <div className="block sm:hidden mobile-section-select">
                 <label
                   htmlFor="section-select"
                   className="block text-sm font-medium mb-1"
