@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Button } from "@/components/common/ui/button";
 import { Label } from "@/components/common/ui/label";
@@ -32,14 +32,20 @@ export function OrganizationSelector({
   const { data, updateData } = useResume();
   const [dialogOpen, setDialogOpen] = useState(false);
   const pendingOrgIdRef = useRef<string | null>(null);
-  const organizations = data.organizations?.entries || [];
+  const organizations = useMemo(
+    () => data.organizations.entries || [],
+    [data.organizations.entries]
+  );
 
   const handleSelectChange = (newValue: string) => {
     onChange(newValue);
   };
 
   useEffect(() => {
-    if (pendingOrgIdRef.current && organizations.some(org => org.id === pendingOrgIdRef.current)) {
+    if (
+      pendingOrgIdRef.current &&
+      organizations.some((org) => org.id === pendingOrgIdRef.current)
+    ) {
       onChange(pendingOrgIdRef.current);
       pendingOrgIdRef.current = null;
     }
