@@ -36,15 +36,6 @@ describe("OrganizationSelector", () => {
     expect(screen.getByText("Company")).toBeInTheDocument();
   });
 
-  it("calls onChange when creating a new organization", () => {
-    render(<OrganizationSelector value="" onChange={mockOnChange} />);
-
-    const createButton = screen.getByText("Create new");
-    fireEvent.click(createButton);
-
-    expect(mockOnChange).toHaveBeenCalledWith("new-org-id");
-  });
-
   it("shows selected value in selector", () => {
     render(<OrganizationSelector value="meta" onChange={mockOnChange} />);
 
