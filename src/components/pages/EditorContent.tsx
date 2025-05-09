@@ -6,6 +6,7 @@ import { ThemeToggle } from "@/components/common/layout/ThemeToggle";
 import { Button } from "@/components/common/ui/button";
 import { Editor } from "@/components/editor/Editor";
 import { useResume } from "@/contexts/ResumeContext";
+import { getSingularForm } from "@/lib/entityUtils";
 import { processAllEntryImages } from "@/lib/imageUtils";
 import { createUpdateZip } from "@/lib/zipUtils";
 import { ResumeData } from "@/types/resume";
@@ -45,13 +46,9 @@ export default function EditorContent() {
         "entries" in section
       ) {
         if (section?.entries?.length) {
-          const prefix = sectionName.endsWith("s")
-            ? sectionName.slice(0, -1)
-            : sectionName;
-
           const processedEntries = await processAllEntryImages(
             section.entries as any[],
-            prefix,
+            getSingularForm(sectionName),
             imageFiles
           );
 

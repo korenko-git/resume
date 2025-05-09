@@ -1,4 +1,4 @@
-import { fireEvent,render, screen } from "@/lib/testUtils";
+import { render, screen } from "@/lib/testUtils";
 
 import { OrganizationSelector } from "../OrganizationSelector";
 
