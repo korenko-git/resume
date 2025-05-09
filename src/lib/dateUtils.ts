@@ -44,7 +44,7 @@ export function formatDateForInput(dateString: string): string {
  * @returns Formatted month string
  */
 function formatMonth(date: Date): string {
-  return date.toLocaleString("default", { month: "short" });
+  return date.toLocaleString("En-US", { month: "short" });
 }
 
 /**
