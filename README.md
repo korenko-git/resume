@@ -21,7 +21,7 @@ A fully static, GitHub-powered resume website builder. This project allows you t
     *   [React Joyride](https://docs.react-joyride.com/) for the welcome tour.
     *   [dnd-kit](https://dndkit.com/) for drag-and-drop functionality (e.g., skills).
 *   **Data Storage:** JSON files & Browser `localStorage`
-*   **PDF Generation:** [Pandoc](https://pandoc.org/) via `wkhtmltopdf` engine
+*   **PDF Generation:** [Pandoc](https://pandoc.org/) via `wkhtmltopdf` engine with Puppeteer fallback
 *   **Testing:** [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/)
 
 ## 🚀 Getting Started
@@ -54,15 +54,39 @@ A fully static, GitHub-powered resume website builder. This project allows you t
 *   `npm run test:coverage`: Runs tests and generates a coverage report.
 *   `npm run pdf`: Generates the ATS-friendly PDF resume using the script in `scripts/`.
 
+## 📁 Project Structure
+
+*   `.github/workflows/`: GitHub Actions workflows for CI/CD
+    *   `apply-updates.yml`: Processes ZIP files in the updates directory
+    *   `build-static.yml`: Builds and deploys the static site to GitHub Pages
+    *   `generate-ats-cv.yml`: Generates ATS-friendly resume versions
+*   `public/`: Static assets and generated files
+*   `scripts/`: Utility scripts for PDF generation
+*   `src/`: Source code
+    *   `app/`: Next.js app router components
+    *   `components/`: Reusable UI components
+    *   `contexts/`: React context providers
+    *   `data/`: JSON data files for resume content
+    *   `hooks/`: Custom React hooks
+    *   `lib/`: Utility functions
+    *   `types/`: TypeScript type definitions
+*   `updates/`: Directory for ZIP files containing resume updates
+
 ## ✍️ Editing Workflow
 
 1.  Navigate to the `/editor` page on your deployed site or local development server.
 2.  Make desired changes to the resume sections using the inline editing forms. Upload new images if needed.
 3.  Click the **"Download Changes"** button to get a `.zip` archive containing the updated JSON data and any new images.
 4.  Commit and push this `.zip` file to the `/updates` directory in your GitHub repository (typically via a Pull Request).
-5.  GitHub Actions will automatically detect the new `.zip` file, extract its contents, update the corresponding JSON files and images in `src/data` and `public/images`, delete the processed `.zip`, rebuild the Next.js site, and regenerate the `public/cv-ats.pdf`.
+5.  GitHub Actions will automatically:
+    *   Detect the new `.zip` file
+    *   Extract its contents
+    *   Update the corresponding JSON files and images
+    *   Delete the processed `.zip`
+    *   Rebuild the Next.js site
+    *   Generate ATS-friendly versions (Markdown and PDF)
+    *   Deploy to GitHub Pages
 
 ## 📄 License
 
 MIT
-
