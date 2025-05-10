@@ -3,14 +3,14 @@ import { render, screen } from "@/lib/testUtils";
 import { EntryTitle } from "../EntryTitle";
 
 jest.mock("../OrganizationTitle", () => ({
-  OrganizationTitle: ({ data }: any) => (
-    <div data-testid="organization-title">Organization: {data.title}</div>
+  OrganizationTitle: ({ title }: any) => (
+    <div data-testid="organization-title">Organization: {title}</div>
   ),
 }));
 
 jest.mock("../ProjectTitle", () => ({
-  ProjectTitle: ({ data }: any) => (
-    <div data-testid="project-title">Project: {data.title}</div>
+  ProjectTitle: ({ title }: any) => (
+    <div data-testid="project-title">Project: {title}</div>
   ),
 }));
 

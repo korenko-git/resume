@@ -1,7 +1,6 @@
-import { X } from "lucide-react";
-
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { X } from "lucide-react";
 
 import { Badge } from "@/components/common/ui/badge";
 import { Button } from "@/components/common/ui/button";

@@ -1,25 +1,26 @@
-import { ArrowDownUp, Plus, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
 import {
-  DndContext,
   closestCenter,
+  DndContext,
+  DragEndEvent,
   KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
-  DragEndEvent,
 } from "@dnd-kit/core";
 import {
   arrayMove,
+  horizontalListSortingStrategy,
   SortableContext,
   sortableKeyboardCoordinates,
-  horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { ArrowDownUp, Plus } from "lucide-react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/common/ui/button";
 import { Input } from "@/components/common/ui/input";
 import { cn } from "@/lib/utils";
+
 import { SortableSkill } from "./SortableSkill";
 
 interface SkillsInputProps {
