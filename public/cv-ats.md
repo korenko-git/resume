@@ -1,4 +1,6 @@
-# Dmytro Korenko - Software Engineer | Full Stack Developer
+# Dmytro Korenko
+
+#### Software Engineer | Full Stack Developer
 
 I’m an experienced full stack engineer specializing in scalable web applications. I primarily focus on TypeScript-based full-stack projects (Nest.js, React, Next.js).
 
