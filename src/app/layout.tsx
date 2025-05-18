@@ -3,13 +3,13 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 
+import { ErrorBoundary } from "@/components/common/ErrorBoundary";
 import BackgroundAnimation from "@/components/common/layout/BackgroundAnimation";
 import ClientThemeProvider from "@/components/common/layout/ClientThemeProvider";
 import Container from "@/components/common/layout/Container";
 import { Footer } from "@/components/common/layout/Footer";
 import { Toaster } from "@/components/common/ui/toaster";
 import { ResumeProvider } from "@/contexts/ResumeContext";
-import { ErrorBoundary } from "@/components/common/ErrorBoundary";
 import { createOpenGraphMetadata } from "@/lib/metadata";
 
 const geistSans = Geist({

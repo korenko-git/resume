@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { createOpenGraphMetadata } from "@/lib/metadata";
 
 import EditorContent from "./EditorContent";
