@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     default: "Online Resume",
-    template: "%s | Online Resume"
+    template: "%s | Online Resume",
   },
   description: "Professional resume with editing capabilities",
   keywords: ["resume", "portfolio", "career", "job", "skills"],
@@ -47,7 +47,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased z-10 relative
-        leading-relaxed tracking-wide selection:bg-primary/20 selection:text-foreground
+        leading-relaxed tracking-wide selection:bg-primary/20 
         dark:selection:bg-neutral-300 dark:selection:text-neutral-900
         `}
       >
