@@ -3,11 +3,12 @@ import { Metadata } from "next";
 import { OutlineLinkButton } from "@/components/common/ui/OutlineLinkButton";
 import { ResumeSections } from "@/components/resume/sections/ResumeSections";
 import { getResume } from "@/lib/getResume";
+import { createOpenGraphMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createOpenGraphMetadata({
   title: "Project Archive",
   description: "Complete archive of all projects",
-};
+});
 
 export default function ProjectArchivePage() {
   const data = getResume();

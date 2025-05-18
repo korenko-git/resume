@@ -10,6 +10,7 @@ import { Footer } from "@/components/common/layout/Footer";
 import { Toaster } from "@/components/common/ui/toaster";
 import { ResumeProvider } from "@/contexts/ResumeContext";
 import { ErrorBoundary } from "@/components/common/ErrorBoundary";
+import { createOpenGraphMetadata } from "@/lib/metadata";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,21 +18,16 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
+  ...createOpenGraphMetadata({
+    title: "Online Resume",
+  }),
   title: {
     default: "Online Resume",
     template: "%s | Online Resume",
   },
-  description: "Professional resume with editing capabilities",
   keywords: ["resume", "portfolio", "career", "job", "skills"],
   authors: [{ name: "Resume Builder" }],
   creator: "Resume Builder",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    title: "Online Resume",
-    description: "Professional resume with editing capabilities",
-    siteName: "Online Resume",
-  },
 };
 
 export default function RootLayout({
