@@ -1,7 +1,7 @@
 import { Code2, Github, Linkedin } from "lucide-react";
 
-import { IconLink } from "@/components/common/ui/IconLink";
 import { AboutEntry } from "@/types/resume";
+import { Button } from "@/components/common/ui/button";
 
 interface SocialLinksProps {
   sectionData?: AboutEntry;
@@ -32,22 +32,26 @@ export function SocialLinks({ sectionData }: SocialLinksProps) {
   ];
 
   return (
-    <ul
+    <div
       className="flex items-center justify-center lg:justify-start"
       aria-label="Social media"
     >
       {socialLinks.map(
         ({ id, url, icon, label }) =>
           url && (
-            <IconLink
+            <Button
               key={id}
-              href={url}
-              icon={icon}
-              label={label}
-              isExternal
-            />
+              asChild
+              variant="outline"
+              className="mr-4 last:mr-0 shrink-0 text-xs"
+              aria-label={`${label} (opens in a new tab)`}
+            >
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                {icon} <span className="sr-only">{label}</span>
+              </a>
+            </Button>
           )
       )}
-    </ul>
+    </div>
   );
 }
