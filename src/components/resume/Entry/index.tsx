@@ -23,7 +23,7 @@ export function EntryBlock({ entryData }: EntryBlockProps) {
       >
         <div
           className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block 
-          lg:group-hover:bg-slate-100 dark:lg:group-hover:bg-sky-400/10
+          lg:group-hover:bg-accent/10
           lg:group-hover:shadow-sm lg:group-hover:drop-shadow-lg"
           aria-hidden="true"
         />

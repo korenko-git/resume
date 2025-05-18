@@ -8,7 +8,7 @@ interface ProjectTitleProps {
 export function ProjectTitle({ data }: ProjectTitleProps) {
   return (
     <div className="flex flex-col">
-      <h3 className="font-medium leading-snug text-slate-700 dark:text-slate-50">
+      <h3 className="font-medium leading-snug text-foreground">
         {data.title}
       </h3>
 
@@ -18,7 +18,7 @@ export function ProjectTitle({ data }: ProjectTitleProps) {
             href={data.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="group/link inline-flex items-baseline font-medium leading-tight text-slate-700 hover:text-blue-600 focus-visible:text-blue-600 dark:text-slate-50 dark:hover:text-blue-200 text-base"
+            className="group/link inline-flex items-baseline font-medium leading-tight text-foreground hover:text-primary focus-visible:text-primary text-base"
             aria-label={`Demo of ${data.title} (opens in a new tab)`}
             role="listitem"
           >
@@ -39,7 +39,7 @@ export function ProjectTitle({ data }: ProjectTitleProps) {
             href={data.source}
             target="_blank"
             rel="noopener noreferrer"
-            className="group/link relative inline-flex items-baseline font-medium leading-tight text-slate-700 hover:text-blue-600 focus-visible:text-blue-600 dark:text-slate-50 dark:hover:text-blue-200 text-base"
+            className="group/link relative inline-flex items-baseline font-medium leading-tight text-foreground hover:text-primary focus-visible:text-primary text-base"
             aria-label={`Source of ${data.title} (opens in a new tab)`}
             role="listitem"
           >

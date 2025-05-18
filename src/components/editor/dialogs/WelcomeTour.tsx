@@ -106,11 +106,11 @@ export function WelcomeTour({ isEntityFormOpen = false }: WelcomeTourProps) {
 
   const joyrideStyles = {
     options: {
-      arrowColor: isDark ? "#333" : "#fff",
-      backgroundColor: isDark ? "#333" : "#fff",
+      arrowColor: "var(--card)",
+      backgroundColor: "var(--card)",
       overlayColor: isDark ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.5)",
-      primaryColor: isDark ? "#3b82f6" : "#2563eb",
-      textColor: isDark ? "#fff" : "#000",
+      primaryColor: "var(--primary)",
+      textColor: "var(--card-foreground)",
       spotlightShadow: "0 0 15px rgba(0, 0, 0, 0.5)",
       zIndex: 1000,
     },

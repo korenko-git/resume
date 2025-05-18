@@ -53,7 +53,7 @@ export function Editor() {
   };
 
   return (
-    <Card className="w-full border-0 shadow-none sm:border-1 sm:shadow">
+    <Card className="w-full border-0 shadow-none sm:border sm:border-border sm:shadow">
       <CardContent className="px-0 sm:px-6">
         <div className="flex justify-end items-center relative">
           <WelcomeTour isEntityFormOpen={!!selectedEntityId} />
@@ -67,12 +67,12 @@ export function Editor() {
             <div className="mb-4">
               <button
                 onClick={handleBackToList}
-                className="cursor-pointer inline-flex items-center font-medium leading-tight text-slate-700 dark:text-slate-50 group back-button"
+                className="cursor-pointer inline-flex items-center font-medium leading-tight text-foreground group back-button"
               >
                 <span className="whitespace-nowrap">
                   <ArrowLeft className="mr-1 h-4 w-4 transition-transform group-hover:-translate-x-2" />
                 </span>
-                <span className="border-b border-blue-300 lg:border-transparent pb-px transition group-hover:border-blue-300 motion-reduce:transition-none">
+                <span className="border-b border-primary/30 lg:border-transparent pb-px transition group-hover:border-primary/30 motion-reduce:transition-none">
                   Back to list
                 </span>
               </button>
@@ -82,7 +82,7 @@ export function Editor() {
               <div className="block sm:hidden mobile-section-select">
                 <label
                   htmlFor="section-select"
-                  className="block text-sm font-medium mb-1"
+                  className="block text-sm font-medium mb-1 text-foreground"
                 >
                   Select section
                 </label>

@@ -99,7 +99,7 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
                     variant="outline"
                     size="icon"
                     onClick={(e) => handleDeleteClick(entity.id, e)}
-                    className="h-8 w-8 flex-shrink-0 absolute top-4 right-4 hover:bg-red-500 dark:hover:bg-red-700 hover:text-white transition-colors delete-button"
+                    className="h-8 w-8 flex-shrink-0 absolute top-4 right-4 hover:bg-destructive hover:text-destructive-foreground transition-colors delete-button"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>

@@ -10,7 +10,7 @@ interface OrganizationLogoProps {
 export function OrganizationLogo({ logo, title }: OrganizationLogoProps) {
   return (
     <img
-      className="w-10 h-10 rounded bg-white lg:grayscale lg:group-hover:grayscale-0"
+      className="w-10 h-10 rounded bg-white lg:grayscale lg:group-hover:grayscale-0 transition duration-300"
       src={getAssetPath(logo)}
       alt={`${title} logo`}
       onError={(e) => {

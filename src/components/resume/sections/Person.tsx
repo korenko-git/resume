@@ -12,10 +12,10 @@ export function Person({ sectionData }: PersonProps) {
 
   return (
     <>
-      <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-50 sm:text-5xl">
+      <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
         {sectionData.title}
       </h1>
-      <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-700 dark:text-slate-200 sm:text-xl">
+      <h2 className="mt-3 text-lg font-medium tracking-tight text-muted-foreground sm:text-xl">
         {sectionData.subtitle}
       </h2>
 

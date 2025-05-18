@@ -27,7 +27,7 @@ export function Section({
     >
       {!hideHeading && (
         <h2 className={cn(
-          "text-sm font-bold uppercase tracking-widest text-zinc-700 dark:text-zinc-50 mb-6",
+          "text-sm font-bold uppercase tracking-widest text-foreground mb-6",
           hideHeadingOnDesktop && "lg:sr-only"
         )}>
           {title}
