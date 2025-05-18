@@ -39,6 +39,10 @@ export function createOpenGraphMetadata({
   const cleanTitle = stripMarkdown(title);
   const cleanDescription = stripMarkdown(description);
   
+  // Generate a cache-busting parameter
+  const cacheBuster = `v=${Date.now()}`;
+  const ogImagePath = `/og/resume-og.png?${cacheBuster}`;
+  
   return {
     title: cleanTitle,
     description: cleanDescription,
@@ -51,7 +55,7 @@ export function createOpenGraphMetadata({
       siteName,
       images: [
         {
-          url: "/og/resume-og.png",
+          url: ogImagePath,
           width: 1200,
           height: 630,
           alt: cleanTitle,
@@ -62,7 +66,7 @@ export function createOpenGraphMetadata({
       card: "summary_large_image",
       title: cleanTitle,
       description: cleanDescription,
-      images: ["/og/resume-og.png"],
+      images: [ogImagePath],
     },
   };
 }
