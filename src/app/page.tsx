@@ -8,29 +8,25 @@ import { SocialLinks } from "@/components/resume/sections/SocialLinks";
 import { getFirstPublishedEntry } from "@/lib/entityUtils";
 import { getResume } from "@/lib/getResume";
 import { AboutEntry } from "@/types/resume";
+import { createOpenGraphMetadata } from "@/lib/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = getResume();
   const person = getFirstPublishedEntry(data.about.entries);
 
   if (!person) {
-    return {
+    return createOpenGraphMetadata({
       title: "Online Resume",
-      description: "Professional resume with editing capabilities",
-    };
+    });
   }
 
   const { title, subtitle, description } = person;
+  const pageTitle = `${title} - ${subtitle}`;
 
-  return {
-    title: `${title} - ${subtitle}`,
+  return createOpenGraphMetadata({
+    title: pageTitle,
     description: description || "Professional resume with editing capabilities",
-    openGraph: {
-      title: `${title} - ${subtitle}`,
-      description:
-        description || "Professional resume with editing capabilities",
-    },
-  };
+  });
 }
 
 export default function Home() {

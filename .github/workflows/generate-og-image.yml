@@ -1,0 +1,64 @@
+name: Generate OG Image
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      json_changes_detected: ${{ steps.check_json_changes.outputs.json_changes_detected }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      
+      - name: Check for changes in JSON data files
+        id: check_json_changes
+        run: |
+          if git diff --name-only HEAD^ HEAD | grep -q "src/data/.*\.json"; then
+            echo "JSON data files have changed"
+            echo "json_changes_detected=true" >> $GITHUB_OUTPUT
+          else
+            echo "No changes detected in JSON data files"
+            echo "json_changes_detected=false" >> $GITHUB_OUTPUT
+          fi
+
+  generate-og:
+    needs: check-changes
+    if: needs.check-changes.outputs.json_changes_detected == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ github.token }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Generate OG Image
+        run: npx tsx scripts/generate-og-image.ts
+
+      - name: Upload OG Image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: og-image
+          path: public/og/resume-og.png
+
+      - name: Commit OG Image
+        run: |
+          git config user.name github-actions
+          git config user.email action@github.com
+          git add public/og/resume-og.png
+          git commit -m "Update OG Image"
+          git push
