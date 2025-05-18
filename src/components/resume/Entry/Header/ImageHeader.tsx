@@ -16,7 +16,7 @@ export function ImageHeader({ className, title, image }: ImageHeaderProps) {
           loading="lazy"
           width="200"
           height="48"
-          className="aspect-video object-cover rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1 lg:grayscale lg:group-hover:grayscale-0"
+          className="aspect-video object-cover rounded border-2 border-border/10 transition group-hover:border-border/30 sm:order-1 sm:col-span-2 sm:translate-y-1 lg:grayscale lg:group-hover:grayscale-0"
           onError={(e) => {
             e.currentTarget.src = getAssetPath("/images/placeholder-logo.png");
             e.currentTarget.onerror = null;

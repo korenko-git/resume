@@ -14,7 +14,7 @@ interface EntryHeaderProps {
 
 export const EntryHeader = ({ data }: EntryHeaderProps) => {
   const className =
-    "z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400 sm:col-span-2 lg:group-hover:text-slate-900 dark:lg:group-hover:text-slate-200 editable-header";
+    "z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:col-span-2 lg:group-hover:text-foreground editable-header";
 
   if ("date" in data || "startDate" in data) {
     return (

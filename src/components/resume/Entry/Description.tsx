@@ -24,9 +24,9 @@ export function Description({
         a: ({ href, children, ...props }) => (
           <a
             className={cn(
-              "cursor-pointer hover:text-blue-300 focus-visible:text-blue-300",
+              "cursor-pointer hover:text-primary focus-visible:text-primary",
               hrefWithIcon && "relative mt-2 inline-flex items-center",
-              !hrefWithIcon && "border-b border-blue-300"
+              !hrefWithIcon && "border-b border-primary/50"
             )}
             href={href}
             {...props}

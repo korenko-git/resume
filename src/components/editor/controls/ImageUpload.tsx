@@ -1,5 +1,5 @@
-import { Image as ImageIcon,Upload, X } from 'lucide-react';
-import { useRef,useState } from 'react';
+import { Image as ImageIcon, Upload, X } from 'lucide-react';
+import { useRef, useState } from 'react';
 
 import { Button } from '@/components/common/ui/button';
 import { Label } from '@/components/common/ui/label';
@@ -77,7 +77,7 @@ export function ImageUpload({
             <img
               src={value}
               alt="Uploaded image"
-              className="w-full h-auto rounded-md object-contain max-h-48 border"
+              className="w-full h-auto rounded-md object-contain max-h-48 border border-border"
             />
             <Button
               type="button"
@@ -92,12 +92,12 @@ export function ImageUpload({
           </div>
         ) : (
           <div 
-            className="border-2 border-dashed rounded-md p-6 w-full flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+            className="border-2 border-dashed border-border rounded-md p-6 w-full flex flex-col items-center justify-center cursor-pointer hover:bg-accent/10 transition-colors"
             onClick={handleButtonClick}
           >
-            <ImageIcon className="h-10 w-10 text-slate-400 mb-2" />
-            <p className="text-sm text-slate-500">Click to upload image</p>
-            <p className="text-xs text-slate-400 mt-1">or drag and drop file here</p>
+            <ImageIcon className="h-10 w-10 text-muted-foreground mb-2" />
+            <p className="text-sm text-muted-foreground">Click to upload image</p>
+            <p className="text-xs text-muted-foreground/70 mt-1">or drag and drop file here</p>
           </div>
         )}
         
@@ -115,7 +115,7 @@ export function ImageUpload({
         )}
         
         {error && (
-          <p className="text-sm text-red-500 mt-2">{error}</p>
+          <p className="text-sm text-destructive mt-2">{error}</p>
         )}
       </div>
     </div>

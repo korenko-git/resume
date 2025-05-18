@@ -18,7 +18,7 @@ export default function ProjectArchivePage() {
         Home
       </OutlineLinkButton>
 
-      <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-50 sm:text-5xl my-8">
+      <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl my-8">
         All Projects
       </h1>
 

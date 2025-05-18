@@ -33,8 +33,8 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       title={`Current theme: ${theme}`}
     >
-      {theme === 'light' && <Sun className="h-5 w-5" />}
-      {theme === 'dark' && <Moon className="h-5 w-5" />}
+      {theme === 'light' && <Sun className="h-5 w-5 text-foreground" />}
+      {theme === 'dark' && <Moon className="h-5 w-5 text-foreground" />}
     </Button>
   );
 }

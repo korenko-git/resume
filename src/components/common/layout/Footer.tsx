@@ -15,9 +15,8 @@ export function Footer() {
             Return to the <Link
               href="/"
               className="inline-flex items-baseline font-medium leading-tight 
-          text-slate-700 hover:text-blue-500
-          dark:text-slate-50 dark:hover:text-blue-300 
-          focus-visible:text-blue-500 dark:focus-visible:text-blue-400
+          text-foreground hover:text-primary
+          focus-visible:text-primary
           text-base"
             >
               resume view
@@ -29,9 +28,8 @@ export function Footer() {
             <Link
               href="/editor"
               className="inline-flex items-baseline font-medium leading-tight 
-          text-slate-700 hover:text-blue-500
-          dark:text-slate-50 dark:hover:text-blue-300 
-          focus-visible:text-blue-500 dark:focus-visible:text-blue-400
+          text-foreground hover:text-primary
+          focus-visible:text-primary
           text-base"
             >
               online editor
