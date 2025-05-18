@@ -7,8 +7,8 @@ import { ResumeSections } from "@/components/resume/sections/ResumeSections";
 import { SocialLinks } from "@/components/resume/sections/SocialLinks";
 import { getFirstPublishedEntry } from "@/lib/entityUtils";
 import { getResume } from "@/lib/getResume";
-import { AboutEntry } from "@/types/resume";
 import { createOpenGraphMetadata } from "@/lib/metadata";
+import { AboutEntry } from "@/types/resume";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = getResume();
