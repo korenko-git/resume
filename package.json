@@ -43,6 +43,7 @@
     "tailwind-merge": "^3.2.0"
   },
   "devDependencies": {
+    "@csstools/postcss-oklab-function": "^4.0.9",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.6.3",
@@ -53,6 +54,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
