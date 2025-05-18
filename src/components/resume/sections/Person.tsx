@@ -35,7 +35,7 @@ export function Person({ sectionData }: PersonProps) {
           <Button
             asChild
             variant="outline"
-            className=" shrink-0 text-xs"
+            className="shrink-0 text-xs"
             aria-label="Send email"
           >
             <a

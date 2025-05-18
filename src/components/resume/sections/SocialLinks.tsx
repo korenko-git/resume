@@ -1,7 +1,7 @@
 import { Code2, Github, Linkedin } from "lucide-react";
 
-import { AboutEntry } from "@/types/resume";
 import { Button } from "@/components/common/ui/button";
+import { AboutEntry } from "@/types/resume";
 
 interface SocialLinksProps {
   sectionData?: AboutEntry;

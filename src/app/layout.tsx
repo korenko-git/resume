@@ -48,6 +48,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased z-10 relative
         leading-relaxed tracking-wide selection:bg-primary/20 selection:text-foreground
+        dark:selection:bg-neutral-300 dark:selection:text-neutral-900
         `}
       >
         <ClientThemeProvider>
