@@ -1,7 +1,7 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 
 import BackgroundAnimation from "@/components/common/layout/BackgroundAnimation";
 import ClientThemeProvider from "@/components/common/layout/ClientThemeProvider";
@@ -9,14 +9,10 @@ import Container from "@/components/common/layout/Container";
 import { Footer } from "@/components/common/layout/Footer";
 import { Toaster } from "@/components/common/ui/toaster";
 import { ResumeProvider } from "@/contexts/ResumeContext";
+import { ErrorBoundary } from "@/components/common/ErrorBoundary";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -46,20 +42,22 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased z-10 relative
+        className={`${geistSans.variable} antialiased z-10 relative
         leading-relaxed tracking-wide selection:bg-primary/20 
         dark:selection:bg-neutral-300 dark:selection:text-neutral-900
         `}
       >
         <ClientThemeProvider>
-          <ResumeProvider>
-            <BackgroundAnimation />
-            <Container>
-              {children}
-              <Footer />
-            </Container>
-          </ResumeProvider>
-          <Toaster />
+          <ErrorBoundary>
+            <ResumeProvider>
+              <BackgroundAnimation />
+              <Container>
+                {children}
+                <Footer />
+              </Container>
+            </ResumeProvider>
+            <Toaster />
+          </ErrorBoundary>
         </ClientThemeProvider>
       </body>
     </html>
