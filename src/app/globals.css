@@ -71,7 +71,7 @@
   --primary-foreground: oklch(0.98 0.01 240);
   --secondary: oklch(0.90 0.01 220);
   --secondary-foreground: oklch(0.25 0.01 250);
-  --accent: oklch(0.87 0.08 300);
+  --accent: oklch(0.55 0.14 250);
   --accent-foreground: var(--foreground);
   
   /* Utility colors */
@@ -117,7 +117,7 @@
   --primary-foreground: oklch(0.15 0.01 240);
   --secondary: oklch(0.25 0.01 220);
   --secondary-foreground: var(--foreground);
-  --accent: oklch(0.55 0.10 300);
+  --accent: oklch(0.70 0.14 250);
   --accent-foreground: var(--foreground);
   
   /* Utility colors */
