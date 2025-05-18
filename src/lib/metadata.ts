@@ -11,7 +11,7 @@ export function createOpenGraphMetadata({
   title,
   description = "Professional resume with editing capabilities",
   siteName = "Online Resume",
-  baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000/",
+  baseUrl = process.env.NEXT_PUBLIC_BASE_PATH || "http://localhost:3000/",
 }: OpenGraphMetadataProps): Metadata {
   return {
     title,
