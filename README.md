@@ -60,6 +60,8 @@ A fully static, GitHub-powered resume website builder. This project allows you t
     *   `apply-updates.yml`: Processes ZIP files in the updates directory
     *   `build-static.yml`: Builds and deploys the static site to GitHub Pages
     *   `generate-ats-cv.yml`: Generates ATS-friendly resume versions
+    *   `generate-og-image.yml`: Creates OpenGraph image for social sharing
+    *   `yearly-update.yml`: Automatically triggers rebuild on January 1st
 *   `public/`: Static assets and generated files
 *   `scripts/`: Utility scripts for PDF generation
 *   `src/`: Source code
@@ -86,6 +88,53 @@ A fully static, GitHub-powered resume website builder. This project allows you t
     *   Rebuild the Next.js site
     *   Generate ATS-friendly versions (Markdown and PDF)
     *   Deploy to GitHub Pages
+
+## 🤖 GitHub Actions Workflows
+
+This project uses several GitHub Actions workflows to automate the resume update and deployment process:
+
+### Apply Resume Updates (`apply-updates.yml`)
+- **Trigger**: Push to master, pull requests, or manual dispatch
+- **Purpose**: Processes ZIP files uploaded to the `/updates` directory
+- **Actions**:
+  - Extracts JSON data and images from ZIP files
+  - Updates the corresponding files in the repository
+  - Validates JSON files for correctness
+  - Removes processed ZIP files
+  - Commits and pushes changes
+
+### Build Static Next.js (`build-static.yml`)
+- **Trigger**: After Apply Resume Updates workflow completes, or manual dispatch
+- **Purpose**: Builds and deploys the static Next.js site to GitHub Pages
+- **Actions**:
+  - Runs linting, type checking, and tests
+  - Triggers ATS CV generation
+  - Configures base path for GitHub Pages deployment
+  - Builds the static site with Next.js
+  - Deploys to GitHub Pages
+
+### Generate ATS CV (`generate-ats-cv.yml`)
+- **Trigger**: Called by other workflows or manual dispatch
+- **Purpose**: Creates ATS-friendly versions of the resume
+- **Actions**:
+  - Checks for changes in JSON data files
+  - Generates Markdown version of the resume
+  - Creates PDF version using Pandoc and wkhtmltopdf
+  - Commits and pushes the generated files
+
+### Generate OG Image (`generate-og-image.yml`)
+- **Trigger**: Called by other workflows or manual dispatch
+- **Purpose**: Creates OpenGraph image for social media sharing
+- **Actions**:
+  - Checks for changes in JSON data files
+  - Generates a PNG image using Puppeteer
+  - Commits and pushes the generated image
+
+### Yearly Date Update (`yearly-update.yml`)
+- **Trigger**: Scheduled to run at 00:05 on January 1st, or manual dispatch
+- **Purpose**: Ensures the resume is rebuilt at the start of each year to update relative dates
+- **Actions**:
+  - Triggers the Build Static workflow
 
 ## 📄 License
 
