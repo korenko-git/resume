@@ -44,15 +44,16 @@ A fully static, GitHub-powered resume website builder. This project allows you t
 
 ## 📜 Available Scripts
 
-*   `npm run dev`: Starts the Next.js development server with Turbopack.
-*   `npm run build`: Builds the application for production.
-*   `npm run start`: Starts the production server (requires `npm run build` first).
-*   `npm run lint`: Lints the codebase using ESLint.
-*   `npm run typecheck`: Checks TypeScript types.
-*   `npm run test`: Runs tests using Jest.
-*   `npm run test:watch`: Runs tests in watch mode.
-*   `npm run test:coverage`: Runs tests and generates a coverage report.
-*   `npm run pdf`: Generates the ATS-friendly PDF resume using the script in `scripts/`.
+*   `npm run dev`: Starts the Next.js development server with Turbopack for faster refresh times and improved development experience. Access the site at http://localhost:3000.
+*   `npm run build`: Builds the application for production, generating optimized static files ready for deployment.
+*   `npm run start`: Starts the production server using the built files. Requires running `npm run build` first.
+*   `npm run lint`: Lints the codebase using ESLint to identify and fix code style issues and potential errors in JavaScript, JSX, TypeScript, and TSX files.
+*   `npm run typecheck`: Checks TypeScript types across the project without emitting compiled files, ensuring type safety.
+*   `npm run test`: Runs Jest tests to verify code functionality and prevent regressions.
+*   `npm run test:watch`: Runs Jest tests in watch mode, automatically re-running tests when files change.
+*   `npm run test:coverage`: Runs Jest tests and generates a coverage report to identify untested code.
+*   `npm run pdf`: Generates an ATS-friendly PDF resume using the script in `scripts/generate-ats-resume.ts`. The output is saved to `public/cv-ats.pdf`.
+*   `npm run og`: Generates an OpenGraph image for social media sharing using the script in `scripts/generate-og-image.ts`. The output is saved to `public/og/resume-og.png`.
 
 ## 📁 Project Structure
 
