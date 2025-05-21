@@ -2,7 +2,7 @@
 
 import { HelpCircle } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Joyride, { Step } from "react-joyride";
 
 import { Button } from "@/components/common/ui/button";
@@ -94,6 +94,7 @@ const allSteps: Step[] = [
 export function WelcomeTour({ isEntityFormOpen = false }: WelcomeTourProps) {
   const { theme } = useTheme();
   const [runTour, setRunTour] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const isDark = theme === "dark";
 
   const steps = isEntityFormOpen
@@ -116,10 +117,18 @@ export function WelcomeTour({ isEntityFormOpen = false }: WelcomeTourProps) {
     },
   };
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <>
-      <Button 
-        variant="outline" 
+      <Button
+        variant="outline"
         size="icon"
         onClick={() => setRunTour(true)}
         aria-label="Show Tutorial"
