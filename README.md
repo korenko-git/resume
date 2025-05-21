@@ -19,7 +19,6 @@ A fully static, GitHub-powered resume website builder. This project allows you t
 *   **State Management:** React Context API (`ResumeContext.tsx`)
 *   **UI Enhancements:**
     *   [React Joyride](https://docs.react-joyride.com/) for the welcome tour.
-    *   [dnd-kit](https://dndkit.com/) for drag-and-drop functionality (e.g., skills).
 *   **Data Storage:** JSON files & Browser `localStorage`
 *   **PDF Generation:** [Pandoc](https://pandoc.org/) via `wkhtmltopdf` engine with Puppeteer fallback
 *   **Testing:** [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/)
