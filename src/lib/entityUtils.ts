@@ -257,6 +257,6 @@ export function isUsed(
   }
 
   return relationships.referencedIn.some(({ type, field }) => {
-    return data[type].entries.some((entry: any) => entry[field] === entityId);
+    return data[type as ResumeDataKeysWithEntries].entries.some((entry: any) => entry[field] === entityId);
   });
 }
