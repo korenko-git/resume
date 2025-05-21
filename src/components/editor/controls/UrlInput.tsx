@@ -30,7 +30,6 @@ export function UrlInput({
       {label && <Label className="text-sm font-medium">{label}</Label>}
 
       <Input
-        type="url"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
