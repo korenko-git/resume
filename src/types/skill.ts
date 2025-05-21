@@ -1,14 +1,17 @@
-export type SkillCategoryType =
-  | "language"
-  | "coreFrontend"
-  | "coreBackend"
-  | "database"
-  | "devOps"
-  | "testing"
-  | "tooling"
-  | "uncategorized";
+export const skillCategoryOrder = [
+  "language",
+  "coreBackend",
+  "coreFrontend",
+  "database",
+  "devOps",
+  "testing",
+  "tooling",
+  "uncategorized",
+] as const;
+
+export type SkillCategoryType = (typeof skillCategoryOrder)[number];
 
 export interface Skill {
-  name: string;
-  category: SkillCategoryType;
+  id: string;
+  category: SkillCategoryType | string;
 }
