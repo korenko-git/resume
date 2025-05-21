@@ -9,7 +9,7 @@ import {
 } from "react";
 import { toast } from "sonner";
 
-import { useResumeData } from "@/hooks/useResumeData";
+import { getResume } from "@/lib/getResume";
 import {
   Organization,
   ResumeData,
@@ -19,18 +19,17 @@ import {
 
 interface ResumeContextType {
   data: ResumeData;
-  organizations: Organization[];
-  loading: boolean;
-  error: Error | null;
-  version: number;
-  setVersion: (version: number) => void;
-  updateData: (type: ResumeDataKeysWithEntries, newData: ResumeDataWithEntries) => void;
+  updateData: (
+    type: ResumeDataKeysWithEntries,
+    newData: ResumeDataWithEntries
+  ) => void;
   updateOrganization: (organization: Organization) => void;
   getEntryFromData: (
     type: ResumeDataKeysWithEntries,
     id: string
   ) => ResumeDataWithEntries | null;
   setData: (data: ResumeData) => void;
+  updateDraft: (updatedData: ResumeData) => void;
   deleteEntry: (type: ResumeDataKeysWithEntries, id: string) => void;
 }
 
@@ -39,8 +38,7 @@ export const ResumeContext = createContext<ResumeContextType | undefined>(
 );
 
 export function ResumeProvider({ children }: { children: ReactNode }) {
-  const { data, setData, loading, error } = useResumeData();
-  const [version, setVersion] = useState(data.version || 0);
+  const [data, setData] = useState<ResumeData>(getResume());
 
   const getEntryFromData = useCallback(
     (
@@ -53,24 +51,22 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
   );
 
   const updateDraft = useCallback(
-    (updatedData: ResumeData) => {
+    (updatedDataToSave: ResumeData) => {
       try {
-        const currentVersion = updatedData.version || 0;
-        const updatedAbout = {
-          ...updatedData.about,
-          version: currentVersion + 1,
+        const currentRootVersion = updatedDataToSave.version || 0;
+        const dataWithBumpedVersion: ResumeData = {
+          ...updatedDataToSave,
+          version: currentRootVersion + 1, // Bump root version
         };
 
-        const dataToSave: ResumeData = {
-          ...updatedData,
-          about: updatedAbout as NonNullable<ResumeData["about"]>,
-        };
-
-        localStorage.setItem("resumeDraft", JSON.stringify(dataToSave));
-        setData(dataToSave);
+        localStorage.setItem(
+          "resumeDraft",
+          JSON.stringify(dataWithBumpedVersion)
+        );
+        setData(dataWithBumpedVersion);
         toast.success("Resume draft saved");
-      } catch (error) {
-        console.error("Error saving draft:", error);
+      } catch (e) {
+        console.error("Error saving draft:", e);
         toast.error("Failed to save resume draft");
       }
     },
@@ -79,7 +75,6 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
 
   const updateData = useCallback(
     (type: ResumeDataKeysWithEntries, newData: ResumeDataWithEntries) => {
-
       const entries = [...(data[type]?.entries || [])];
       const existingEntryIndex = entries.findIndex(
         (entry) => entry.id === newData.id
@@ -139,13 +134,9 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
 
   const value = {
     data,
-    organizations: data.organizations?.entries || [],
-    loading,
-    error,
-    version,
-    setVersion,
     updateData,
     setData,
+    updateDraft,
     updateOrganization,
     getEntryFromData,
     deleteEntry,

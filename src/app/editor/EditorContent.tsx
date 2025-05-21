@@ -14,17 +14,7 @@ import { ResumeData } from "@/types/resume";
 
 export default function EditorContent() {
   const router = useRouter();
-  const { data, loading, error } = useResume();
-
-  if (loading) {
-    return <div className="container mx-auto py-8 px-4">Loading...</div>;
-  }
-
-  if (error) {
-    return (
-      <div className="container mx-auto py-8 px-4">Error: {error.message}</div>
-    );
-  }
+  const { data } = useResume();
 
   const handleDownload = async () => {
     const imageFiles: File[] = [];
