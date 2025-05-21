@@ -20,7 +20,7 @@ interface DraftDialogProps {
 }
 
 export function DraftDialog({ onClose }: DraftDialogProps) {
-  const { data, setData, setVersion } = useResume();
+  const { data, setData } = useResume();
 
   const [showDraftDialog, setShowDraftDialog] = useState(false);
   const [draftData, setDraftData] = useState<any>(null);
@@ -28,7 +28,6 @@ export function DraftDialog({ onClose }: DraftDialogProps) {
   const handleRestoreDraft = () => {
     if (draftData) {
       setData(deepMerge(data, draftData));
-      setVersion(draftData.about.version);
     }
     setShowDraftDialog(false);
   };
@@ -65,7 +64,7 @@ export function DraftDialog({ onClose }: DraftDialogProps) {
         } else {
           console.error("Error parsing draft JSON:", error);
         }
-        
+
         localStorage.removeItem("resumeDraft");
       }
     }
