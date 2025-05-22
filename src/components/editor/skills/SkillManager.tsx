@@ -1,7 +1,7 @@
+import { SKILL_CATEGORIES } from "@/constants/skills";
 import { useSkills } from "@/hooks/useSkills";
 
 import { SkillCategory } from "./SkillCategory";
-import { SKILL_CATEGORIES } from "./сonstants";
 
 export function SkillManager() {
   const { skills, addSkills, removeSkill } = useSkills();

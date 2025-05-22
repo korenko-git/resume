@@ -1,10 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 
+import { SKILL_CATEGORIES } from "@/constants/skills";
 import { useSkills } from "@/hooks/useSkills";
 
 import { SkillManager } from "../SkillManager";
-import { SKILL_CATEGORIES } from "../сonstants";
 
 // Mock useSkills for state control
 jest.mock("@/hooks/useSkills");
