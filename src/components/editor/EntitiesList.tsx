@@ -1,7 +1,7 @@
 "use client";
 
 import { Edit, ExternalLink, Plus, Trash2 } from "lucide-react";
-import { useMemo,useState } from "react";
+import { useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 import { Badge } from "@/components/common/ui/badge";
@@ -234,10 +234,28 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
                   )}
 
                   {"category" in entity && (
-                    <Badge variant="secondary">{entity.category}</Badge>
+                    <Select
+                      value={entity.category || ""}
+                      onValueChange={(newCategory) => {
+                        updateData("skills", {
+                          ...entity,
+                          category: newCategory,
+                        });
+                      }}
+                    >
+                      <SelectTrigger className="min-w-[100px]">
+                        <SelectValue placeholder="Category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {skillCategories.map((cat) => (
+                          <SelectItem key={cat} value={cat}>
+                            {cat}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   )}
 
-                  {/* Display related organization */}
                   {"organizationId" in entity && entity.organizationId && (
                     <Badge
                       variant="secondary"
