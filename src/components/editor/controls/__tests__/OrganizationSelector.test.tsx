@@ -1,4 +1,4 @@
-import { render, screen } from "@/lib/testUtils";
+import { render, screen } from "../../../../../__mocks__/testUtils";
 
 import { OrganizationSelector } from "../OrganizationSelector";
 
