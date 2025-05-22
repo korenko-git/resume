@@ -8,6 +8,7 @@ import { Input } from "@/components/common/ui/input";
 import { Label } from "@/components/common/ui/label";
 import { Switch } from "@/components/common/ui/switch";
 import { Textarea } from "@/components/common/ui/textarea";
+import { SkillsSelect } from "@/components/editor/controls/SkillsSelect";
 import { EntryBlock } from "@/components/resume/Entry";
 import {
   AllEntityFields,
@@ -21,7 +22,6 @@ import { DateInput } from "../controls/DateInput";
 import { ImageUpload } from "../controls/ImageUpload";
 import { ImageUrlInput } from "../controls/ImageUrlInput";
 import { OrganizationSelector } from "../controls/OrganizationSelector";
-import { SkillsInput } from "../controls/SkillsInput";
 import { UrlInput } from "../controls/UrlInput";
 
 interface EntityFormProps {
@@ -132,10 +132,11 @@ export function EntityForm({
         );
       case "skills":
         return (
-          <SkillsInput
-            value={value || []}
-            onChange={(value) => handleChange(name as AllEntityFields, value)}
-            label={label}
+          <SkillsSelect
+            selectedSkillIds={(value as string[]) || []}
+            onSelectionChange={(value) =>
+              handleChange(name as AllEntityFields, value)
+            }
           />
         );
       case "url":
@@ -209,7 +210,12 @@ export function EntityForm({
 
       {!hideSubmitButton && (
         <div className="flex justify-end gap-2">
-          <Button type="button" variant="outline" onClick={togglePreview} className="preview-button">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={togglePreview}
+            className="preview-button"
+          >
             <Eye className="mr-2 h-4 w-4" />
             Preview
           </Button>

@@ -2,10 +2,10 @@ import { render, RenderOptions } from "@testing-library/react";
 import React, { ReactElement } from "react";
 
 import { ResumeContext } from "@/contexts/ResumeContext";
-import { ResumeDataKeysWithEntries } from "@/types/resume";
+import { ResumeData, ResumeDataKeysWithEntries } from "@/types/resume";
 
 // Mock resume data
-export const mockResumeData = {
+export const mockResumeData: ResumeData = {
   version: 1,
   about: {
     entries: [
@@ -47,56 +47,57 @@ export const mockResumeData = {
         id: "meta",
         title: "Meta",
         description: "Technology company",
-        isPublished: true,
         logo: "/images/meta-logo.png",
         url: "https://meta.com",
       },
     ],
   },
+  skills: {
+    entries: [
+      { id: "React", category: "frontend" },
+      { id: "TypeScript", category: "language" },
+      { id: "Next.js", category: "frontend" },
+    ],
+  },
 };
 
 const MockResumeContext = ({ children }: { children: React.ReactNode }) => {
-  const updateData = (type: any, data: any) => {
-    console.log("Updating data:", type, data);
+  const updateData = (type: ResumeDataKeysWithEntries, data: any) => {
+    console.log("Mock: Updating data:", type, data);
   };
 
-  const deleteEntry = (type: any, id: any) => {
-    console.log("Deleting entry:", type, id);
+  const deleteEntry = (type: ResumeDataKeysWithEntries, id: string) => {
+    console.log("Mock: Deleting entry:", type, id);
   };
 
   const updateOrganization = (organization: any) => {
-    console.log("Updating organization:", organization);
+    console.log("Mock: Updating organization:", organization);
   };
 
-  const getEntryFromData = (type: ResumeDataKeysWithEntries, id: any) => {
-    const entries = mockResumeData[type]?.entries || [];
+  const getEntryFromData = (type: ResumeDataKeysWithEntries, id: string) => {
+    const section = mockResumeData[type] as { entries?: any[] } | undefined;
+    const entries = section?.entries || [];
     return entries.find((entry: any) => entry.id === id) || null;
   };
 
-  const setData = (newData: any) => {
-    console.log("Setting data:", newData);
-  };
-
-  const setVersion = (version: number) => {
-    console.log("Setting version:", version);
+  const updateDraft = (updatedData: ResumeData) => {
+    console.log("Mock: Updating draft:", updatedData);
   };
 
   const contextValue = {
     data: mockResumeData,
-    organizations: mockResumeData.organizations.entries,
     loading: false,
     error: null,
-    version: mockResumeData.version,
-    setVersion,
     updateData,
-    setData,
+    updateDraft, 
     updateOrganization,
     getEntryFromData,
     deleteEntry,
   };
 
   return (
-    <ResumeContext.Provider value={contextValue}>
+    <ResumeContext.Provider value={contextValue as any}>
+      {" "}
       {children}
     </ResumeContext.Provider>
   );

@@ -20,6 +20,7 @@ import {
 import { useResume } from "@/contexts/ResumeContext";
 import { getEntity } from "@/lib/entityUtils";
 import {
+  EditorTabKey,
   entityMetadata,
   ResumeDataKeysWithEntries,
   ResumeDataWithEntries,
@@ -28,15 +29,15 @@ import {
 import { WelcomeTour } from "./dialogs/WelcomeTour";
 import { EntitiesList } from "./EntitiesList";
 import { EntityForm } from "./forms/EntityForm";
+import { SkillManager } from "./skills/SkillManager";
 
 export function Editor() {
   const { data, updateData } = useResume();
-  const [activeTab, setActiveTab] =
-    useState<ResumeDataKeysWithEntries>("about");
+  const [activeTab, setActiveTab] = useState<EditorTabKey>("about");
   const [selectedEntityId, setSelectedEntityId] = useState<string | null>(null);
 
   const handleTabChange = (value: string) => {
-    setActiveTab(value as ResumeDataKeysWithEntries);
+    setActiveTab(value as EditorTabKey);
     setSelectedEntityId(null);
   };
 
@@ -49,21 +50,27 @@ export function Editor() {
   };
 
   const getSelectedEntity = (): ResumeDataWithEntries | null => {
-    return getEntity(data, activeTab, selectedEntityId);
+    return getEntity(
+      data,
+      activeTab as ResumeDataKeysWithEntries,
+      selectedEntityId
+    );
   };
 
   return (
     <Card className="w-full border-0 shadow-none sm:border sm:border-border sm:shadow">
       <CardContent className="px-0 sm:px-6">
         <div className="flex justify-end items-center relative">
-          <WelcomeTour isEntityFormOpen={!!selectedEntityId} />
+          <WelcomeTour
+            isEntityFormOpen={!!selectedEntityId && activeTab !== "skills"}
+          />
         </div>
         <Tabs
           value={activeTab}
           onValueChange={handleTabChange}
           className="w-full"
         >
-          {selectedEntityId ? (
+          {selectedEntityId && activeTab !== "skills" ? (
             <div className="mb-4">
               <button
                 onClick={handleBackToList}
@@ -95,15 +102,11 @@ export function Editor() {
                       <SelectItem key={key} value={key}>
                         <span className="flex items-center gap-1.5">
                           {React.createElement(
-                            entityMetadata[key as keyof typeof entityMetadata]
-                              .icon,
+                            entityMetadata[key as EditorTabKey].icon,
                             { className: "h-3.5 w-3.5" }
                           )}
                           <span>
-                            {
-                              entityMetadata[key as keyof typeof entityMetadata]
-                                .title
-                            }
+                            {entityMetadata[key as EditorTabKey].title}
                           </span>
                         </span>
                       </SelectItem>
@@ -120,23 +123,21 @@ export function Editor() {
                     className="flex items-center gap-1.5 px-3 py-1.5 text-xs whitespace-nowrap"
                   >
                     {React.createElement(
-                      entityMetadata[key as keyof typeof entityMetadata].icon,
+                      entityMetadata[key as EditorTabKey].icon,
                       { className: "h-3.5 w-3.5" }
                     )}
-                    <span>
-                      {entityMetadata[key as keyof typeof entityMetadata].title}
-                    </span>
+                    <span>{entityMetadata[key as EditorTabKey].title}</span>
                   </TabsTrigger>
                 ))}
               </TabsList>
             </div>
           )}
 
-          {(
-            Object.keys(entityMetadata) as Array<ResumeDataKeysWithEntries>
-          ).map((key) => (
+          {(Object.keys(entityMetadata) as Array<EditorTabKey>).map((key) => (
             <TabsContent key={key} value={key} className="space-y-4">
-              {selectedEntityId ? (
+              {key === "skills" ? (
+                <SkillManager />
+              ) : selectedEntityId ? (
                 <EntityForm
                   type={key as ResumeDataKeysWithEntries}
                   data={getSelectedEntity() as ResumeDataWithEntries}

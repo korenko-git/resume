@@ -6,6 +6,7 @@ import {
   ExperienceEntry,
   ProjectEntry,
 } from "./entries";
+import { Skill } from "./skill";
 
 export type ResumeDataKeysWithEntries =
   | "about"
@@ -13,7 +14,8 @@ export type ResumeDataKeysWithEntries =
   | "education"
   | "projects"
   | "certifications"
-  | "organizations";
+  | "organizations"
+  | "skills";
 
 export interface ResumeData {
   version: Version;
@@ -23,6 +25,7 @@ export interface ResumeData {
   projects: { entries: ProjectEntry[] };
   certifications: { entries: CertificationEntry[] };
   organizations: { entries: Organization[] };
+  skills: { entries: Skill[] };
 }
 
 export * from "./common";
