@@ -2,7 +2,7 @@
   "entries": [
     {
       "id": "JavaScript",
-      "category": "language"
+      "category": "coreFrontend"
     },
     {
       "id": "PHP",
@@ -126,11 +126,11 @@
     },
     {
       "id": "Redux-Saga",
-      "category": "uncategorized"
+      "category": "coreFrontend"
     },
     {
       "id": "Nest.js",
-      "category": "uncategorized"
+      "category": "coreBackend"
     },
     {
       "id": "Data Analysis",
@@ -178,15 +178,15 @@
     },
     {
       "id": "Next.js",
-      "category": "uncategorized"
+      "category": "coreFrontend"
     },
     {
       "id": "Tailwind",
-      "category": "uncategorized"
+      "category": "coreFrontend"
     },
     {
       "id": "Selenium",
-      "category": "uncategorized"
+      "category": "testing"
     }
   ]
 }
