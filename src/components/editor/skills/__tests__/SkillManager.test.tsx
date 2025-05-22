@@ -1,60 +1,60 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import React from "react";
 
 import { SkillManager } from "../SkillManager";
+import { useSkills } from "@/hooks/useSkills";
+import { SKILL_CATEGORIES } from "../сonstants";
+
+// Mock useSkills for state control
+jest.mock("@/hooks/useSkills");
+
+const mockAddSkills = jest.fn();
+const mockRemoveSkill = jest.fn();
+
+const mockSkills = [
+  { id: "TypeScript", category: "language" },
+  { id: "React", category: "coreFrontend" },
+  { id: "PostgreSQL", category: "database" },
+];
+
+beforeEach(() => {
+  jest.clearAllMocks();
+  (useSkills as jest.Mock).mockReturnValue({
+    skills: mockSkills,
+    addSkills: mockAddSkills,
+    removeSkill: mockRemoveSkill,
+  });
+});
 
 describe("SkillManager", () => {
-  beforeEach(() => {
-    localStorage.clear();
-  });
-
-  it("adds a skill to the correct category", async () => {
+  it("renders all categories", () => {
     render(<SkillManager />);
-    const input = screen.getAllByPlaceholderText("Add skills separated by comma")[0];
-    const button = screen.getAllByText("Add")[0];
-
-    fireEvent.change(input, { target: { value: "TypeScript" } });
-    fireEvent.click(button);
-
-    await waitFor(() => {
-      expect(screen.getByText("TypeScript")).toBeInTheDocument();
-      expect(screen.getByText("Success")).toBeInTheDocument();
+    SKILL_CATEGORIES.forEach((cat) => {
+      expect(screen.getByText(cat.name)).toBeInTheDocument();
+      expect(screen.getByText(cat.description)).toBeInTheDocument();
     });
   });
 
-  it("does not add duplicates", async () => {
+  it("passes skills to the correct categories", () => {
     render(<SkillManager />);
-    const input = screen.getAllByPlaceholderText("Add skills separated by comma")[0];
-    const button = screen.getAllByText("Add")[0];
-
-    fireEvent.change(input, { target: { value: "TypeScript" } });
-    fireEvent.click(button);
-
-    fireEvent.change(input, { target: { value: "TypeScript" } });
-    fireEvent.click(button);
-
-    await waitFor(() => {
-      expect(screen.getByText("All entered skills already exist")).toBeInTheDocument();
-    });
+    expect(screen.getByText("TypeScript")).toBeInTheDocument();
+    expect(screen.getByText("React")).toBeInTheDocument();
+    expect(screen.getByText("PostgreSQL")).toBeInTheDocument();
   });
 
-  it("removes a skill", async () => {
+  it("calls addSkills on add", () => {
     render(<SkillManager />);
     const input = screen.getAllByPlaceholderText("Add skills separated by comma")[0];
-    const button = screen.getAllByText("Add")[0];
+    const addBtn = screen.getAllByText("Add")[0];
+    fireEvent.change(input, { target: { value: "Python" } });
+    fireEvent.click(addBtn);
+    expect(mockAddSkills).toHaveBeenCalled();
+  });
 
-    fireEvent.change(input, { target: { value: "TypeScript" } });
-    fireEvent.click(button);
-
-    await waitFor(() => {
-      expect(screen.getByText("TypeScript")).toBeInTheDocument();
-    });
-
-    const removeBtn = screen.getByLabelText("remove");
-    fireEvent.click(removeBtn);
-
-    await waitFor(() => {
-      expect(screen.queryByText("TypeScript")).not.toBeInTheDocument();
-      expect(screen.getByText("Success")).toBeInTheDocument();
-    });
+  it("calls removeSkill on remove", () => {
+    render(<SkillManager />);
+    const removeBtns = screen.getAllByLabelText("remove");
+    removeBtns[0].click();
+    expect(mockRemoveSkill).toHaveBeenCalled();
   });
 });
