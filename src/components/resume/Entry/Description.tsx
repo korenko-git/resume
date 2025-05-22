@@ -17,9 +17,7 @@ export function Description({
   return (
     <ReactMarkdown
       components={{
-        p: ({ ...props }) => (
-          <p className={cn("", className)} {...props} />
-        ),
+        p: ({ children }) => <p className={cn("", className)}>{children}</p>,
         a: ({ href, children, ...props }) => (
           <a
             className={cn(
@@ -37,8 +35,8 @@ export function Description({
             <span>{children}</span>
           </a>
         ),
-        ul: ({ ...props }) => (
-          <ul className="list-disc pl-6 mb-2" {...props} />
+        ul: ({ children }) => (
+          <ul className="list-disc pl-6 mb-2"> {children}</ul>
         ),
       }}
     >
