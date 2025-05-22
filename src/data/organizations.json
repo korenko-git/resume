@@ -34,6 +34,13 @@
       "description": "Description",
       "logo": "images/organization-org-mafk14z7-logo.png",
       "url": "https://www.udemy.com/"
+    },
+    {
+      "id": "org-maz7ww1f",
+      "title": "javascript.info",
+      "description": "Description",
+      "logo": "images/organization-org-maz7ww1f-logo.png",
+      "url": "https://javascript.info/"
     }
   ]
 }

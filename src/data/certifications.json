@@ -17,26 +17,46 @@
     },
     {
       "id": "cert-2",
-      "title": "React Advanced",
-      "description": "Advanced course in React and its ecosystem",
+      "title": "TypeScript course",
+      "description": "This is to certify that Dmytro Korenko successfully completed \"TypeScript course\" program on May 17, 2020",
       "isPublished": true,
-      "date": "2022-06",
+      "date": "2020-05",
       "skills": [
-        "AWS",
-        "Node.js",
-        "Docker",
-        "Kubernetes",
-        "Terraform",
-        "Python",
-        "Microservices",
-        "CI/CD",
-        "MongoDB",
-        "Redis",
-        "ELK Stack",
-        "Prometheus",
-        "Grafana"
+        "TypeScript"
       ],
-      "organizationId": "meta"
+      "organizationId": "org-maz7ww1f",
+      "link": "https://learn.javascript.ru/courses/typescript-20200516/gasonbooks/en/certificate.jpg"
+    },
+    {
+      "id": "cer-maz87g6g",
+      "title": "Advanced React course",
+      "description": "This is to certify that Dmytro Korenko successfully completed \"Advanced React course\" program on May 11, 2020",
+      "isPublished": true,
+      "date": "2020-05",
+      "skills": [
+        "React",
+        "Redux",
+        "Redux-Saga",
+        "ReactNative"
+      ],
+      "organizationId": "org-maz7ww1f",
+      "link": "https://learn.javascript.ru/courses/advreact-20200510/gasonbooks/en/certificate.jpg"
+    },
+    {
+      "id": "cer-maz89vip",
+      "title": "React + Redux - Professional Development",
+      "description": "This certificate above verifies that Dmytro Korenko successfully completed the course \"React + Redux - Professional development\" on 10/23/2019 as taught by Juriy Bura on Udemy.",
+      "isPublished": false,
+      "date": "2019-10",
+      "skills": [
+        "React",
+        "JavaScript",
+        "Webpack",
+        "Redux",
+        "Jest"
+      ],
+      "organizationId": "org-mafk14z7",
+      "link": "https://www.udemy.com/certificate/UC-ENZL2DDE/"
     }
   ]
 }

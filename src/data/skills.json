@@ -1,35 +1,192 @@
 {
   "entries": [
-    { "id": "TypeScript", "category": "language" },
-    { "id": "JavaScript", "category": "language" },
-    { "id": "Python", "category": "language" },
-    { "id": "PHP", "category": "language" },
-    { "id": "React", "category": "coreFrontend" },
-    { "id": "Redux", "category": "coreFrontend" },
-    { "id": "jQuery", "category": "coreFrontend" },
-    { "id": "ReactNative", "category": "coreFrontend" },
-    { "id": "Node.js", "category": "coreBackend" },
-    { "id": "NestJS", "category": "coreBackend" },
-    { "id": "Express.js", "category": "coreBackend" },
-    { "id": "Laravel", "category": "coreBackend" },
-    { "id": "Django", "category": "coreBackend" },
-    { "id": "PostgreSQL", "category": "database" },
-    { "id": "MongoDB", "category": "database" },
-    { "id": "MySQL", "category": "database" },
-    { "id": "Redis", "category": "database" },
-    { "id": "Docker", "category": "devOps" },
-    { "id": "CI/CD", "category": "devOps" },
-    { "id": "AWS S3", "category": "devOps" },
-    { "id": "Jest", "category": "testing" },
-    { "id": "Playwright", "category": "testing" },
-    { "id": "Vite", "category": "tooling" },
-    { "id": "Webpack", "category": "tooling" },
-    { "id": "WordPress", "category": "tooling" },
-    { "id": "WebRTC", "category": "tooling" },
-    { "id": "WebSockets", "category": "tooling" },
-    { "id": "HTML&SCSS", "category": "coreFrontend" },
-    { "id": "Socket.io", "category": "tooling" },
-    { "id": "GraphQL", "category": "coreBackend" },
-    { "id": "Material-UI", "category": "coreFrontend" }
+    {
+      "id": "JavaScript",
+      "category": "language"
+    },
+    {
+      "id": "PHP",
+      "category": "language"
+    },
+    {
+      "id": "Python",
+      "category": "language"
+    },
+    {
+      "id": "TypeScript",
+      "category": "language"
+    },
+    {
+      "id": "Django",
+      "category": "coreBackend"
+    },
+    {
+      "id": "Express.js",
+      "category": "coreBackend"
+    },
+    {
+      "id": "GraphQL",
+      "category": "coreBackend"
+    },
+    {
+      "id": "Laravel",
+      "category": "coreBackend"
+    },
+    {
+      "id": "NestJS",
+      "category": "coreBackend"
+    },
+    {
+      "id": "Node.js",
+      "category": "coreBackend"
+    },
+    {
+      "id": "HTML&SCSS",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "jQuery",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "Material-UI",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "React",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "ReactNative",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "Redux",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "MongoDB",
+      "category": "database"
+    },
+    {
+      "id": "MySQL",
+      "category": "database"
+    },
+    {
+      "id": "PostgreSQL",
+      "category": "database"
+    },
+    {
+      "id": "Redis",
+      "category": "database"
+    },
+    {
+      "id": "AWS S3",
+      "category": "devOps"
+    },
+    {
+      "id": "CI/CD",
+      "category": "devOps"
+    },
+    {
+      "id": "Docker",
+      "category": "devOps"
+    },
+    {
+      "id": "Jest",
+      "category": "testing"
+    },
+    {
+      "id": "Playwright",
+      "category": "testing"
+    },
+    {
+      "id": "Socket.io",
+      "category": "tooling"
+    },
+    {
+      "id": "Vite",
+      "category": "tooling"
+    },
+    {
+      "id": "Webpack",
+      "category": "tooling"
+    },
+    {
+      "id": "WebRTC",
+      "category": "tooling"
+    },
+    {
+      "id": "WebSockets",
+      "category": "tooling"
+    },
+    {
+      "id": "WordPress",
+      "category": "tooling"
+    },
+    {
+      "id": "Redux-Saga",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Nest.js",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Data Analysis",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Cloud Computing",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Machine Learning",
+      "category": "uncategorized"
+    },
+    {
+      "id": "OpenCV",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Web Development",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Mobile Development",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Database Management",
+      "category": "uncategorized"
+    },
+    {
+      "id": "C#",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Network",
+      "category": "uncategorized"
+    },
+    {
+      "id": "programming",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Desktop programming",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Next.js",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Tailwind",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Selenium",
+      "category": "uncategorized"
+    }
   ]
 }

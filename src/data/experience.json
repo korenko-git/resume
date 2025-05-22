@@ -3,7 +3,7 @@
     {
       "id": "exp-1",
       "title": "Front - End Developer",
-      "description": "Working on Ellen G.'s interactive website. White Estate with gamification elements. EGW Writings contains a custom Study Center, Cloud Synchronization of all devices, Audiobooks, online and offline advanced Search and support of more than 100 languages.\nCollaborated closely with the design team to implement pixel-perfect layouts and user flows. Implemented CI/CD pipelines and Dockerized the application. Participated in code reviews, hiring processes and mentoring new developers.",
+      "description": "- Developed and maintained UI components for **EGW Writings** — a multilingual platform with advanced features: Study Center, cloud sync, audiobooks, search, and accessibility compliance  \n- Worked closely with designers to implement **pixel-perfect** layouts and seamless user flows  \n- Built and maintained **CI/CD pipelines**, **Dockerized** front-end environments  \n- Participated in **code reviews**, **mentoring**, and **hiring** processes  ",
       "isPublished": true,
       "startDate": "2021-01",
       "endDate": "",
@@ -23,7 +23,7 @@
     {
       "id": "exp-2",
       "title": "Full - Stack Developer",
-      "description": "Contributed into development of custom CRM system for a leading gas delivery company in the Ukraine. Designed fronted, utilizing technologies like React, jQuery. Participated in the backend development using PHP, Django, and MariaDB. Developed account management system, user roles, and permissions. Implemented integrations with third-party services, such as Google Roads. Worked on the mobile application using React Native.",
+      "description": "- Built a CRM system with **React** and **PHP**, integrating **Google Roads API** for real-time route optimization  \n- Developed secure **user and role management** systems (PHP + jQuery)  \n- Created a **React Native** mobile app and web platform for QR-based book tracking and automated overdue reminders  ",
       "isPublished": true,
       "startDate": "2019-03",
       "endDate": "2021-12",
@@ -43,7 +43,7 @@
     {
       "id": "exp-macm8fhc",
       "title": "Full - Stack Developer",
-      "description": "Successfully completed over 30+ projects while working with a range of large and small agencies, start-ups and individuals.",
+      "description": "- Completed **30+ custom projects** for startups and agencies, from web apps to mobile-ready solutions  \n- Delivered end-to-end solutions using **Laravel**, **PHP**, **jQuery**, **MySQL**, and responsive front-end  \n- Provided long-term support, performance scaling, and third-party integrations  ",
       "isPublished": true,
       "startDate": "2017-01",
       "endDate": "2019-12",
