@@ -17,8 +17,7 @@ export function Description({
   return (
     <ReactMarkdown
       components={{
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        p: ({ node, ...props }) => (
+        p: ({ ...props }) => (
           <p className={cn("", className)} {...props} />
         ),
         a: ({ href, children, ...props }) => (
@@ -37,6 +36,9 @@ export function Description({
             {hrefWithIcon && <LinkIcon className="w-4 h-4 mr-2" />}
             <span>{children}</span>
           </a>
+        ),
+        ul: ({ ...props }) => (
+          <ul className="list-disc pl-6 mb-2" {...props} />
         ),
       }}
     >
