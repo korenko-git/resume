@@ -3,15 +3,15 @@
     {
       "id": "edu-1",
       "title": "Master's degree in Software Engineering",
-      "description": "Focused on advanced computer science concepts, specializing in machine learning, artificial intelligence, and cloud computing. Worked on various research projects involving neural networks and data-driven applications.",
+      "description": "- Specialized in **machine learning**, **image analysis**, and **cloud computing**  \n- Developed projects using **OpenCV** for gesture and figure recognition  \n- Participated in academic research on **neural networks** and **data processing** ",
       "isPublished": true,
       "startDate": "2016-05",
       "endDate": "2018-06",
       "skills": [
         "Python",
-        "Data_Analysis",
-        "Cloud_Computing",
-        "Machine_Learning",
+        "Data Analysis",
+        "Cloud Computing",
+        "Machine Learning",
         "OpenCV"
       ],
       "organizationId": "org-macmbiyb",
@@ -20,20 +20,20 @@
     {
       "id": "edu-2",
       "title": "Bachelor's degree in Software Engineering",
-      "description": "Gained a strong foundation in software development, networking, and database management. Developed projects in web and mobile applications, and learned to implement full-stack solutions.",
+      "description": "- Built foundation in **software development**, **networking**, and **database management**  \n- Developed full-stack web and mobile applications as part of coursework  ",
       "isPublished": true,
       "startDate": "2012-01",
       "endDate": "2016-06",
       "skills": [
         "JavaScript",
         "PHP",
-        "Web_Development",
-        "Mobile_Development",
-        "Database_Management",
+        "Web Development",
+        "Mobile Development",
+        "Database Management",
         "C#",
         "Network",
         "programming",
-        "Desktop_programming"
+        "Desktop programming"
       ],
       "organizationId": "org-macmbiyb",
       "link": "images/education-edu-2-link.png"
