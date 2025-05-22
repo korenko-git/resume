@@ -9,10 +9,9 @@ import ClientThemeProvider from "@/components/common/layout/ClientThemeProvider"
 import Container from "@/components/common/layout/Container";
 import { Footer } from "@/components/common/layout/Footer";
 import { Toaster } from "@/components/common/ui/toaster";
+import { RESUME_THEME_STORAGE_KEY } from "@/constants/theme";
 import { ResumeProvider } from "@/contexts/ResumeContext";
 import { createOpenGraphMetadata } from "@/lib/metadata";
-
-import { RESUME_THEME_STORAGE_KEY } from "@/constants/theme";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
