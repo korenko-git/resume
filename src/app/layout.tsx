@@ -12,6 +12,8 @@ import { Toaster } from "@/components/common/ui/toaster";
 import { ResumeProvider } from "@/contexts/ResumeContext";
 import { createOpenGraphMetadata } from "@/lib/metadata";
 
+import { RESUME_THEME_STORAGE_KEY } from "@/constants/theme";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -37,6 +39,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('${RESUME_THEME_STORAGE_KEY}');
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} antialiased z-10 relative
         leading-relaxed tracking-wide selection:bg-primary/20 
