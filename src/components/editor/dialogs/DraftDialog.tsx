@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { z } from "zod";
 
 import { Button } from "@/components/common/ui/button";
 import {
@@ -12,8 +11,7 @@ import {
   DialogTitle,
 } from "@/components/common/ui/dialog";
 import { useResume } from "@/contexts/ResumeContext";
-import { deepEqual, deepMerge } from "@/lib/utils";
-import { resumeSchema } from "@/lib/validationSchemas";
+import { useDraftResume } from "@/hooks/useDraftResume";
 
 interface DraftDialogProps {
   onClose?: () => void;
@@ -21,54 +19,25 @@ interface DraftDialogProps {
 
 export function DraftDialog({ onClose }: DraftDialogProps) {
   const { data, setData } = useResume();
-
+  const { hasNewerDraft, restoreDraft, removeDraft } = useDraftResume(data);
   const [showDraftDialog, setShowDraftDialog] = useState(false);
-  const [draftData, setDraftData] = useState<any>(null);
+
+  useEffect(() => {
+    if (hasNewerDraft()) {
+      setShowDraftDialog(true);
+    }
+  }, [data, hasNewerDraft]);
 
   const handleRestoreDraft = () => {
-    if (draftData) {
-      setData(deepMerge(data, draftData));
-    }
+    setData(restoreDraft());
     setShowDraftDialog(false);
   };
 
   const handleClose = () => {
-    localStorage.removeItem("resumeDraft");
+    removeDraft();
     setShowDraftDialog(false);
-    if (onClose) {
-      onClose();
-    }
+    if (onClose) onClose();
   };
-
-  useEffect(() => {
-    const savedDraft = localStorage.getItem("resumeDraft");
-    if (savedDraft) {
-      try {
-        const draft = JSON.parse(savedDraft);
-        const draftVersion = Number(draft.version.version) || 0;
-        const currentVersion = Number(data.version) || 0;
-
-        if (draftVersion > currentVersion) {
-          const draftWithoutVersion = { ...draft, version: undefined };
-          const dataWithoutVersion = { ...data, version: undefined };
-
-          if (!deepEqual(draftWithoutVersion, dataWithoutVersion)) {
-            resumeSchema.parse(draft);
-            setDraftData(draft);
-            setShowDraftDialog(true);
-          }
-        }
-      } catch (error) {
-        if (error instanceof z.ZodError) {
-          console.error("Draft validation error:", error.errors);
-        } else {
-          console.error("Error parsing draft JSON:", error);
-        }
-
-        localStorage.removeItem("resumeDraft");
-      }
-    }
-  }, [data, showDraftDialog]);
 
   return (
     <Dialog open={showDraftDialog} onOpenChange={handleClose}>
