@@ -1,4 +1,4 @@
-export const entityRelationships: Record<string, { referencedIn: Array<{ type: string, field: string }> }> = {
+export const entityRelationships = {
   organizations: {
     referencedIn: [
       { type: 'experience', field: 'organizationId' },
@@ -10,5 +10,13 @@ export const entityRelationships: Record<string, { referencedIn: Array<{ type: s
   experience: { referencedIn: [] },
   education: { referencedIn: [] },
   projects: { referencedIn: [] },
-  certifications: { referencedIn: [] }
+  certifications: { referencedIn: [] },
+  skills: {
+    referencedIn: [
+      { type: 'experience', field: 'skills' },
+      { type: 'education', field: 'skills' },
+      { type: 'projects', field: 'skills' },
+      { type: 'certifications', field: 'skills' }
+    ]
+  }
 };

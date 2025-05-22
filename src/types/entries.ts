@@ -1,4 +1,5 @@
-import { BaseEntry, LinkableEntity, Organization } from './common';
+import { BaseEntry, LinkableEntity, Organization } from "./common";
+import { Skill } from "./skill";
 
 export interface AboutEntry extends BaseEntry {
   subtitle: string;
@@ -45,7 +46,8 @@ export type ResumeDataWithEntries =
   | EducationEntry
   | ProjectEntry
   | CertificationEntry
-  | Organization;
+  | Organization
+  | Skill;
 
 export type AllEntityFields =
   | keyof BaseEntry
@@ -53,4 +55,5 @@ export type AllEntityFields =
   | keyof EducationEntry
   | keyof ProjectEntry
   | keyof CertificationEntry
-  | keyof Organization;
+  | keyof Organization
+  | keyof Skill;

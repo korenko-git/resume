@@ -93,7 +93,7 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
               <CardHeader className="pb-2">
                 <div className="flex pr-8 justify-between items-start overflow-hidden">
                   <CardTitle className="text-lg truncate">
-                    {entity.title}
+                    {"title" in entity ? entity.title : entity.id}
                   </CardTitle>
                   <Button
                     variant="outline"
@@ -130,9 +130,11 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
                 </div>
               </CardHeader>
               <CardContent className="flex-1 flex flex-col">
-                <div className="text-sm text-muted-foreground line-clamp-2 break-words">
-                  <ReactMarkdown>{entity.description}</ReactMarkdown>
-                </div>
+                {"description" in entity && (
+                  <div className="text-sm text-muted-foreground line-clamp-2 break-words">
+                    <ReactMarkdown>{entity.description}</ReactMarkdown>
+                  </div>
+                )}
 
                 {/* Display dates */}
                 {"startDate" in entity && (

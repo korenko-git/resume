@@ -5,7 +5,8 @@ import {
   FolderKanban,
   GraduationCap,
   LucideIcon,
-  User
+  User,
+  Wrench
 } from 'lucide-react';
 
 export const entityMetadata: Record<string, { title: string; icon: LucideIcon }> = {
@@ -32,5 +33,11 @@ export const entityMetadata: Record<string, { title: string; icon: LucideIcon }>
   organizations: {
     title: 'Organizations',
     icon: Building2
-  }
+  },
+  skills: {
+    title: "Manage Skills",
+    icon: Wrench,
+  },
 };
+
+export type EditorTabKey = keyof typeof entityMetadata;

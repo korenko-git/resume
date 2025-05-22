@@ -32,7 +32,7 @@ export function EntryBlock({ entryData }: EntryBlockProps) {
 
         <div className="z-10 sm:col-span-6">
           <EntryTitle data={entryData} />
-          <Description data={entryData} className="mt-2" />
+          {"description" in entryData && <Description data={entryData} className="mt-2" />}
           {"skills" in entryData && <Skills skills={entryData.skills} />}
         </div>
       </div>
