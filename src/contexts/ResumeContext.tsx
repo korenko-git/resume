@@ -9,6 +9,7 @@ import {
 } from "react";
 import { toast } from "sonner";
 
+import { useDraftResume } from "@/hooks/useDraftResume";
 import { getResume } from "@/lib/getResume";
 import {
   Organization,
@@ -39,6 +40,7 @@ export const ResumeContext = createContext<ResumeContextType | undefined>(
 
 export function ResumeProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<ResumeData>(getResume());
+  const { updateDraft: updateDraftLocal } = useDraftResume(data);
 
   const getEntryFromData = useCallback(
     (
@@ -53,24 +55,15 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
   const updateDraft = useCallback(
     (updatedDataToSave: ResumeData) => {
       try {
-        const currentRootVersion = updatedDataToSave.version || 0;
-        const dataWithBumpedVersion: ResumeData = {
-          ...updatedDataToSave,
-          version: currentRootVersion + 1, // Bump root version
-        };
-
-        localStorage.setItem(
-          "resumeDraft",
-          JSON.stringify(dataWithBumpedVersion)
-        );
-        setData(dataWithBumpedVersion);
+        updateDraftLocal(updatedDataToSave);
+        setData(updatedDataToSave);
         toast.success("Resume draft saved");
       } catch (e) {
         console.error("Error saving draft:", e);
         toast.error("Failed to save resume draft");
       }
     },
-    [setData]
+    [setData, updateDraftLocal]
   );
 
   const updateData = useCallback(
