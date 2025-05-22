@@ -1,5 +1,4 @@
 import { render, screen } from "../../../../../__mocks__/testUtils";
-
 import { OrganizationSelector } from "../OrganizationSelector";
 
 // Mock the createDefaultEntity function

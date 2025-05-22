@@ -6,6 +6,13 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/common/ui/button";
 import { Input } from "@/components/common/ui/input";
 import { Label } from "@/components/common/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/common/ui/select";
 import { Switch } from "@/components/common/ui/switch";
 import { Textarea } from "@/components/common/ui/textarea";
 import { SkillsSelect } from "@/components/editor/controls/SkillsSelect";
@@ -63,7 +70,7 @@ export function EntityForm({
 
   // Render a field based on its type
   const renderField = (field: FieldDefinition) => {
-    const { name, label, type, required, placeholder } = field;
+    const { name, label, type, required, placeholder, options } = field;
     const value = (formData as any)[name];
 
     switch (type) {
@@ -164,6 +171,30 @@ export function EntityForm({
             onChange={(value) => handleChange(name as AllEntityFields, value)}
             urlPlaceholder={placeholder}
           />
+        );
+
+      case "select":
+        return (
+          <div className="space-y-2 form-field">
+            <Label htmlFor={name}>{label}</Label>
+            <Select
+              value={value || ""}
+              onValueChange={(val) =>
+                handleChange(name as AllEntityFields, val)
+              }
+            >
+              <SelectTrigger id={name}>
+                <SelectValue placeholder={placeholder || "Select..."} />
+              </SelectTrigger>
+              <SelectContent>
+                {options?.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         );
       default:
         return null;

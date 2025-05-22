@@ -109,7 +109,9 @@ export function filterPublishedEntries<T extends ResumeDataWithEntries>(
   if (!entries) return [];
   return includeUnpublished
     ? entries
-    : entries.filter((entry) => "isPublished" in entry && entry.isPublished !== false);
+    : entries.filter(
+        (entry) => "isPublished" in entry && entry.isPublished !== false
+      );
 }
 
 /**
@@ -121,7 +123,10 @@ export function filterPublishedEntries<T extends ResumeDataWithEntries>(
 export function getFirstPublishedEntry<T extends ResumeDataWithEntries>(
   entries: T[] | undefined
 ): T | undefined {
-  return entries && entries.find((entry: T) => "isPublished" in entry && entry.isPublished);
+  return (
+    entries &&
+    entries.find((entry: T) => "isPublished" in entry && entry.isPublished)
+  );
 }
 
 /**
@@ -131,11 +136,11 @@ export function getFirstPublishedEntry<T extends ResumeDataWithEntries>(
  * @param type - The type of entity to retrieve (e.g., 'about', 'experience', etc.)
  * @param id - The unique identifier of the entity to retrieve
  * @returns The found entity object or null if not found
- * 
+ *
  * @example
  * // Get a specific experience entry
  * const experienceEntry = getEntity(resumeData, 'experience', 'exp-123');
- * 
+ *
  * // Get a specific project
  * const project = getEntity(resumeData, 'projects', 'prj-456');
  */
@@ -156,9 +161,7 @@ export function getEntity(
  * @returns Plural form of the entity type
  */
 export function getPluralForm(type: string): string {
-  return type.endsWith('y') 
-    ? type.slice(0, -1) + 'ies' 
-    : type + 's';
+  return type.endsWith("y") ? type.slice(0, -1) + "ies" : type + "s";
 }
 
 /**
@@ -167,9 +170,7 @@ export function getPluralForm(type: string): string {
  * @returns Singular form of the entity type
  */
 export function getSingularForm(type: string): string {
-  return type.endsWith('s') 
-    ? type.slice(0, -1) 
-    : type;
+  return type.endsWith("s") ? type.slice(0, -1) : type;
 }
 
 /**
@@ -177,21 +178,27 @@ export function getSingularForm(type: string): string {
  * @param entityType Type of the entity
  * @returns Array of references or empty array if none found
  */
-function getEntityReferences(entityType: ResumeDataKeysWithEntries): Array<{ type: ResumeDataKeysWithEntries, field: string }> {
-  const references: Array<{ type: ResumeDataKeysWithEntries, field: string }> = [];
-  
+function getEntityReferences(
+  entityType: ResumeDataKeysWithEntries
+): Array<{ type: ResumeDataKeysWithEntries; field: string }> {
+  const references: Array<{ type: ResumeDataKeysWithEntries; field: string }> =
+    [];
+
   // Iterate through all entity types and find which ones are referenced by our entity
   Object.entries(entityRelationships).forEach(([refType, relationship]) => {
     // If this entity type is referenced by our target entity
     if (refType !== entityType) {
-      relationship.referencedIn.forEach(ref => {
+      relationship.referencedIn.forEach((ref) => {
         if (ref.type === entityType) {
-          references.push({ type: refType as ResumeDataKeysWithEntries, field: ref.field });
+          references.push({
+            type: refType as ResumeDataKeysWithEntries,
+            field: ref.field,
+          });
         }
       });
     }
   });
-  
+
   return references;
 }
 
@@ -202,7 +209,7 @@ function getEntityReferences(entityType: ResumeDataKeysWithEntries): Array<{ typ
  * @param type - The type of entity to retrieve (e.g., 'about', 'experience', etc.)
  * @param id - The unique identifier of the entity to retrieve
  * @returns The found entity object with all references populated or null if not found
- * 
+ *
  * @example
  * // Get a specific experience entry with organization data
  * const experienceWithOrg = getEntityFull(resumeData, 'experience', 'exp-123');
@@ -213,20 +220,20 @@ export function getEntityFull(
   id?: string | null
 ): ResumeDataWithEntries | null {
   const entity = getEntity(data, type, id);
-  
+
   if (!entity) return null;
-  
+
   const result = { ...entity };
-  
+
   // Get all references for this entity type
   const references = getEntityReferences(type);
-  
+
   // For each reference type, check if this entity has the reference field
   for (const { type: refType, field } of references) {
     if (field in entity && (entity as any)[field]) {
       const refId = (entity as any)[field];
       const referencedEntity = getEntity(data, refType, refId);
-      
+
       if (referencedEntity) {
         // Add the referenced entity to the result using singular form
         const singularType = getSingularForm(refType);
@@ -234,7 +241,7 @@ export function getEntityFull(
       }
     }
   }
-  
+
   return result;
 }
 
@@ -251,12 +258,20 @@ export function isUsed(
   entityId: string
 ): boolean {
   const relationships = entityRelationships[entityType];
-  
+
   if (!relationships || relationships.referencedIn.length === 0) {
     return false;
   }
 
   return relationships.referencedIn.some(({ type, field }) => {
-    return data[type as ResumeDataKeysWithEntries].entries.some((entry: any) => entry[field] === entityId);
+    return data[type as ResumeDataKeysWithEntries].entries.some(
+      (entry: any) => {
+        const value = entry[field];
+        if (Array.isArray(value)) {
+          return value.includes(entityId);
+        }
+        return value === entityId;
+      }
+    );
   });
 }

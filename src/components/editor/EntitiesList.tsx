@@ -1,7 +1,7 @@
 "use client";
 
 import { Edit, ExternalLink, Plus, Trash2 } from "lucide-react";
-import { useState } from "react";
+import { useMemo,useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 import { Badge } from "@/components/common/ui/badge";
@@ -12,6 +12,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/common/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/common/ui/select";
 import { useResume } from "@/contexts/ResumeContext";
 import { formatDate } from "@/lib/dateUtils";
 import { createDefaultEntity, isUsed } from "@/lib/entityUtils";
@@ -30,8 +37,62 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
+  // Filters
+  const [orgFilter, setOrgFilter] = useState<string>("all");
+  const [usedFilter, setUsedFilter] = useState<string>("all");
+  const [publishedFilter, setPublishedFilter] = useState<string>("all");
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
+
   const entities = data[entityType].entries;
   const metadata = entityMetadata[entityType];
+
+  // Get organizations list for filter
+  const organizations = useMemo(
+    () => data.organizations?.entries || [],
+    [data.organizations?.entries]
+  );
+  // Get categories for skills
+  const skillCategories = useMemo(() => {
+    if (entityType !== "skills") return [];
+    const cats = new Set<string>();
+    entities.forEach((s: any) => s.category && cats.add(s.category));
+    return Array.from(cats);
+  }, [entityType, entities]);
+
+  // Apply filters
+  const filteredEntities = useMemo(() => {
+    return entities.filter((entity: any) => {
+      // Organization filter
+      if (orgFilter !== "all" && "organizationId" in entity) {
+        if (entity.organizationId !== orgFilter) return false;
+      }
+      // Used/unused filter
+      if (usedFilter !== "all") {
+        const used = isUsed(data, entityType, entity.id);
+        if (usedFilter === "used" && !used) return false;
+        if (usedFilter === "unused" && used) return false;
+      }
+      // Published/Draft filter
+      if (publishedFilter !== "all" && "isPublished" in entity) {
+        if (publishedFilter === "published" && !entity.isPublished)
+          return false;
+        if (publishedFilter === "draft" && entity.isPublished) return false;
+      }
+      // Category filter for skills
+      if (entityType === "skills" && categoryFilter !== "all") {
+        if (entity.category !== categoryFilter) return false;
+      }
+      return true;
+    });
+  }, [
+    entities,
+    orgFilter,
+    usedFilter,
+    publishedFilter,
+    categoryFilter,
+    data,
+    entityType,
+  ]);
 
   const handleAddEntity = () => {
     const newEntity = createDefaultEntity(entityType);
@@ -68,23 +129,80 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
 
   return (
     <div className="space-y-6 entity-list">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-wrap gap-2 justify-between items-center">
         <h2 className="text-2xl font-bold">{metadata.title}</h2>
-        <Button onClick={handleAddEntity} className="add-entity-button">
-          <Plus className="mr-2 h-4 w-4" />
-          Add
-        </Button>
+        <div className="flex flex-wrap gap-2 items-center">
+          {/* Фильтр по организации */}
+          {"organizationId" in (entities[0] || {}) && (
+            <Select value={orgFilter} onValueChange={setOrgFilter}>
+              <SelectTrigger className="min-w-[120px]">
+                <SelectValue placeholder="Organization" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Orgs</SelectItem>
+                {organizations.map((org) => (
+                  <SelectItem key={org.id} value={org.id}>
+                    {org.title}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+          {/* Фильтр по used/unused */}
+          <Select value={usedFilter} onValueChange={setUsedFilter}>
+            <SelectTrigger className="min-w-[100px]">
+              <SelectValue placeholder="Used" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="used">Used</SelectItem>
+              <SelectItem value="unused">Unused</SelectItem>
+            </SelectContent>
+          </Select>
+          {/* Фильтр по Published/Draft */}
+          {"isPublished" in (entities[0] || {}) && (
+            <Select value={publishedFilter} onValueChange={setPublishedFilter}>
+              <SelectTrigger className="min-w-[110px]">
+                <SelectValue placeholder="Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All</SelectItem>
+                <SelectItem value="published">Published</SelectItem>
+                <SelectItem value="draft">Draft</SelectItem>
+              </SelectContent>
+            </Select>
+          )}
+          {/* Фильтр по категории для скиллов */}
+          {entityType === "skills" && (
+            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+              <SelectTrigger className="min-w-[120px]">
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Categories</SelectItem>
+                {skillCategories.map((cat) => (
+                  <SelectItem key={cat} value={cat}>
+                    {cat}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+          <Button onClick={handleAddEntity} className="add-entity-button">
+            <Plus className="mr-2 h-4 w-4" />
+            Add
+          </Button>
+        </div>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {entities.length === 0 ? (
+        {filteredEntities.length === 0 ? (
           <Card className="col-span-full">
             <CardContent className="pt-6 text-center text-muted-foreground">
               No entries. Click &quot;Add&quot; to create a new entry.
             </CardContent>
           </Card>
         ) : (
-          entities.map((entity) => (
+          filteredEntities.map((entity) => (
             <Card
               key={entity.id}
               className="cursor-pointer hover:shadow-md transition-shadow overflow-hidden relative group flex flex-col entity-card"
@@ -113,6 +231,10 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
 
                   {isUsed(data, entityType, entity.id) && (
                     <Badge variant="secondary">Used</Badge>
+                  )}
+
+                  {"category" in entity && (
+                    <Badge variant="secondary">{entity.category}</Badge>
                   )}
 
                   {/* Display related organization */}
