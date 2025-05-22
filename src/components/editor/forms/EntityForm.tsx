@@ -173,9 +173,16 @@ export function EntityForm({
   if (isPreviewMode) {
     return (
       <div className="space-y-4">
-        <div className="flex justify-end">
+        <div className="flex justify-end gap-2">
           <Button onClick={togglePreview} variant="outline" className="mr-2">
             Edit
+          </Button>
+          <Button
+            onClick={() => onUpdate && onUpdate(formData)}
+            className="save-button"
+          >
+            <Save className="mr-2 h-4 w-4" />
+            Save
           </Button>
         </div>
         <div className="border rounded-lg p-4">
