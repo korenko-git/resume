@@ -29,7 +29,6 @@ import {
 import { WelcomeTour } from "./dialogs/WelcomeTour";
 import { EntitiesList } from "./EntitiesList";
 import { EntityForm } from "./forms/EntityForm";
-import { SkillManager } from "./skills/SkillManager";
 
 export function Editor() {
   const { data, updateData } = useResume();
@@ -70,7 +69,7 @@ export function Editor() {
           onValueChange={handleTabChange}
           className="w-full"
         >
-          {selectedEntityId && activeTab !== "skills" ? (
+          {selectedEntityId ? (
             <div className="mb-4">
               <button
                 onClick={handleBackToList}
@@ -135,9 +134,7 @@ export function Editor() {
 
           {(Object.keys(entityMetadata) as Array<EditorTabKey>).map((key) => (
             <TabsContent key={key} value={key} className="space-y-4">
-              {key === "skills" ? (
-                <SkillManager />
-              ) : selectedEntityId ? (
+              {selectedEntityId ? (
                 <EntityForm
                   type={key as ResumeDataKeysWithEntries}
                   data={getSelectedEntity() as ResumeDataWithEntries}

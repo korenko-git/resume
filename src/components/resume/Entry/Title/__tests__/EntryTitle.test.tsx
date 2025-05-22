@@ -1,5 +1,4 @@
 import { render, screen } from "../../../../../../__mocks__/testUtils";
-
 import { EntryTitle } from "../EntryTitle";
 
 jest.mock("../OrganizationTitle", () => ({
