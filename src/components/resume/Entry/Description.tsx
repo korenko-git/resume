@@ -36,7 +36,7 @@ export function Description({
           </a>
         ),
         ul: ({ children }) => (
-          <ul className="list-disc pl-6 mb-2"> {children}</ul>
+          <ul className="list-disc pl-6 my-2"> {children}</ul>
         ),
       }}
     >
