@@ -1,35 +1,17 @@
 "use client";
 
 import { Eye, Save } from "lucide-react";
-import { useEffect, useState } from "react";
 
 import { Button } from "@/components/common/ui/button";
-import { Input } from "@/components/common/ui/input";
-import { Label } from "@/components/common/ui/label";
+import { useEntityFormState } from "@/hooks/useEntityFormState";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/common/ui/select";
-import { Switch } from "@/components/common/ui/switch";
-import { Textarea } from "@/components/common/ui/textarea";
-import { SkillsSelect } from "@/components/editor/controls/SkillsSelect";
-import { EntryBlock } from "@/components/resume/Entry";
-import {
-  AllEntityFields,
   entityFields,
-  FieldDefinition,
   ResumeDataKeysWithEntries,
   ResumeDataWithEntries,
 } from "@/types/resume";
 
-import { DateInput } from "../controls/DateInput";
-import { ImageUpload } from "../controls/ImageUpload";
-import { ImageUrlInput } from "../controls/ImageUrlInput";
-import { OrganizationSelector } from "../controls/OrganizationSelector";
-import { UrlInput } from "../controls/UrlInput";
+import { FormPreview } from "./FormPreview";
+import { FormRenderer } from "./FormRenderer";
 
 interface EntityFormProps {
   type: ResumeDataKeysWithEntries;
@@ -46,193 +28,42 @@ export function EntityForm({
   onChange,
   hideSubmitButton = false,
 }: EntityFormProps) {
-  const [formData, setFormData] = useState<ResumeDataWithEntries>(data);
-  const [isPreviewMode, setIsPreviewMode] = useState(false);
+  const { formData, isPreviewMode, handleChange, togglePreview } =
+    useEntityFormState({
+      initialData: data,
+      onChange,
+    });
 
-  useEffect(() => {
-    setFormData(data);
-  }, [data]);
-
-  const handleChange = (field: AllEntityFields, value: any) => {
-    const updatedData = { ...formData, [field]: value };
-    setFormData(updatedData);
-    if (onChange) onChange(updatedData);
-  };
+  const { renderField } = FormRenderer({
+    formData,
+    onFieldChange: handleChange,
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (onUpdate) onUpdate(formData);
   };
 
-  const togglePreview = () => {
-    setIsPreviewMode(!isPreviewMode);
-  };
-
-  // Render a field based on its type
-  const renderField = (field: FieldDefinition) => {
-    const { name, label, type, required, placeholder, options } = field;
-    const value = (formData as any)[name];
-
-    switch (type) {
-      case "text":
-        return (
-          <div className="space-y-2 form-field">
-            <Label htmlFor={name}>{label}</Label>
-            <Input
-              id={name}
-              value={value || ""}
-              onChange={(e) =>
-                handleChange(name as AllEntityFields, e.target.value)
-              }
-              required={required}
-              placeholder={placeholder}
-            />
-          </div>
-        );
-      case "textarea":
-        return (
-          <div className="space-y-2">
-            <Label htmlFor={name}>{label}</Label>
-            <Textarea
-              id={name}
-              value={value || ""}
-              onChange={(e) =>
-                handleChange(name as AllEntityFields, e.target.value)
-              }
-              rows={5}
-              required={required}
-              placeholder={placeholder}
-            />
-          </div>
-        );
-      case "switch":
-        return (
-          <div className="flex items-center space-x-2 justify-end form-field published-toggle">
-            <Switch
-              id={name}
-              checked={value || false}
-              onCheckedChange={(checked) =>
-                handleChange(name as AllEntityFields, checked)
-              }
-            />
-            <Label htmlFor={name}>{label}</Label>
-          </div>
-        );
-      case "date":
-        return (
-          <DateInput
-            id={name}
-            label={label}
-            value={value || ""}
-            onChange={(value) => handleChange(name as AllEntityFields, value)}
-            required={required}
-            placeholder={placeholder}
-          />
-        );
-      case "organization":
-        return (
-          <OrganizationSelector
-            value={value || ""}
-            onChange={(value) => handleChange(name as AllEntityFields, value)}
-            label={label}
-          />
-        );
-      case "skills":
-        return (
-          <SkillsSelect
-            selectedSkillIds={(value as string[]) || []}
-            onSelectionChange={(value) =>
-              handleChange(name as AllEntityFields, value)
-            }
-          />
-        );
-      case "url":
-        return (
-          <UrlInput
-            label={label}
-            value={value || ""}
-            onChange={(value) => handleChange(name as AllEntityFields, value)}
-            placeholder={placeholder}
-          />
-        );
-      case "image":
-        return (
-          <ImageUpload
-            label={label}
-            value={value || ""}
-            onChange={(value) => handleChange(name as AllEntityFields, value)}
-          />
-        );
-      case "imageWithUrl":
-        return (
-          <ImageUrlInput
-            label={label}
-            value={value || ""}
-            onChange={(value) => handleChange(name as AllEntityFields, value)}
-            urlPlaceholder={placeholder}
-          />
-        );
-
-      case "select":
-        return (
-          <div className="space-y-2 form-field">
-            <Label htmlFor={name}>{label}</Label>
-            <Select
-              value={value || ""}
-              onValueChange={(val) =>
-                handleChange(name as AllEntityFields, val)
-              }
-            >
-              <SelectTrigger id={name}>
-                <SelectValue placeholder={placeholder || "Select..."} />
-              </SelectTrigger>
-              <SelectContent>
-                {options?.map((opt) => (
-                  <SelectItem key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        );
-      default:
-        return null;
-    }
+  const handleSave = () => {
+    if (onUpdate) onUpdate(formData);
   };
 
   if (isPreviewMode) {
     return (
-      <div className="space-y-4">
-        <div className="flex justify-end gap-2">
-          <Button onClick={togglePreview} variant="outline" className="mr-2">
-            Edit
-          </Button>
-          <Button
-            onClick={() => onUpdate && onUpdate(formData)}
-            className="save-button"
-          >
-            <Save className="mr-2 h-4 w-4" />
-            Save
-          </Button>
-        </div>
-        <div className="border rounded-lg p-4">
-          <EntryBlock entryData={formData} />
-        </div>
-      </div>
+      <FormPreview
+        formData={formData}
+        onEdit={togglePreview}
+        onSave={handleSave}
+      />
     );
   }
 
-  // Get fields for the current entity type
   const fields = entityFields[type] || [];
-
-  // Group fields by whether they should be in a grid
   const gridFields = fields.filter((field) => field.grid);
   const normalFields = fields.filter((field) => !field.grid);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Render grid fields */}
       {gridFields.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {gridFields.map((field) => (
@@ -241,7 +72,6 @@ export function EntityForm({
         </div>
       )}
 
-      {/* Render normal fields */}
       {normalFields.map((field) => (
         <div key={field.name}>{renderField(field)}</div>
       ))}
