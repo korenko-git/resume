@@ -1,4 +1,5 @@
 import { Button } from "@/components/common/ui/button";
+import { getAssetPath } from "@/lib/assetPath";
 import { AboutEntry } from "@/types/resume";
 
 interface PersonProps {
@@ -26,7 +27,7 @@ export function Person({ sectionData }: PersonProps) {
           className="mr-4 shrink-0 text-xs"
           aria-label="Download ATS CV"
         >
-          <a href={"/cv-ats.pdf"} target="_blank" rel="noopener noreferrer">
+          <a href={getAssetPath("/cv-ats.pdf")} target="_blank" rel="noopener noreferrer">
             ATS CV
           </a>
         </Button>
