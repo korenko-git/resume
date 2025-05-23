@@ -1,29 +1,18 @@
 import { useCallback } from "react";
 
 import { deepEqual, deepMerge } from "@/lib/utils";
-import { resumeSchema } from "@/lib/validationSchemas";
+import { resumeStorage } from "@/services/resumeStorage";
 import { ResumeData } from "@/types/resume";
-
-const RESUME_DRAFT_KEY = "resumeDraft";
 
 export function useDraftResume(currentData: ResumeData) {
   const getDraft = useCallback(() => {
-    const savedDraft = localStorage.getItem(RESUME_DRAFT_KEY);
-    if (!savedDraft) return null;
-    try {
-      const draft = JSON.parse(savedDraft);
-      resumeSchema.parse(draft);
-      return draft;
-    } catch {
-      localStorage.removeItem(RESUME_DRAFT_KEY);
-      return null;
-    }
+    return resumeStorage.getDraft();
   }, []);
 
   const hasNewerDraft = useCallback(() => {
     const draft = getDraft();
     if (!draft) return false;
-    const draftVersion = Number(draft.version?.version) || 0;
+    const draftVersion = Number(draft.version) || 0;
     const currentVersion = Number(currentData.version) || 0;
     if (draftVersion > currentVersion) {
       const draftWithoutVersion = { ...draft, version: undefined };
@@ -40,20 +29,11 @@ export function useDraftResume(currentData: ResumeData) {
   }, [currentData, getDraft]);
 
   const removeDraft = useCallback(() => {
-    localStorage.removeItem(RESUME_DRAFT_KEY);
+    resumeStorage.removeDraft();
   }, []);
 
   const updateDraft = useCallback((updatedData: ResumeData) => {
-    try {
-      const currentRootVersion = updatedData.version || 0;
-      const dataWithBumpedVersion: ResumeData = {
-        ...updatedData,
-        version: currentRootVersion + 1,
-      };
-      localStorage.setItem(RESUME_DRAFT_KEY, JSON.stringify(dataWithBumpedVersion));
-    } catch (e) {
-      console.error(e);
-    }
+    resumeStorage.saveDraft(updatedData);
   }, []);
 
   return { getDraft, hasNewerDraft, restoreDraft, removeDraft, updateDraft };
