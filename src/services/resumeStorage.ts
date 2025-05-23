@@ -13,7 +13,7 @@ export const resumeStorage = {
       };
       localStorage.setItem(
         RESUME_DRAFT_KEY,
-        JSON.stringify(dataWithBumpedVersion)
+        JSON.stringify(dataWithBumpedVersion),
       );
     } catch (e) {
       console.error("Error saving draft:", e);

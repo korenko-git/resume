@@ -1,9 +1,9 @@
-import { Image as ImageIcon, Upload, X } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { Image as ImageIcon, Upload, X } from "lucide-react";
+import { useRef, useState } from "react";
 
-import { Button } from '@/components/common/ui/button';
-import { Label } from '@/components/common/ui/label';
-import { cn } from '@/lib/utils';
+import { Button } from "@/components/common/ui/button";
+import { Label } from "@/components/common/ui/label";
+import { cn } from "@/lib/utils";
 
 interface ImageUploadProps {
   value: string;
@@ -17,10 +17,10 @@ interface ImageUploadProps {
 export function ImageUpload({
   value,
   onChange,
-  label = 'Image',
+  label = "Image",
   className,
-  accept = 'image/*',
-  maxSize = 5 * 1024 * 1024 // 5MB default
+  accept = "image/*",
+  maxSize = 5 * 1024 * 1024, // 5MB default
 }: ImageUploadProps) {
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -35,7 +35,7 @@ export function ImageUpload({
     }
 
     setError(null);
-    
+
     // Reading file as Data URL
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -47,9 +47,9 @@ export function ImageUpload({
   };
 
   const handleClear = () => {
-    onChange('');
+    onChange("");
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = "";
     }
   };
 
@@ -58,11 +58,9 @@ export function ImageUpload({
   };
 
   return (
-    <div className={cn('space-y-2', className)}>
-      {label && (
-        <Label className="text-sm font-medium">{label}</Label>
-      )}
-      
+    <div className={cn("space-y-2", className)}>
+      {label && <Label className="text-sm font-medium">{label}</Label>}
+
       <div className="flex flex-col items-center">
         <input
           type="file"
@@ -71,13 +69,13 @@ export function ImageUpload({
           accept={accept}
           className="hidden"
         />
-        
+
         {value ? (
           <div className="relative w-full max-w-xs">
             <img
               src={value}
               alt="Uploaded image"
-              className="w-full h-auto rounded-md object-contain max-h-48 border border-border"
+              className="border-border h-auto max-h-48 w-full rounded-md border object-contain"
             />
             <Button
               type="button"
@@ -91,16 +89,20 @@ export function ImageUpload({
             </Button>
           </div>
         ) : (
-          <div 
-            className="border-2 border-dashed border-border rounded-md p-6 w-full flex flex-col items-center justify-center cursor-pointer hover:bg-accent/10 transition-colors"
+          <div
+            className="border-border hover:bg-accent/10 flex w-full cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed p-6 transition-colors"
             onClick={handleButtonClick}
           >
-            <ImageIcon className="h-10 w-10 text-muted-foreground mb-2" />
-            <p className="text-sm text-muted-foreground">Click to upload image</p>
-            <p className="text-xs text-muted-foreground/70 mt-1">or drag and drop file here</p>
+            <ImageIcon className="text-muted-foreground mb-2 h-10 w-10" />
+            <p className="text-muted-foreground text-sm">
+              Click to upload image
+            </p>
+            <p className="text-muted-foreground/70 mt-1 text-xs">
+              or drag and drop file here
+            </p>
           </div>
         )}
-        
+
         {!value && (
           <Button
             type="button"
@@ -109,14 +111,12 @@ export function ImageUpload({
             className="mt-2"
             onClick={handleButtonClick}
           >
-            <Upload className="h-4 w-4 mr-2" />
+            <Upload className="mr-2 h-4 w-4" />
             Upload image
           </Button>
         )}
-        
-        {error && (
-          <p className="text-sm text-destructive mt-2">{error}</p>
-        )}
+
+        {error && <p className="text-destructive mt-2 text-sm">{error}</p>}
       </div>
     </div>
   );

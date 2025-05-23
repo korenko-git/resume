@@ -17,6 +17,7 @@ Website: https://leetcode.com/u/korenko-git/
 ## Work Experience
 
 ### Front - End Developer
+
 Roll’n’Code | 2021-01 - Present
 
 Working on Ellen G.'s interactive website. White Estate with gamification elements. EGW Writings contains a custom Study Center, Cloud Synchronization of all devices, Audiobooks, online and offline advanced Search and support of more than 100 languages.
@@ -25,6 +26,7 @@ Collaborated closely with the design team to implement pixel-perfect layouts and
 Skills: React, TypeScript, Next.js, Docker, Jest, Redux, Tailwind, GraphQL, Selenium
 
 ### Full - Stack Developer
+
 krgaz | 2019-03 - 2021-12
 
 Contributed into development of custom CRM system for a leading gas delivery company in the Ukraine. Designed fronted, utilizing technologies like React, jQuery. Participated in the backend development using PHP, Django, and MariaDB. Developed account management system, user roles, and permissions. Implemented integrations with third-party services, such as Google Roads. Worked on the mobile application using React Native.
@@ -32,6 +34,7 @@ Contributed into development of custom CRM system for a leading gas delivery com
 Skills: React, PHP, Python, Laravel, Django, jQuery, MySQL, WordPress, ReactNative
 
 ### Full - Stack Developer
+
 Freelancehunt | 2017-01 - 2019-12
 
 Successfully completed over 30+ projects while working with a range of large and small agencies, start-ups and individuals.
@@ -41,6 +44,7 @@ Skills: PHP, Laravel, jQuery, MySQL, HTML&SCSS
 ## Education
 
 ### Master's degree in Software Engineering
+
 Kryvyi Rih National University | 2016-05 - 2018-06
 
 Focused on advanced computer science concepts, specializing in machine learning, artificial intelligence, and cloud computing. Worked on various research projects involving neural networks and data-driven applications.
@@ -48,6 +52,7 @@ Focused on advanced computer science concepts, specializing in machine learning,
 Skills: Python, Data_Analysis, Cloud_Computing, Machine_Learning, OpenCV
 
 ### Bachelor's degree in Software Engineering
+
 Kryvyi Rih National University | 2012-01 - 2016-06
 
 Gained a strong foundation in software development, networking, and database management. Developed projects in web and mobile applications, and learned to implement full-stack solutions.
@@ -76,4 +81,3 @@ Creation of a system for project and task management with real-time updates.
 Technologies: TypeScript, React, Socket.io, PostgreSQL, NestJS, Docker, GraphQL, Material-UI, Jest, CI/CD
 
 Links: [Source](https://github.com/example/task-manager) [Demo](https://task-manager-demo.com)
-

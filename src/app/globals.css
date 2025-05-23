@@ -50,44 +50,44 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  
+
   /* Fonts */
   --font-sans: var(--font-geist-sans);
 
   /* Main interface colors */
   --background: oklch(0.98 0.01 240);
-  --foreground: oklch(0.20 0.02 260);
-  
+  --foreground: oklch(0.2 0.02 260);
+
   /* Cards and popups */
   --card: oklch(0.97 0.008 240);
   --card-foreground: var(--foreground);
   --popover: oklch(0.98 0.01 240);
   --popover-foreground: var(--foreground);
-  
+
   /* Accent colors */
   --primary: oklch(0.55 0.14 250);
   --primary-foreground: oklch(0.98 0.01 240);
-  --secondary: oklch(0.90 0.01 220);
+  --secondary: oklch(0.9 0.01 220);
   --secondary-foreground: oklch(0.25 0.01 250);
   --accent: oklch(0.55 0.14 250);
   --accent-foreground: var(--foreground);
-  
+
   /* Utility colors */
   --muted: oklch(0.94 0.005 240);
   --muted-foreground: oklch(0.45 0.005 250);
-  --destructive: oklch(0.50 0.22 25);
+  --destructive: oklch(0.5 0.22 25);
   --destructive-foreground: oklch(0.98 0.01 240);
   --border: oklch(0.85 0.005 240);
-  --input: oklch(0.90 0.005 240);
+  --input: oklch(0.9 0.005 240);
   --ring: oklch(0.55 0.14 250 / 0.5);
-  
+
   /* Chart colors */
   --chart-1: oklch(0.65 0.18 30);
-  --chart-2: oklch(0.60 0.12 200);
-  --chart-3: oklch(0.50 0.10 270);
-  --chart-4: oklch(0.70 0.16 90);
+  --chart-2: oklch(0.6 0.12 200);
+  --chart-3: oklch(0.5 0.1 270);
+  --chart-4: oklch(0.7 0.16 90);
   --chart-5: oklch(0.55 0.14 10);
-  
+
   /* Sidebar */
   --sidebar: var(--card);
   --sidebar-foreground: var(--foreground);
@@ -103,37 +103,37 @@
   /* Main interface colors */
   --background: oklch(0.15 0.01 240);
   --foreground: oklch(0.95 0.01 240);
-  
+
   /* Cards and popups */
   --card: oklch(0.18 0.01 240);
   --card-foreground: var(--foreground);
-  --popover: oklch(0.20 0.01 240);
+  --popover: oklch(0.2 0.01 240);
   --popover-foreground: var(--foreground);
-  
+
   /* Accent colors */
-  --primary: oklch(0.70 0.14 250);
+  --primary: oklch(0.7 0.14 250);
   --primary-foreground: oklch(0.15 0.01 240);
   --secondary: oklch(0.25 0.01 220);
   --secondary-foreground: var(--foreground);
-  --accent: oklch(0.70 0.14 250);
+  --accent: oklch(0.7 0.14 250);
   --accent-foreground: var(--foreground);
-  
+
   /* Utility colors */
   --muted: oklch(0.22 0.005 240);
-  --muted-foreground: oklch(0.60 0.005 240);
-  --destructive: oklch(0.55 0.20 25);
+  --muted-foreground: oklch(0.6 0.005 240);
+  --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(0.95 0.01 240);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.70 0.14 250 / 0.5);
-  
+  --ring: oklch(0.7 0.14 250 / 0.5);
+
   /* Chart colors */
   --chart-1: oklch(0.55 0.16 30);
   --chart-2: oklch(0.55 0.12 200);
-  --chart-3: oklch(0.50 0.10 270);
-  --chart-4: oklch(0.60 0.16 90);
-  --chart-5: oklch(0.50 0.14 10);
-  
+  --chart-3: oklch(0.5 0.1 270);
+  --chart-4: oklch(0.6 0.16 90);
+  --chart-5: oklch(0.5 0.14 10);
+
   /* Sidebar - inherits values from main variables */
   --sidebar: var(--card);
   --sidebar-foreground: var(--foreground);

@@ -21,7 +21,7 @@ describe("EntryTitle", () => {
           organizationId: "meta",
           title: "Senior Developer",
         }}
-      />
+      />,
     );
 
     expect(screen.getByTestId("organization-title")).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe("EntryTitle", () => {
           title: "Project Name",
           source: "https://github.com/example/project",
         }}
-      />
+      />,
     );
 
     expect(screen.getByTestId("project-title")).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe("EntryTitle", () => {
           title: "Project Name",
           demo: "https://demo.example.com",
         }}
-      />
+      />,
     );
 
     expect(screen.getByTestId("project-title")).toBeInTheDocument();

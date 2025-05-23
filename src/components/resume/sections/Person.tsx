@@ -12,10 +12,10 @@ export function Person({ sectionData }: PersonProps) {
 
   return (
     <>
-      <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+      <h1 className="text-foreground text-4xl font-bold tracking-tight sm:text-5xl">
         {sectionData.title}
       </h1>
-      <h2 className="mt-3 text-lg font-medium tracking-tight text-muted-foreground sm:text-xl">
+      <h2 className="text-muted-foreground mt-3 text-lg font-medium tracking-tight sm:text-xl">
         {sectionData.subtitle}
       </h2>
 
@@ -44,7 +44,7 @@ export function Person({ sectionData }: PersonProps) {
               rel="noopener noreferrer"
             >
               <span>Email me</span>
-              <span className="w-2 h-2 rounded-full bg-green-400 duration-1000 animate-pulse"></span>
+              <span className="h-2 w-2 animate-pulse rounded-full bg-green-400 duration-1000"></span>
             </a>
           </Button>
         )}

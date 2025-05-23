@@ -9,23 +9,23 @@ import {
 
 export function useResumeEntries(
   data: ResumeData,
-  updateDraft: (data: ResumeData) => void
+  updateDraft: (data: ResumeData) => void,
 ) {
   const getEntryFromData = useCallback(
     (
       type: ResumeDataKeysWithEntries,
-      id: string
+      id: string,
     ): ResumeDataWithEntries | null => {
       return data[type]?.entries.find((entry) => entry.id === id) || null;
     },
-    [data]
+    [data],
   );
 
   const updateData = useCallback(
     (type: ResumeDataKeysWithEntries, newData: ResumeDataWithEntries) => {
       const entries = [...(data[type]?.entries || [])];
       const existingEntryIndex = entries.findIndex(
-        (entry) => entry.id === newData.id
+        (entry) => entry.id === newData.id,
       );
 
       if (existingEntryIndex >= 0) {
@@ -39,14 +39,14 @@ export function useResumeEntries(
         [type]: { entries },
       });
     },
-    [data, updateDraft]
+    [data, updateDraft],
   );
 
   const updateOrganization = useCallback(
     (organization: Organization) => {
       const entries = [...(data.organizations?.entries || [])];
       const existingOrgIndex = entries.findIndex(
-        (org) => org.id === organization.id
+        (org) => org.id === organization.id,
       );
 
       if (existingOrgIndex >= 0) {
@@ -60,7 +60,7 @@ export function useResumeEntries(
         organizations: { entries },
       });
     },
-    [data, updateDraft]
+    [data, updateDraft],
   );
 
   const deleteEntry = useCallback(
@@ -77,7 +77,7 @@ export function useResumeEntries(
         [type]: { entries },
       });
     },
-    [data, updateDraft]
+    [data, updateDraft],
   );
 
   return {

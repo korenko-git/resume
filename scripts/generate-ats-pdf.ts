@@ -1,28 +1,28 @@
-import { exec } from 'child_process';
-import fs from 'fs';
-import MarkdownIt from 'markdown-it';
-import path from 'path';
-import puppeteer from 'puppeteer';
-import { promisify } from 'util';
+import { exec } from "child_process";
+import fs from "fs";
+import MarkdownIt from "markdown-it";
+import path from "path";
+import puppeteer from "puppeteer";
+import { promisify } from "util";
 
 const execPromise = promisify(exec);
 const md = new MarkdownIt();
 
 async function generateATSPdf() {
   try {
-    const publicDir = path.join(process.cwd(), 'public');
-    const mdPath = path.join(publicDir, 'cv-ats.md');
-    
+    const publicDir = path.join(process.cwd(), "public");
+    const mdPath = path.join(publicDir, "cv-ats.md");
+
     // Check if markdown file exists
     if (!fs.existsSync(mdPath)) {
-      throw new Error('Markdown file not found. Please generate it first.');
+      throw new Error("Markdown file not found. Please generate it first.");
     }
-    
+
     // Read markdown content
-    const atsContent = fs.readFileSync(mdPath, 'utf-8');
-    
+    const atsContent = fs.readFileSync(mdPath, "utf-8");
+
     // Create a CSS file for styling
-    const cssPath = path.join(publicDir, 'cv-ats-style.css');
+    const cssPath = path.join(publicDir, "cv-ats-style.css");
     const cssContent = `
       body {
         font-family: Arial, sans-serif;
@@ -57,22 +57,22 @@ async function generateATSPdf() {
         margin: 5px 0;
       }
     `;
-    fs.writeFileSync(cssPath, cssContent, 'utf-8');
+    fs.writeFileSync(cssPath, cssContent, "utf-8");
 
     // Generate PDF using Pandoc
-    const pdfPath = path.join(publicDir, 'cv-ats.pdf');
+    const pdfPath = path.join(publicDir, "cv-ats.pdf");
     const pandocCommand = `pandoc "${mdPath}" -o "${pdfPath}" --pdf-engine=wkhtmltopdf --css="${cssPath}" -V margin-top=20mm -V margin-right=20mm -V margin-bottom=20mm -V margin-left=20mm`;
-    
+
     try {
       await execPromise(pandocCommand);
-      console.log('PDF generated using Pandoc');
+      console.log("PDF generated using Pandoc");
     } catch (pandocError) {
-      console.warn('Pandoc failed, falling back to Puppeteer:', pandocError);
-      
+      console.warn("Pandoc failed, falling back to Puppeteer:", pandocError);
+
       // Fallback to Puppeteer if Pandoc fails
       const browser = await puppeteer.launch({
-        headless: 'shell',
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        headless: "shell",
+        args: ["--no-sandbox", "--disable-setuid-sandbox"],
       });
       const page = await browser.newPage();
 
@@ -117,18 +117,18 @@ async function generateATSPdf() {
       await page.setContent(styleContent + htmlContent);
       await page.pdf({
         path: pdfPath,
-        format: 'A4',
-        margin: { top: '20mm', right: '20mm', bottom: '20mm', left: '20mm' }
+        format: "A4",
+        margin: { top: "20mm", right: "20mm", bottom: "20mm", left: "20mm" },
       });
 
       await browser.close();
-      console.log('PDF generated using Puppeteer');
+      console.log("PDF generated using Puppeteer");
     }
-    
-    console.log('ATS PDF generated successfully');
+
+    console.log("ATS PDF generated successfully");
     return true;
   } catch (error) {
-    console.error('Error generating ATS PDF:', error);
+    console.error("Error generating ATS PDF:", error);
     throw error;
   }
 }

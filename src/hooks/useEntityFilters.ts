@@ -6,7 +6,7 @@ import { ResumeData, ResumeDataKeysWithEntries } from "@/types/resume";
 export function useEntityFilters(
   entities: any[],
   entityType: ResumeDataKeysWithEntries,
-  data: ResumeData
+  data: ResumeData,
 ) {
   const [orgFilter, setOrgFilter] = useState<string>("all");
   const [usedFilter, setUsedFilter] = useState<string>("all");

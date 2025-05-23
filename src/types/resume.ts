@@ -1,4 +1,4 @@
-import { Organization,Version } from "./common";
+import { Organization, Version } from "./common";
 import {
   AboutEntry,
   CertificationEntry,

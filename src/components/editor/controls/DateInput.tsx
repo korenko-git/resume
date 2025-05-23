@@ -27,7 +27,11 @@ export function DateInput({
 }: DateInputProps) {
   return (
     <div className="space-y-2">
-      {label && <label htmlFor={id} className="text-sm font-medium">{label}</label>}
+      {label && (
+        <label htmlFor={id} className="text-sm font-medium">
+          {label}
+        </label>
+      )}
       <Input
         id={id}
         type="month"
@@ -36,10 +40,7 @@ export function DateInput({
           const newValue = e.target.value;
           onChange(newValue);
         }}
-        className={cn(
-          "w-full",
-          className
-        )}
+        className={cn("w-full", className)}
         placeholder={placeholder}
         disabled={disabled}
         required={required}

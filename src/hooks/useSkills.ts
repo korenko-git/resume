@@ -49,14 +49,14 @@ export const useSkills = () => {
       updateDraft(updatedResumeData);
       toast.success(`Added: ${uniqueNewSkillInputs.join(", ")}`);
     },
-    [data, currentSkills, updateDraft]
+    [data, currentSkills, updateDraft],
   );
 
   const removeSkill = useCallback(
     (skillIdToRemove: string) => {
       const skillIdLower = skillIdToRemove.toLowerCase();
       const updatedSkillsList = sortSkills(
-        currentSkills.filter((s) => s.id.toLowerCase() !== skillIdLower)
+        currentSkills.filter((s) => s.id.toLowerCase() !== skillIdLower),
       );
 
       if (updatedSkillsList.length < currentSkills.length) {
@@ -70,7 +70,7 @@ export const useSkills = () => {
         toast.info(`Skill "${skillIdToRemove}" not found for removal.`);
       }
     },
-    [data, currentSkills, updateDraft]
+    [data, currentSkills, updateDraft],
   );
 
   return {

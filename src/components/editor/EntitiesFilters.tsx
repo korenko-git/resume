@@ -43,7 +43,7 @@ export function EntitiesFilters({
     setters;
 
   return (
-    <div className="flex flex-wrap gap-2 items-center">
+    <div className="flex flex-wrap items-center gap-2">
       {"organizationId" in (entities[0] || {}) && (
         <Select value={orgFilter} onValueChange={setOrgFilter}>
           <SelectTrigger className="min-w-[120px]">

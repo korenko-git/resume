@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <div className="lg:flex lg:justify-between lg:gap-4">
-      <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24 text-center lg:text-left">
+      <header className="text-center lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24 lg:text-left">
         <div>
           <Person sectionData={about} />
           <Navigation />

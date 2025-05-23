@@ -6,33 +6,36 @@ import {
   GraduationCap,
   LucideIcon,
   User,
-  Wrench
-} from 'lucide-react';
+  Wrench,
+} from "lucide-react";
 
-export const entityMetadata: Record<string, { title: string; icon: LucideIcon }> = {
+export const entityMetadata: Record<
+  string,
+  { title: string; icon: LucideIcon }
+> = {
   about: {
-    title: 'About me',
-    icon: User
+    title: "About me",
+    icon: User,
   },
   experience: {
-    title: 'Experience',
-    icon: Briefcase
+    title: "Experience",
+    icon: Briefcase,
   },
   education: {
-    title: 'Education',
-    icon: GraduationCap
+    title: "Education",
+    icon: GraduationCap,
   },
   projects: {
-    title: 'Projects',
-    icon: FolderKanban
+    title: "Projects",
+    icon: FolderKanban,
   },
   certifications: {
-    title: 'Certificates',
-    icon: Award
+    title: "Certificates",
+    icon: Award,
   },
   organizations: {
-    title: 'Organizations',
-    icon: Building2
+    title: "Organizations",
+    icon: Building2,
   },
   skills: {
     title: "Manage Skills",

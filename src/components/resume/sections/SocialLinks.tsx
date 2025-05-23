@@ -43,14 +43,14 @@ export function SocialLinks({ sectionData }: SocialLinksProps) {
               key={id}
               asChild
               variant="outline"
-              className="mr-4 last:mr-0 shrink-0 text-xs"
+              className="mr-4 shrink-0 text-xs last:mr-0"
               aria-label={`${label} (opens in a new tab)`}
             >
               <a href={url} target="_blank" rel="noopener noreferrer">
                 {icon} <span className="sr-only">{label}</span>
               </a>
             </Button>
-          )
+          ),
       )}
     </div>
   );

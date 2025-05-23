@@ -8,9 +8,7 @@ interface ProjectTitleProps {
 export function ProjectTitle({ data }: ProjectTitleProps) {
   return (
     <div className="flex flex-col">
-      <h3 className="font-medium leading-snug text-foreground">
-        {data.title}
-      </h3>
+      <h3 className="text-foreground leading-snug font-medium">{data.title}</h3>
 
       <div className="flex gap-4" role="list" aria-label="Project links">
         {data.demo && (
@@ -18,7 +16,7 @@ export function ProjectTitle({ data }: ProjectTitleProps) {
             href={data.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="group/link inline-flex items-baseline font-medium leading-tight text-foreground hover:text-primary focus-visible:text-primary text-base"
+            className="group/link text-foreground hover:text-primary focus-visible:text-primary inline-flex items-baseline text-base leading-tight font-medium"
             aria-label={`Demo of ${data.title} (opens in a new tab)`}
             role="listitem"
           >
@@ -27,7 +25,7 @@ export function ProjectTitle({ data }: ProjectTitleProps) {
             <span className="inline-block">
               Demo
               <ArrowUpRight
-                className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                className="ml-1 inline-block h-4 w-4 shrink-0 translate-y-px transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1 group-focus-visible/link:translate-x-1 group-focus-visible/link:-translate-y-1 motion-reduce:transition-none"
                 aria-hidden="true"
               />
             </span>
@@ -39,14 +37,14 @@ export function ProjectTitle({ data }: ProjectTitleProps) {
             href={data.source}
             target="_blank"
             rel="noopener noreferrer"
-            className="group/link relative inline-flex items-baseline font-medium leading-tight text-foreground hover:text-primary focus-visible:text-primary text-base"
+            className="group/link text-foreground hover:text-primary focus-visible:text-primary relative inline-flex items-baseline text-base leading-tight font-medium"
             aria-label={`Source of ${data.title} (opens in a new tab)`}
             role="listitem"
           >
             <span className="inline-block">
               Source
               <ArrowUpRight
-                className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                className="ml-1 inline-block h-4 w-4 shrink-0 translate-y-px transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1 group-focus-visible/link:translate-x-1 group-focus-visible/link:-translate-y-1 motion-reduce:transition-none"
                 aria-hidden="true"
               />
             </span>

@@ -2,9 +2,9 @@ name: Apply Resume Updates
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
   workflow_dispatch:
 
 permissions:
@@ -19,7 +19,7 @@ jobs:
         with:
           token: ${{ github.token }}
           fetch-depth: 0
-      
+
       - name: Check for update files
         id: check_files
         run: |
@@ -30,26 +30,26 @@ jobs:
             echo "updates_found=false" >> $GITHUB_OUTPUT
             echo "No update files found"
           fi
-      
+
       - name: Setup Node.js
         if: steps.check_files.outputs.updates_found == 'true'
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-          
+          node-version: "20"
+          cache: "npm"
+
       - name: Install dependencies
         if: steps.check_files.outputs.updates_found == 'true'
         run: |
           sudo apt-get update
           sudo apt-get install -y unzip jq file
           npm ci --only=production
-          
+
       - name: Process updates safely
         if: steps.check_files.outputs.updates_found == 'true'
         run: |
           set -euo pipefail
-          
+
           # Process each zip file
           for zipfile in updates/*.zip; do
             echo "Processing: $zipfile"
@@ -111,10 +111,10 @@ jobs:
             
             echo "Successfully processed: $zipfile"
           done
-          
+
           # Remove processed zip files
           rm -f updates/*.zip
-          
+
           # Final validation
           echo "Validating all JSON files..."
           for json_file in src/data/*.json; do
@@ -123,17 +123,17 @@ jobs:
               exit 1
             fi
           done
-          
+
           echo "All updates processed successfully"
-      
+
       - name: Commit and push changes
         if: steps.check_files.outputs.updates_found == 'true'
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          
+
           git add src/data/ public/images/ updates/
-          
+
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else

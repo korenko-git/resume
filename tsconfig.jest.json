@@ -1,8 +1,8 @@
 {
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-      "jsx": "react-jsx",
-      "module": "ESNext",
-      "moduleResolution": "Node"
-    }
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "Node"
   }
+}

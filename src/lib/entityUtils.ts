@@ -28,7 +28,7 @@ export function createUniqueId(prefix: string): string {
  * @returns A new entity object with default values
  */
 export function createDefaultEntity(
-  type: ResumeDataKeysWithEntries
+  type: ResumeDataKeysWithEntries,
 ): ResumeDataWithEntries {
   const baseEntity = {
     id: createUniqueId(type.slice(0, 3)),
@@ -104,13 +104,13 @@ export function createDefaultEntity(
  */
 export function filterPublishedEntries<T extends ResumeDataWithEntries>(
   entries: T[] | undefined,
-  includeUnpublished: boolean = false
+  includeUnpublished: boolean = false,
 ): T[] {
   if (!entries) return [];
   return includeUnpublished
     ? entries
     : entries.filter(
-        (entry) => "isPublished" in entry && entry.isPublished !== false
+        (entry) => "isPublished" in entry && entry.isPublished !== false,
       );
 }
 
@@ -121,7 +121,7 @@ export function filterPublishedEntries<T extends ResumeDataWithEntries>(
  * @returns The first published entry or undefined if none found
  */
 export function getFirstPublishedEntry<T extends ResumeDataWithEntries>(
-  entries: T[] | undefined
+  entries: T[] | undefined,
 ): T | undefined {
   return (
     entries &&
@@ -147,7 +147,7 @@ export function getFirstPublishedEntry<T extends ResumeDataWithEntries>(
 export function getEntity(
   data: Omit<ResumeData, "version">,
   type: ResumeDataKeysWithEntries,
-  id?: string | null
+  id?: string | null,
 ): ResumeDataWithEntries | null {
   if (!id) return null;
 
@@ -179,7 +179,7 @@ export function getSingularForm(type: string): string {
  * @returns Array of references or empty array if none found
  */
 function getEntityReferences(
-  entityType: ResumeDataKeysWithEntries
+  entityType: ResumeDataKeysWithEntries,
 ): Array<{ type: ResumeDataKeysWithEntries; field: string }> {
   const references: Array<{ type: ResumeDataKeysWithEntries; field: string }> =
     [];
@@ -217,7 +217,7 @@ function getEntityReferences(
 export function getEntityFull(
   data: Omit<ResumeData, "version">,
   type: ResumeDataKeysWithEntries,
-  id?: string | null
+  id?: string | null,
 ): ResumeDataWithEntries | null {
   const entity = getEntity(data, type, id);
 
@@ -255,7 +255,7 @@ export function getEntityFull(
 export function isUsed(
   data: ResumeData,
   entityType: ResumeDataKeysWithEntries,
-  entityId: string
+  entityId: string,
 ): boolean {
   const relationships = entityRelationships[entityType];
 
@@ -271,7 +271,7 @@ export function isUsed(
           return value.includes(entityId);
         }
         return value === entityId;
-      }
+      },
     );
   });
 }

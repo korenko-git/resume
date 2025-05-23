@@ -3,8 +3,8 @@ name: Yearly Date Update
 on:
   schedule:
     # Run at 00:05 on January 1
-    - cron: '5 0 1 1 *'
-  workflow_dispatch:  # Allow manual triggering for testing
+    - cron: "5 0 1 1 *"
+  workflow_dispatch: # Allow manual triggering for testing
 
 jobs:
   trigger-build:

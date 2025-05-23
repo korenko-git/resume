@@ -9,7 +9,10 @@ import {
   DialogTitle,
 } from "@/components/common/ui/dialog";
 import { createDefaultEntity } from "@/lib/entityUtils";
-import { ResumeDataKeysWithEntries, ResumeDataWithEntries } from "@/types/resume";
+import {
+  ResumeDataKeysWithEntries,
+  ResumeDataWithEntries,
+} from "@/types/resume";
 
 import { EntityForm } from "../forms/EntityForm";
 
@@ -29,7 +32,7 @@ export function EntityDialog({
   onConfirm,
 }: EntityDialogProps) {
   const [entity, setEntity] = useState<ResumeDataWithEntries>(
-    createDefaultEntity(entityType)
+    createDefaultEntity(entityType),
   );
 
   const handleUpdate = (updatedEntity: ResumeDataWithEntries) => {
@@ -65,9 +68,7 @@ export function EntityDialog({
           <Button variant="outline" onClick={handleCancel}>
             Cancel
           </Button>
-          <Button onClick={handleConfirm}>
-            Create
-          </Button>
+          <Button onClick={handleConfirm}>Create</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

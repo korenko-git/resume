@@ -1,36 +1,31 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function Footer() {
   const pathname = usePathname();
-  const isEditorPage = pathname === '/editor';
+  const isEditorPage = pathname === "/editor";
 
   return (
-    <footer className="mt-16 py-8 border-t text-center text-sm text-muted-foreground">
+    <footer className="text-muted-foreground mt-16 border-t py-8 text-center text-sm">
       <p className="mb-2">
         {isEditorPage ? (
           <>
-            Return to the <Link
+            Return to the{" "}
+            <Link
               href="/"
-              className="inline-flex items-baseline font-medium leading-tight 
-          text-foreground hover:text-primary
-          focus-visible:text-primary
-          text-base"
+              className="text-foreground hover:text-primary focus-visible:text-primary inline-flex items-baseline text-base leading-tight font-medium"
             >
               resume view
             </Link>
           </>
         ) : (
           <>
-            This resume is hosted on GitHub Pages and can be updated through the{' '}
+            This resume is hosted on GitHub Pages and can be updated through the{" "}
             <Link
               href="/editor"
-              className="inline-flex items-baseline font-medium leading-tight 
-          text-foreground hover:text-primary
-          focus-visible:text-primary
-          text-base"
+              className="text-foreground hover:text-primary focus-visible:text-primary inline-flex items-baseline text-base leading-tight font-medium"
             >
               online editor
             </Link>
@@ -38,9 +33,7 @@ export function Footer() {
         )}
       </p>
 
-      <p>
-        © {new Date().getFullYear()} - Built with Next.js and Tailwind CSS
-      </p>
+      <p>© {new Date().getFullYear()} - Built with Next.js and Tailwind CSS</p>
     </footer>
   );
 }

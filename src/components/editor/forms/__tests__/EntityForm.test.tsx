@@ -1,4 +1,4 @@
-import { fireEvent,render, screen } from "../../../../../__mocks__/testUtils";
+import { fireEvent, render, screen } from "../../../../../__mocks__/testUtils";
 import { EntityForm } from "../EntityForm";
 
 // Mock the components used in EntityForm
@@ -89,12 +89,12 @@ describe("EntityForm", () => {
 
   it("renders form fields for experience type", () => {
     render(
-      <EntityForm type="experience" data={mockData} onUpdate={mockOnUpdate} />
+      <EntityForm type="experience" data={mockData} onUpdate={mockOnUpdate} />,
     );
 
     expect(screen.getByTestId("input-title")).toHaveValue("Senior Developer");
     expect(screen.getByTestId("textarea-description")).toHaveValue(
-      "Working on React applications"
+      "Working on React applications",
     );
     expect(screen.getByTestId("switch-isPublished")).toBeChecked();
     expect(screen.getByTestId("organization-selector")).toBeInTheDocument();
@@ -102,7 +102,7 @@ describe("EntityForm", () => {
 
   it("updates form data when fields change", () => {
     render(
-      <EntityForm type="experience" data={mockData} onUpdate={mockOnUpdate} />
+      <EntityForm type="experience" data={mockData} onUpdate={mockOnUpdate} />,
     );
 
     const titleInput = screen.getByTestId("input-title");
@@ -120,7 +120,7 @@ describe("EntityForm", () => {
       expect.objectContaining({
         title: "Lead Developer",
         description: "New description",
-      })
+      }),
     );
   });
 
@@ -136,12 +136,12 @@ describe("EntityForm", () => {
     };
 
     render(
-      <EntityForm type="projects" data={projectData} onUpdate={mockOnUpdate} />
+      <EntityForm type="projects" data={projectData} onUpdate={mockOnUpdate} />,
     );
 
     expect(screen.getByTestId("input-title")).toHaveValue("Portfolio Website");
     expect(screen.getByTestId("textarea-description")).toHaveValue(
-      "Personal portfolio website"
+      "Personal portfolio website",
     );
   });
 });

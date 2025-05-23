@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback,useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 export default function Starfield() {
   const updateStars = useCallback(() => {
@@ -8,7 +8,7 @@ export default function Starfield() {
       id: string,
       count: number,
       width: number,
-      height: number
+      height: number,
     ) {
       const el = document.getElementById(id);
       if (!el) return;
@@ -83,7 +83,7 @@ export default function Starfield() {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         updateStars();
-      }, 100); 
+      }, 100);
     };
 
     window.addEventListener("resize", handleResize);
@@ -95,25 +95,25 @@ export default function Starfield() {
   }, [updateStars]);
 
   return (
-    <div className="inset-0 pointer-events-none overflow-hidden">
-      <div id="stars" className="absolute w-[1px] h-[1px] animate-star" />
+    <div className="pointer-events-none inset-0 overflow-hidden">
+      <div id="stars" className="animate-star absolute h-[1px] w-[1px]" />
       <div
         id="stars-after"
-        className="absolute w-[1px] h-[1px] animate-star"
+        className="animate-star absolute h-[1px] w-[1px]"
         style={{ top: "100%" }}
       />
 
-      <div id="stars2" className="absolute w-[2px] h-[2px] animate-star" />
+      <div id="stars2" className="animate-star absolute h-[2px] w-[2px]" />
       <div
         id="stars2-after"
-        className="absolute w-[2px] h-[2px] animate-star"
+        className="animate-star absolute h-[2px] w-[2px]"
         style={{ top: "100%" }}
       />
 
-      <div id="stars3" className="absolute w-[3px] h-[3px] animate-star" />
+      <div id="stars3" className="animate-star absolute h-[3px] w-[3px]" />
       <div
         id="stars3-after"
-        className="absolute w-[3px] h-[3px] animate-star"
+        className="animate-star absolute h-[3px] w-[3px]"
         style={{ top: "100%" }}
       />
     </div>
