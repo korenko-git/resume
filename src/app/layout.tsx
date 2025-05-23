@@ -62,12 +62,18 @@ export default function RootLayout({
         dark:selection:bg-neutral-300 dark:selection:text-neutral-900
         `}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50"
+        >
+          Skip to main content
+        </a>
         <ClientThemeProvider>
           <ErrorBoundary>
             <ResumeProvider>
               <BackgroundAnimation />
               <Container>
-                {children}
+                <main id="main-content">{children}</main>
                 <Footer />
               </Container>
             </ResumeProvider>
