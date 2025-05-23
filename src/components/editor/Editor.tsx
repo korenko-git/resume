@@ -52,14 +52,14 @@ export function Editor() {
     return getEntity(
       data,
       activeTab as ResumeDataKeysWithEntries,
-      selectedEntityId
+      selectedEntityId,
     );
   };
 
   return (
-    <Card className="w-full border-0 shadow-none sm:border sm:border-border sm:shadow">
+    <Card className="sm:border-border w-full border-0 shadow-none sm:border sm:shadow">
       <CardContent className="px-0 sm:px-6">
-        <div className="flex justify-end items-center relative">
+        <div className="relative flex items-center justify-end">
           <WelcomeTour
             isEntityFormOpen={!!selectedEntityId && activeTab !== "skills"}
           />
@@ -73,22 +73,22 @@ export function Editor() {
             <div className="mb-4">
               <button
                 onClick={handleBackToList}
-                className="cursor-pointer inline-flex items-center font-medium leading-tight text-foreground group back-button"
+                className="text-foreground group back-button inline-flex cursor-pointer items-center leading-tight font-medium"
               >
                 <span className="whitespace-nowrap">
                   <ArrowLeft className="mr-1 h-4 w-4 transition-transform group-hover:-translate-x-2" />
                 </span>
-                <span className="border-b border-primary/30 lg:border-transparent pb-px transition group-hover:border-primary/30 motion-reduce:transition-none">
+                <span className="border-primary/30 group-hover:border-primary/30 border-b pb-px transition motion-reduce:transition-none lg:border-transparent">
                   Back to list
                 </span>
               </button>
             </div>
           ) : (
             <div className="mb-4">
-              <div className="block sm:hidden mobile-section-select">
+              <div className="mobile-section-select block sm:hidden">
                 <label
                   htmlFor="section-select"
-                  className="block text-sm font-medium mb-1 text-foreground"
+                  className="text-foreground mb-1 block text-sm font-medium"
                 >
                   Select section
                 </label>
@@ -102,7 +102,7 @@ export function Editor() {
                         <span className="flex items-center gap-1.5">
                           {React.createElement(
                             entityMetadata[key as EditorTabKey].icon,
-                            { className: "h-3.5 w-3.5" }
+                            { className: "h-3.5 w-3.5" },
                           )}
                           <span>
                             {entityMetadata[key as EditorTabKey].title}
@@ -114,7 +114,7 @@ export function Editor() {
                 </Select>
               </div>
 
-              <TabsList className="hidden sm:flex sm:flex-wrap sm:gap-1 editor-tabs">
+              <TabsList className="editor-tabs hidden sm:flex sm:flex-wrap sm:gap-1">
                 {Object.keys(entityMetadata).map((key) => (
                   <TabsTrigger
                     key={key}
@@ -123,7 +123,7 @@ export function Editor() {
                   >
                     {React.createElement(
                       entityMetadata[key as EditorTabKey].icon,
-                      { className: "h-3.5 w-3.5" }
+                      { className: "h-3.5 w-3.5" },
                     )}
                     <span>{entityMetadata[key as EditorTabKey].title}</span>
                   </TabsTrigger>

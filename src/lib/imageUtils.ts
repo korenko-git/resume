@@ -12,7 +12,7 @@
 export async function convertBase64ImageToFile(
   base64Image: string,
   fileName: string,
-  fileType: string = 'image/png'
+  fileType: string = "image/png",
 ): Promise<File> {
   const response = await fetch(base64Image);
   const blob = await response.blob();
@@ -25,7 +25,7 @@ export async function convertBase64ImageToFile(
  * @returns true if the value is a base64 encoded image
  */
 export function isBase64Image(value: any): boolean {
-  return typeof value === 'string' && value.startsWith('data:image');
+  return typeof value === "string" && value.startsWith("data:image");
 }
 
 /**
@@ -36,16 +36,18 @@ export function isBase64Image(value: any): boolean {
  * @param imageFiles array to store image files
  * @returns processed array of entries
  */
-export async function processEntriesWithImages<T extends { id: string; [key: string]: any }>(
+export async function processEntriesWithImages<
+  T extends { id: string; [key: string]: any },
+>(
   entries: T[],
   imageKey: keyof T,
   prefix: string,
-  imageFiles: File[]
+  imageFiles: File[],
 ): Promise<T[]> {
   return Promise.all(
     entries.map(async (entry) => {
       const imageValue = entry[imageKey];
-      
+
       if (isBase64Image(imageValue)) {
         const fileName = `${prefix}-${entry.id}-${String(imageKey)}.png`;
         const file = await convertBase64ImageToFile(imageValue, fileName);
@@ -53,11 +55,11 @@ export async function processEntriesWithImages<T extends { id: string; [key: str
 
         return {
           ...entry,
-          [imageKey]: `images/${fileName}`
+          [imageKey]: `images/${fileName}`,
         };
       }
       return entry;
-    })
+    }),
   );
 }
 
@@ -68,25 +70,23 @@ export async function processEntriesWithImages<T extends { id: string; [key: str
  * @param imageFiles array to store image files
  * @returns processed entry
  */
-export async function processEntryImages<T extends { id: string; [key: string]: any }>(
-  entry: T,
-  prefix: string,
-  imageFiles: File[]
-): Promise<T> {
+export async function processEntryImages<
+  T extends { id: string; [key: string]: any },
+>(entry: T, prefix: string, imageFiles: File[]): Promise<T> {
   const processedEntry = { ...entry };
-  
+
   for (const key in entry) {
     const value = entry[key];
-    
+
     if (isBase64Image(value)) {
       const fileName = `${prefix}-${entry.id}-${key}.png`;
       const file = await convertBase64ImageToFile(value, fileName);
       imageFiles.push(file);
-      
+
       (processedEntry as any)[key] = `images/${fileName}`;
     }
   }
-  
+
   return processedEntry;
 }
 
@@ -97,12 +97,12 @@ export async function processEntryImages<T extends { id: string; [key: string]: 
  * @param imageFiles array to store image files
  * @returns processed array of entries
  */
-export async function processAllEntryImages<T extends { id: string; [key: string]: any }>(
-  entries: T[],
-  sectionPrefix: string,
-  imageFiles: File[]
-): Promise<T[]> {
+export async function processAllEntryImages<
+  T extends { id: string; [key: string]: any },
+>(entries: T[], sectionPrefix: string, imageFiles: File[]): Promise<T[]> {
   return Promise.all(
-    entries.map(entry => processEntryImages(entry, sectionPrefix, imageFiles))
+    entries.map((entry) =>
+      processEntryImages(entry, sectionPrefix, imageFiles),
+    ),
   );
 }

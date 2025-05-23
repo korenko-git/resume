@@ -1,6 +1,10 @@
 import { Section } from "@/components/common/layout/Section";
 import { OutlineLinkButton } from "@/components/common/ui/OutlineLinkButton";
-import { filterPublishedEntries, getEntityFull, getSingularForm } from "@/lib/entityUtils";
+import {
+  filterPublishedEntries,
+  getEntityFull,
+  getSingularForm,
+} from "@/lib/entityUtils";
 import {
   ResumeData,
   ResumeDataKeysWithEntries,
@@ -25,7 +29,6 @@ interface ResumeSectionsProps {
 
 const ARCHIVE_SECTIONS = new Set<SectionType>(["projects", "certifications"]);
 
-
 export function ResumeSections({
   sections = SECTIONS,
   includeUnpublished = false,
@@ -34,7 +37,7 @@ export function ResumeSections({
   return sections.map((section) => {
     const entries = filterPublishedEntries<ResumeDataWithEntries>(
       data[section].entries,
-      includeUnpublished
+      includeUnpublished,
     );
     const showArchiveLink =
       !includeUnpublished && ARCHIVE_SECTIONS.has(section);

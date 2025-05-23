@@ -19,7 +19,7 @@ export default function CertificationArchivePage() {
         Home
       </OutlineLinkButton>
 
-      <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl my-8">
+      <h1 className="text-foreground my-8 text-4xl font-bold tracking-tight sm:text-5xl">
         All Certifications
       </h1>
 

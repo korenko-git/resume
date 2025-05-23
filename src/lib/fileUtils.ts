@@ -25,7 +25,7 @@ export const fileToBase64 = (file: File): Promise<string> => {
  */
 export const handleImageFileChange = async (
   e: React.ChangeEvent<HTMLInputElement>,
-  onFileLoaded: (base64: string) => void
+  onFileLoaded: (base64: string) => void,
 ): Promise<void> => {
   const file = e.target.files?.[0];
   if (file) {

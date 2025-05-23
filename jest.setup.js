@@ -1,14 +1,14 @@
-require('@testing-library/jest-dom');
-require('jest-fetch-mock');
+require("@testing-library/jest-dom");
+require("jest-fetch-mock");
 
-const localStorageMock = (function() {
+const localStorageMock = (function () {
   let store = {};
   return {
-    getItem: jest.fn(key => store[key] || null),
+    getItem: jest.fn((key) => store[key] || null),
     setItem: jest.fn((key, value) => {
       store[key] = value.toString();
     }),
-    removeItem: jest.fn(key => {
+    removeItem: jest.fn((key) => {
       delete store[key];
     }),
     clear: jest.fn(() => {
@@ -17,13 +17,13 @@ const localStorageMock = (function() {
   };
 })();
 
-Object.defineProperty(window, 'localStorage', {
+Object.defineProperty(window, "localStorage", {
   value: localStorageMock,
 });
 
-Object.defineProperty(window, 'matchMedia', {
+Object.defineProperty(window, "matchMedia", {
   writable: true,
-  value: jest.fn().mockImplementation(query => ({
+  value: jest.fn().mockImplementation((query) => ({
     matches: false,
     media: query,
     onchange: null,

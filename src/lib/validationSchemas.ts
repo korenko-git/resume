@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 /**
  * Common schema for URL fields that accepts valid URLs or empty strings
@@ -35,8 +35,13 @@ export const aboutSchema = z.object({
  * Schema for entries with date ranges (experience and education)
  */
 const dateRangeEntrySchema = baseEntrySchema.extend({
-  startDate: z.string().regex(/^\d{4}-\d{2}$/, 'Date must be in YYYY-MM format'),
-  endDate: z.string().regex(/^\d{4}-\d{2}$/, 'Date must be in YYYY-MM format').or(z.string().max(0)),
+  startDate: z
+    .string()
+    .regex(/^\d{4}-\d{2}$/, "Date must be in YYYY-MM format"),
+  endDate: z
+    .string()
+    .regex(/^\d{4}-\d{2}$/, "Date must be in YYYY-MM format")
+    .or(z.string().max(0)),
   organizationId: z.string(),
   link: z.string().optional(),
 });
@@ -72,7 +77,7 @@ export const projectsSchema = z.object({
  * Schema for certification entries
  */
 export const certificationEntrySchema = baseEntrySchema.extend({
-  date: z.string().regex(/^\d{4}-\d{2}$/, 'Date must be in YYYY-MM format'),
+  date: z.string().regex(/^\d{4}-\d{2}$/, "Date must be in YYYY-MM format"),
   organizationId: z.string(),
   link: urlSchema.optional(),
 });
@@ -100,5 +105,5 @@ export const resumeSchema = z.object({
   education: educationSchema,
   projects: projectsSchema,
   certifications: certificationsSchema,
-  organizations: organizationsSchema
+  organizations: organizationsSchema,
 });

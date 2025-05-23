@@ -42,7 +42,7 @@ export function FormRenderer({ formData, onFieldChange }: FormRendererProps) {
     switch (fieldType) {
       case "text":
         return (
-          <div className="space-y-2 form-field">
+          <div className="form-field space-y-2">
             <Label htmlFor={name}>{label}</Label>
             <Input
               id={name}
@@ -73,7 +73,7 @@ export function FormRenderer({ formData, onFieldChange }: FormRendererProps) {
         );
       case "switch":
         return (
-          <div className="flex items-center space-x-2 justify-end form-field published-toggle">
+          <div className="form-field published-toggle flex items-center justify-end space-x-2">
             <Switch
               id={name}
               checked={value || false}
@@ -140,7 +140,7 @@ export function FormRenderer({ formData, onFieldChange }: FormRendererProps) {
         );
       case "select":
         return (
-          <div className="space-y-2 form-field">
+          <div className="form-field space-y-2">
             <Label htmlFor={name}>{label}</Label>
             <Select
               value={value || ""}

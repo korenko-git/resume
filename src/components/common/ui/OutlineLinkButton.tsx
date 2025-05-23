@@ -14,7 +14,7 @@ export function OutlineLinkButton({
     <div className={className}>
       <Link
         className={
-          "inline-flex items-center font-medium leading-tight text-foreground group"
+          "text-foreground group inline-flex items-center leading-tight font-medium"
         }
         {...props}
       >
@@ -23,7 +23,7 @@ export function OutlineLinkButton({
             <ArrowLeft className="mr-1 h-4 w-4 transition-transform group-hover:-translate-x-2" />
           </span>
         )}
-        <span className="border-b border-primary/50 lg:border-transparent pb-px transition group-hover:border-primary/50 motion-reduce:transition-none">
+        <span className="border-primary/50 group-hover:border-primary/50 border-b pb-px transition motion-reduce:transition-none lg:border-transparent">
           {children}
         </span>
         {!isLeftArrow && (

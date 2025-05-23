@@ -5,10 +5,10 @@ import { ReactNode, useEffect, useState } from "react";
 
 import { RESUME_THEME_STORAGE_KEY } from "@/constants/theme";
 
-export default function ClientThemeProvider({ 
-  children 
-}: { 
-  children: ReactNode 
+export default function ClientThemeProvider({
+  children,
+}: {
+  children: ReactNode;
 }) {
   const [mounted, setMounted] = useState(false);
 

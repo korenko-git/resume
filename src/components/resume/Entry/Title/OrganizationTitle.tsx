@@ -22,18 +22,13 @@ export function OrganizationTitle({
 
   return (
     <>
-      <div className="flex-shrink-0 relative">
-        <OrganizationLogo 
-          logo={organization.logo} 
-          title={organization.title} 
-        />
+      <div className="relative flex-shrink-0">
+        <OrganizationLogo logo={organization.logo} title={organization.title} />
       </div>
       <div className="flex flex-col">
-        <h3 className="font-medium leading-snug text-foreground">
-          {title}
-        </h3>
+        <h3 className="text-foreground leading-snug font-medium">{title}</h3>
         <Link
-          className="inline-flex items-baseline font-medium leading-tight text-foreground hover:text-primary focus-visible:text-primary group/link text-base"
+          className="text-foreground hover:text-primary focus-visible:text-primary group/link inline-flex items-baseline text-base leading-tight font-medium"
           href={linkUrl}
           target="_blank"
           rel="noreferrer noopener"
@@ -41,10 +36,10 @@ export function OrganizationTitle({
         >
           <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
 
-          <span className="inline-block border-b border-transparent group-hover:border-primary lg:border-0">
+          <span className="group-hover:border-primary inline-block border-b border-transparent lg:border-0">
             {organization.title}
             <ArrowUpRight
-              className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+              className="ml-1 inline-block h-4 w-4 shrink-0 translate-y-px transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1 group-focus-visible/link:translate-x-1 group-focus-visible/link:-translate-y-1 motion-reduce:transition-none"
               aria-hidden="true"
             />
           </span>

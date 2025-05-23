@@ -29,7 +29,7 @@ describe("OrganizationSelector", () => {
 
   it("renders with custom label", () => {
     render(
-      <OrganizationSelector value="" onChange={mockOnChange} label="Company" />
+      <OrganizationSelector value="" onChange={mockOnChange} label="Company" />,
     );
 
     expect(screen.getByText("Company")).toBeInTheDocument();

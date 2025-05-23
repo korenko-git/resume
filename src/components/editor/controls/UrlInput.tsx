@@ -43,7 +43,7 @@ export function UrlInput({
           href={value}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-blue-500 hover:underline block truncate"
+          className="block truncate text-xs text-blue-500 hover:underline"
         >
           {value}
         </a>

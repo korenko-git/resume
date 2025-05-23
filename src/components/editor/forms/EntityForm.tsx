@@ -65,7 +65,7 @@ export function EntityForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {gridFields.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {gridFields.map((field) => (
             <div key={field.name}>{renderField(field)}</div>
           ))}

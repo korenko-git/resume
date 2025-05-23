@@ -28,7 +28,7 @@ export function ImageUrlInput({
   urlPlaceholder = "https://",
 }: ImageUrlInputProps) {
   const [activeTab, setActiveTab] = useState<"image" | "url">(
-    value?.startsWith("data:") ? "image" : "url"
+    value?.startsWith("data:") ? "image" : "url",
   );
 
   const handleTabChange = (value: string) => {

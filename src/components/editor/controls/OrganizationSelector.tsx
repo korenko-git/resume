@@ -34,7 +34,7 @@ export function OrganizationSelector({
   const pendingOrgIdRef = useRef<string | null>(null);
   const organizations = useMemo(
     () => data.organizations.entries || [],
-    [data.organizations.entries]
+    [data.organizations.entries],
   );
 
   const handleSelectChange = (newValue: string) => {
@@ -59,7 +59,7 @@ export function OrganizationSelector({
 
   return (
     <div className={cn("space-y-2", className)}>
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         {label && <Label className="text-sm font-medium">{label}</Label>}
         <Button
           type="button"
@@ -68,7 +68,7 @@ export function OrganizationSelector({
           onClick={() => setDialogOpen(true)}
           className="h-8 px-2 text-xs"
         >
-          <Plus className="h-3 w-3 mr-1" />
+          <Plus className="mr-1 h-3 w-3" />
           Create new
         </Button>
       </div>
@@ -81,7 +81,7 @@ export function OrganizationSelector({
         </SelectTrigger>
         <SelectContent>
           {organizations.length === 0 ? (
-            <div className="text-center py-2 text-sm text-slate-500">
+            <div className="py-2 text-center text-sm text-slate-500">
               No organizations. Create a new one.
             </div>
           ) : (

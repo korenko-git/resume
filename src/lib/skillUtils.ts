@@ -1,4 +1,4 @@
-import { Skill, skillCategoryOrder,SkillCategoryType } from "@/types/skill";
+import { Skill, skillCategoryOrder, SkillCategoryType } from "@/types/skill";
 
 export function sortSkills(skills: Skill[]): Skill[] {
   return [...skills].sort((a, b) => {
@@ -10,7 +10,7 @@ export function sortSkills(skills: Skill[]): Skill[] {
 
     if (aIndex === -1 && bIndex === -1) {
       if (aCategory === bCategory) {
-        return a.id.localeCompare(b.id); 
+        return a.id.localeCompare(b.id);
       }
       return (aCategory as string).localeCompare(bCategory as string);
     }
@@ -21,6 +21,6 @@ export function sortSkills(skills: Skill[]): Skill[] {
       return aIndex - bIndex;
     }
 
-    return a.id.localeCompare(b.id); 
+    return a.id.localeCompare(b.id);
   });
 }

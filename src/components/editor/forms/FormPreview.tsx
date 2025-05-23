@@ -22,7 +22,7 @@ export function FormPreview({ formData, onEdit, onSave }: FormPreviewProps) {
           Save
         </Button>
       </div>
-      <div className="border rounded-lg p-4">
+      <div className="rounded-lg border p-4">
         <EntryBlock entryData={formData} />
       </div>
     </div>

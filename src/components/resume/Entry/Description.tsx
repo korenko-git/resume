@@ -21,9 +21,9 @@ export function Description({
         a: ({ href, children, ...props }) => (
           <a
             className={cn(
-              "cursor-pointer hover:text-primary focus-visible:text-primary",
+              "hover:text-primary focus-visible:text-primary cursor-pointer",
               hrefWithIcon && "relative mt-2 inline-flex items-center",
-              !hrefWithIcon && "border-b border-primary/50"
+              !hrefWithIcon && "border-primary/50 border-b",
             )}
             href={href}
             {...props}
@@ -31,12 +31,12 @@ export function Description({
             rel="noreferrer noopener"
             aria-label={`${children} (opens in a new tab)`}
           >
-            {hrefWithIcon && <LinkIcon className="w-4 h-4 mr-2" />}
+            {hrefWithIcon && <LinkIcon className="mr-2 h-4 w-4" />}
             <span>{children}</span>
           </a>
         ),
         ul: ({ children }) => (
-          <ul className="list-disc pl-6 my-2"> {children}</ul>
+          <ul className="my-2 list-disc pl-6"> {children}</ul>
         ),
       }}
     >

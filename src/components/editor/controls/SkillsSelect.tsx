@@ -52,7 +52,7 @@ export function SkillsSelect({
     if (trimmedSkillId === "") return;
 
     const skillExists = availableSkills.some(
-      (skill) => skill.id.toLowerCase() === trimmedSkillId.toLowerCase()
+      (skill) => skill.id.toLowerCase() === trimmedSkillId.toLowerCase(),
     );
 
     if (skillExists) {
@@ -95,7 +95,7 @@ export function SkillsSelect({
             variant="outline"
             role="combobox"
             aria-expanded={popoverOpen}
-            className="w-full justify-between h-auto min-h-10"
+            className="h-auto min-h-10 w-full justify-between"
           >
             <div className="flex flex-wrap gap-1">
               {selectedSkillIds.length > 0
@@ -120,7 +120,8 @@ export function SkillsSelect({
                 if (e.key === "Enter" && searchTerm.trim() !== "") {
                   const isSkillInList = availableSkills.some(
                     (skill) =>
-                      skill.id.toLowerCase() === searchTerm.trim().toLowerCase()
+                      skill.id.toLowerCase() ===
+                      searchTerm.trim().toLowerCase(),
                   );
                   if (!isSkillInList) {
                     e.preventDefault();
@@ -138,7 +139,7 @@ export function SkillsSelect({
                     No skill found for &quot;{searchTerm}&quot;.
                     <Button
                       variant="link"
-                      className="px-1 text-blue-600 h-auto py-0"
+                      className="h-auto px-1 py-0 text-blue-600"
                       onClick={() => handleAddNewSkill(searchTerm)}
                     >
                       Add as new skill?
@@ -149,7 +150,7 @@ export function SkillsSelect({
               {skillCategoryOrder.map((category) => {
                 const skillsInCategory = (groupedSkills[category] || []).filter(
                   (skill) =>
-                    skill.id.toLowerCase().includes(searchTerm.toLowerCase())
+                    skill.id.toLowerCase().includes(searchTerm.toLowerCase()),
                 );
 
                 if (skillsInCategory.length === 0 && searchTerm) return null;
@@ -183,7 +184,7 @@ export function SkillsSelect({
                             "mr-2 h-4 w-4",
                             selectedSkillIds.includes(skill.id)
                               ? "opacity-100"
-                              : "opacity-0"
+                              : "opacity-0",
                           )}
                         />
                         {skill.id}

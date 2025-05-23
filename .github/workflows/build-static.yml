@@ -16,22 +16,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-          
+          node-version: "20"
+          cache: "npm"
+
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
-        
+
       - name: Lint
         run: npm run lint || echo "Linting issues found"
-        
+
       - name: Type check
         run: npm run typecheck || echo "Type issues found"
-        
+
       - name: Run tests
         run: npm test || echo "Tests failed"
 
@@ -45,21 +45,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 'master'  
+          ref: "master"
           fetch-depth: 0
 
       - name: Pull latest changes
-        run: git pull origin master 
+        run: git pull origin master
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
-        
+
       - name: Set repository name for basePath
         run: |
           REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)

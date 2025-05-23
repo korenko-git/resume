@@ -89,7 +89,7 @@ const MockResumeContext = ({ children }: { children: React.ReactNode }) => {
     loading: false,
     error: null,
     updateData,
-    updateDraft, 
+    updateDraft,
     updateOrganization,
     getEntryFromData,
     deleteEntry,
@@ -105,7 +105,7 @@ const MockResumeContext = ({ children }: { children: React.ReactNode }) => {
 
 const customRender = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, "wrapper">
+  options?: Omit<RenderOptions, "wrapper">,
 ) => render(ui, { wrapper: MockResumeContext, ...options });
 
 // re-export everything

@@ -18,7 +18,7 @@ export function EntryTitle({ data }: EntryTitleProps) {
   const hasProjectLinks = "source" in data || "demo" in data;
 
   return (
-    <div className="flex gap-x-2 items-center">
+    <div className="flex items-center gap-x-2">
       {hasOrganization && (
         <OrganizationTitle
           organization={data.organization}

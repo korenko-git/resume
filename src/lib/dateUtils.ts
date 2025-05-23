@@ -55,7 +55,7 @@ function formatMonth(date: Date): string {
  */
 export function getDateRangeString(
   startDate?: string,
-  endDate?: string
+  endDate?: string,
 ): string {
   if (!startDate) return "";
 

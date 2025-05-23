@@ -20,7 +20,7 @@ export function useResumeData() {
         toast.error("Failed to save resume draft");
       }
     },
-    [setData, updateDraftLocal]
+    [setData, updateDraftLocal],
   );
 
   return {

@@ -37,25 +37,25 @@ export function EntityCard({
   return (
     <Card
       key={entity.id}
-      className="cursor-pointer hover:shadow-md transition-shadow overflow-hidden relative group flex flex-col entity-card"
+      className="group entity-card relative flex cursor-pointer flex-col overflow-hidden transition-shadow hover:shadow-md"
       onClick={() => onSelect(entity.id)}
     >
       <CardHeader className="pb-2">
-        <div className="flex pr-8 justify-between items-start overflow-hidden">
-          <CardTitle className="text-lg truncate">
+        <div className="flex items-start justify-between overflow-hidden pr-8">
+          <CardTitle className="truncate text-lg">
             {"title" in entity ? entity.title : entity.id}
           </CardTitle>
           <Button
             variant="outline"
             size="icon"
             onClick={(e) => onDelete(entity.id, e)}
-            className="h-8 w-8 flex-shrink-0 absolute top-4 right-4 hover:bg-destructive hover:text-destructive-foreground transition-colors delete-button"
+            className="hover:bg-destructive hover:text-destructive-foreground delete-button absolute top-4 right-4 h-8 w-8 flex-shrink-0 transition-colors"
           >
             <Trash2 className="h-4 w-4" />
           </Button>
         </div>
 
-        <div className="flex items-center gap-2 mt-1 flex-wrap">
+        <div className="mt-1 flex flex-wrap items-center gap-2">
           {"isPublished" in entity && (
             <Badge variant={entity.isPublished ? "default" : "outline"}>
               {entity.isPublished ? "Published" : "Draft"}
@@ -69,7 +69,7 @@ export function EntityCard({
           {"organizationId" in entity && entity.organizationId && (
             <Badge
               variant="secondary"
-              className="flex items-center gap-1 max-w-full"
+              className="flex max-w-full items-center gap-1"
             >
               <span className="truncate">
                 {getOrganization(entity.organizationId)?.title ||
@@ -80,22 +80,22 @@ export function EntityCard({
         </div>
       </CardHeader>
 
-      <CardContent className="flex-1 flex flex-col">
+      <CardContent className="flex flex-1 flex-col">
         {"description" in entity && (
-          <div className="text-sm text-muted-foreground line-clamp-2 break-words">
+          <div className="text-muted-foreground line-clamp-2 text-sm break-words">
             <ReactMarkdown>{entity.description}</ReactMarkdown>
           </div>
         )}
 
         {"startDate" in entity && (
-          <div className="mt-2 text-xs text-muted-foreground">
+          <div className="text-muted-foreground mt-2 text-xs">
             {formatDate(entity.startDate)} -{" "}
             {entity.endDate ? formatDate(entity.endDate) : "Present"}
           </div>
         )}
 
         {"date" in entity && (
-          <div className="mt-2 text-xs text-muted-foreground">
+          <div className="text-muted-foreground mt-2 text-xs">
             {formatDate(entity.date)}
           </div>
         )}
@@ -115,11 +115,11 @@ export function EntityCard({
           </div>
         )}
 
-        <div className="mt-auto pt-3 flex items-center gap-2">
+        <div className="mt-auto flex items-center gap-2 pt-3">
           <Button
             variant="outline"
             size="sm"
-            className="flex-1 min-w-0 edit-button"
+            className="edit-button min-w-0 flex-1"
             onClick={(e) => {
               e.stopPropagation();
               onSelect(entity.id);

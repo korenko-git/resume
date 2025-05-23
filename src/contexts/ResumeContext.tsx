@@ -15,12 +15,12 @@ interface ResumeContextType {
   data: ResumeData;
   updateData: (
     type: ResumeDataKeysWithEntries,
-    newData: ResumeDataWithEntries
+    newData: ResumeDataWithEntries,
   ) => void;
   updateOrganization: (organization: Organization) => void;
   getEntryFromData: (
     type: ResumeDataKeysWithEntries,
-    id: string
+    id: string,
   ) => ResumeDataWithEntries | null;
   setData: (data: ResumeData) => void;
   updateDraft: (updatedData: ResumeData) => void;
@@ -28,7 +28,7 @@ interface ResumeContextType {
 }
 
 export const ResumeContext = createContext<ResumeContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export function ResumeProvider({ children }: { children: ReactNode }) {

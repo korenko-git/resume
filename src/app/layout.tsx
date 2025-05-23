@@ -57,14 +57,11 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} antialiased z-10 relative
-        leading-relaxed tracking-wide selection:bg-primary/20 
-        dark:selection:bg-neutral-300 dark:selection:text-neutral-900
-        `}
+        className={`${geistSans.variable} selection:bg-primary/20 relative z-10 leading-relaxed tracking-wide antialiased dark:selection:bg-neutral-300 dark:selection:text-neutral-900`}
       >
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50"
+          className="bg-primary text-primary-foreground sr-only z-50 rounded-md px-4 py-2 focus:not-sr-only focus:absolute focus:top-4 focus:left-4"
         >
           Skip to main content
         </a>

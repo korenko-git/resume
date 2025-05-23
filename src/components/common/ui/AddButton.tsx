@@ -9,10 +9,10 @@ interface AddButtonProps {
 
 export function AddButton({ onClick, label }: AddButtonProps) {
   return (
-    <Button 
-      onClick={onClick} 
-      variant="outline" 
-      className="mt-4 w-full flex items-center justify-center gap-2"
+    <Button
+      onClick={onClick}
+      variant="outline"
+      className="mt-4 flex w-full items-center justify-center gap-2"
       aria-label={`Add ${label}`}
     >
       <Plus className="h-4 w-4" />

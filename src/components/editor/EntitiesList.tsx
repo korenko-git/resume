@@ -28,7 +28,7 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
 
   const organizations = useMemo(
     () => data.organizations?.entries || [],
-    [data.organizations?.entries]
+    [data.organizations?.entries],
   );
 
   const skillCategories = useMemo(() => {
@@ -41,7 +41,7 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
   const { filters, setters, filteredEntities } = useEntityFilters(
     entities,
     entityType,
-    data
+    data,
   );
 
   const handleAddEntity = () => {
@@ -75,8 +75,8 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
   };
 
   return (
-    <div className="space-y-6 entity-list">
-      <div className="flex flex-wrap gap-2 justify-between items-center">
+    <div className="entity-list space-y-6">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-2xl font-bold">{metadata.title}</h2>
         <EntitiesFilters
           entities={entities}
@@ -89,10 +89,10 @@ export function EntitiesList({ entityType, onSelect }: EntitiesListProps) {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {filteredEntities.length === 0 ? (
           <Card className="col-span-full">
-            <CardContent className="pt-6 text-center text-muted-foreground">
+            <CardContent className="text-muted-foreground pt-6 text-center">
               No entries. Click &quot;Add&quot; to create a new entry.
             </CardContent>
           </Card>

@@ -8,7 +8,6 @@ interface AboutSectionProps {
 }
 
 export function AboutSection({ className, sectionData }: AboutSectionProps) {
-
   if (!sectionData) {
     return null;
   }

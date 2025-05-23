@@ -21,8 +21,8 @@ const eslintConfig = [
       "public/**",
       "dist/**",
       "build/**",
-      "out/**"
-    ]
+      "out/**",
+    ],
   },
   {
     plugins: {
@@ -33,8 +33,8 @@ const eslintConfig = [
       "@typescript-eslint/no-require-imports": "off",
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
-    }
-  }
+    },
+  },
 ];
 
 export default eslintConfig;

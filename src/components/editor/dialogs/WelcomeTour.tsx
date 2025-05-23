@@ -99,10 +99,10 @@ export function WelcomeTour({ isEntityFormOpen = false }: WelcomeTourProps) {
 
   const steps = isEntityFormOpen
     ? allSteps.filter(
-        (step) => step?.data?.isFormStep || step.target === "body"
+        (step) => step?.data?.isFormStep || step.target === "body",
       )
     : allSteps.filter(
-        (step) => !step?.data?.isFormStep || step.target === "body"
+        (step) => !step?.data?.isFormStep || step.target === "body",
       );
 
   const joyrideStyles = {
@@ -133,7 +133,7 @@ export function WelcomeTour({ isEntityFormOpen = false }: WelcomeTourProps) {
         onClick={() => setRunTour(true)}
         aria-label="Show Tutorial"
         title="Show Tutorial"
-        className="rounded-full w-8 h-8 sm:absolute right-0 top-0 z-10"
+        className="top-0 right-0 z-10 h-8 w-8 rounded-full sm:absolute"
       >
         <HelpCircle className="h-4 w-4" />
       </Button>
