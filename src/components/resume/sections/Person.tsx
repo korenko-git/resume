@@ -27,7 +27,11 @@ export function Person({ sectionData }: PersonProps) {
           className="mr-4 shrink-0 text-xs"
           aria-label="Download ATS CV"
         >
-          <a href={getAssetPath("/cv-ats.pdf")} target="_blank" rel="noopener noreferrer">
+          <a
+            href={getAssetPath("/cv-ats.pdf")}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             ATS CV
           </a>
         </Button>

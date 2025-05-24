@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "../../../../../__mocks__/testUtils";
+import { fireEvent, render, screen } from "@/../__mocks__/testUtils";
+
 import { EntityForm } from "../EntityForm";
 
 // Mock the components used in EntityForm
