@@ -26,6 +26,7 @@ import {
   ResumeDataWithEntries,
 } from "@/types/resume";
 
+import { SkillsManager } from "./controls/SkillsManager";
 import { WelcomeTour } from "./dialogs/WelcomeTour";
 import { EntitiesList } from "./EntitiesList";
 import { EntityForm } from "./forms/EntityForm";
@@ -55,6 +56,32 @@ export function Editor() {
       selectedEntityId,
     );
   };
+
+  function renderContent(key: EditorTabKey) {
+    if (selectedEntityId) {
+      return (
+        <EntityForm
+          type={key as ResumeDataKeysWithEntries}
+          data={getSelectedEntity() as ResumeDataWithEntries}
+          onUpdate={(updatedData) => {
+            updateData(key as ResumeDataKeysWithEntries, updatedData);
+            handleBackToList();
+          }}
+        />
+      );
+    }
+
+    if (key === "skills") {
+      return <SkillsManager />;
+    }
+
+    return (
+      <EntitiesList
+        entityType={key as ResumeDataKeysWithEntries}
+        onSelect={handleEntitySelect}
+      />
+    );
+  }
 
   return (
     <Card className="sm:border-border w-full border-0 shadow-none sm:border sm:shadow">
@@ -134,21 +161,7 @@ export function Editor() {
 
           {(Object.keys(entityMetadata) as Array<EditorTabKey>).map((key) => (
             <TabsContent key={key} value={key} className="space-y-4">
-              {selectedEntityId ? (
-                <EntityForm
-                  type={key as ResumeDataKeysWithEntries}
-                  data={getSelectedEntity() as ResumeDataWithEntries}
-                  onUpdate={(updatedData) => {
-                    updateData(key as ResumeDataKeysWithEntries, updatedData);
-                    handleBackToList();
-                  }}
-                />
-              ) : (
-                <EntitiesList
-                  entityType={key as ResumeDataKeysWithEntries}
-                  onSelect={handleEntitySelect}
-                />
-              )}
+              {renderContent(key)}
             </TabsContent>
           ))}
         </Tabs>

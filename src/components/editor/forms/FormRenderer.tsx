@@ -9,7 +9,7 @@ import {
 } from "@/components/common/ui/select";
 import { Switch } from "@/components/common/ui/switch";
 import { Textarea } from "@/components/common/ui/textarea";
-import { SkillsSelect } from "@/components/editor/controls/SkillsSelect";
+import { SkillsInput } from "@/components/editor/controls/SkillsInput";
 import {
   AllEntityFields,
   FieldDefinition,
@@ -87,11 +87,9 @@ export function FormRenderer({ formData, onFieldChange }: FormRendererProps) {
       case "date":
         return (
           <DateInput
-            id={name}
             label={label}
             value={value || ""}
             onChange={(value) => onFieldChange(name as AllEntityFields, value)}
-            required={required}
             placeholder={placeholder}
           />
         );
@@ -105,11 +103,13 @@ export function FormRenderer({ formData, onFieldChange }: FormRendererProps) {
         );
       case "skills":
         return (
-          <SkillsSelect
+          <SkillsInput
             selectedSkillIds={(value as string[]) || []}
             onSelectionChange={(value) =>
               onFieldChange(name as AllEntityFields, value)
             }
+            label={label}
+            placeholder="Type skills separated by comma or space..."
           />
         );
       case "url":
