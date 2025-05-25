@@ -120,7 +120,7 @@ export function Editor() {
                   Select section
                 </label>
                 <Select value={activeTab} onValueChange={handleTabChange}>
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger id="section-select" className="w-full">
                     <SelectValue placeholder="Select section" />
                   </SelectTrigger>
                   <SelectContent>
