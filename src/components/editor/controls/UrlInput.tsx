@@ -24,11 +24,17 @@ export function UrlInput({
   showPreview = true,
 }: UrlInputProps) {
   const isValidUrl = value && value.startsWith("http");
-  const inputId = label ? `url-input-${label.replace(/\s+/g, "-").toLowerCase()}` : undefined;
+  const inputId = label
+    ? `url-input-${label.replace(/\s+/g, "-").toLowerCase()}`
+    : undefined;
 
   return (
     <div className={cn("space-y-2", className)}>
-      {label && <Label htmlFor={inputId} className="text-sm font-medium">{label}</Label>}
+      {label && (
+        <Label htmlFor={inputId} className="text-sm font-medium">
+          {label}
+        </Label>
+      )}
 
       <Input
         id={inputId}
