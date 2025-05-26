@@ -1,16 +1,47 @@
 import { Save } from "lucide-react";
+import { useMemo } from "react";
 
 import { Button } from "@/components/common/ui/button";
 import { EntryBlock } from "@/components/resume/Entry";
-import { ResumeDataWithEntries } from "@/types/resume";
+import { useResumeData } from "@/hooks/useResumeData";
+import { getEntityFull } from "@/lib/entityUtils";
+import {
+  ResumeDataKeysWithEntries,
+  ResumeDataWithEntries,
+} from "@/types/resume";
 
 interface FormPreviewProps {
   formData: ResumeDataWithEntries;
+  entityType: ResumeDataKeysWithEntries;
   onEdit: () => void;
   onSave: () => void;
 }
 
-export function FormPreview({ formData, onEdit, onSave }: FormPreviewProps) {
+export function FormPreview({
+  formData,
+  entityType,
+  onEdit,
+  onSave,
+}: FormPreviewProps) {
+  const { data: resumeData } = useResumeData();
+
+  const fullEntityData = useMemo(() => {
+    if (!resumeData) return formData;
+
+    const tempData = {
+      ...resumeData,
+      [entityType]: {
+        ...resumeData[entityType],
+        entries: [
+          ...resumeData[entityType].entries.filter((e) => e.id !== formData.id),
+          formData,
+        ],
+      },
+    };
+
+    return getEntityFull(tempData, entityType, formData.id) || formData;
+  }, [formData, entityType, resumeData]);
+
   return (
     <div className="space-y-4">
       <div className="flex justify-end gap-2">
@@ -23,7 +54,7 @@ export function FormPreview({ formData, onEdit, onSave }: FormPreviewProps) {
         </Button>
       </div>
       <div className="rounded-lg border p-4">
-        <EntryBlock entryData={formData} />
+        <EntryBlock entryData={fullEntityData} />
       </div>
     </div>
   );

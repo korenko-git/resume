@@ -52,6 +52,7 @@ export function EntityForm({
     return (
       <FormPreview
         formData={formData}
+        entityType={type}
         onEdit={togglePreview}
         onSave={handleSave}
       />

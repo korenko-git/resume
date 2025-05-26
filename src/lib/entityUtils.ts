@@ -232,12 +232,22 @@ export function getEntityFull(
   for (const { type: refType, field } of references) {
     if (field in entity && (entity as any)[field]) {
       const refId = (entity as any)[field];
-      const referencedEntity = getEntity(data, refType, refId);
+      if (Array.isArray(refId)) {
+        const referencedEntities = refId
+          .map((id) => getEntity(data, refType, id))
+          .filter(Boolean);
+        if (referencedEntities.length > 0) {
+          const singularType = getSingularForm(refType);
+          (result as any)[singularType] = referencedEntities;
+        }
+      } else {
+        const referencedEntity = getEntity(data, refType, refId);
 
-      if (referencedEntity) {
-        // Add the referenced entity to the result using singular form
-        const singularType = getSingularForm(refType);
-        (result as any)[singularType] = referencedEntity;
+        if (referencedEntity) {
+          // Add the referenced entity to the result using singular form
+          const singularType = getSingularForm(refType);
+          (result as any)[singularType] = referencedEntity;
+        }
       }
     }
   }
