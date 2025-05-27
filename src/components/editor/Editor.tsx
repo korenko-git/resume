@@ -101,8 +101,10 @@ export function Editor() {
               <button
                 onClick={handleBackToList}
                 className="text-foreground group back-button inline-flex cursor-pointer items-center leading-tight font-medium"
+                aria-label="Go back to entities list"
+                type="button"
               >
-                <span className="whitespace-nowrap">
+                <span className="whitespace-nowrap" aria-hidden="true">
                   <ArrowLeft className="mr-1 h-4 w-4 transition-transform group-hover:-translate-x-2" />
                 </span>
                 <span className="border-primary/30 group-hover:border-primary/30 border-b pb-px transition motion-reduce:transition-none lg:border-transparent">

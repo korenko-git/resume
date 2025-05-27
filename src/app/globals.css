@@ -74,7 +74,7 @@
 
   /* Utility colors */
   --muted: oklch(0.94 0.005 240);
-  --muted-foreground: oklch(0.45 0.005 250);
+  --muted-foreground: oklch(0.4 0.005 250);
   --destructive: oklch(0.5 0.22 25);
   --destructive-foreground: oklch(0.98 0.01 240);
   --border: oklch(0.85 0.005 240);
@@ -120,7 +120,7 @@
 
   /* Utility colors */
   --muted: oklch(0.22 0.005 240);
-  --muted-foreground: oklch(0.6 0.005 240);
+  --muted-foreground: oklch(0.65 0.005 240);
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(0.95 0.01 240);
   --border: oklch(1 0 0 / 10%);
@@ -151,6 +151,18 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  *:focus-visible {
+    @apply ring-ring ring-offset-background ring-2 ring-offset-2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
