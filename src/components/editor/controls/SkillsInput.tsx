@@ -1,12 +1,12 @@
 import { X } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
-import { Badge } from "@/components/common/ui/badge";
+import { SkillBadge } from "@/components/common/SkillBadge";
 import { Input } from "@/components/common/ui/input";
 import { Label } from "@/components/common/ui/label";
 import { useSkills } from "@/hooks/useSkills";
 import { cn } from "@/lib/utils";
-import { Skill } from "@/types/skill";
+import { Skill } from "@/types/entries";
 
 interface SkillsInputProps {
   selectedSkillIds: string[];
@@ -27,6 +27,7 @@ export function SkillsInput({
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
+  const activeItemRef = useRef<HTMLDivElement>(null);
 
   const { addSkills: addNewSkillToGlobalList, skills: globalSkills } =
     useSkills();
@@ -66,6 +67,21 @@ export function SkillsInput({
     );
   };
 
+  const scrollToActiveItem = () => {
+    if (activeItemRef.current && suggestionsRef.current) {
+      const container = suggestionsRef.current;
+      const item = activeItemRef.current;
+      const containerRect = container.getBoundingClientRect();
+      const itemRect = item.getBoundingClientRect();
+
+      if (itemRect.bottom > containerRect.bottom) {
+        container.scrollTop += itemRect.bottom - containerRect.bottom + 8;
+      } else if (itemRect.top < containerRect.top) {
+        container.scrollTop -= containerRect.top - itemRect.top + 8;
+      }
+    }
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
@@ -102,12 +118,13 @@ export function SkillsInput({
       setActiveSuggestionIndex(-1);
     } else if (e.key === "ArrowDown") {
       e.preventDefault();
-      setActiveSuggestionIndex((prev) =>
-        prev < suggestions.length - 1 ? prev + 1 : prev,
-      );
+      setActiveSuggestionIndex((prev) => {
+        const newIndex = prev < suggestions.length - 1 ? prev + 1 : prev;
+        return newIndex;
+      });
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
-      setActiveSuggestionIndex((prev) => (prev > 0 ? prev - 1 : -1));
+      setActiveSuggestionIndex((prev) => (prev > 0 ? prev - 1 : 0));
     } else if (e.key === "Escape") {
       setShowSuggestions(false);
       setActiveSuggestionIndex(-1);
@@ -137,6 +154,10 @@ export function SkillsInput({
       setShowSuggestions(false);
     }, 150);
   };
+
+  useEffect(() => {
+    scrollToActiveItem();
+  }, [activeSuggestionIndex]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -171,34 +192,21 @@ export function SkillsInput({
       <div className="space-y-2">
         {selectedSkillIds.length > 0 && (
           <div className="flex flex-wrap gap-1">
-            {selectedSkillIds.map((skill) => {
-              const skillData = globalSkills.find((s) => s.id === skill);
-              const category = skillData?.category || "uncategorized";
+            {selectedSkillIds.map((skillId) => {
+              const skillData = globalSkills.find((s) => s.id === skillId) || {
+                id: skillId,
+                category: "uncategorized" as const,
+              };
 
               return (
-                <Badge
-                  key={skill}
-                  variant="secondary"
-                  className={cn(
-                    "group cursor-pointer transition-colors",
-                    category === "frontend" &&
-                      "bg-blue-100 text-blue-800 hover:bg-blue-200",
-                    category === "backend" &&
-                      "bg-green-100 text-green-800 hover:bg-green-200",
-                    category === "language" &&
-                      "bg-purple-100 text-purple-800 hover:bg-purple-200",
-                    category === "database" &&
-                      "bg-orange-100 text-orange-800 hover:bg-orange-200",
-                    category === "tool" &&
-                      "bg-gray-100 text-gray-800 hover:bg-gray-200",
-                    category === "uncategorized" &&
-                      "bg-slate-100 text-slate-800 hover:bg-slate-200",
-                  )}
-                  onClick={() => removeSkill(skill)}
+                <SkillBadge
+                  key={skillId}
+                  skill={skillData}
+                  variant="editor"
+                  onClick={() => removeSkill(skillId)}
                 >
-                  {skill}
                   <X className="ml-1 h-3 w-3 opacity-50 group-hover:opacity-100" />
-                </Badge>
+                </SkillBadge>
               );
             })}
           </div>
@@ -227,15 +235,17 @@ export function SkillsInput({
                   </div>
                   {skills.map((skill) => {
                     const globalIndex = suggestions.indexOf(skill);
+                    const isActive = globalIndex === activeSuggestionIndex;
                     return (
                       <div
                         key={skill.id}
+                        ref={isActive ? activeItemRef : null}
                         className={cn(
-                          "cursor-pointer px-3 py-2 text-sm hover:bg-gray-100",
-                          globalIndex === activeSuggestionIndex &&
-                            "bg-blue-100",
+                          "cursor-pointer px-3 py-2 text-sm hover:bg-gray-100 focus:bg-blue-100 focus:outline-none",
+                          isActive && "bg-blue-100",
                         )}
                         onClick={() => handleSuggestionClick(skill)}
+                        tabIndex={-1}
                       >
                         {skill.id}
                       </div>

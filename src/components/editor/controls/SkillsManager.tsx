@@ -1,7 +1,7 @@
 import { Plus, Search, X } from "lucide-react";
 import React, { useMemo, useState } from "react";
 
-import { Badge } from "@/components/common/ui/badge";
+import { SkillBadge } from "@/components/common/SkillBadge";
 import { Button } from "@/components/common/ui/button";
 import { Input } from "@/components/common/ui/input";
 import { Label } from "@/components/common/ui/label";
@@ -12,9 +12,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/common/ui/select";
+import { skillCategoryOrder, SkillCategoryType } from "@/constants/skills";
 import { useSkills } from "@/hooks/useSkills";
-import { cn } from "@/lib/utils";
-import { skillCategoryOrder, SkillCategoryType } from "@/types/skill";
 
 import { SmartSkillDeleteDialog } from "../dialogs/SmartSkillDeleteDialog";
 
@@ -66,23 +65,6 @@ export function SkillsManager() {
     }
   };
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "frontend":
-        return "bg-blue-100 text-blue-800";
-      case "backend":
-        return "bg-green-100 text-green-800";
-      case "language":
-        return "bg-purple-100 text-purple-800";
-      case "database":
-        return "bg-orange-100 text-orange-800";
-      case "tool":
-        return "bg-gray-100 text-gray-800";
-      default:
-        return "bg-slate-100 text-slate-800";
-    }
-  };
-
   const handleSkillClick = (skillId: string) => {
     setSkillToDelete(skillId);
     setDeleteDialogOpen(true);
@@ -105,7 +87,7 @@ export function SkillsManager() {
         <h3 className="text-lg font-semibold">Add New Skills</h3>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div className="md:col-span-2">
+          <div className="space-y-2 md:col-span-2">
             <Label htmlFor="new-skills">
               Skills (comma or space separated)
             </Label>
@@ -119,7 +101,7 @@ export function SkillsManager() {
             />
           </div>
 
-          <div>
+          <div className="space-y-2">
             <Label htmlFor="category">Category</Label>
             <Select
               value={selectedCategory}
@@ -151,7 +133,7 @@ export function SkillsManager() {
         <h3 className="text-lg font-semibold">Manage Existing Skills</h3>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div>
+          <div className="space-y-2">
             <Label htmlFor="search">Search Skills</Label>
             <div className="relative">
               <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
@@ -165,7 +147,7 @@ export function SkillsManager() {
             </div>
           </div>
 
-          <div>
+          <div className="space-y-2">
             <Label htmlFor="filter">Filter by Category</Label>
             <Select value={filterCategory} onValueChange={setFilterCategory}>
               <SelectTrigger>
@@ -198,17 +180,14 @@ export function SkillsManager() {
 
               <div className="flex flex-wrap gap-2">
                 {categorySkills.map((skill) => (
-                  <Badge
+                  <SkillBadge
                     key={skill.id}
-                    className={cn(
-                      "group cursor-pointer transition-colors hover:bg-red-100 hover:text-red-800",
-                      getCategoryColor(skill.category || "uncategorized"),
-                    )}
+                    skill={skill}
+                    variant="editor"
                     onClick={() => handleSkillClick(skill.id)}
                   >
-                    {skill.id}
                     <X className="ml-1 h-3 w-3 opacity-50 group-hover:opacity-100" />
-                  </Badge>
+                  </SkillBadge>
                 ))}
               </div>
             </div>

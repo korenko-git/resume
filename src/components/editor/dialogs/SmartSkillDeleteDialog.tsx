@@ -20,11 +20,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/common/ui/select";
-import { SKILL_OPTIONS } from "@/constants/skills";
+import { SKILL_OPTIONS, SkillCategoryType } from "@/constants/skills";
 import { useResume } from "@/contexts/ResumeContext";
 import { entityRelationships } from "@/types/relationships";
 import { ResumeDataKeysWithEntries } from "@/types/resume";
-import { SkillCategoryType } from "@/types/skill";
 
 interface SmartSkillDeleteDialogProps {
   isOpen: boolean;

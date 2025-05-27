@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { ResumeDataWithEntries } from "@/types/resume";
+import { ResumeDataWithEntries, Skill } from "@/types/resume";
 
 import { Description } from "./Description";
 import { EntryHeader } from "./Header/EntryHeader";
@@ -33,7 +33,9 @@ export function EntryBlock({ entryData }: EntryBlockProps) {
           {"description" in entryData && (
             <Description data={entryData} className="mt-2" />
           )}
-          {"skills" in entryData && <Skills skills={entryData.skills} />}
+          {"skill" in entryData && (
+            <Skills skills={entryData.skill as Skill[]} />
+          )}
         </div>
       </div>
     </>

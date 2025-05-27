@@ -1,11 +1,11 @@
 import { useCallback } from "react";
 import { toast } from "sonner";
 
+import { SkillCategoryType } from "@/constants/skills";
 import { useResume } from "@/contexts/ResumeContext";
 import { sortSkills } from "@/lib/skillUtils";
 import { entityRelationships } from "@/types/relationships";
-import { ResumeData, ResumeDataKeysWithEntries } from "@/types/resume";
-import { Skill, SkillCategoryType } from "@/types/skill";
+import { ResumeData, ResumeDataKeysWithEntries, Skill } from "@/types/resume";
 
 export const useSkills = () => {
   const { data, updateDraft } = useResume();
@@ -14,26 +14,27 @@ export const useSkills = () => {
 
   const addSkills = useCallback(
     (category: SkillCategoryType, input: string) => {
-      const newIds = input
-        .split(",")
-        .map((s) => s.trim().toLowerCase())
-        .filter((s) => s);
-
-      if (newIds.length === 0) return;
-
-      const existingSkillIds = currentSkills.map((s) => s.id.toLowerCase());
-      const uniqueNewSkillInputs = input
+      const skillInputs = input
         .split(",")
         .map((s) => s.trim())
-        .filter((s) => s)
-        .filter((id) => !existingSkillIds.includes(id.toLowerCase()));
+        .filter(Boolean);
 
-      if (uniqueNewSkillInputs.length === 0) {
+      if (skillInputs.length === 0) return;
+
+      const existingSkillIds = new Set(
+        currentSkills.map((s) => s.id.toLowerCase()),
+      );
+
+      const uniqueNewSkills = skillInputs.filter(
+        (id) => !existingSkillIds.has(id.toLowerCase()),
+      );
+
+      if (uniqueNewSkills.length === 0) {
         toast.error("All entered skills already exist.");
         return;
       }
 
-      const newSkillsToAdd: Skill[] = uniqueNewSkillInputs.map((id) => ({
+      const newSkillsToAdd: Skill[] = uniqueNewSkills.map((id) => ({
         id,
         category,
       }));
@@ -48,7 +49,7 @@ export const useSkills = () => {
         skills: { entries: updatedSkillsList },
       };
       updateDraft(updatedResumeData);
-      toast.success(`Added: ${uniqueNewSkillInputs.join(", ")}`);
+      toast.success(`Added: ${uniqueNewSkills.join(", ")}`);
     },
     [data, currentSkills, updateDraft],
   );

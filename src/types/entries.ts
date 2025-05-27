@@ -1,5 +1,6 @@
+import { SkillCategoryType } from "@/constants/skills";
+
 import { BaseEntry, LinkableEntity, Organization } from "./common";
-import { Skill } from "./skill";
 
 export interface AboutEntry extends BaseEntry {
   subtitle: string;
@@ -38,6 +39,11 @@ export interface CertificationEntry extends BaseEntry, LinkableEntity {
   date: string;
   skills: string[];
   organizationId: string;
+}
+
+export interface Skill {
+  id: string;
+  category: SkillCategoryType | string;
 }
 
 export type ResumeDataWithEntries =

@@ -1,4 +1,5 @@
-import { Skill, skillCategoryOrder, SkillCategoryType } from "@/types/skill";
+import { skillCategoryOrder, SkillCategoryType } from "@/constants/skills";
+import { Skill } from "@/types/entries";
 
 export function sortSkills(skills: Skill[]): Skill[] {
   return [...skills].sort((a, b) => {

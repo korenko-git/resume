@@ -1,12 +1,23 @@
-import { SkillCategoryType } from "@/types/skill";
+export const skillCategoryOrder = [
+  "language",
+  "coreFrontend",
+  "coreBackend",
+  "database",
+  "devOps",
+  "testing",
+  "tooling",
+  "uncategorized",
+] as const;
+
+export type SkillCategoryType = (typeof skillCategoryOrder)[number];
 
 export const SKILL_OPTIONS: { value: SkillCategoryType; label: string }[] = [
-  { value: "language", label: "language" },
-  { value: "coreFrontend", label: "coreFrontend" },
-  { value: "coreBackend", label: "coreBackend" },
-  { value: "database", label: "database" },
-  { value: "devOps", label: "devOps" },
-  { value: "testing", label: "testing" },
-  { value: "tooling", label: "tooling" },
-  { value: "uncategorized", label: "uncategorized" },
+  { value: "language", label: "Programming Languages" },
+  { value: "coreFrontend", label: "Frontend" },
+  { value: "coreBackend", label: "Backend" },
+  { value: "database", label: "Databases" },
+  { value: "devOps", label: "DevOps" },
+  { value: "testing", label: "Testing" },
+  { value: "tooling", label: "Tools" },
+  { value: "uncategorized", label: "Other" },
 ];

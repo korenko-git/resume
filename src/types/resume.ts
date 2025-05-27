@@ -5,8 +5,8 @@ import {
   EducationEntry,
   ExperienceEntry,
   ProjectEntry,
+  Skill,
 } from "./entries";
-import { Skill } from "./skill";
 
 export type ResumeDataKeysWithEntries =
   | "about"
@@ -33,4 +33,3 @@ export * from "./entries";
 export * from "./forms";
 export * from "./metadata";
 export * from "./relationships";
-export * from "./skill";
