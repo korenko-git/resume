@@ -106,6 +106,7 @@ export function AccessibilitySettings() {
     <Dialog>
       <DialogTrigger asChild>
         <Button
+          tabIndex={0}
           variant="outline"
           size="icon"
           aria-label="Open accessibility settings"
