@@ -101,7 +101,7 @@ export function SkillsManager() {
               onChange={(e) => setNewSkillsInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="React, TypeScript, Node.js..."
-              className="w-full"
+              className="w-full skills-input"
             />
           </div>
 
@@ -113,7 +113,7 @@ export function SkillsManager() {
                 setSelectedCategory(value as SkillCategoryType)
               }
             >
-              <SelectTrigger>
+              <SelectTrigger className="skills-category-select">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -127,7 +127,7 @@ export function SkillsManager() {
           </div>
         </div>
 
-        <Button onClick={handleAddSkills} className="w-full md:w-auto">
+        <Button onClick={handleAddSkills} className="w-full md:w-auto skills-add-button">
           <Plus className="mr-2 h-4 w-4" />
           Add Skills
         </Button>
@@ -146,7 +146,7 @@ export function SkillsManager() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search skills..."
-                className="pl-10"
+                className="pl-10 skills-search"
               />
             </div>
           </div>
@@ -154,7 +154,7 @@ export function SkillsManager() {
           <div className="space-y-2">
             <Label htmlFor="filter">Filter by Category</Label>
             <Select value={filterCategory} onValueChange={setFilterCategory}>
-              <SelectTrigger>
+              <SelectTrigger className="skills-filter">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -184,13 +184,14 @@ export function SkillsManager() {
                 {categoryLabel} ({categorySkills.length})
               </h4>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 skills-list">
                 {categorySkills.map((skill) => (
                   <SkillBadge
                     key={skill.id}
                     skill={skill}
                     variant="editor"
                     onClick={() => handleSkillClick(skill.id)}
+                    className="skill-badge"
                   >
                     <X className="ml-1 h-3 w-3 opacity-50 group-hover:opacity-100" />
                   </SkillBadge>

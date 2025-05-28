@@ -89,6 +89,7 @@ export function Editor() {
         <div className="relative flex items-center justify-end">
           <WelcomeTour
             isEntityFormOpen={!!selectedEntityId && activeTab !== "skills"}
+            isSkillsManagerOpen={activeTab === "skills"}
           />
         </div>
         <Tabs
