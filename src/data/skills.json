@@ -1,8 +1,8 @@
 {
   "entries": [
     {
-      "id": "JavaScript",
-      "category": "coreFrontend"
+      "id": "C#",
+      "category": "language"
     },
     {
       "id": "PHP",
@@ -15,6 +15,46 @@
     {
       "id": "TypeScript",
       "category": "language"
+    },
+    {
+      "id": "HTML&SCSS",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "JavaScript",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "jQuery",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "Material-UI",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "Next.js",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "React",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "ReactNative",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "Redux",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "Redux-Saga",
+      "category": "coreFrontend"
+    },
+    {
+      "id": "Tailwind",
+      "category": "coreFrontend"
     },
     {
       "id": "Django",
@@ -33,6 +73,10 @@
       "category": "coreBackend"
     },
     {
+      "id": "Nest.js",
+      "category": "coreBackend"
+    },
+    {
       "id": "NestJS",
       "category": "coreBackend"
     },
@@ -41,28 +85,8 @@
       "category": "coreBackend"
     },
     {
-      "id": "HTML&SCSS",
-      "category": "coreFrontend"
-    },
-    {
-      "id": "jQuery",
-      "category": "coreFrontend"
-    },
-    {
-      "id": "Material-UI",
-      "category": "coreFrontend"
-    },
-    {
-      "id": "React",
-      "category": "coreFrontend"
-    },
-    {
-      "id": "ReactNative",
-      "category": "coreFrontend"
-    },
-    {
-      "id": "Redux",
-      "category": "coreFrontend"
+      "id": "WordPress",
+      "category": "coreBackend"
     },
     {
       "id": "MongoDB",
@@ -101,6 +125,10 @@
       "category": "testing"
     },
     {
+      "id": "Selenium",
+      "category": "testing"
+    },
+    {
       "id": "Socket.io",
       "category": "tooling"
     },
@@ -121,27 +149,31 @@
       "category": "tooling"
     },
     {
-      "id": "WordPress",
-      "category": "tooling"
-    },
-    {
-      "id": "Redux-Saga",
-      "category": "coreFrontend"
-    },
-    {
-      "id": "Nest.js",
-      "category": "coreBackend"
+      "id": "Cloud Computing",
+      "category": "uncategorized"
     },
     {
       "id": "Data Analysis",
       "category": "uncategorized"
     },
     {
-      "id": "Cloud Computing",
+      "id": "Database Management",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Desktop programming",
       "category": "uncategorized"
     },
     {
       "id": "Machine Learning",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Mobile Development",
+      "category": "uncategorized"
+    },
+    {
+      "id": "Network",
       "category": "uncategorized"
     },
     {
@@ -151,42 +183,6 @@
     {
       "id": "Web Development",
       "category": "uncategorized"
-    },
-    {
-      "id": "Mobile Development",
-      "category": "uncategorized"
-    },
-    {
-      "id": "Database Management",
-      "category": "uncategorized"
-    },
-    {
-      "id": "C#",
-      "category": "uncategorized"
-    },
-    {
-      "id": "Network",
-      "category": "uncategorized"
-    },
-    {
-      "id": "programming",
-      "category": "uncategorized"
-    },
-    {
-      "id": "Desktop programming",
-      "category": "uncategorized"
-    },
-    {
-      "id": "Next.js",
-      "category": "coreFrontend"
-    },
-    {
-      "id": "Tailwind",
-      "category": "coreFrontend"
-    },
-    {
-      "id": "Selenium",
-      "category": "testing"
     }
   ]
 }
