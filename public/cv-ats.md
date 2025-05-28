@@ -2,11 +2,18 @@
 
 #### Software Engineer | Full Stack Developer
 
-I’m an experienced full stack engineer specializing in scalable web applications. I primarily focus on TypeScript-based full-stack projects (Nest.js, React, Next.js).
+**Full-stack engineer** with **6+ years** of experience building scalable web applications using **TypeScript**, with a strong focus on **Next.js**, **NestJS**, and **React**.
 
-Currently, I'm a Lead Front-End Engineer at [Roll’n’Code](https://rollncode.com/). I contribute to the creation and maintenance of UI components that power [EGW Writings](https://egwwritings.org/). frontend, ensuring our platform meets web accessibility standards and best practices.
+Since **2021** — **Lead Front-End Engineer** at *[Roll’n’Code](https://rollncode.com/)*. Key contributor to the **[EGW Writings](https://egwwritings.org/)** platform:  
+– Architected and developed UI components using **Next.js** and **Tailwind**  
+– Ensured accessibility compliance (WCAG) and responsive performance across devices  
+– Improved CI/CD workflows via **Docker**, **GitHub Actions**, and **automated testing**
 
-Check out my portfolio and let's build something amazing together!
+**Core expertise**:  
+– **Next.js**, **NestJS**, **React**, **TypeScript**  
+– Scalable architecture, API design, SSR/SSG
+– Testing: **Jest**, **Selenium**  
+– DevOps basics: **Docker**, CI/CD, Git workflows
 
 Email: text@mail.com
 
@@ -17,52 +24,57 @@ Website: https://leetcode.com/u/korenko-git/
 ## Work Experience
 
 ### Front - End Developer
-
 Roll’n’Code | 2021-01 - Present
 
-Working on Ellen G.'s interactive website. White Estate with gamification elements. EGW Writings contains a custom Study Center, Cloud Synchronization of all devices, Audiobooks, online and offline advanced Search and support of more than 100 languages.
-Collaborated closely with the design team to implement pixel-perfect layouts and user flows. Implemented CI/CD pipelines and Dockerized the application. Participated in code reviews, hiring processes and mentoring new developers.
+- Developed and maintained UI components for **EGW Writings** — a multilingual platform with advanced features: Study Center, cloud sync, audiobooks, search, and accessibility compliance  
+- Worked closely with designers to implement **pixel-perfect** layouts and seamless user flows  
+- Built and maintained **CI/CD pipelines**, **Dockerized** front-end environments  
+- Participated in **code reviews**, **mentoring**, and **hiring** processes  
 
 Skills: React, TypeScript, Next.js, Docker, Jest, Redux, Tailwind, GraphQL, Selenium
 
 ### Full - Stack Developer
-
 krgaz | 2019-03 - 2021-12
 
-Contributed into development of custom CRM system for a leading gas delivery company in the Ukraine. Designed fronted, utilizing technologies like React, jQuery. Participated in the backend development using PHP, Django, and MariaDB. Developed account management system, user roles, and permissions. Implemented integrations with third-party services, such as Google Roads. Worked on the mobile application using React Native.
+- Built a CRM system with **React** and **PHP**, integrating **Google Roads API** for real-time route optimization  
+- Developed secure **user and role management** systems (PHP + jQuery)  
+- Created a **React Native** mobile app and web platform for QR-based book tracking and automated overdue reminders  
 
 Skills: React, PHP, Python, Laravel, Django, jQuery, MySQL, WordPress, ReactNative
 
 ### Full - Stack Developer
-
 Freelancehunt | 2017-01 - 2019-12
 
-Successfully completed over 30+ projects while working with a range of large and small agencies, start-ups and individuals.
+- Completed **30+ custom projects** for startups and agencies, from web apps to mobile-ready solutions  
+- Delivered end-to-end solutions using **Laravel**, **PHP**, **jQuery**, **MySQL**, and responsive front-end  
+- Provided long-term support, performance scaling, and third-party integrations  
 
 Skills: PHP, Laravel, jQuery, MySQL, HTML&SCSS
 
 ## Education
 
 ### Master's degree in Software Engineering
-
 Kryvyi Rih National University | 2016-05 - 2018-06
 
-Focused on advanced computer science concepts, specializing in machine learning, artificial intelligence, and cloud computing. Worked on various research projects involving neural networks and data-driven applications.
+- Specialized in **machine learning**, **image analysis**, and **cloud computing**  
+- Developed projects using **OpenCV** for gesture and figure recognition  
+- Participated in academic research on **neural networks** and **data processing** 
 
-Skills: Python, Data_Analysis, Cloud_Computing, Machine_Learning, OpenCV
+Skills: Python, Data Analysis, Cloud Computing, Machine Learning, OpenCV
 
 ### Bachelor's degree in Software Engineering
-
 Kryvyi Rih National University | 2012-01 - 2016-06
 
-Gained a strong foundation in software development, networking, and database management. Developed projects in web and mobile applications, and learned to implement full-stack solutions.
+- Built foundation in **software development**, **networking**, and **database management**  
+- Developed full-stack web and mobile applications as part of coursework  
 
-Skills: JavaScript, PHP, Web_Development, Mobile_Development, Database_Management, C#, Network, programming, Desktop_programming
+Skills: JavaScript, PHP, Web Development, Mobile Development, Database Management, C#, Network, Desktop programming
 
 ## Certificates
 
 - NestJS Zero to Hero (Udemy) - 2025-02
-- React Advanced () - 2022-06
+- TypeScript course (javascript.info) - 2020-05
+- Advanced React course (javascript.info) - 2020-05
 
 ## Projects
 
@@ -81,3 +93,4 @@ Creation of a system for project and task management with real-time updates.
 Technologies: TypeScript, React, Socket.io, PostgreSQL, NestJS, Docker, GraphQL, Material-UI, Jest, CI/CD
 
 Links: [Source](https://github.com/example/task-manager) [Demo](https://task-manager-demo.com)
+
