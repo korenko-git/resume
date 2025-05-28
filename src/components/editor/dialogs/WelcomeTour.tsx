@@ -115,6 +115,9 @@ export function WelcomeTour({ isEntityFormOpen = false }: WelcomeTourProps) {
       spotlightShadow: "0 0 15px rgba(0, 0, 0, 0.5)",
       zIndex: 1000,
     },
+    buttonNext: {
+      color: "var(--primary-foreground)",
+    },
   };
 
   useEffect(() => {
