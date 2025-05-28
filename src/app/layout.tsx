@@ -3,11 +3,13 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 
+import { AccessibilitySettings } from "@/components/common/layout/AccessibilitySettings";
 import BackgroundAnimation from "@/components/common/layout/BackgroundAnimation";
 import ClientThemeProvider from "@/components/common/layout/ClientThemeProvider";
 import Container from "@/components/common/layout/Container";
 import { ErrorBoundary } from "@/components/common/layout/ErrorBoundary";
 import { Footer } from "@/components/common/layout/Footer";
+import { ThemeToggle } from "@/components/common/layout/ThemeToggle";
 import { Toaster } from "@/components/common/ui/toaster";
 import { RESUME_THEME_STORAGE_KEY } from "@/constants/theme";
 import { ResumeProvider } from "@/contexts/ResumeContext";
@@ -39,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -49,6 +52,20 @@ export default function RootLayout({
                     document.documentElement.classList.add('dark');
                   } else {
                     document.documentElement.classList.remove('dark');
+                  }
+                  
+                  var accessibility = localStorage.getItem('accessibility-settings');
+                  if (accessibility) {
+                    var settings = JSON.parse(accessibility);
+                    if (settings.fontSize === 'large') document.documentElement.classList.add('font-large');
+                    if (settings.fontSize === 'extra-large') document.documentElement.classList.add('font-extra-large');
+                    if (settings.reducedMotion) document.documentElement.classList.add('reduced-motion');
+                    if (settings.highContrast) document.documentElement.classList.add('high-contrast');
+                    if (settings.screenReaderMode) document.documentElement.classList.add('screen-reader-mode');
+                  }
+                  
+                  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    document.documentElement.classList.add('reduced-motion');
                   }
                 } catch(e) {}
               })();
@@ -65,9 +82,14 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+
         <ClientThemeProvider>
           <ErrorBoundary>
             <ResumeProvider>
+              <div className="no-print fixed top-4 right-4 z-50 flex gap-2">
+                <ThemeToggle />
+                <AccessibilitySettings />
+              </div>
               <BackgroundAnimation />
               <Container>
                 <main id="main-content">{children}</main>

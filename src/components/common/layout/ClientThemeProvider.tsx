@@ -3,7 +3,7 @@
 import { ThemeProvider } from "next-themes";
 import { ReactNode, useEffect, useState } from "react";
 
-import { RESUME_THEME_STORAGE_KEY } from "@/constants/theme";
+import { RESUME_THEME_STORAGE_KEY, THEME_OPTIONS } from "@/constants/theme";
 
 export default function ClientThemeProvider({
   children,
@@ -23,7 +23,8 @@ export default function ClientThemeProvider({
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="dark"
+      defaultTheme={THEME_OPTIONS.DARK}
+      themes={[THEME_OPTIONS.LIGHT, THEME_OPTIONS.DARK]}
       enableSystem={false}
       disableTransitionOnChange
       storageKey={RESUME_THEME_STORAGE_KEY}

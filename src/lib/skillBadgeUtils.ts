@@ -3,36 +3,36 @@ import { cn } from "@/lib/utils";
 
 const SKILL_COLORS = {
   coreFrontend: {
-    normal: "bg-blue-100 text-blue-800 hover:bg-blue-200",
-    resume: "lg:group-hover:bg-blue-100 lg:group-hover:text-blue-800",
+    normal: "bg-skill-core-frontend text-skill-core-frontend-text hover:bg-skill-core-frontend-hover border border-skill-core-frontend-text/20",
+    resume: "lg:group-hover:bg-skill-core-frontend lg:group-hover:text-skill-core-frontend-text lg:group-hover:border-skill-core-frontend-text/20",
   },
   coreBackend: {
-    normal: "bg-green-100 text-green-800 hover:bg-green-200",
-    resume: "lg:group-hover:bg-green-100 lg:group-hover:text-green-800",
+    normal: "bg-skill-core-backend text-skill-core-backend-text hover:bg-skill-core-backend-hover border border-skill-core-backend-text/20",
+    resume: "lg:group-hover:bg-skill-core-backend lg:group-hover:text-skill-core-backend-text lg:group-hover:border-skill-core-backend-text/20",
   },
   language: {
-    normal: "bg-purple-100 text-purple-800 hover:bg-purple-200",
-    resume: "lg:group-hover:bg-purple-100 lg:group-hover:text-purple-800",
+    normal: "bg-skill-language text-skill-language-text hover:bg-skill-language-hover border border-skill-language-text/20",
+    resume: "lg:group-hover:bg-skill-language lg:group-hover:text-skill-language-text lg:group-hover:border-skill-language-text/20",
   },
   database: {
-    normal: "bg-orange-100 text-orange-800 hover:bg-orange-200",
-    resume: "lg:group-hover:bg-orange-100 lg:group-hover:text-orange-800",
+    normal: "bg-skill-database text-skill-database-text hover:bg-skill-database-hover border border-skill-database-text/20",
+    resume: "lg:group-hover:bg-skill-database lg:group-hover:text-skill-database-text lg:group-hover:border-skill-database-text/20",
   },
   devOps: {
-    normal: "bg-red-100 text-red-800 hover:bg-red-200",
-    resume: "lg:group-hover:bg-red-100 lg:group-hover:text-red-800",
+    normal: "bg-skill-devops text-skill-devops-text hover:bg-skill-devops-hover border border-skill-devops-text/20",
+    resume: "lg:group-hover:bg-skill-devops lg:group-hover:text-skill-devops-text lg:group-hover:border-skill-devops-text/20",
   },
   testing: {
-    normal: "bg-yellow-100 text-yellow-800 hover:bg-yellow-200",
-    resume: "lg:group-hover:bg-yellow-100 lg:group-hover:text-yellow-800",
+    normal: "bg-skill-testing text-skill-testing-text hover:bg-skill-testing-hover border border-skill-testing-text/20",
+    resume: "lg:group-hover:bg-skill-testing lg:group-hover:text-skill-testing-text lg:group-hover:border-skill-testing-text/20",
   },
   tooling: {
-    normal: "bg-gray-100 text-gray-800 hover:bg-gray-200",
-    resume: "lg:group-hover:bg-gray-100 lg:group-hover:text-gray-800",
+    normal: "bg-skill-tooling text-skill-tooling-text hover:bg-skill-tooling-hover border border-skill-tooling-text/20",
+    resume: "lg:group-hover:bg-skill-tooling lg:group-hover:text-skill-tooling-text lg:group-hover:border-skill-tooling-text/20",
   },
   uncategorized: {
-    normal: "bg-slate-100 text-slate-800 hover:bg-slate-200",
-    resume: "lg:group-hover:bg-slate-100 lg:group-hover:text-slate-800",
+    normal: "bg-skill-uncategorized text-skill-uncategorized-text hover:bg-skill-uncategorized-hover border border-skill-uncategorized-text/20",
+    resume: "lg:group-hover:bg-skill-uncategorized lg:group-hover:text-skill-uncategorized-text lg:group-hover:border-skill-uncategorized-text/20",
   },
 } as const;
 

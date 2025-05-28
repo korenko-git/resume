@@ -67,7 +67,6 @@ export default function EditorContent() {
         <div className="mb-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
           <h1 className="text-3xl font-bold">Resume Editor</h1>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-            <ThemeToggle />
             <Button variant="outline" onClick={() => router.push("/")}>
               Home
             </Button>

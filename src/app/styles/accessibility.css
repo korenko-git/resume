@@ -1,0 +1,192 @@
+/* High Contrast Enhancements */
+.high-contrast * {
+  border-color: currentColor !important;
+}
+
+.high-contrast button:focus,
+.high-contrast a:focus,
+.high-contrast input:focus,
+.high-contrast select:focus,
+.high-contrast textarea:focus {
+  outline: 3px solid var(--hc-outline-color) !important;
+  outline-offset: 2px !important;
+}
+
+.high-contrast .nav-indicator {
+  background-color: var(--hc-bg-indicator) !important;
+}
+
+.high-contrast .nav-text {
+  color: var(--hc-text-color) !important;
+}
+
+.high-contrast .nav a.active .nav-text {
+  color: var(--hc-text-active-color) !important;
+}
+
+/* Screen Reader Mode */
+.screen-reader-mode .animate-pulse,
+.screen-reader-mode .animate-spin,
+.screen-reader-mode .animate-bounce {
+  animation: none !important;
+}
+
+.screen-reader-mode .sr-only {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0.25rem !important;
+  margin: 0.25rem !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Font Size Variants */
+.font-large {
+  font-size: 1.125rem;
+}
+
+.font-large .text-xs {
+  font-size: 0.875rem;
+}
+
+.font-large .text-sm {
+  font-size: 1rem;
+}
+
+.font-large .text-base {
+  font-size: 1.25rem;
+}
+
+.font-large .text-lg {
+  font-size: 1.5rem;
+}
+
+.font-large .text-xl {
+  font-size: 1.75rem;
+}
+
+.font-large .text-2xl {
+  font-size: 2rem;
+}
+
+.font-large .text-3xl {
+  font-size: 2.5rem;
+}
+
+.font-large .text-4xl {
+  font-size: 3.5rem;
+}
+
+.font-large .text-5xl {
+  font-size: 4.5rem;
+}
+
+.font-extra-large {
+  font-size: 1.25rem;
+}
+
+.font-extra-large .text-xs {
+  font-size: 1rem;
+}
+
+.font-extra-large .text-sm {
+  font-size: 1.125rem;
+}
+
+.font-extra-large .text-base {
+  font-size: 1.5rem;
+}
+
+.font-extra-large .text-lg {
+  font-size: 1.75rem;
+}
+
+.font-extra-large .text-xl {
+  font-size: 2rem;
+}
+
+.font-extra-large .text-2xl {
+  font-size: 2.5rem;
+}
+
+.font-extra-large .text-3xl {
+  font-size: 3rem;
+}
+
+.font-extra-large .text-4xl {
+  font-size: 4rem;
+}
+
+.font-extra-large .text-5xl {
+  font-size: 5rem;
+}
+
+/* Reduced Motion */
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+.reduced-motion .background-animation-wrapper {
+  display: none;
+}
+
+@layer base {
+  .high-contrast *:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 4px var(--hc-outline-color),
+      0 0 0 8px var(--hc-offset-color);
+  }
+
+  .high-contrast .text-muted-foreground {
+    color: var(--hc-muted-text);
+  }
+
+  .high-contrast button {
+    border-width: 2px !important;
+    border-color: var(--hc-border-color) !important;
+  }
+
+  .high-contrast button:hover,
+  .high-contrast a:hover {
+    background-color: var(--hc-hover-bg) !important;
+    color: var(--hc-hover-text) !important;
+    border-color: var(--hc-hover-bg) !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-star {
+    animation: none;
+  }
+}
