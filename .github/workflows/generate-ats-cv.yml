@@ -45,7 +45,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm ci --legacy-peer-deps
           sudo apt-get update
           sudo apt-get install -y pandoc wkhtmltopdf
 
