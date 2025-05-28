@@ -20,7 +20,7 @@ export default function EditorContent() {
     const { version, ...dataWithoutVersion } = data;
     const dataWithImagePaths = {
       ...dataWithoutVersion,
-      version: { version: version },
+      version: { version: version + 1 },
     };
 
     for (const sectionName of Object.keys(dataWithoutVersion) as Array<
