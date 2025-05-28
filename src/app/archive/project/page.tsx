@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { OutlineLinkButton } from "@/components/common/ui/OutlineLinkButton";
+import { OutlineLinkButton } from "@/components/common/OutlineLinkButton";
 import { ResumeSections } from "@/components/resume/sections/ResumeSections";
 import { getResume } from "@/lib/getResume";
 import { createOpenGraphMetadata } from "@/lib/metadata";

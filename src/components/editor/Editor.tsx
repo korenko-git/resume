@@ -30,6 +30,7 @@ import { SkillsManager } from "./controls/SkillsManager";
 import { WelcomeTour } from "./dialogs/WelcomeTour";
 import { EntitiesList } from "./EntitiesList";
 import { EntityForm } from "./forms/EntityForm";
+import { OutlineLinkButton } from "../common/OutlineLinkButton";
 
 export function Editor() {
   const { data, updateData } = useResume();
@@ -98,19 +99,15 @@ export function Editor() {
         >
           {selectedEntityId ? (
             <div className="mb-4">
-              <button
-                onClick={handleBackToList}
-                className="text-foreground group back-button inline-flex cursor-pointer items-center leading-tight font-medium"
+              <OutlineLinkButton
+                as="button"
+                isLeftArrow
                 aria-label="Go back to entities list"
-                type="button"
+                className="border-0!"
+                onClick={handleBackToList}
               >
-                <span className="whitespace-nowrap" aria-hidden="true">
-                  <ArrowLeft className="mr-1 h-4 w-4 transition-transform group-hover:-translate-x-2" />
-                </span>
-                <span className="border-primary/30 group-hover:border-primary/30 border-b pb-px transition motion-reduce:transition-none lg:border-transparent">
-                  Back to list
-                </span>
-              </button>
+                Back to list
+              </OutlineLinkButton>
             </div>
           ) : (
             <div className="mb-4">

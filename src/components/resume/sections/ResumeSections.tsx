@@ -1,5 +1,5 @@
 import { Section } from "@/components/common/layout/Section";
-import { OutlineLinkButton } from "@/components/common/ui/OutlineLinkButton";
+import { OutlineLinkButton } from "@/components/common/OutlineLinkButton";
 import {
   filterPublishedEntries,
   getEntityFull,
