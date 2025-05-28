@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-import { isUsed } from "@/lib/entityUtils";
+import { hasRelationships, isUsed } from "@/lib/entityUtils";
 import { ResumeData, ResumeDataKeysWithEntries } from "@/types/resume";
 
 export function useEntityFilters(
@@ -18,7 +18,7 @@ export function useEntityFilters(
       if (orgFilter !== "all" && "organizationId" in entity) {
         if (entity.organizationId !== orgFilter) return false;
       }
-      if (usedFilter !== "all") {
+      if (usedFilter !== "all" && hasRelationships(entityType)) {
         const used = isUsed(data, entityType, entity.id);
         if (usedFilter === "used" && !used) return false;
         if (usedFilter === "unused" && used) return false;

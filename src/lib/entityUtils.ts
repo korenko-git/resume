@@ -285,3 +285,17 @@ export function isUsed(
     );
   });
 }
+
+/**
+ * Checks if an entity type has defined relationships where it is referenced by other entities.
+ * This is useful for determining if an entity type is part of a relationship chain.
+ *
+ * @param entityType The type of the entity to check (e.g., 'experience', 'education').
+ * @returns True if the entity type has relationships where it is referenced, false otherwise.
+ */
+export function hasRelationships(
+  entityType: ResumeDataKeysWithEntries,
+): boolean {
+  const relationships = entityRelationships[entityType];
+  return relationships && relationships.referencedIn.length > 0;
+}

@@ -8,10 +8,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/common/ui/select";
+import { hasRelationships } from "@/lib/entityUtils";
+import { ResumeDataKeysWithEntries } from "@/types/resume";
 
 interface EntitiesFiltersProps {
   entities: any[];
-  entityType: string;
+  entityType: ResumeDataKeysWithEntries;
   organizations: any[];
   skillCategories: string[];
   filters: {
@@ -60,16 +62,18 @@ export function EntitiesFilters({
         </Select>
       )}
 
-      <Select value={usedFilter} onValueChange={setUsedFilter}>
-        <SelectTrigger className="min-w-[100px]">
-          <SelectValue placeholder="Used" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">All</SelectItem>
-          <SelectItem value="used">Used</SelectItem>
-          <SelectItem value="unused">Unused</SelectItem>
-        </SelectContent>
-      </Select>
+      {hasRelationships(entityType) && (
+        <Select value={usedFilter} onValueChange={setUsedFilter}>
+          <SelectTrigger className="min-w-[100px]">
+            <SelectValue placeholder="Used" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All</SelectItem>
+            <SelectItem value="used">Used</SelectItem>
+            <SelectItem value="unused">Unused</SelectItem>
+          </SelectContent>
+        </Select>
+      )}
 
       {"isPublished" in (entities[0] || {}) && (
         <Select value={publishedFilter} onValueChange={setPublishedFilter}>
