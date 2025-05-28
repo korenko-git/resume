@@ -8,7 +8,7 @@ export function Footer() {
   const isEditorPage = pathname === "/editor";
 
   return (
-    <footer className="text-muted-foreground mt-16 border-t py-8 text-center text-sm">
+    <footer className="text-muted-foreground mt-16 border-t py-8 text-center text-sm no-print">
       <p className="mb-2">
         {isEditorPage ? (
           <>

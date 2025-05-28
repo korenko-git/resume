@@ -55,7 +55,7 @@ export function ResumeSections({
 
         {showArchiveLink && (
           <OutlineLinkButton
-            className="mt-12"
+            className="mt-12 no-print"
             aria-label={`View Full ${archiveTitle} Archive`}
             href={`/archive/${archiveTitle}`}
           >

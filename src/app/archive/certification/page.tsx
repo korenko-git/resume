@@ -15,7 +15,7 @@ export default function CertificationArchivePage() {
 
   return (
     <div className="lg:py-24">
-      <OutlineLinkButton href="/" isLeftArrow>
+      <OutlineLinkButton href="/" isLeftArrow className="no-print">
         Home
       </OutlineLinkButton>
 
