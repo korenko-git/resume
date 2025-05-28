@@ -40,10 +40,10 @@ export function createDefaultEntity(
   switch (type) {
     case "about":
       return {
+        ...baseEntity,
         title: "Your Name",
         subtitle: "Your Title",
         description: "A brief description about yourself",
-        isPublished: true,
         location: "Your Location",
         email: "your.email@example.com",
       } as AboutEntry;
