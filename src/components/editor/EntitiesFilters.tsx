@@ -83,7 +83,7 @@ export function EntitiesFilters({
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
             <SelectItem value="published">Published</SelectItem>
-            <SelectItem value="draft">Draft</SelectItem>
+            <SelectItem value="draft">Unpublished</SelectItem>
           </SelectContent>
         </Select>
       )}

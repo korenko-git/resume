@@ -58,7 +58,7 @@ export function EntityCard({
         <div className="mt-1 flex flex-wrap items-center gap-2">
           {"isPublished" in entity && (
             <Badge variant={entity.isPublished ? "default" : "outline"}>
-              {entity.isPublished ? "Published" : "Draft"}
+              {entity.isPublished ? "Published" : "Unpublished"}
             </Badge>
           )}
 
