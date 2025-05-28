@@ -71,6 +71,7 @@ A fully static, GitHub-powered resume website builder. This project allows you t
   - `data/`: JSON data files for resume content
   - `hooks/`: Custom React hooks
   - `lib/`: Utility functions
+  - `services/`: Business logic and data storage services
   - `types/`: TypeScript type definitions
 - `updates/`: Directory for ZIP files containing resume updates
 
