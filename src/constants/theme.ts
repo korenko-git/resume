@@ -5,7 +5,7 @@ export const THEME_OPTIONS = {
   DARK: "dark",
 } as const;
 
-export type ThemeOption = typeof THEME_OPTIONS[keyof typeof THEME_OPTIONS];
+export type ThemeOption = (typeof THEME_OPTIONS)[keyof typeof THEME_OPTIONS];
 
 export const THEME_LABELS = {
   [THEME_OPTIONS.LIGHT]: "Light",

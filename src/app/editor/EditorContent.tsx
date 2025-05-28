@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 
-import { ThemeToggle } from "@/components/common/layout/ThemeToggle";
 import { Button } from "@/components/common/ui/button";
 import { DraftDialog } from "@/components/editor/dialogs/DraftDialog";
 import { Editor } from "@/components/editor/Editor";

@@ -13,9 +13,9 @@
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
-  
+
   /* Utility classes for accessibility */
   .sr-only-focusable:focus {
-    @apply not-sr-only absolute z-50 p-4 bg-background text-foreground border rounded;
+    @apply bg-background text-foreground not-sr-only absolute z-50 rounded border p-4;
   }
 }

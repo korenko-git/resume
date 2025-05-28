@@ -24,19 +24,19 @@ import { Switch } from "@/components/common/ui/switch";
 import { THEME_LABELS, THEME_OPTIONS } from "@/constants/theme";
 
 interface AccessibilitySettings {
-  fontSize: 'normal' | 'large' | 'extra-large';
+  fontSize: "normal" | "large" | "extra-large";
   reducedMotion: boolean;
   highContrast: boolean;
   screenReaderMode: boolean;
 }
 
-const ACCESSIBILITY_STORAGE_KEY = 'accessibility-settings';
+const ACCESSIBILITY_STORAGE_KEY = "accessibility-settings";
 
 export function AccessibilitySettings() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [settings, setSettings] = useState<AccessibilitySettings>({
-    fontSize: 'normal',
+    fontSize: "normal",
     reducedMotion: false,
     highContrast: false,
     screenReaderMode: false,
@@ -49,33 +49,48 @@ export function AccessibilitySettings() {
       try {
         setSettings(JSON.parse(saved));
       } catch (e) {
-        console.warn('Failed to parse accessibility settings');
+        console.warn("Failed to parse accessibility settings. Error:", e);
       }
     }
   }, []);
 
   useEffect(() => {
     if (!mounted) return;
-    
+
     localStorage.setItem(ACCESSIBILITY_STORAGE_KEY, JSON.stringify(settings));
-    
-    document.documentElement.classList.toggle('font-large', settings.fontSize === 'large');
-    document.documentElement.classList.toggle('font-extra-large', settings.fontSize === 'extra-large');
-    document.documentElement.classList.toggle('reduced-motion', settings.reducedMotion);
-    document.documentElement.classList.toggle('high-contrast', settings.highContrast);
-    document.documentElement.classList.toggle('screen-reader-mode', settings.screenReaderMode);
+
+    document.documentElement.classList.toggle(
+      "font-large",
+      settings.fontSize === "large",
+    );
+    document.documentElement.classList.toggle(
+      "font-extra-large",
+      settings.fontSize === "extra-large",
+    );
+    document.documentElement.classList.toggle(
+      "reduced-motion",
+      settings.reducedMotion,
+    );
+    document.documentElement.classList.toggle(
+      "high-contrast",
+      settings.highContrast,
+    );
+    document.documentElement.classList.toggle(
+      "screen-reader-mode",
+      settings.screenReaderMode,
+    );
   }, [settings, mounted]);
 
   const updateSetting = <K extends keyof AccessibilitySettings>(
     key: K,
-    value: AccessibilitySettings[K]
+    value: AccessibilitySettings[K],
   ) => {
-    setSettings(prev => ({ ...prev, [key]: value }));
+    setSettings((prev) => ({ ...prev, [key]: value }));
   };
 
   const resetSettings = () => {
     setSettings({
-      fontSize: 'normal',
+      fontSize: "normal",
       reducedMotion: false,
       highContrast: false,
       screenReaderMode: false,
@@ -103,7 +118,7 @@ export function AccessibilitySettings() {
         <DialogHeader>
           <DialogTitle>Accessibility Settings</DialogTitle>
         </DialogHeader>
-        
+
         <div className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="theme-select">Theme</Label>
@@ -112,18 +127,22 @@ export function AccessibilitySettings() {
                 <SelectValue placeholder="Select theme" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value={THEME_OPTIONS.LIGHT}>{THEME_LABELS[THEME_OPTIONS.LIGHT]}</SelectItem>
-                <SelectItem value={THEME_OPTIONS.DARK}>{THEME_LABELS[THEME_OPTIONS.DARK]}</SelectItem>
+                <SelectItem value={THEME_OPTIONS.LIGHT}>
+                  {THEME_LABELS[THEME_OPTIONS.LIGHT]}
+                </SelectItem>
+                <SelectItem value={THEME_OPTIONS.DARK}>
+                  {THEME_LABELS[THEME_OPTIONS.DARK]}
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="font-size-select">Font Size</Label>
-            <Select 
-              value={settings.fontSize} 
-              onValueChange={(value: AccessibilitySettings['fontSize']) => 
-                updateSetting('fontSize', value)
+            <Select
+              value={settings.fontSize}
+              onValueChange={(value: AccessibilitySettings["fontSize"]) =>
+                updateSetting("fontSize", value)
               }
             >
               <SelectTrigger id="font-size-select">
@@ -145,11 +164,13 @@ export function AccessibilitySettings() {
             <Switch
               id="high-contrast"
               checked={settings.highContrast}
-              onCheckedChange={(checked) => updateSetting('highContrast', checked)}
+              onCheckedChange={(checked) =>
+                updateSetting("highContrast", checked)
+              }
               aria-describedby="high-contrast-desc"
             />
           </div>
-          <p id="high-contrast-desc" className="text-sm text-muted-foreground">
+          <p id="high-contrast-desc" className="text-muted-foreground text-sm">
             Increases contrast for better visibility
           </p>
 
@@ -161,11 +182,13 @@ export function AccessibilitySettings() {
             <Switch
               id="reduced-motion"
               checked={settings.reducedMotion}
-              onCheckedChange={(checked) => updateSetting('reducedMotion', checked)}
+              onCheckedChange={(checked) =>
+                updateSetting("reducedMotion", checked)
+              }
               aria-describedby="reduced-motion-desc"
             />
           </div>
-          <p id="reduced-motion-desc" className="text-sm text-muted-foreground">
+          <p id="reduced-motion-desc" className="text-muted-foreground text-sm">
             Reduces animations and transitions
           </p>
 
@@ -177,17 +200,19 @@ export function AccessibilitySettings() {
             <Switch
               id="screen-reader"
               checked={settings.screenReaderMode}
-              onCheckedChange={(checked) => updateSetting('screenReaderMode', checked)}
+              onCheckedChange={(checked) =>
+                updateSetting("screenReaderMode", checked)
+              }
               aria-describedby="screen-reader-desc"
             />
           </div>
-          <p id="screen-reader-desc" className="text-sm text-muted-foreground">
+          <p id="screen-reader-desc" className="text-muted-foreground text-sm">
             Optimizes interface for screen readers
           </p>
 
-          <Button 
-            onClick={resetSettings} 
-            variant="outline" 
+          <Button
+            onClick={resetSettings}
+            variant="outline"
             className="w-full"
             aria-label="Reset all accessibility settings to default"
           >

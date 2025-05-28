@@ -33,7 +33,7 @@ export function SocialLinks({ sectionData }: SocialLinksProps) {
 
   return (
     <div
-      className="flex items-center justify-center lg:justify-start mt-4 sm:mt-0"
+      className="mt-4 flex items-center justify-center sm:mt-0 lg:justify-start"
       aria-label="Social media"
     >
       {socialLinks.map(

@@ -105,7 +105,7 @@
   --contrast-multiplier: 2;
   --contrast-bg-offset: 0.3;
   --contrast-text-offset: 0.4;
-  
+
   /* Enhanced borders and focus */
   --border: currentColor;
   --ring: oklch(0.9 0.3 100);
@@ -132,17 +132,17 @@
   --input: oklch(1 0 0);
   --ring: oklch(0.2 0.3 250);
 
-  --hc-outline-color: oklch(0.606 0.223 264.05);       /* #0000ff */
-  --hc-bg-indicator: oklch(0.0 0.0 0);                 /* #000000 */
-  --hc-text-color: oklch(0.0 0.0 0);                   /* #000000 */
-  --hc-text-active-color: oklch(0.606 0.223 264.05);   /* #0000ff */
+  --hc-outline-color: oklch(0.606 0.223 264.05); /* #0000ff */
+  --hc-bg-indicator: oklch(0 0 0); /* #000000 */
+  --hc-text-color: oklch(0 0 0); /* #000000 */
+  --hc-text-active-color: oklch(0.606 0.223 264.05); /* #0000ff */
 
-  --hc-outline-color: oklch(0.7 0.2 264);        
-  --hc-offset-color: oklch(1 0 0);               
-  --hc-border-color: oklch(0 0 0);               
-  --hc-hover-bg: oklch(0.7 0.2 264);             
-  --hc-hover-text: oklch(0 0 0);                 
-  --hc-muted-text: oklch(0.6 0 0);  
+  --hc-outline-color: oklch(0.7 0.2 264);
+  --hc-offset-color: oklch(1 0 0);
+  --hc-border-color: oklch(0 0 0);
+  --hc-hover-bg: oklch(0.7 0.2 264);
+  --hc-hover-text: oklch(0 0 0);
+  --hc-muted-text: oklch(0.6 0 0);
 }
 
 /* Dark + High Contrast */
@@ -166,15 +166,15 @@
   --input: oklch(1 0 0);
   --ring: oklch(0.9 0.3 100);
 
-  --hc-outline-color: oklch(0.967 0.201 104.07);       /* #ffff00 */
-  --hc-bg-indicator: oklch(1.0 0.0 0);                 /* #ffffff */
-  --hc-text-color: oklch(1.0 0.0 0);                   /* #ffffff */
-  --hc-text-active-color: oklch(0.967 0.201 104.07);   /* #ffff00 */
+  --hc-outline-color: oklch(0.967 0.201 104.07); /* #ffff00 */
+  --hc-bg-indicator: oklch(1 0 0); /* #ffffff */
+  --hc-text-color: oklch(1 0 0); /* #ffffff */
+  --hc-text-active-color: oklch(0.967 0.201 104.07); /* #ffff00 */
 
-  --hc-outline-color: oklch(0.98 0.2 104);       
-  --hc-offset-color: oklch(0.2 0 0);             
-  --hc-border-color: oklch(1 0 0);               
-  --hc-hover-bg: oklch(0.98 0.2 104);            
-  --hc-hover-text: oklch(0.2 0 0);               
+  --hc-outline-color: oklch(0.98 0.2 104);
+  --hc-offset-color: oklch(0.2 0 0);
+  --hc-border-color: oklch(1 0 0);
+  --hc-hover-bg: oklch(0.98 0.2 104);
+  --hc-hover-text: oklch(0.2 0 0);
   --hc-muted-text: oklch(0.8 0 0);
 }

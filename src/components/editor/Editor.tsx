@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowLeft } from "lucide-react";
 import React, { useState } from "react";
 
 import { Card, CardContent } from "@/components/common/ui/card";
@@ -26,11 +25,11 @@ import {
   ResumeDataWithEntries,
 } from "@/types/resume";
 
+import { OutlineLinkButton } from "../common/OutlineLinkButton";
 import { SkillsManager } from "./controls/SkillsManager";
 import { WelcomeTour } from "./dialogs/WelcomeTour";
 import { EntitiesList } from "./EntitiesList";
 import { EntityForm } from "./forms/EntityForm";
-import { OutlineLinkButton } from "../common/OutlineLinkButton";
 
 export function Editor() {
   const { data, updateData } = useResume();

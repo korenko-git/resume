@@ -95,7 +95,7 @@ export default function Starfield() {
   }, [updateStars]);
 
   return (
-    <div className="pointer-events-none inset-0 overflow-hidden background-animation-wrapper">
+    <div className="background-animation-wrapper pointer-events-none inset-0 overflow-hidden">
       <div id="stars" className="animate-star absolute h-[1px] w-[1px]" />
       <div
         id="stars-after"

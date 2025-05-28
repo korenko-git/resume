@@ -1,5 +1,6 @@
-import { useEffect } from "react";
 import { useTheme } from "next-themes";
+import { useEffect } from "react";
+
 import { THEME_OPTIONS } from "@/constants/theme";
 
 export function useKeyboardShortcuts() {
@@ -9,7 +10,7 @@ export function useKeyboardShortcuts() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.altKey && e.shiftKey) {
         switch (e.key) {
-          case 'T':
+          case "T":
             e.preventDefault();
             if (theme === THEME_OPTIONS.LIGHT) {
               setTheme(THEME_OPTIONS.DARK);
@@ -17,23 +18,23 @@ export function useKeyboardShortcuts() {
               setTheme(THEME_OPTIONS.LIGHT);
             }
             break;
-          case 'H':
+          case "H":
             e.preventDefault();
-            window.location.hash = '#about';
+            window.location.hash = "#about";
             break;
-          case 'E':
+          case "E":
             e.preventDefault();
-            window.location.hash = '#experience';
+            window.location.hash = "#experience";
             break;
-          case 'P':
+          case "P":
             e.preventDefault();
-            window.location.hash = '#projects';
+            window.location.hash = "#projects";
             break;
         }
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [setTheme, theme]);
 }
