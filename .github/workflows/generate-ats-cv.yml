@@ -45,6 +45,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          npm ci --legacy-peer-deps
           sudo apt-get update
           sudo apt-get install -y pandoc wkhtmltopdf
 
@@ -78,8 +79,9 @@ jobs:
       - name: Commit ATS CV
         if: steps.check_md_changes.outputs.md_changes_detected == 'true'
         run: |
-          git config user.name github-actions
-          git config user.email action@github.com
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+
           git add public/cv-ats.md public/cv-ats.pdf
           git commit -m "Update ATS CV"
           git push
