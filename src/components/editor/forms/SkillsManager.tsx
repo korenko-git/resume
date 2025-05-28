@@ -12,7 +12,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/common/ui/select";
-import { skillCategoryOrder, SkillCategoryType } from "@/constants/skills";
+import {
+  skillCategoryOrder,
+  SkillCategoryType,
+  SKILL_OPTIONS,
+} from "@/constants/skills";
 import { useSkills } from "@/hooks/useSkills";
 
 import { SmartSkillDeleteDialog } from "../dialogs/SmartSkillDeleteDialog";
@@ -59,7 +63,7 @@ export function SkillsManager() {
     setNewSkillsInput("");
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       handleAddSkills();
     }
@@ -95,7 +99,7 @@ export function SkillsManager() {
               id="new-skills"
               value={newSkillsInput}
               onChange={(e) => setNewSkillsInput(e.target.value)}
-              onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyDown}
               placeholder="React, TypeScript, Node.js..."
               className="w-full"
             />
@@ -113,9 +117,9 @@ export function SkillsManager() {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {skillCategoryOrder.map((category) => (
-                  <SelectItem key={category} value={category}>
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                {SKILL_OPTIONS.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -155,12 +159,11 @@ export function SkillsManager() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Categories</SelectItem>
-                {skillCategoryOrder.map((category) => (
-                  <SelectItem key={category} value={category}>
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                {SKILL_OPTIONS.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
                   </SelectItem>
                 ))}
-                <SelectItem value="uncategorized">Uncategorized</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -171,11 +174,14 @@ export function SkillsManager() {
         {Object.entries(groupedSkills).map(([category, categorySkills]) => {
           if (categorySkills.length === 0) return null;
 
+          const categoryLabel = SKILL_OPTIONS.find(
+            (option) => option.value === category,
+          )?.label || category.charAt(0).toUpperCase() + category.slice(1);
+
           return (
             <div key={category} className="space-y-2">
               <h4 className="text-sm font-medium tracking-wide text-gray-600 uppercase">
-                {category.charAt(0).toUpperCase() + category.slice(1)} (
-                {categorySkills.length})
+                {categoryLabel} ({categorySkills.length})
               </h4>
 
               <div className="flex flex-wrap gap-2">

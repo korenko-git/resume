@@ -26,7 +26,7 @@ import {
 } from "@/types/resume";
 
 import { OutlineLinkButton } from "../common/OutlineLinkButton";
-import { SkillsManager } from "./controls/SkillsManager";
+import { SkillsManager } from "./forms/SkillsManager";
 import { WelcomeTour } from "./dialogs/WelcomeTour";
 import { EntitiesList } from "./EntitiesList";
 import { EntityForm } from "./forms/EntityForm";
