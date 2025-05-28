@@ -143,4 +143,4 @@ This project uses several GitHub Actions workflows to automate the resume update
 
 ## 📄 License
 
-MIT
+[MIT License](LICENSE.md)
