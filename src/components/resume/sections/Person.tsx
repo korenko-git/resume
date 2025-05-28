@@ -31,6 +31,7 @@ export function Person({ sectionData }: PersonProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Download ATS-friendly CV (opens in new tab)"
+            title="Download ATS-friendly CV (opens in new tab)"
           >
             ATS CV
           </a>
@@ -41,6 +42,7 @@ export function Person({ sectionData }: PersonProps) {
             <a
               href={`mailto:${sectionData.email}`}
               aria-label={`Send email to ${sectionData.email}`}
+              title={`Send email to ${sectionData.email}`}
             >
               <span>Email me</span>
               <span
