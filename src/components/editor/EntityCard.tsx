@@ -37,7 +37,7 @@ export function EntityCard({
   return (
     <Card
       key={entity.id}
-      className="group entity-card relative flex cursor-pointer flex-col overflow-hidden transition-shadow hover:shadow-md"
+      className="group entity-card hover:bg-accent/10 relative flex cursor-pointer flex-col overflow-hidden transition-shadow hover:shadow-md"
       onClick={() => onSelect(entity.id)}
     >
       <CardHeader className="pb-2">
