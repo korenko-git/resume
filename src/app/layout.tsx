@@ -86,7 +86,7 @@ export default function RootLayout({
         <ClientThemeProvider>
           <ErrorBoundary>
             <ResumeProvider>
-              <div className="no-print fixed top-4 right-4 z-50 flex gap-2">
+              <div className="no-print fixed top-4 right-4 z-50 flex gap-2 sm:top-8 sm:right-2">
                 <ThemeToggle />
                 <AccessibilitySettings />
               </div>
