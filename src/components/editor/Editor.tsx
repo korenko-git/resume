@@ -26,10 +26,10 @@ import {
 } from "@/types/resume";
 
 import { OutlineLinkButton } from "../common/OutlineLinkButton";
-import { SkillsManager } from "./forms/SkillsManager";
 import { WelcomeTour } from "./dialogs/WelcomeTour";
 import { EntitiesList } from "./EntitiesList";
 import { EntityForm } from "./forms/EntityForm";
+import { SkillsManager } from "./forms/SkillsManager";
 
 export function Editor() {
   const { data, updateData } = useResume();

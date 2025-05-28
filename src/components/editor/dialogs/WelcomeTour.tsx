@@ -3,7 +3,7 @@
 import { HelpCircle } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import Joyride, { Step } from "react-joyride";
+import Joyride, { STATUS, Step } from "react-joyride";
 
 import { Button } from "@/components/common/ui/button";
 
@@ -150,7 +150,7 @@ export function WelcomeTour({ isEntityFormOpen = false }: WelcomeTourProps) {
         callback={(data) => {
           const { status } = data;
 
-          if (status === "finished" || status === "skipped") {
+          if (status === STATUS.FINISHED || status === STATUS.SKIPPED) {
             setRunTour(false);
           }
         }}

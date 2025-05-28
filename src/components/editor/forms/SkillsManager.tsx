@@ -13,9 +13,9 @@ import {
   SelectValue,
 } from "@/components/common/ui/select";
 import {
+  SKILL_OPTIONS,
   skillCategoryOrder,
   SkillCategoryType,
-  SKILL_OPTIONS,
 } from "@/constants/skills";
 import { useSkills } from "@/hooks/useSkills";
 
@@ -174,9 +174,9 @@ export function SkillsManager() {
         {Object.entries(groupedSkills).map(([category, categorySkills]) => {
           if (categorySkills.length === 0) return null;
 
-          const categoryLabel = SKILL_OPTIONS.find(
-            (option) => option.value === category,
-          )?.label || category.charAt(0).toUpperCase() + category.slice(1);
+          const categoryLabel =
+            SKILL_OPTIONS.find((option) => option.value === category)?.label ||
+            category.charAt(0).toUpperCase() + category.slice(1);
 
           return (
             <div key={category} className="space-y-2">
