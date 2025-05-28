@@ -24,6 +24,10 @@
   color: var(--hc-text-active-color) !important;
 }
 
+.high-contrast .nav a:hover .nav-text {
+  color: var(--hc-hover-text) !important;
+}
+
 /* Screen Reader Mode */
 .screen-reader-mode .animate-pulse,
 .screen-reader-mode .animate-spin,

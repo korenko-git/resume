@@ -34,12 +34,8 @@ export function ThemeToggle() {
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
       title={`Current theme: ${theme}. Click to switch to ${theme === "light" ? "dark" : "light"} theme`}
     >
-      {theme === "light" && (
-        <Sun className="text-foreground h-5 w-5" aria-hidden="true" />
-      )}
-      {theme === "dark" && (
-        <Moon className="text-foreground h-5 w-5" aria-hidden="true" />
-      )}
+      {theme === "light" && <Sun className="h-5 w-5" aria-hidden="true" />}
+      {theme === "dark" && <Moon className="h-5 w-5" aria-hidden="true" />}
     </Button>
   );
 }
