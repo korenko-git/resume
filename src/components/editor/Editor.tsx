@@ -84,8 +84,8 @@ export function Editor() {
   }
 
   return (
-    <Card className="sm:border-border w-full border-0 shadow-none sm:border sm:shadow">
-      <CardContent className="px-0 sm:px-6">
+    <Card className="lg:border-border lg:bg-card w-full border-0 bg-transparent shadow-none lg:border lg:shadow">
+      <CardContent className="px-0 lg:px-6">
         <div className="relative flex items-center justify-end">
           <WelcomeTour
             isEntityFormOpen={!!selectedEntityId && activeTab !== "skills"}
@@ -111,7 +111,7 @@ export function Editor() {
             </div>
           ) : (
             <div className="mb-4">
-              <div className="mobile-section-select block sm:hidden">
+              <div className="mobile-section-select block lg:hidden">
                 <label
                   htmlFor="section-select"
                   className="text-foreground mb-1 block text-sm font-medium"
@@ -140,7 +140,7 @@ export function Editor() {
                 </Select>
               </div>
 
-              <TabsList className="editor-tabs hidden sm:flex sm:flex-wrap sm:gap-1">
+              <TabsList className="editor-tabs hidden sm:gap-1 lg:flex lg:flex-wrap">
                 {Object.keys(entityMetadata).map((key) => (
                   <TabsTrigger
                     key={key}
@@ -159,7 +159,7 @@ export function Editor() {
           )}
 
           {(Object.keys(entityMetadata) as Array<EditorTabKey>).map((key) => (
-            <TabsContent key={key} value={key} className="space-y-4">
+            <TabsContent key={key} value={key} className="mt-4 space-y-4">
               {renderContent(key)}
             </TabsContent>
           ))}

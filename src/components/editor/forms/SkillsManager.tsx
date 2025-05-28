@@ -101,7 +101,7 @@ export function SkillsManager() {
               onChange={(e) => setNewSkillsInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="React, TypeScript, Node.js..."
-              className="w-full skills-input"
+              className="skills-input w-full"
             />
           </div>
 
@@ -127,7 +127,10 @@ export function SkillsManager() {
           </div>
         </div>
 
-        <Button onClick={handleAddSkills} className="w-full md:w-auto skills-add-button">
+        <Button
+          onClick={handleAddSkills}
+          className="skills-add-button w-full md:w-auto"
+        >
           <Plus className="mr-2 h-4 w-4" />
           Add Skills
         </Button>
@@ -146,7 +149,7 @@ export function SkillsManager() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search skills..."
-                className="pl-10 skills-search"
+                className="skills-search pl-10"
               />
             </div>
           </div>
@@ -184,7 +187,7 @@ export function SkillsManager() {
                 {categoryLabel} ({categorySkills.length})
               </h4>
 
-              <div className="flex flex-wrap gap-2 skills-list">
+              <div className="skills-list flex flex-wrap gap-2">
                 {categorySkills.map((skill) => (
                   <SkillBadge
                     key={skill.id}

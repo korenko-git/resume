@@ -77,7 +77,7 @@ export function WelcomeTour({
         onClick={handleStartTour}
         aria-label="Show Tutorial"
         title="Show Tutorial"
-        className="top-0 right-0 z-10 h-8 w-8 rounded-full sm:absolute"
+        className="top-0 right-0 z-10 h-8 w-8 rounded-full lg:absolute"
       >
         <HelpCircle className="h-4 w-4" />
       </Button>
