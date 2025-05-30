@@ -3,7 +3,7 @@
     {
       "id": "exp-1",
       "title": "Front - End Developer",
-      "description": "- Developed and maintained UI components for **EGW Writings** — a multilingual platform with advanced features: Study Center, cloud sync, audiobooks, search, and accessibility compliance  \n- Worked closely with designers to implement **pixel-perfect** layouts and seamless user flows  \n- Built and maintained **CI/CD pipelines**, **Dockerized** front-end environments  \n- Participated in **code reviews**, **mentoring**, and **hiring** processes  ",
+      "description": "- Developed and maintained UI components for **[EGW Writings](https://egwwritings.org/)** — a multilingual platform with advanced features: Study Center, cloud sync, audiobooks, search, and accessibility compliance\n- Worked closely with designers to implement **pixel-perfect layouts** and seamless user flows\n- Refactored the highlight modules (text bookmarks/highlighting feature in the reader) from legacy **jQuery to React**, improving maintainability and performance\n- Optimized **Next.js build process**, reducing build time and improving development workflow efficiency\n- Improved CI/CD pipelines with Docker and GitHub Actions for more reliable deployments\n- Participated in code reviews, mentoring, and hiring processes",
       "isPublished": true,
       "startDate": "2021-01",
       "endDate": "",
