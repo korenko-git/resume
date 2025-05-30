@@ -45,14 +45,11 @@ jobs:
 
       - name: Install dependencies (isolated)
         run: |
-          mkdir temp-cv && cd temp-cv
-          npm init -y
           npm install markdown-it puppeteer tsx
 
       - name: Generate ATS Markdown
         run: |
-          cd temp-cv
-          npx tsx ../scripts/generate-ats-md.ts
+          npx tsx scripts/generate-ats-md.ts
 
       - name: Check for changes in MD file
         id: check_md_changes
@@ -67,8 +64,7 @@ jobs:
 
       - name: Generate ATS PDF
         run: |
-          cd temp-cv
-          npx tsx ../scripts/generate-ats-pdf.ts
+          npx tsx scripts/generate-ats-pdf.ts
 
       - name: Upload ATS CV artifacts
         uses: actions/upload-artifact@v4
