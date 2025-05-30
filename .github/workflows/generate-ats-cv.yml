@@ -45,7 +45,7 @@ jobs:
 
       - name: Install dependencies (isolated)
         run: |
-          npm install markdown-it puppeteer tsx
+          npm install markdown-it puppeteer tsx --legacy-peer-deps
 
       - name: Generate ATS Markdown
         run: |
