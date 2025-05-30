@@ -1,14 +1,17 @@
 import fs from "fs";
 import path from "path";
 
-import { getFirstPublishedEntry } from "@/lib/entityUtils";
+import { formatDate } from "@/lib/dateUtils";
+import {
+  getFirstPublishedEntry,
+  stripLinksFromMarkdown,
+} from "@/lib/entityUtils";
 import {
   AboutEntry,
   CertificationEntry,
   EducationEntry,
   ExperienceEntry,
   Organization,
-  ProjectEntry,
 } from "@/types/resume";
 
 async function generateATSMarkdown() {
@@ -27,9 +30,6 @@ async function generateATSMarkdown() {
     const certifications = JSON.parse(
       fs.readFileSync(path.join(dataPath, "certifications.json"), "utf-8"),
     );
-    const projects = JSON.parse(
-      fs.readFileSync(path.join(dataPath, "projects.json"), "utf-8"),
-    );
     const organizations = JSON.parse(
       fs.readFileSync(path.join(dataPath, "organizations.json"), "utf-8"),
     );
@@ -42,29 +42,18 @@ async function generateATSMarkdown() {
 
     // Creating ATS-optimized text
     let atsContent = "";
-    atsContent += `# ${about.title}\n\n`;
-    atsContent += `#### ${about.subtitle}\n\n`;
-    atsContent += `${about.description}\n\n`;
+    atsContent += `# ${about.title}\n`;
+    atsContent +=
+      [
+        about.email,
+        `GitHub: ${about.github}`,
+        `LinkedIn: ${about.linkedin}`,
+      ].join(" | ") + "\n\n";
 
-    if (about.email) {
-      atsContent += `Email: ${about.email}\n`;
-    }
+    atsContent += `## PROFESSIONAL SUMMARY\n\n`;
+    atsContent += `${stripLinksFromMarkdown(about.description)}\n\n`;
 
-    if (about.location) {
-      atsContent += `Location: ${about.location}\n`;
-    }
-
-    if (about.github || about.linkedin || about.website) {
-      atsContent += "\n";
-      if (about.github) atsContent += `GitHub: ${about.github}\n`;
-      if (about.linkedin) atsContent += `LinkedIn: ${about.linkedin}\n`;
-      if (about.website) atsContent += `Website: ${about.website}\n`;
-    }
-
-    atsContent += "\n";
-
-    // Work Experience
-    atsContent += "## Work Experience\n\n";
+    atsContent += "## WORK EXPERIENCE\n\n";
     experience.entries
       .filter((entry: ExperienceEntry) => entry.isPublished)
       .sort(
@@ -76,15 +65,15 @@ async function generateATSMarkdown() {
           (o: Organization) => o.id === entry.organizationId,
         );
         atsContent += `### ${entry.title}\n`;
-        atsContent += `${org ? org.title : ""} | ${entry.startDate} - ${entry.endDate || "Present"}\n\n`;
-        atsContent += `${entry.description}\n\n`;
+        atsContent += `${org ? org.title : ""} | ${formatDate(entry.startDate)} - ${formatDate(entry.endDate) || "Present"}\n\n`;
+        atsContent += `${stripLinksFromMarkdown(entry.description)}\n\n`;
         if (entry.skills && entry.skills.length > 0) {
-          atsContent += `Skills: ${entry.skills.join(", ")}\n\n`;
+          atsContent += `**Key Technologies**: ${entry.skills.join(", ")}\n\n`;
         }
       });
 
     // Education
-    atsContent += "## Education\n\n";
+    atsContent += "## EDUCATION\n\n";
     education.entries
       .filter((entry: EducationEntry) => entry.isPublished)
       .sort(
@@ -96,11 +85,7 @@ async function generateATSMarkdown() {
           (o: Organization) => o.id === entry.organizationId,
         );
         atsContent += `### ${entry.title}\n`;
-        atsContent += `${org ? org.title : ""} | ${entry.startDate} - ${entry.endDate}\n\n`;
-        atsContent += `${entry.description}\n\n`;
-        if (entry.skills && entry.skills.length > 0) {
-          atsContent += `Skills: ${entry.skills.join(", ")}\n\n`;
-        }
+        atsContent += `${org ? org.title : ""} | ${formatDate(entry.startDate)} - ${formatDate(entry.endDate)}\n\n`;
       });
 
     // Certificates
@@ -115,35 +100,17 @@ async function generateATSMarkdown() {
         const org = organizations.entries.find(
           (o: Organization) => o.id === entry.organizationId,
         );
-        atsContent += `- ${entry.title} (${org ? org.title : ""}) - ${entry.date}\n`;
-      });
-
-    // Projects
-    atsContent += "\n## Projects\n\n";
-    projects.entries
-      .filter((entry: ProjectEntry) => entry.isPublished)
-      .forEach((entry: ProjectEntry) => {
-        atsContent += `### ${entry.title}\n\n`;
-        atsContent += `${entry.description}\n\n`;
-        if (entry.skills && entry.skills.length > 0) {
-          atsContent += `Technologies: ${entry.skills.join(", ")}\n\n`;
-        }
-        if (entry.source || entry.demo) {
-          atsContent += "Links: ";
-          if (entry.source) atsContent += `[Source](${entry.source}) `;
-          if (entry.demo) atsContent += `[Demo](${entry.demo})`;
-          atsContent += "\n\n";
-        }
+        atsContent += `- ${entry.title} (${org ? org.title : ""}) - ${formatDate(entry.date)}\n`;
       });
 
     // Creating public directory if it doesn't exist
-    const publicDir = path.join(process.cwd(), "public");
-    if (!fs.existsSync(publicDir)) {
-      fs.mkdirSync(publicDir, { recursive: true });
+    const atsDir = path.join(process.cwd(), "public/ats");
+    if (!fs.existsSync(atsDir)) {
+      fs.mkdirSync(atsDir, { recursive: true });
     }
 
     // Saving to markdown file
-    const mdPath = path.join(publicDir, "cv-ats.md");
+    const mdPath = path.join(atsDir, "cv-ats.md");
     fs.writeFileSync(mdPath, atsContent, "utf-8");
 
     console.log("ATS markdown generated successfully");

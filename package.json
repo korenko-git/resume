@@ -12,7 +12,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "pdf": "tsx scripts/generate-ats-resume.ts",
+    "pdf": "tsx scripts/generate-ats-md.ts && tsx scripts/generate-ats-pdf.ts",
     "og": "tsx scripts/generate-og-image.ts"
   },
   "dependencies": {

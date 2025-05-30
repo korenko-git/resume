@@ -20,7 +20,7 @@ A fully static, GitHub-powered resume website builder. This project allows you t
 - **UI Enhancements:**
   - [React Joyride](https://docs.react-joyride.com/) for the welcome tour.
 - **Data Storage:** JSON files & Browser `localStorage`
-- **PDF Generation:** [Pandoc](https://pandoc.org/) via `wkhtmltopdf` engine with Puppeteer fallback
+- **PDF Generation:** [markdown-it](https://github.com/markdown-it/markdown-it) & [Puppeteer](https://pptr.dev/)
 - **Testing:** [Jest](https://jestjs.io/) & [React Testing Library](https://testing-library.com/)
 
 ## 🚀 Getting Started
@@ -51,7 +51,7 @@ A fully static, GitHub-powered resume website builder. This project allows you t
 - `npm run test`: Runs Jest tests to verify code functionality and prevent regressions.
 - `npm run test:watch`: Runs Jest tests in watch mode, automatically re-running tests when files change.
 - `npm run test:coverage`: Runs Jest tests and generates a coverage report to identify untested code.
-- `npm run pdf`: Generates an ATS-friendly PDF resume using the script in `scripts/generate-ats-resume.ts`. The output is saved to `public/cv-ats.pdf`.
+- `npm run pdf`: Generates an ATS-friendly PDF resume using the scripts in `scripts/generate-ats-md.ts` and `scripts/generate-ats-pdf.ts`. The output is saved to `public/asts/cv-ats.pdf`.
 - `npm run og`: Generates an OpenGraph image for social media sharing using the script in `scripts/generate-og-image.ts`. The output is saved to `public/og/resume-og.png`.
 
 ## 📁 Project Structure
@@ -123,7 +123,7 @@ This project uses several GitHub Actions workflows to automate the resume update
 - **Actions**:
   - Checks for changes in JSON data files
   - Generates Markdown version of the resume
-  - Creates PDF version using Pandoc and wkhtmltopdf
+  - Creates PDF version
   - Commits and pushes the generated files
 
 ### Generate OG Image (`generate-og-image.yml`)

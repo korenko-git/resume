@@ -45,9 +45,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm ci --legacy-peer-deps
-          sudo apt-get update
-          sudo apt-get install -y pandoc wkhtmltopdf
+          npm init -y
+          npm install markdown-it puppeteer
 
       - name: Generate ATS Markdown
         run: npx tsx scripts/generate-ats-md.ts
@@ -55,7 +54,7 @@ jobs:
       - name: Check for changes in MD file
         id: check_md_changes
         run: |
-          if [ -f public/cv-ats.md ] && git diff --quiet public/cv-ats.md; then
+          if [ -f public/ats/cv-ats.md ] && git diff --quiet public/ats/cv-ats.md; then
             echo "No changes detected in cv-ats.md"
             echo "md_changes_detected=false" >> $GITHUB_OUTPUT
           else
@@ -72,8 +71,8 @@ jobs:
         with:
           name: ats-cv
           path: |
-            public/cv-ats.md
-            public/cv-ats.pdf
+            public/ats/cv-ats.md
+            public/ats/cv-ats.pdf
         if: steps.check_md_changes.outputs.md_changes_detected == 'true' || github.event_name == 'workflow_dispatch'
 
       - name: Commit ATS CV
@@ -82,6 +81,6 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add public/cv-ats.md public/cv-ats.pdf
+          git add public/ats/cv-ats.md public/ats/cv-ats.pdf
           git commit -m "Update ATS CV"
           git push
