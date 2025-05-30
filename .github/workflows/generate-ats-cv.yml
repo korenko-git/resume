@@ -50,6 +50,7 @@ jobs:
           npm install markdown-it puppeteer tsx
 
       - name: Generate ATS Markdown
+        run: |
           cd temp-cv
           npx tsx ../scripts/generate-ats-md.ts
 
@@ -65,6 +66,7 @@ jobs:
           fi
 
       - name: Generate ATS PDF
+        run: |
           cd temp-cv
           npx tsx ../scripts/generate-ats-pdf.ts
 
