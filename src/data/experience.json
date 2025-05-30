@@ -23,7 +23,7 @@
     {
       "id": "exp-2",
       "title": "Full - Stack Developer",
-      "description": "- Built a CRM system with **React** and **PHP**, integrating **Google Roads API** for real-time route optimization  \n- Developed secure **user and role management** systems (PHP + jQuery)  \n- Created a **React Native** mobile app and web platform for QR-based book tracking and automated overdue reminders  ",
+      "description": "- Developed a custom CRM system for a leading Ukrainian gas delivery company using **React** and **PHP**, integrating **Google Roads API** for real-time route optimization  \n- Developed secure **user and role management** systems (PHP + jQuery)  \n- Created a **React Native** mobile app and web platform for QR-based book tracking and automated overdue reminders  ",
       "isPublished": true,
       "startDate": "2019-03",
       "endDate": "2021-12",
@@ -43,7 +43,7 @@
     {
       "id": "exp-macm8fhc",
       "title": "Full - Stack Developer",
-      "description": "- Completed **30+ custom projects** for startups and agencies, from web apps to mobile-ready solutions  \n- Delivered end-to-end solutions using **Laravel**, **PHP**, **jQuery**, **MySQL**, and responsive front-end  \n- Provided long-term support, performance scaling, and third-party integrations  ",
+      "description": "- Delivered **30+ custom projects** for startups and agencies, ranging from web applications to mobile-ready solutions.\n- Developed **MVPs** and scalable applications using Laravel, PHP, jQuery, and MySQL, accelerating client product launches.\n- Provided long-term support, performance optimization, and third-party service integrations.\n- Managed all phases of development from requirement gathering to deployment.",
       "isPublished": true,
       "startDate": "2017-01",
       "endDate": "2019-12",
