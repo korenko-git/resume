@@ -23,7 +23,7 @@
     {
       "id": "exp-2",
       "title": "Full - Stack Developer",
-      "description": "- Developed a CRM system with **React** and **PHP** integrating **Google Roads API** for real-time route optimization, improving delivery efficiency by 17%.\n- Built secure **user and role management** modules to enforce access control policies.\n- Created a **React Native** mobile app and web platform for QR-based book tracking and automated overdue notifications.",
+      "description": "- Developed a custom CRM system for a leading Ukrainian gas delivery company using **React** and **PHP** integrating **Google Roads API** for real-time route optimization, improving delivery efficiency by 17%.\n- Built secure **user and role management** modules to enforce access control policies.\n- Created a **React Native** mobile app and web platform for QR-based book tracking and automated overdue notifications.",
       "isPublished": true,
       "startDate": "2019-03",
       "endDate": "2021-12",
