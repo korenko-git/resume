@@ -1,7 +1,7 @@
 {
   "name": "resume",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -72,5 +72,24 @@
     "tsx": "^4.19.3",
     "tw-animate-css": "^1.2.8",
     "typescript": "^5.8.3"
-  }
+  },
+  "description": "A modern, serverless resume editor built with Next.js that generates both interactive web resumes and ATS-friendly PDFs. Edit content through a user-friendly interface and deploy via GitHub Pages.",
+  "keywords": [
+    "react",
+    "nextjs",
+    "typescript",
+    "tailwindcss",
+    "serverless",
+    "github-pages",
+    "github-actions",
+    "shadcn-ui",
+    "accessibility",
+    "jest",
+    "testing-library",
+    "resume-builder",
+    "pdf-generator",
+    "ats-friendly"
+  ],
+  "author": "Dmytro Korenko",
+  "license": "MIT"
 }

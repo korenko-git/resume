@@ -43,13 +43,15 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Install dependencies
+      - name: Install dependencies (isolated)
         run: |
+          mkdir temp-cv && cd temp-cv
           npm init -y
-          npm install markdown-it puppeteer
+          npm install markdown-it puppeteer tsx
 
       - name: Generate ATS Markdown
-        run: npx tsx scripts/generate-ats-md.ts
+          cd temp-cv
+          npx tsx ../scripts/generate-ats-md.ts
 
       - name: Check for changes in MD file
         id: check_md_changes
@@ -63,8 +65,8 @@ jobs:
           fi
 
       - name: Generate ATS PDF
-
-        run: npx tsx scripts/generate-ats-pdf.ts
+          cd temp-cv
+          npx tsx ../scripts/generate-ats-pdf.ts
 
       - name: Upload ATS CV artifacts
         uses: actions/upload-artifact@v4
