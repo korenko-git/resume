@@ -174,6 +174,23 @@ export function getSingularForm(type: string): string {
 }
 
 /**
+ * Removes Markdown links from the text while preserving the visible link text.
+ *
+ * Example:
+ * Input:  "See [documentation](https://example.com)"
+ * Output: "See documentation"
+ *
+ * Supports only inline-style Markdown links of the form [text](url).
+ * Does not affect images, HTML, or other Markdown elements.
+ *
+ * @param {string} md - The input Markdown string.
+ * @returns {string} Markdown string with links removed.
+ */
+export function stripLinksFromMarkdown(md: string): string {
+  return md.replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1");
+}
+
+/**
  * Gets references for a specific entity type based on the entityRelationships
  * @param entityType Type of the entity
  * @returns Array of references or empty array if none found
