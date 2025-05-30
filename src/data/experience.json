@@ -3,7 +3,7 @@
     {
       "id": "exp-1",
       "title": "Front - End Developer",
-      "description": "- Developed and maintained UI components for **EGW Writings** — a multilingual platform with advanced features: Study Center, cloud sync, audiobooks, search, and accessibility compliance  \n- Worked closely with designers to implement **pixel-perfect** layouts and seamless user flows  \n- Built and maintained **CI/CD pipelines**, **Dockerized** front-end environments  \n- Participated in **code reviews**, **mentoring**, and **hiring** processes  ",
+      "description": "- Developed and maintained UI components for **[EGW Writings](https://egwwritings.org/)** — a multilingual platform with advanced features: Study Center, cloud sync, audiobooks, search, and accessibility compliance\n- Worked closely with designers to implement **pixel-perfect layouts** and seamless user flows\n- Refactored the highlight modules (text bookmarks/highlighting feature in the reader) from legacy **jQuery to React**, improving maintainability and performance\n- Optimized **Next.js build process**, reducing build time and improving development workflow efficiency\n- Improved CI/CD pipelines with Docker and GitHub Actions for more reliable deployments\n- Participated in code reviews, mentoring, and hiring processes",
       "isPublished": true,
       "startDate": "2021-01",
       "endDate": "",
@@ -23,7 +23,7 @@
     {
       "id": "exp-2",
       "title": "Full - Stack Developer",
-      "description": "- Built a CRM system with **React** and **PHP**, integrating **Google Roads API** for real-time route optimization  \n- Developed secure **user and role management** systems (PHP + jQuery)  \n- Created a **React Native** mobile app and web platform for QR-based book tracking and automated overdue reminders  ",
+      "description": "- Developed a CRM system with **React** and **PHP** integrating **Google Roads API** for real-time route optimization, improving delivery efficiency by 17%.\n- Built secure **user and role management** modules to enforce access control policies.\n- Created a **React Native** mobile app and web platform for QR-based book tracking and automated overdue notifications.",
       "isPublished": true,
       "startDate": "2019-03",
       "endDate": "2021-12",
@@ -43,11 +43,17 @@
     {
       "id": "exp-macm8fhc",
       "title": "Full - Stack Developer",
-      "description": "- Completed **30+ custom projects** for startups and agencies, from web apps to mobile-ready solutions  \n- Delivered end-to-end solutions using **Laravel**, **PHP**, **jQuery**, **MySQL**, and responsive front-end  \n- Provided long-term support, performance scaling, and third-party integrations  ",
+      "description": "- Delivered **30+ custom projects** for startups and agencies, ranging from web applications to mobile-ready solutions.\n- Developed **MVPs** and scalable applications using Laravel, PHP, jQuery, and MySQL, accelerating client product launches.\n- Provided long-term support, performance optimization, and third-party service integrations.\n- Managed all phases of development from requirement gathering to deployment.",
       "isPublished": true,
       "startDate": "2017-01",
       "endDate": "2019-12",
-      "skills": ["PHP", "Laravel", "jQuery", "MySQL", "HTML&SCSS"],
+      "skills": [
+        "PHP",
+        "Laravel",
+        "jQuery",
+        "MySQL",
+        "HTML&SCSS"
+      ],
       "organizationId": "org-macm8hcq"
     }
   ]
