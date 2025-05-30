@@ -38,7 +38,7 @@ Skills: React, TypeScript, Next.js, Docker, Jest, Redux, Tailwind, GraphQL, Sele
 ### Full - Stack Developer
 krgaz | 2019-03 - 2021-12
 
-- Developed a CRM system with **React** and **PHP** integrating **Google Roads API** for real-time route optimization, improving delivery efficiency by 17%.
+- Developed a custom CRM system for a leading Ukrainian gas delivery company using **React** and **PHP** integrating **Google Roads API** for real-time route optimization, improving delivery efficiency by 17%.
 - Built secure **user and role management** modules to enforce access control policies.
 - Created a **React Native** mobile app and web platform for QR-based book tracking and automated overdue notifications.
 
