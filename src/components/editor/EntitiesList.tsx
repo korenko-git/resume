@@ -3,10 +3,11 @@
 import { useMemo, useState } from "react";
 
 import { Card, CardContent } from "@/components/common/ui/card";
+import { entityMetadata } from "@/constants/editor";
 import { useResume } from "@/contexts/ResumeContext";
 import { useEntityFilters } from "@/hooks/useEntityFilters";
 import { createDefaultEntity } from "@/lib/entityUtils";
-import { entityMetadata, ResumeDataKeysWithEntries } from "@/types/resume";
+import { ResumeDataKeysWithEntries } from "@/types/resume";
 
 import { DeleteConfirmationDialog } from "./dialogs/DeleteConfirmationDialog";
 import { EntitiesFilters } from "./EntitiesFilters";

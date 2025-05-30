@@ -16,11 +16,10 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/common/ui/tabs";
+import { EditorTabKey, entityMetadata } from "@/constants/editor";
 import { useResume } from "@/contexts/ResumeContext";
 import { getEntity } from "@/lib/entityUtils";
 import {
-  EditorTabKey,
-  entityMetadata,
   ResumeDataKeysWithEntries,
   ResumeDataWithEntries,
 } from "@/types/resume";

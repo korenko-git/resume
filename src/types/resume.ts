@@ -31,5 +31,4 @@ export interface ResumeData {
 export * from "./common";
 export * from "./entries";
 export * from "./forms";
-export * from "./metadata";
 export * from "./relationships";
