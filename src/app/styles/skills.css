@@ -1,139 +1,111 @@
+@source inline("{hover:,lg:group-hover:,}{bg,text}-skill-{core-frontend,core-backend,language,database,dev-ops,testing,tooling,uncategorized}{-text,}");
+
+/* Default skill colors */
 :root {
   /* Skill badge colors */
   --skill-core-frontend: oklch(0.9 0.05 240);
   --skill-core-frontend-text: oklch(0.3 0.1 240);
-  --skill-core-frontend-hover: oklch(0.85 0.08 240);
 
   --skill-core-backend: oklch(0.9 0.05 140);
   --skill-core-backend-text: oklch(0.25 0.1 140);
-  --skill-core-backend-hover: oklch(0.85 0.08 140);
 
   --skill-language: oklch(0.9 0.05 280);
   --skill-language-text: oklch(0.3 0.1 280);
-  --skill-language-hover: oklch(0.85 0.08 280);
 
   --skill-database: oklch(0.9 0.05 50);
   --skill-database-text: oklch(0.3 0.1 50);
-  --skill-database-hover: oklch(0.85 0.08 50);
 
-  --skill-devops: oklch(0.9 0.05 20);
-  --skill-devops-text: oklch(0.3 0.1 20);
-  --skill-devops-hover: oklch(0.85 0.08 20);
+  --skill-dev-ops: oklch(0.9 0.05 20);
+  --skill-dev-ops-text: oklch(0.3 0.1 20);
 
   --skill-testing: oklch(0.9 0.05 80);
   --skill-testing-text: oklch(0.3 0.1 80);
-  --skill-testing-hover: oklch(0.85 0.08 80);
 
   --skill-tooling: oklch(0.9 0.02 240);
   --skill-tooling-text: oklch(0.3 0.02 240);
-  --skill-tooling-hover: oklch(0.85 0.04 240);
 
   --skill-uncategorized: oklch(0.9 0.01 240);
   --skill-uncategorized-text: oklch(0.35 0.01 240);
-  --skill-uncategorized-hover: oklch(0.85 0.02 240);
 }
 
 /* Light + High Contrast skill colors */
 :root.high-contrast {
   --skill-core-frontend: oklch(1 1 1);
   --skill-core-frontend-text: oklch(0.606 0.223 264.05);
-  --skill-core-frontend-hover: oklch(1 1 1);
 
   --skill-core-backend: oklch(1 1 1);
   --skill-core-backend-text: oklch(0.8 0.3 120);
-  --skill-core-backend-hover: oklch(1 1 1);
 
   --skill-language: oklch(1 1 1);
   --skill-language-text: oklch(0.7 0.3 300);
-  --skill-language-hover: oklch(1 1 1);
 
   --skill-database: oklch(1 1 1);
   --skill-database-text: oklch(0.7 0.3 50);
-  --skill-database-hover: oklch(1 1 1);
 
-  --skill-devops: oklch(1 1 1);
-  --skill-devops-text: oklch(0.6 0.3 25);
-  --skill-devops-hover: oklch(1 1 1);
+  --skill-dev-ops: oklch(1 1 1);
+  --skill-dev-ops-text: oklch(0.6 0.3 25);
 
   --skill-testing: oklch(1 1 1);
   --skill-testing-text: oklch(0.8 0.3 80);
-  --skill-testing-hover: oklch(1 1 1);
 
   --skill-tooling: oklch(1 1 1);
   --skill-tooling-text: oklch(0 0 0);
-  --skill-tooling-hover: oklch(1 1 1);
 
   --skill-uncategorized: oklch(1 1 1);
   --skill-uncategorized-text: oklch(0 0 0);
-  --skill-uncategorized-hover: oklch(1 1 1);
 }
 
+/* Dark skill colors */
 .dark {
   /* Skill badge colors for dark theme */
   --skill-core-frontend: oklch(0.25 0.08 240);
   --skill-core-frontend-text: oklch(0.8 0.1 240);
-  --skill-core-frontend-hover: oklch(0.3 0.1 240);
 
   --skill-core-backend: oklch(0.25 0.08 140);
   --skill-core-backend-text: oklch(0.8 0.1 140);
-  --skill-core-backend-hover: oklch(0.3 0.1 140);
 
   --skill-language: oklch(0.25 0.08 280);
   --skill-language-text: oklch(0.8 0.1 280);
-  --skill-language-hover: oklch(0.3 0.1 280);
 
   --skill-database: oklch(0.25 0.08 50);
   --skill-database-text: oklch(0.8 0.1 50);
-  --skill-database-hover: oklch(0.3 0.1 50);
 
-  --skill-devops: oklch(0.25 0.08 20);
-  --skill-devops-text: oklch(0.8 0.1 20);
-  --skill-devops-hover: oklch(0.3 0.1 20);
+  --skill-dev-ops: oklch(0.25 0.08 20);
+  --skill-dev-ops-text: oklch(0.8 0.1 20);
 
   --skill-testing: oklch(0.25 0.08 80);
   --skill-testing-text: oklch(0.8 0.1 80);
-  --skill-testing-hover: oklch(0.3 0.1 80);
 
   --skill-tooling: oklch(0.25 0.04 240);
   --skill-tooling-text: oklch(0.8 0.04 240);
-  --skill-tooling-hover: oklch(0.3 0.06 240);
 
   --skill-uncategorized: oklch(0.25 0.02 240);
   --skill-uncategorized-text: oklch(0.75 0.02 240);
-  --skill-uncategorized-hover: oklch(0.3 0.04 240);
 }
 
 /* Dark + High Contrast skill colors */
 .dark.high-contrast {
   --skill-core-frontend: oklch(0 0 0);
   --skill-core-frontend-text: oklch(0.9 0.3 100);
-  --skill-core-frontend-hover: oklch(0 0 0);
 
   --skill-core-backend: oklch(0 0 0);
   --skill-core-backend-text: oklch(0.8 0.3 120);
-  --skill-core-backend-hover: oklch(0 0 0);
 
   --skill-language: oklch(0 0 0);
   --skill-language-text: oklch(0.7 0.3 300);
-  --skill-language-hover: oklch(0 0 0);
 
   --skill-database: oklch(0 0 0);
   --skill-database-text: oklch(0.7 0.3 50);
-  --skill-database-hover: oklch(0 0 0);
 
-  --skill-devops: oklch(0 0 0);
-  --skill-devops-text: oklch(0.6 0.3 25);
-  --skill-devops-hover: oklch(0 0 0);
+  --skill-dev-ops: oklch(0 0 0);
+  --skill-dev-ops-text: oklch(0.6 0.3 25);
 
   --skill-testing: oklch(0 0 0);
   --skill-testing-text: oklch(0.8 0.3 80);
-  --skill-testing-hover: oklch(0 0 0);
 
   --skill-tooling: oklch(0 0 0);
   --skill-tooling-text: oklch(1 0 0);
-  --skill-tooling-hover: oklch(0 0 0);
 
   --skill-uncategorized: oklch(0 0 0);
   --skill-uncategorized-text: oklch(0.8 0 0);
-  --skill-uncategorized-hover: oklch(0 0 0);
 }

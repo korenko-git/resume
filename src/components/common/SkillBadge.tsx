@@ -27,9 +27,9 @@ export function SkillBadge({
     isResumeVariant
       ? cn(
           "border-border border-opacity-70 bg-muted/30 text-muted-foreground lg:group-hover:text-foreground flex items-center rounded-full border px-3 py-1 text-xs leading-5 font-medium shadow",
-          getSkillBadgeClassName(skill.category || "uncategorized", "", true),
+          getSkillBadgeClassName(skill.category, "", true),
         )
-      : getSkillBadgeClassName(skill.category || "uncategorized"),
+      : getSkillBadgeClassName(skill.category),
     className,
   );
 

@@ -43,28 +43,27 @@
   /* Skill badge colors */
   --color-skill-core-frontend: var(--skill-core-frontend);
   --color-skill-core-frontend-text: var(--skill-core-frontend-text);
-  --color-skill-core-frontend-hover: var(--skill-core-frontend-hover);
+
   --color-skill-core-backend: var(--skill-core-backend);
   --color-skill-core-backend-text: var(--skill-core-backend-text);
-  --color-skill-core-backend-hover: var(--skill-core-backend-hover);
+
   --color-skill-language: var(--skill-language);
   --color-skill-language-text: var(--skill-language-text);
-  --color-skill-language-hover: var(--skill-language-hover);
+
   --color-skill-database: var(--skill-database);
   --color-skill-database-text: var(--skill-database-text);
-  --color-skill-database-hover: var(--skill-database-hover);
-  --color-skill-devops: var(--skill-devops);
-  --color-skill-devops-text: var(--skill-devops-text);
-  --color-skill-devops-hover: var(--skill-devops-hover);
+
+  --color-skill-dev-ops: var(--skill-dev-ops);
+  --color-skill-dev-ops-text: var(--skill-dev-ops-text);
+
   --color-skill-testing: var(--skill-testing);
   --color-skill-testing-text: var(--skill-testing-text);
-  --color-skill-testing-hover: var(--skill-testing-hover);
+
   --color-skill-tooling: var(--skill-tooling);
   --color-skill-tooling-text: var(--skill-tooling-text);
-  --color-skill-tooling-hover: var(--skill-tooling-hover);
+
   --color-skill-uncategorized: var(--skill-uncategorized);
   --color-skill-uncategorized-text: var(--skill-uncategorized-text);
-  --color-skill-uncategorized-hover: var(--skill-uncategorized-hover);
 }
 
 @layer base {
