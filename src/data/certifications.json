@@ -6,7 +6,12 @@
       "description": "A complete course on modern Backend on NodeJS, TypeScript and MongoDB using best practices and the NestJS framework.",
       "isPublished": true,
       "date": "2025-02",
-      "skills": ["TypeScript", "Nest.js", "Node.js", "MongoDB"],
+      "skills": [
+        "TypeScript",
+        "Nest.js",
+        "Node.js",
+        "MongoDB"
+      ],
       "organizationId": "org-mafk14z7",
       "link": "https://www.udemy.com/certificate/UC-4b67c1a2-cd40-43fa-89f9-85b014677b19/"
     },
@@ -16,7 +21,9 @@
       "description": "This is to certify that Dmytro Korenko successfully completed \"TypeScript course\" program on May 17, 2020",
       "isPublished": true,
       "date": "2020-05",
-      "skills": ["TypeScript"],
+      "skills": [
+        "TypeScript"
+      ],
       "organizationId": "org-maz7ww1f",
       "link": "https://learn.javascript.ru/courses/typescript-20200516/gasonbooks/en/certificate.jpg"
     },
@@ -26,7 +33,12 @@
       "description": "This is to certify that Dmytro Korenko successfully completed \"Advanced React course\" program on May 11, 2020",
       "isPublished": true,
       "date": "2020-05",
-      "skills": ["React", "Redux", "Redux-Saga", "ReactNative"],
+      "skills": [
+        "React",
+        "Redux",
+        "Redux-Saga",
+        "ReactNative"
+      ],
       "organizationId": "org-maz7ww1f",
       "link": "https://learn.javascript.ru/courses/advreact-20200510/gasonbooks/en/certificate.jpg"
     },
@@ -36,7 +48,13 @@
       "description": "This certificate above verifies that Dmytro Korenko successfully completed the course \"React + Redux - Professional development\" on 10/23/2019 as taught by Juriy Bura on Udemy.",
       "isPublished": false,
       "date": "2019-10",
-      "skills": ["React", "JavaScript", "Webpack", "Redux", "Jest"],
+      "skills": [
+        "React",
+        "JavaScript",
+        "Webpack",
+        "Redux",
+        "Jest"
+      ],
       "organizationId": "org-mafk14z7",
       "link": "https://www.udemy.com/certificate/UC-ENZL2DDE/"
     }

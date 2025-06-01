@@ -17,6 +17,10 @@
       "category": "language"
     },
     {
+      "id": "Bootstrap",
+      "category": "coreFrontend"
+    },
+    {
       "id": "HTML&SCSS",
       "category": "coreFrontend"
     },
@@ -127,6 +131,14 @@
     {
       "id": "Selenium",
       "category": "testing"
+    },
+    {
+      "id": "GitHub-Actions",
+      "category": "tooling"
+    },
+    {
+      "id": "Gulp",
+      "category": "tooling"
     },
     {
       "id": "Socket.io",

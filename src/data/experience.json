@@ -47,7 +47,13 @@
       "isPublished": true,
       "startDate": "2017-01",
       "endDate": "2019-12",
-      "skills": ["PHP", "Laravel", "jQuery", "MySQL", "HTML&SCSS"],
+      "skills": [
+        "PHP",
+        "Laravel",
+        "jQuery",
+        "MySQL",
+        "HTML&SCSS"
+      ],
       "organizationId": "org-macm8hcq"
     }
   ]

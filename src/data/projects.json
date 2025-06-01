@@ -22,23 +22,20 @@
     },
     {
       "id": "proj-2",
-      "title": "Task Management System",
-      "description": "Creation of a system for project and task management with real-time updates.",
+      "title": "Multilingual Landing Page for a Well Drilling Company",
+      "description": "A responsive, production-ready landing page built for a regional well drilling service. The project includes full multilingual support (Russian, English, Ukrainian) with automatic generation of localized pages.",
       "isPublished": true,
       "skills": [
-        "TypeScript",
-        "React",
-        "Socket.io",
-        "PostgreSQL",
-        "NestJS",
-        "Docker",
-        "GraphQL",
-        "Material-UI",
-        "Jest",
-        "CI/CD"
+        "HTML&SCSS",
+        "Gulp",
+        "jQuery",
+        "JavaScript",
+        "Bootstrap",
+        "GitHub-Actions"
       ],
-      "source": "https://github.com/example/task-manager",
-      "demo": "https://task-manager-demo.com"
+      "source": "https://github.com/korenko-git/nedra",
+      "demo": "https://korenko-git.github.io/nedra/",
+      "image": "images/project-proj-2-image.png"
     }
   ]
 }
