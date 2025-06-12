@@ -30,29 +30,23 @@
 
 /* Light + High Contrast skill colors */
 :root.high-contrast {
-  --skill-core-frontend: oklch(1 1 1);
-  --skill-core-frontend-text: oklch(0.606 0.223 264.05);
+  --skill-core-frontend-text: oklch(0.35 0.18 100);
+  --skill-core-backend-text: oklch(0.35 0.18 230);
+  --skill-language-text: oklch(0.35 0.18 320);
+  --skill-database-text: oklch(0.4 0.18 70);
+  --skill-dev-ops-text: oklch(0.4 0.18 40);
+  --skill-testing-text: oklch(0.4 0.18 150);
+  --skill-tooling-text: oklch(0.25 0.1 280);
+  --skill-uncategorized-text: oklch(0.3 0.05 0);
 
-  --skill-core-backend: oklch(1 1 1);
-  --skill-core-backend-text: oklch(0.8 0.3 120);
-
-  --skill-language: oklch(1 1 1);
-  --skill-language-text: oklch(0.7 0.3 300);
-
-  --skill-database: oklch(1 1 1);
-  --skill-database-text: oklch(0.7 0.3 50);
-
-  --skill-dev-ops: oklch(1 1 1);
-  --skill-dev-ops-text: oklch(0.6 0.3 25);
-
-  --skill-testing: oklch(1 1 1);
-  --skill-testing-text: oklch(0.8 0.3 80);
-
-  --skill-tooling: oklch(1 1 1);
-  --skill-tooling-text: oklch(0 0 0);
-
-  --skill-uncategorized: oklch(1 1 1);
-  --skill-uncategorized-text: oklch(0 0 0);
+  --skill-core-frontend: oklch(1 0 0);
+  --skill-core-backend: oklch(1 0 0);
+  --skill-language: oklch(1 0 0);
+  --skill-database: oklch(1 0 0);
+  --skill-dev-ops: oklch(1 0 0);
+  --skill-testing: oklch(1 0 0);
+  --skill-tooling: oklch(1 0 0);
+  --skill-uncategorized: oklch(1 0 0);
 }
 
 /* Dark skill colors */
@@ -85,27 +79,21 @@
 
 /* Dark + High Contrast skill colors */
 .dark.high-contrast {
+  --skill-core-frontend-text: oklch(0.85 0.2 100);
+  --skill-core-backend-text: oklch(0.85 0.2 230);
+  --skill-language-text: oklch(0.85 0.2 320);
+  --skill-database-text: oklch(0.85 0.2 70);
+  --skill-dev-ops-text: oklch(0.85 0.2 40);
+  --skill-testing-text: oklch(0.85 0.2 150);
+  --skill-tooling-text: oklch(0.95 0.15 280);
+  --skill-uncategorized-text: oklch(0.75 0.05 0);
+
   --skill-core-frontend: oklch(0 0 0);
-  --skill-core-frontend-text: oklch(0.9 0.3 100);
-
   --skill-core-backend: oklch(0 0 0);
-  --skill-core-backend-text: oklch(0.8 0.3 120);
-
   --skill-language: oklch(0 0 0);
-  --skill-language-text: oklch(0.7 0.3 300);
-
   --skill-database: oklch(0 0 0);
-  --skill-database-text: oklch(0.7 0.3 50);
-
   --skill-dev-ops: oklch(0 0 0);
-  --skill-dev-ops-text: oklch(0.6 0.3 25);
-
   --skill-testing: oklch(0 0 0);
-  --skill-testing-text: oklch(0.8 0.3 80);
-
   --skill-tooling: oklch(0 0 0);
-  --skill-tooling-text: oklch(1 0 0);
-
   --skill-uncategorized: oklch(0 0 0);
-  --skill-uncategorized-text: oklch(0.8 0 0);
 }
