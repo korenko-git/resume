@@ -10,7 +10,7 @@ export function ProjectTitle({ data }: ProjectTitleProps) {
     <div className="flex flex-col">
       <h3 className="text-foreground leading-snug font-medium">{data.title}</h3>
 
-      <div className="flex gap-4" role="list" aria-label="Project links">
+      <div className="flex gap-4" aria-label="Project links">
         {data.demo && (
           <Link
             href={data.demo}
@@ -18,7 +18,6 @@ export function ProjectTitle({ data }: ProjectTitleProps) {
             rel="noopener noreferrer"
             className="group/link text-foreground hover:text-primary focus-visible:text-primary inline-flex items-baseline text-base leading-tight font-medium"
             aria-label={`Demo of ${data.title} (opens in a new tab)`}
-            role="listitem"
           >
             <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
 
@@ -39,7 +38,6 @@ export function ProjectTitle({ data }: ProjectTitleProps) {
             rel="noopener noreferrer"
             className="group/link text-foreground hover:text-primary focus-visible:text-primary relative inline-flex items-baseline text-base leading-tight font-medium"
             aria-label={`Source of ${data.title} (opens in a new tab)`}
-            role="listitem"
           >
             <span className="inline-block">
               Source
